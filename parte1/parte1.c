@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include "avl.h"
+#include "pila.h"
 
 #define LONGITUD_MAX_LINEA 255
 
@@ -11,6 +13,42 @@ typedef struct {
     int i1, i2, j1, j2;
     FuncionValidadora f;
 } InfoRobot;
+
+typedef struct {
+    int x, y;
+    unsigned int valido;
+} NodoMapa;
+
+
+void* nodomapa_copia(void* n) {
+    NodoMapa* copia = malloc(sizeof(NodoMapa)) ;
+    copia->x = ((NodoMapa*)n)->x;
+    copia->y = ((NodoMapa*)n)->y;
+    copia->valido = ((NodoMapa*)n)->valido;
+    return copia;
+}
+
+//(?)
+void nodomapa_destruir(void* n) {
+    free((NodoMapa*)n) ;
+}
+
+/**
+ * Explicacion en pdf
+ */
+int nodomapa_comparar(void* refA, void* refB) {
+    NodoMapa* a = (NodoMapa*)refA;
+    NodoMapa* b = (NodoMapa*)refB;
+
+    if (a->x < b->x || ( (a->x == b->x) && (a->y < b->y) )) return -1;
+    if (a->x > b->x || ( (a->x == b->x) && (a->y > b->y) )) return 1;
+    return 0;
+}
+
+static void imprimir_nodo(void* ref) {
+    NodoMapa* nm = (NodoMapa*)ref;
+    printf("(%d, %d)\tvalido: %d\n", nm->x, nm->y, nm->valido);
+}
 
 
 /**
@@ -102,6 +140,52 @@ unsigned int movimiento_valido(int** mapa, int posX, int posY) {
     return mapa[posX][posY];
 }
 
+void test_avl() {
+    AVL arbol = avl_crear(nodomapa_copia, nodomapa_comparar, nodomapa_destruir) ;
+    int vals1[] = {10, 30, 20, 50, 40} ;
+    int vals2[] = {55, 50, 30, 45, 35} ;
+    int vals3[] = {0, 0, 1, 1, 0} ;
+    NodoMapa* nm1 = malloc(sizeof(NodoMapa));
+    NodoMapa* nm2 = malloc(sizeof(NodoMapa));
+    NodoMapa* nm3 = malloc(sizeof(NodoMapa));
+    NodoMapa* nm4 = malloc(sizeof(NodoMapa));
+    NodoMapa* nm5 = malloc(sizeof(NodoMapa));
+    nm1->x = vals1[0]; nm1->y = vals2[0]; nm1->valido = vals3[0];
+    nm2->x = vals1[1]; nm2->y = vals2[1]; nm2->valido = vals3[1];
+    nm3->x = vals1[2]; nm3->y = vals2[2]; nm3->valido = vals3[2];
+    nm4->x = vals1[3]; nm4->y = vals2[3]; nm4->valido = vals3[3];
+    nm5->x = vals1[4]; nm5->y = vals2[4]; nm5->valido = vals3[4];
+    
+    avl_insertar(arbol, nm1); avl_insertar(arbol, nm2); avl_insertar(arbol, nm3); 
+    avl_insertar(arbol, nm4); avl_insertar(arbol, nm5);
+ 
+    avl_recorrer(arbol, AVL_RECORRIDO_POST, imprimir_nodo);
+
+}
+
+void test_pila() {
+    Pila p = pila_crear();
+    
+    int vals1[] = {10, 30, 20} ;
+    int vals2[] = {55, 50, 30} ;
+    int vals3[] = {0, 0, 1,} ;
+    NodoMapa* nm1 = malloc(sizeof(NodoMapa));
+    NodoMapa* nm2 = malloc(sizeof(NodoMapa));
+    NodoMapa* nm3 = malloc(sizeof(NodoMapa));
+
+    nm1->x = vals1[0]; nm1->y = vals2[0]; nm1->valido = vals3[0];
+    nm2->x = vals1[1]; nm2->y = vals2[1]; nm2->valido = vals3[1];
+    nm3->x = vals1[2]; nm3->y = vals2[2]; nm3->valido = vals3[2];
+
+    pila_apilar(&p, nm1, nodomapa_copia);
+    pila_apilar(&p, nm2, nodomapa_copia);
+    pila_apilar(&p, nm3, nodomapa_copia);
+
+    pila_imprimir(p, imprimir_nodo);
+
+}
+
+
 int main (int argc, char** argv) {
 
     // validacion argumentos
@@ -135,6 +219,10 @@ int main (int argc, char** argv) {
 
     int m = movimiento_valido(mapa, 5, 6);
     printf("movimiento (5,6): %d\n", m);
+
+    test_avl() ;
+
+    test_pila() ;
 
     return 0;
 }
