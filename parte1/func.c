@@ -1,23 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <assert.h>
-#include "avl.h"
-#include "pila.h"
+#include "func.h"
 
 #define LONGITUD_MAX_LINEA 255
-
-typedef unsigned int (*FuncionValidadora)(int** mapa, int x, int y) ;
-
-typedef struct {
-    int i1, i2, j1, j2;
-    FuncionValidadora f;
-} InfoRobot;
-
-typedef struct {
-    int x, y;
-    unsigned int valido;
-} NodoMapa;
 
 
 void* nodomapa_copia(void* n) {
