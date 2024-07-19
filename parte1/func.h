@@ -5,17 +5,31 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <time.h>
 #include "estr/avl.h"
 #include "estr/pila.h"
 
 
-typedef unsigned int (*FuncionValidadora)(int** mapa, int x, int y) ;
+typedef unsigned int (*FuncionValidadora)(int** mapa, int N, int M, int x, int y) ;
+
+// izquierda, derecha, arriba, abajo, invalida
+typedef enum {
+    IZQ,
+    DER,
+    ARR,
+    ABA,
+    INV
+} Direccion;
+
 
 // estructuras
 
 typedef struct {
-    int i1, i2, j1, j2;
+    int x, y; // pos actual
+    int i1, i2, j1, j2; // arranca en (i1,j1) y destina a (i2,j2)
     FuncionValidadora f;
+    AVL visitados;
+    Pila recorrido;
 } InfoRobot;
 
 typedef struct {
@@ -55,7 +69,7 @@ int validar_arch_y_guardar_info(char*, int***, unsigned int*, unsigned int*, Inf
  * el robot se chocó o si se desplazó a una posición válida. Además, verifica que
  * el robot no se salga de los limites del mapa, considerando "choque" esta situacion.
  */
-unsigned int movimiento_valido(int**, int, int);
+unsigned int movimiento_valido(int**, int, int, int, int);
 
 /**
  * testeo (borrador)

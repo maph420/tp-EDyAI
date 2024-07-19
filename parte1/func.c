@@ -16,9 +16,6 @@ void nodomapa_destruir(void* n) {
     free((NodoMapa*)n) ;
 }
 
-/**
- * Explicacion en pdf
- */
 int nodomapa_comparar(void* refA, void* refB) {
     NodoMapa* a = (NodoMapa*)refA;
     NodoMapa* b = (NodoMapa*)refB;
@@ -118,8 +115,9 @@ int validar_arch_y_guardar_info(char* nomArchivo, int*** mapa, unsigned int* nFi
     return archivoValido ;
 }
 
-// verifica si la casilla en (posX, posY) es una posicion valida (no es pared)
-unsigned int movimiento_valido(int** mapa, int posX, int posY) {
+unsigned int movimiento_valido(int** mapa, int N, int M, int posX, int posY) {
+    if (posX >= N || posY >= M)
+        return 0;
     return mapa[posX][posY];
 }
 
@@ -168,6 +166,116 @@ void test_pila() {
 
 }
 
+int aleatorio() {
+    srand(time(NULL)) ;
+    return (rand() % 2);
+}
+
+// se asume que el robot se encuentra parado en una posicion valida, asimismo que 
+// la meta es valida
+Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M) {
+    // solo moverse en una direccion
+    if (ir->x == ir->i2) {
+        return (ir->y < ir->j2) ? ARR : ABA;
+    }
+    if (ir->x == ir->j2) {
+        return (ir->x < ir->i2) ? DER : IZQ;
+    }
+    // dos posibles direcciones
+    int d;
+    // DER-ABA
+    if (ir->x < ir->i2 && ir->y < ir->j2) {
+        d = aleatorio()? DER : ABA;
+        if (d == DER && movimiento_valido(mapa, N, M, ir->x+1, ir->y)) return d;
+        else return movimiento_valido(mapa, N, M, ir->x, ir->y+1) ? ABA : INV;
+    }
+
+    // DER-ARR
+    if (ir->x < ir->i2 && ir->y > ir->j2) {
+        d = aleatorio()? DER : ARR;
+        if (d == DER && movimiento_valido(mapa, N, M, ir->x+1, ir->y)) return d;
+        else return movimiento_valido(mapa, N, M, ir->x, ir->y-1) ? ARR : INV;
+    }
+
+    // IZQ-ABA
+    if (ir->x > ir->i2 && ir->y < ir->j2) {
+        d = aleatorio()? IZQ : ABA;
+        if (d == IZQ && movimiento_valido(mapa, N, M, ir->x-1, ir->y)) return d;
+        else return movimiento_valido(mapa, N, M, ir->x, ir->y+1) ? ABA : INV;
+    }
+
+    // IZQ-ARR (probablemente funcione con else, se deja asi para mejor lejibilidad)
+    // (x > metaX && y > metaY)
+    else {
+        d = aleatorio()? IZQ : ARR;
+        if (d == IZQ && movimiento_valido(mapa, N, M, ir->x-1, ir->y)) return d;
+        else return movimiento_valido(mapa, N, M, ir->x, ir->y-1) ? ARR : INV;
+    } 
+}
+
+void print_dir(int d) {
+    if (d == 0) printf("Dir: IZQ");
+    else if (d == 1) printf("Dir: DER");
+    else if (d == 2) printf("Dir: ARR");
+    else printf("Dir: ABA");
+    printf("\n");
+}
+
+int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) {
+
+    printf("(%d, %d) -> (%d, %d)\n", ir->i1, ir->j1, ir->i2, ir->j2);
+    printf("MAPA:\n");
+    for (unsigned int i=0; i < N; i++) {
+        for(unsigned int j = 0; j < M; j++)
+            printf("%d", mapa[i][j]);
+    printf("\n");
+    }
+
+    ir->recorrido = pila_crear();
+
+
+    int m = movimiento_valido(mapa, N, M, 5, 6);
+    printf("movimiento (5,6): %d\n", m);
+
+    
+
+
+    // la pos actual del robot es la inicial
+    ir->x = ir->i1; ir->y = ir->j1;
+    Direccion dirActual;
+    while (1) {
+        printf("Robot: (%d, %d)\n", ir->x, ir->y);
+        dirActual = obtener_direccion(ir, mapa, N, M);
+        print_dir(dirActual);
+        switch (dirActual)
+        {
+        case ABA:
+            ir->y++;
+            break;
+        case ARR:
+            ir->y--;
+            break;
+        case IZQ:
+            ir->x--;
+            break;
+        case DER:
+            ir->x++;
+            break;
+        // (INV)
+        default:
+            printf("BACKTRACK\n");
+            break;
+        }
+
+        getchar();
+    }
+    
+
+    return 1;
+}
+
+
+
 
 int main (int argc, char** argv) {
 
@@ -191,21 +299,15 @@ int main (int argc, char** argv) {
     }
     printf("El archivo es valido\n");
 
+    int r;
 
-    printf("(%d, %d) -> (%d, %d)\n", infoRobot->i1, infoRobot->j1, infoRobot->i2, infoRobot->j2);
-    printf("MAPA:\n");
-    for (unsigned int i=0; i < numFilas; i++) {
-        for(unsigned int j = 0; j < numCols; j++)
-            printf("%d", mapa[i][j]);
-    printf("\n");
-    }
+    r = movimiento_robot(infoRobot, mapa, numFilas, numCols);
 
-    int m = movimiento_valido(mapa, 5, 6);
-    printf("movimiento (5,6): %d\n", m);
+    printf("Movimiento robot -> %d\n", r) ;
 
-    test_avl() ;
+    //test_avl() ;
 
-    test_pila() ;
+    //test_pila() ;
 
     return 0;
 }
