@@ -9,7 +9,6 @@
 #include "estr/avl.h"
 #include "estr/pila.h"
 
-
 typedef unsigned int (*FuncionValidadora)(int** mapa, int N, int M, int x, int y) ;
 
 // izquierda, derecha, arriba, abajo, invalida
@@ -29,12 +28,13 @@ typedef struct {
     int i1, i2, j1, j2; // arranca en (i1,j1) y destina a (i2,j2)
     FuncionValidadora f;
     AVL visitados;
-    Pila recorrido;
+    Pila camino;
 } InfoRobot;
 
 typedef struct {
     int x, y;
     unsigned int valido;
+    Direccion dirOrigen;
 } NodoMapa;
 
 // prototipos

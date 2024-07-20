@@ -115,12 +115,19 @@ int validar_arch_y_guardar_info(char* nomArchivo, int*** mapa, unsigned int* nFi
     return archivoValido ;
 }
 
+char* print_dir(int d) {
+    if (d == 0) return "IZQ";
+    else if (d == 1) return "DER";
+    else if (d == 2) return "ARR";
+    else return "ABA";
+}
+
 unsigned int movimiento_valido(int** mapa, int N, int M, int posX, int posY) {
     if (posX >= M || posY >= N || posX < 0 || posY < 0) {
         printf("%d %d no es valido\n", posY, posX);
         return 0;
     }
-    if (mapa[posX][posY]) {
+    if (mapa[posY][posX]) {
         printf("%d %d es valido\n", posY, posX);
         return 1;
     }
@@ -180,59 +187,109 @@ int aleatorio() {
     return (rand() % 2);
 }
 
+Direccion opuesta(Direccion d) {
+    if (d == ABA) return ARR;
+    if (d == ARR) return ABA;
+    if (d == IZQ) return DER;
+    if (d == DER) return IZQ;
+    return d;
+}
+
 // se asume que el robot se encuentra parado en una posicion valida, asimismo que 
 // la meta es valida
-Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M) {
-    // solo moverse en una direccion
-    if (ir->x == ir->i2) {
-        if (ir->y < ir->j2 && movimiento_valido(mapa, N, M, ir->x, ir->y-1))
-            return ARR;
-        else return movimiento_valido(mapa, N, M, ir->x, ir->y+1) ? ABA : INV;
-    }
-    if (ir->x == ir->j2) {
-        if (ir->x < ir->i2 && movimiento_valido(mapa, N, M, ir->x+1, ir->y))
-            return DER;
-        else return movimiento_valido(mapa, N, M, ir->x-1, ir->y) ? IZQ : INV;
-    }
-    // dos posibles direcciones
-    int d;
-    // DER-ABA
-    if (ir->x < ir->i2 && ir->y < ir->j2) {
-        d = aleatorio()? DER : ABA;
-        if (d == DER && movimiento_valido(mapa, N, M, ir->x+1, ir->y)) return d;
-        else return movimiento_valido(mapa, N, M, ir->x, ir->y+1) ? ABA : INV;
-    }
+Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, Direccion dOrigen) {
+    Direccion dir1, dir2;
+    if (ir->y < ir->j2) {
+        dir1 = ABA;
+    } else if (ir->y > ir->j2){
+        dir1 = ARR;
+    } else dir1 = INV;
 
-    // DER-ARR
-    if (ir->x < ir->i2 && ir->y > ir->j2) {
-        d = aleatorio()? DER : ARR;
-        if (d == DER && movimiento_valido(mapa, N, M, ir->x+1, ir->y)) return d;
-        else return movimiento_valido(mapa, N, M, ir->x, ir->y-1) ? ARR : INV;
-    }
+    if (ir->x < ir->i2) {
+        dir2 = DER;
+    } else if (ir->x > ir->i2){
+        dir2 = IZQ;
+    } else dir2 = INV;
 
-    // IZQ-ABA
-    if (ir->x > ir->i2 && ir->y < ir->j2) {
-        d = aleatorio()? IZQ : ABA;
-        if (d == IZQ && movimiento_valido(mapa, N, M, ir->x-1, ir->y)) return d;
-        else return movimiento_valido(mapa, N, M, ir->x, ir->y+1) ? ABA : INV;
-    }
+    // Verificar las direcciones preferidas (dir1 y dir2)
+    printf("Preferidas: %s, %s\n", print_dir(dir1), print_dir(dir2));
+    Direccion pref = aleatorio()? dir1 : dir2;
+    Direccion segPref = (pref == dir1)? dir2 : dir1;
+    printf("Probemos primero: %s\n", print_dir(pref));
 
-    // IZQ-ARR (probablemente funcione con else, se deja asi para mejor lejibilidad)
-    // (x > metaX && y > metaY)
-    else {
-        d = aleatorio()? IZQ : ARR;
-        if (d == IZQ && movimiento_valido(mapa, N, M, ir->x-1, ir->y)) return d;
-        else return movimiento_valido(mapa, N, M, ir->x, ir->y-1) ? ARR : INV;
-    } 
+    if (pref == dir1 && pref != INV) {
+        switch (pref) {
+            case ARR: 
+                if (movimiento_valido(mapa, N, M, ir->x, ir->y - 1)) return ARR;
+                break;
+            case ABA:
+                if (movimiento_valido(mapa, N, M, ir->x, ir->y + 1)) return ABA;
+                break;
+            default:
+                break;
+        }
+    }
+    
+    // si llegamos aca, la dir preferida no se puede, probamos la segunda preferida
+    // (si la hay)
+    if (pref == dir2 && pref != INV) {
+        switch (segPref) {
+            case IZQ:
+                if (movimiento_valido(mapa, N, M, ir->x - 1, ir->y)) return IZQ;
+                break;
+            case DER:
+                if (movimiento_valido(mapa, N, M, ir->x + 1, ir->y)) return DER;
+                break;
+            default:
+                break;
+        }
+    }
+    // no nos podemos mover en ninguna de las direcciones preferidas, veamos
+    // si podemos movernos en la opuesta a la de donde venimos
+    Direccion op = opuesta(dOrigen);
+    switch (op) {
+            case IZQ:
+                if (movimiento_valido(mapa, N, M, ir->x - 1, ir->y)) return IZQ;
+                break;
+            case DER:
+                if (movimiento_valido(mapa, N, M, ir->x + 1, ir->y)) return DER;
+                break;
+            case ABA:
+                if (movimiento_valido(mapa, N, M, ir->x, ir->y+1)) return ABA;
+                break;
+            case ARR:
+                if (movimiento_valido(mapa, N, M, ir->x, ir->y-1)) return ARR;
+                break;
+            default:
+                break;
+        }
+    // si tampoco se puede, la unica opcion sera backtracker, retornar invalido
+
+    return INV;
 }
 
-void print_dir(int d) {
-    if (d == 0) printf("Dir: IZQ");
-    else if (d == 1) printf("Dir: DER");
-    else if (d == 2) printf("Dir: ARR");
-    else printf("Dir: ABA");
-    printf("\n");
+void moverse(Direccion d, InfoRobot* ir) {
+    switch (d)
+            {
+            case ABA:
+                ir->y++;
+                break;
+            case ARR:
+                ir->y--;
+                break;
+            case IZQ:
+                ir->x--;
+                break;
+            case DER:
+                ir->x++;
+                break;
+            // (INV)
+            case INV:
+                printf("BACKTRACK\n");
+                break;
+        }
 }
+
 
 int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) {
 
@@ -244,62 +301,45 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
     printf("\n");
     }
 
-    ir->recorrido = pila_crear();
-
-
-    int m = movimiento_valido(mapa, N, M, 5, 6);
-    printf("movimiento (5,6): %d\n", m);
-
-    
-
-
+    ir->camino = pila_crear();
+    int flag = 1;
     // la pos actual del robot es la inicial
     ir->x = ir->i1; ir->y = ir->j1;
-    Direccion dirActual;
+    Direccion dirActual = INV;
     while ((ir->x != ir->i2) || (ir->y != ir->j2)) {
         printf("Robot: (%d, %d)\n", ir->y, ir->x);
-        dirActual = obtener_direccion(ir, mapa, N, M);
-        print_dir(dirActual);
-        switch (dirActual)
-        {
-        case ABA:
-            ir->y++;
-            break;
-        case ARR:
-            ir->y--;
-            break;
-        case IZQ:
-            ir->x--;
-            break;
-        case DER:
-            ir->x++;
-            break;
-        // (INV)
-        case INV:
-            printf("BACKTRACK\n");
-            NodoMapa* ant = (NodoMapa*)pila_tope(ir->recorrido);
-            ir->x = ant->x;
-            ir->y = ant->y;
-            pila_desapilar(&(ir->recorrido));
-            break;
-        }
-        if (dirActual != INV) {
+        dirActual = obtener_direccion(ir, mapa, N, M, dirActual);
+        printf("Se eligio: %s\n", print_dir(dirActual));
+        moverse(dirActual, ir) ;
+
+        while (movimiento_valido(mapa, N, M, ir->x, ir->y) && flag) {
+            printf("movimiento -> %s\n", print_dir(dirActual));
+            
             NodoMapa* nm = malloc(sizeof(NodoMapa));
             nm->x = ir->x;
             nm->y = ir->y;
             nm->valido = 1;
-            pila_apilar(&(ir->recorrido), nm, nodomapa_copia);
+            nm->dirOrigen = dirActual;
+            pila_apilar(&(ir->camino), nm, nodomapa_copia);
+            moverse(dirActual, ir);
+            //pila_imprimir(ir->recorrido, imprimir_nodo);
+            getchar();
         }
-        
-        
+         // vamos al anterior
+        NodoMapa* ant = (NodoMapa*)pila_tope(ir->camino);
+        ir->x = ant->x;
+        ir->y = ant->y;
+        pila_desapilar(&(ir->camino));
+        printf("Cambia de movimiento\n");
         getchar();
-        pila_imprimir(ir->recorrido, imprimir_nodo);
-    }
-    
+        //pila_imprimir(ir->recorrido, imprimir_nodo);
+        }
+        return 1;
+        }
 
-    return 1;
-}
-
+        
+        
+ 
 
 
 

@@ -6,6 +6,8 @@ Movimientos del robot -> pila (glist)
 Casilleros ya visitados + obstaculos -> AVL, nodo con (posX, posY, valida) : (int, int, int)
 Metodo de orden de los nodos: lexicografico
 
+Approach 2: similar al 1 pero tratar de mejorar eficiencia eligiendo direccion cuando sea estrictamente necesario, es decir, cuando se encuentra un obstaculo, de lo contrario ir siempre en una direccion fija
+
 Compilar y correr parte 1:
 
 > gcc func.c estr/avl.c estr/pila.c estr/glist.c -Wall -Wextra -std=c99 -o parte1
