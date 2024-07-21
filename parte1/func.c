@@ -152,18 +152,9 @@ Direccion opuesta(Direccion d) {
 // se asume que el robot se encuentra parado en una posicion valida, asimismo que 
 // la meta es valida
 Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, Direccion dOrigen) {
-    Direccion dir1, dir2;
-    if (ir->y < ir->j2) {
-        dir1 = ABA;
-    } else if (ir->y > ir->j2){
-        dir1 = ARR;
-    } else dir1 = INV;
-
-    if (ir->x < ir->i2) {
-        dir2 = DER;
-    } else if (ir->x > ir->i2){
-        dir2 = IZQ;
-    } else dir2 = INV;
+    
+    Direccion dir1 = (ir->y < ir->j2) ? ABA : (ir->y > ir->j2) ? ARR : INV;
+    Direccion dir2 = (ir->x < ir->i2) ? DER : (ir->x > ir->i2) ? IZQ : INV;
 
     // Verificar las direcciones preferidas (dir1 y dir2)
     printf("Preferidas: %s, %s\n", print_dir(dir1), print_dir(dir2));
@@ -171,38 +162,56 @@ Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, D
     Direccion segPref = (pref == dir1)? dir2 : dir1;
     printf("Probemos primero: %s\n", print_dir(pref));
 
+    NodoMapa* b = malloc(sizeof(NodoMapa)) ;
+
     switch (pref) {
-            case ARR: 
-                if (movimiento_valido(mapa, N, M, ir->x, ir->y - 1)) return ARR;
+            case ARR:
+                b->x = ir->x ; b->y = ir->y - 1; 
+                if (movimiento_valido(mapa, N, M, ir->x, ir->y - 1) &&
+                !avl_buscar(ir->visitados, b)) return ARR;
                 break;
             case ABA:
-                if (movimiento_valido(mapa, N, M, ir->x, ir->y + 1)) return ABA;
+                b->x = ir->x; b->y = ir->y + 1;
+                if (movimiento_valido(mapa, N, M, ir->x, ir->y + 1) 
+                && !avl_buscar(ir->visitados, b)) return ABA;
                 break;
             case IZQ:
-                if (movimiento_valido(mapa, N, M, ir->x - 1, ir->y)) return IZQ;
+                b->x = ir->x - 1; b->y = ir->y;
+                if (movimiento_valido(mapa, N, M, ir->x - 1, ir->y) 
+                && !avl_buscar(ir->visitados, b)) return IZQ;
                 break;
             case DER:
-                if (movimiento_valido(mapa, N, M, ir->x + 1, ir->y)) return DER;
+                b->x = ir->x + 1; b->y = ir->y;
+                if (movimiento_valido(mapa, N, M, ir->x + 1, ir->y)
+                && !avl_buscar(ir->visitados, b)) return DER;
                 break;
             default:
                 break;
     }
     
 
-    //si llegamos aca, la dir preferida no se puede, probamos la segunda preferida
+    // si llegamos aca, la dir preferida no se puede, probamos la segunda preferida
     // (si la hay)
     switch(segPref) {
             case IZQ:
-                if (movimiento_valido(mapa, N, M, ir->x - 1, ir->y)) return IZQ;
+                b->x = ir->x - 1; b->y = ir->y;
+                if (movimiento_valido(mapa, N, M, ir->x - 1, ir->y) &&
+                !avl_buscar(ir->visitados, b)) return IZQ;
                 break;
             case DER:
-                if (movimiento_valido(mapa, N, M, ir->x + 1, ir->y)) return DER;
+                b->x = ir->x + 1; b->y = ir->y;
+                if (movimiento_valido(mapa, N, M, ir->x + 1, ir->y) &&
+                !avl_buscar(ir->visitados, b)) return DER;
                 break;
             case ABA:
-                if (movimiento_valido(mapa, N, M, ir->x, ir->y+1)) return ABA;
+                b->x = ir->x; b->y = ir->y+1;
+                if (movimiento_valido(mapa, N, M, ir->x, ir->y+1)
+                && !avl_buscar(ir->visitados, b)) return ABA;
                 break;
             case ARR:
-                if (movimiento_valido(mapa, N, M, ir->x, ir->y-1)) return ARR;
+                b->x = ir->x; b->y = ir->y - 1;
+                if (movimiento_valido(mapa, N, M, ir->x, ir->y-1)
+                && !avl_buscar(ir->visitados, b)) return ARR;
                 break;
             default:
                 break;
@@ -212,18 +221,26 @@ Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, D
      // si podemos movernos en alguna otra que no sea la op de donde venimos
     for (int i = 0 ; i < 4; i++) {
         if ((Direccion)i != pref && (Direccion)i != segPref && (Direccion)i != opuesta(dOrigen)) {
-            switch(segPref) {
+            switch(i) {
                 case IZQ:
-                    if (movimiento_valido(mapa, N, M, ir->x - 1, ir->y)) return IZQ;
+                    b->x = ir->x - 1; b->y = ir->y;
+                    if (movimiento_valido(mapa, N, M, ir->x - 1, ir->y)
+                    && !avl_buscar(ir->visitados, b)) return IZQ;
                     break;
                 case DER:
-                    if (movimiento_valido(mapa, N, M, ir->x + 1, ir->y)) return DER;
+                    b->x = ir->x + 1; b->y = ir->y;
+                    if (movimiento_valido(mapa, N, M, ir->x + 1, ir->y)
+                    && !avl_buscar(ir->visitados, b)) return DER;
                     break;
                 case ABA:
-                    if (movimiento_valido(mapa, N, M, ir->x, ir->y+1)) return ABA;
+                    b->x = ir->x; b->y = ir->y +1;
+                    if (movimiento_valido(mapa, N, M, ir->x, ir->y+1)
+                    && !avl_buscar(ir->visitados, b)) return ABA;
                     break;
                 case ARR:
-                    if (movimiento_valido(mapa, N, M, ir->x, ir->y-1)) return ARR;
+                    b->x = ir->x; b->y =ir->y-1;
+                    if (movimiento_valido(mapa, N, M, ir->x, ir->y-1)
+                    && !avl_buscar(ir->visitados, b)) return ARR;
                     break;
                 default:
                     break;
@@ -303,6 +320,7 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
             avl_insertar(ir->visitados, nm);
             moverse(dirActual, ir);
             ir->rastro[pasos] = asignar_direccion(dirActual);
+            
             pasos ++;
             if (pasos >= movimientosMax) {
                 movimientosMax *= 2;
@@ -380,6 +398,12 @@ int main (int argc, char** argv) {
     /*for (int i = 0; *(infoRobot->rastro); i++)
         printf("%c", infoRobot->rastro[i]);
     puts("");*/
+
+
+    // Liberar memoria usada
+    avl_destruir(infoRobot->visitados);
+    pila_destruir(infoRobot->camino, nodomapa_destruir) ;
+    free(infoRobot->rastro);
 
     return 0;
 }
