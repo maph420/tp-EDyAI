@@ -16,12 +16,10 @@ Compilar y correr parte 1:
 
 Todo:
 
-- [ ] Ver si vale la pena mejorar la inteligencia al backtrackear (si no se pierde mucha eficiencia, y si acorta el camino bastante). En el ejemplo.txt, si se arranca por abajo se pueden hacer hasta 29 pasos, mientras que la ruta ideal es de 11.
+. Agregar repe de nodos
 
-- [ ] Testear con mapas mas retorcidos
+. Solucionar backtracking (casi siempre se queda atrapado y no reconoce que debe hacer backtrack, con la repe de nodos seguro va)
 
-- [ ] Seguir mejorando calidad de codigo, va queriendo. e.g. se declaran muchas variables nuevas en cada vuelta, ver como mejorar eso
+. Cambiar registro de robot (no debe moverse el robot a celdas que NO puede, tiene que consultar siempre ANTES, eso se interpreta)
 
-- [ ] Ver si vale la pena la utilizacion del arbol
-
-- [ ] Medir eficiencia
+. Mejorar la calidad del codigo (un espanto, demasiado if, seguro hay cosas innecesarias)
