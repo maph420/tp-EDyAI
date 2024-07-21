@@ -29,6 +29,7 @@ typedef struct {
     FuncionValidadora f;
     AVL visitados;
     Pila camino;
+    char* rastro;
 } InfoRobot;
 
 typedef struct {

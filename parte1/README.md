@@ -16,4 +16,8 @@ Compilar y correr parte 1:
 
 Todo:
 
-. Arreglar segfault,  -> agregar repeticion de nodos
+. Agregar repe de nodos
+
+. Solucionar backtracking (casi siempre se queda atrapado y no reconoce que debe hacer backtrack, con la repe de nodos seguro va)
+
+. Cambiar registro de robot (no debe moverse el robot a celdas que NO puede, tiene que consultar siempre ANTES, eso se interpreta)
