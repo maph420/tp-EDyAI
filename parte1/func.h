@@ -20,7 +20,6 @@ typedef enum {
     INV
 } Direccion;
 
-
 // estructuras
 
 typedef struct {

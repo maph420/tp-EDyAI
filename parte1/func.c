@@ -214,24 +214,20 @@ Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, D
     if (pref != INV && movimiento_valido(mapa, N, M, verificador->x, verificador->y) 
     && !avl_buscar(ir->visitados, verificador)) return pref;
 
-     if (pref != INV)
-        sig_nodo(opuesta(pref), verificador);
+     verificador->x = ir->x; verificador->y = ir->y;
 
     // si llegamos aca, la dir preferida no se puede, probamos la segunda preferida
     // (si la hay)
-    
+
     sig_nodo(segPref, verificador);
 
     printf("Probar segunda alternativa\n");
     if (segPref != INV && movimiento_valido(mapa, N, M, verificador->x, verificador->y) 
     && !avl_buscar(ir->visitados, verificador)) return segPref;
-    
-    printf("segpref: %s\n", print_dir((int)segPref));
 
      // no nos podemos mover en ninguna de las direcciones preferidas, veamos
      // si podemos movernos en alguna otra que no sea la op de donde venimos
-    if (segPref != INV)
-        sig_nodo(opuesta(segPref), verificador);
+     verificador->x = ir->x; verificador->y = ir->y;
     
     for (int i = 0 ; i < 4; i++) {
         if ((Direccion)i != pref && (Direccion)i != segPref && (Direccion)i != opuesta(dOrigen)) {
@@ -268,7 +264,6 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
     printf("\n");
     }
 
-    
     NodoMapa* v = malloc(sizeof(NodoMapa)) ;
     unsigned int pasos = 0, movimientosMax = 50;
     ir->camino = pila_crear();
@@ -283,10 +278,8 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
     NodoMapa* b = malloc(sizeof(NodoMapa));
     ir->x = ir->i1; ir->y = ir->j1;
     b->x = ir->x; b->y = ir->y;
-    pila_apilar(&(ir->camino), nm, nodomapa_copia);
     Direccion dirActual = INV;
     //, anterior;
-
     while ((ir->x != ir->i2) || (ir->y != ir->j2)) {
         printf("Robot: (%d, %d)\n", ir->y, ir->x);
         //if (dirActual != INV) anterior = dirActual;
@@ -335,7 +328,7 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
             printf("Cambia de movimiento\n");
             //getchar();
        }
-        //if (!flag) recalculos++;
+
         flag = 1 ;
         porChocarse = 0;
 
@@ -395,18 +388,14 @@ int main (int argc, char** argv) {
     }
     printf("El archivo es valido\n");
 
-    int r;
-
-    r = movimiento_robot(infoRobot, mapa, numFilas, numCols);
+    int r = movimiento_robot(infoRobot, mapa, numFilas, numCols);
 
     printf("Movimiento robot -> %d\n", r) ;
-
     printf("Recorrido hecho:\n");
     for (int i = 0; infoRobot->rastro[i]; i++)
         printf("%c", infoRobot->rastro[i]);
     puts("");
     printf("Pasos: %zu\n", strlen(infoRobot->rastro));
-
 
     // Liberar memoria usada
     avl_destruir(infoRobot->visitados);

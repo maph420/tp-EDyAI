@@ -12,7 +12,7 @@ Compilar y correr parte 1:
 
 > gcc func.c estr/avl.c estr/pila.c estr/glist.c -Wall -Wextra -std=c99 -o parte1
 
-> ./parte1 ejemplo2.txt
+> ./parte1 ejemplos/ejemplo8.txt
 
 Todo:
 
