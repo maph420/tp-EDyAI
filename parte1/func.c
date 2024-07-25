@@ -29,7 +29,6 @@ static void imprimir_nodo(void* ref) {
     printf("(%d, %d)\tvalido: %d\n", nm->y, nm->x, nm->valido);
 }
 
-
 /**
  * Valida que el archivo respete el formato pedido, guarda el mapa del laberinto, asi
  * como sus dimensiones y le pasa a la estructura de info del robot las coords de inicio y fin
@@ -118,7 +117,8 @@ char* print_dir(int d) {
     if (d == 0) return "IZQ";
     else if (d == 1) return "DER";
     else if (d == 2) return "ARR";
-    else return "ABA";
+    else if (d == 3) return "ABA";
+    else return "INV";
 }
 
 unsigned int movimiento_valido(int** mapa, int N, int M, int posX, int posY) {
@@ -226,6 +226,8 @@ Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, D
     if (segPref != INV && movimiento_valido(mapa, N, M, verificador->x, verificador->y) 
     && !avl_buscar(ir->visitados, verificador)) return segPref;
     
+    printf("segpref: %s\n", print_dir((int)segPref));
+
      // no nos podemos mover en ninguna de las direcciones preferidas, veamos
      // si podemos movernos en alguna otra que no sea la op de donde venimos
     if (segPref != INV)
@@ -257,7 +259,7 @@ char asignar_direccion(Direccion d) {
 
 int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) {
 
-    unsigned int choques = 0;
+    unsigned int recalculos = 0;
     printf("(%d, %d) -> (%d, %d)\n", ir->i1, ir->j1, ir->i2, ir->j2);
     printf("MAPA:\n");
     for (unsigned int i=0; i < N; i++) {
@@ -266,6 +268,7 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
     printf("\n");
     }
 
+    
     NodoMapa* v = malloc(sizeof(NodoMapa)) ;
     unsigned int pasos = 0, movimientosMax = 50;
     ir->camino = pila_crear();
@@ -274,14 +277,19 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
 
     // la pos actual del robot es la inicial
     NodoMapa* nm = malloc(sizeof(NodoMapa));
+    *nm = (NodoMapa){ir->i1, ir->j1, 1, INV};
+    pila_apilar((&ir->camino), nm, nodomapa_copia);
+
     NodoMapa* b = malloc(sizeof(NodoMapa));
     ir->x = ir->i1; ir->y = ir->j1;
     b->x = ir->x; b->y = ir->y;
-    Direccion dirActual = INV, anterior;
+    pila_apilar(&(ir->camino), nm, nodomapa_copia);
+    Direccion dirActual = INV;
+    //, anterior;
 
     while ((ir->x != ir->i2) || (ir->y != ir->j2)) {
         printf("Robot: (%d, %d)\n", ir->y, ir->x);
-        if (dirActual != INV) anterior = dirActual;
+        //if (dirActual != INV) anterior = dirActual;
         dirActual = obtener_direccion(ir, mapa, N, M, dirActual, v);
         printf("proximo movimiento: %s\n", print_dir(dirActual));
         int flag = 1, porChocarse = 0;
@@ -300,67 +308,67 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
                 }
                 ir->rastro[pasos++] = asignar_direccion(dirActual);
                 moverse(dirActual, ir);
-                *nm = (NodoMapa){ir->x, ir->y, dirActual, 1};
+                *nm = (NodoMapa){ir->x, ir->y, 1, dirActual};
                 avl_insertar(ir->visitados, nm);
                 pila_apilar(&(ir->camino), nm, nodomapa_copia);
             } 
-            else {porChocarse = 1; choques++;}
+            else { porChocarse = 1; //choques++;
+            }
 
             if (ir->x == ir->i2 || ir->y == ir->j2) {
                 printf("y: %d, x:%d\n", ir->y, ir->x) ;
                 printf("i2: %d, j2: %d\n", ir->i2, ir->j2);
                 flag = 0;
             }
-            //pila_imprimir(ir->camino, imprimir_nodo);
-            //printf("AVL\n");
-            //avl_recorrer(ir->visitados, AVL_RECORRIDO_IN, imprimir_nodo);
-            getchar();
+         //   getchar();
         }
-        /*
-        if (dirActual != INV && flag) {
-            printf("mueve en la opuesta \n");
-            moverse(opuesta(dirActual), ir) ;
-            printf("Robot: (%d, %d)\n", ir->y, ir->x);
-            ir->rastro[pasos++] = asignar_direccion(opuesta(dirActual));
-        }*/
+        
        printf("porChocarse: %d\n", porChocarse) ;
 
        // guardar obstaculos
        if (porChocarse) {
+            recalculos++;
             NodoMapa* invalido = malloc(sizeof(NodoMapa));
             *invalido = (NodoMapa){b->x, b->y, 0, dirActual};
             
             avl_insertar(ir->visitados, invalido) ;
             printf("Cambia de movimiento\n");
-            getchar();
+            //getchar();
        }
-            
+        //if (!flag) recalculos++;
         flag = 1 ;
         porChocarse = 0;
 
          // vamos al anterior
         if (dirActual == INV) {
+            printf("Pila: \n\n");
+            pila_imprimir(ir->camino, imprimir_nodo);
             printf("BACKTRACK: retroceder un lugar\n");
+            pila_desapilar(&(ir->camino));
             NodoMapa* ant = (NodoMapa*)pila_tope(ir->camino);
 
             // chequear
             Direccion dirVuelta = (ir->y == ant->y) ? (ant->x < ir->x) ? IZQ : DER : 
             (ant->y < ir->y) ? ARR : ABA; 
 
+            printf("nodo anterior: %d, %d, nodo actual: %d, %d\n",
+            ant->y, ant->x, ir->y, ir->x);
+
+            printf("dir vuelta: %s\n", print_dir(dirVuelta)) ;
             // se mueve "hacia atras" 1 lugar
             ir->x = ant->x;
             ir->y = ant->y;
-            //printf("dir vuelta: %s\n", print_dir(dirVuelta));
+            printf("dir vuelta: %s\n", print_dir(dirVuelta));
             ir->rastro[pasos++] = asignar_direccion(dirVuelta);
-            pila_desapilar(&(ir->camino));
+            
         }
        
         }
 
-        printf("choques: %d\n", choques);
+        printf("recalculos: %d\n", recalculos);
         free(v);
         ir->rastro[pasos] = '\0' ;
-        pila_imprimir(ir->camino, imprimir_nodo) ;
+        //pila_imprimir(ir->camino, imprimir_nodo) ;
         return 1;
         }
 
