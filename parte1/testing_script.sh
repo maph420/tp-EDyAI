@@ -24,7 +24,7 @@ for ((i = 1; i <= $3; i++)); do
 
     python3 ./maze_generator.py $1 $2 "$MAZE_PATH"
 
-    RES="$(../out "$MAZE_PATH")"
+    RES="$(./parte1 "$MAZE_PATH")"
     echo "$RES"
 
     LEN=$(echo "$RES" | wc -m)

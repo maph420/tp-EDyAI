@@ -386,16 +386,18 @@ int main (int argc, char** argv) {
         printf("El formato del archivo no es valido (chequear que no haya salto de linea al final)\n");
         return -1;
     }
-    printf("El archivo es valido\n");
+    //printf("El archivo es valido\n");
 
     int r = movimiento_robot(infoRobot, mapa, numFilas, numCols);
 
+    /*
     printf("Movimiento robot -> %d\n", r) ;
     printf("Recorrido hecho:\n");
     for (int i = 0; infoRobot->rastro[i]; i++)
         printf("%c", infoRobot->rastro[i]);
     puts("");
-    printf("Pasos: %zu\n", strlen(infoRobot->rastro));
+    */
+    printf("%zu\n", strlen(infoRobot->rastro));
 
     // Liberar memoria usada
     avl_destruir(infoRobot->visitados);
