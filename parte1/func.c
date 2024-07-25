@@ -257,6 +257,7 @@ char asignar_direccion(Direccion d) {
 
 int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) {
 
+    unsigned int choques = 0;
     printf("(%d, %d) -> (%d, %d)\n", ir->i1, ir->j1, ir->i2, ir->j2);
     printf("MAPA:\n");
     for (unsigned int i=0; i < N; i++) {
@@ -303,7 +304,7 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
                 avl_insertar(ir->visitados, nm);
                 pila_apilar(&(ir->camino), nm, nodomapa_copia);
             } 
-            else porChocarse = 1;
+            else {porChocarse = 1; choques++;}
 
             if (ir->x == ir->i2 || ir->y == ir->j2) {
                 printf("y: %d, x:%d\n", ir->y, ir->x) ;
@@ -356,6 +357,7 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
        
         }
 
+        printf("choques: %d\n", choques);
         free(v);
         ir->rastro[pasos] = '\0' ;
         pila_imprimir(ir->camino, imprimir_nodo) ;
