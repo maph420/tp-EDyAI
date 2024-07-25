@@ -271,9 +271,9 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
     ir->rastro = malloc(sizeof(char) * movimientosMax) ;
 
     // la pos actual del robot es la inicial
-    NodoMapa* nm = malloc(sizeof(NodoMapa));
-    *nm = (NodoMapa){ir->i1, ir->j1, 1, INV};
-    pila_apilar((&ir->camino), nm, nodomapa_copia);
+    //NodoMapa* nm = malloc(sizeof(NodoMapa));
+    NodoMapa nm = (NodoMapa){ir->i1, ir->j1, 1, INV};
+    pila_apilar((&ir->camino), &nm, nodomapa_copia);
 
     NodoMapa* b = malloc(sizeof(NodoMapa));
     ir->x = ir->i1; ir->y = ir->j1;
@@ -296,14 +296,15 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
             if (movimiento_valido(mapa, N, M, b->x, b->y)) {
                 
                 if (pasos >= movimientosMax) {
+                    //printf("pasos: %d\n", pasos);
                     movimientosMax *= 2;
                     ir->rastro = realloc(ir->rastro, sizeof(char) * movimientosMax);
                 }
                 ir->rastro[pasos++] = asignar_direccion(dirActual);
                 moverse(dirActual, ir);
-                *nm = (NodoMapa){ir->x, ir->y, 1, dirActual};
-                avl_insertar(ir->visitados, nm);
-                pila_apilar(&(ir->camino), nm, nodomapa_copia);
+                nm = (NodoMapa){ir->x, ir->y, 1, dirActual};
+                avl_insertar(ir->visitados, &nm);
+                pila_apilar(&(ir->camino), &nm, nodomapa_copia);
             } 
             else { porChocarse = 1; //choques++;
             }
@@ -321,10 +322,8 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
        // guardar obstaculos
        if (porChocarse) {
             recalculos++;
-            NodoMapa* invalido = malloc(sizeof(NodoMapa));
-            *invalido = (NodoMapa){b->x, b->y, 0, dirActual};
-            
-            avl_insertar(ir->visitados, invalido) ;
+            NodoMapa invalido = {b->x, b->y, 0, dirActual};
+            avl_insertar(ir->visitados, &invalido) ;
             //printf("Cambia de movimiento\n");
             //getchar();
        }
@@ -352,6 +351,11 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
             ir->x = ant->x;
             ir->y = ant->y;
             ////printf("dir vuelta: %s\n", print_dir(dirVuelta));
+            if (pasos >= movimientosMax) {
+                    //printf("pasos: %d\n", pasos);
+                    movimientosMax *= 2;
+                    ir->rastro = realloc(ir->rastro, sizeof(char) * movimientosMax);
+                }
             ir->rastro[pasos++] = asignar_direccion(dirVuelta);
             
         }
@@ -359,6 +363,8 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
         }
 
         //printf("recalculos: %d\n", recalculos);
+        //free(nm);
+        free(b);
         free(v);
         ir->rastro[pasos] = '\0' ;
         //pila_imprimir(ir->camino, imprimir_nodo) ;
@@ -385,21 +391,25 @@ int main (int argc, char** argv) {
     if (!v) {
         ////printf("El formato del archivo no es valido (chequear que no haya salto de linea al final)\n");
         return -1;
+        for (unsigned int h = 0; h < numFilas; h++) free(mapa[h]);
+        free(mapa);
     }
     //////printf("El archivo es valido\n");
 
     int r = movimiento_robot(infoRobot, mapa, numFilas, numCols);
 
-    /*
+    
     ////printf("Movimiento robot -> %d\n", r) ;
     ////printf("Recorrido hecho:\n");
     for (int i = 0; infoRobot->rastro[i]; i++)
-        ////printf("%c", infoRobot->rastro[i]);
+        printf("%c", infoRobot->rastro[i]);
     puts("");
-    */
-    printf("%zu\n", strlen(infoRobot->rastro));
+    
+    //printf("%zu\n", strlen(infoRobot->rastro));
 
     // Liberar memoria usada
+    for (unsigned int i = 0; i < numFilas; i++) free(mapa[i]);
+    free(mapa);
     avl_destruir(infoRobot->visitados);
     pila_destruir(infoRobot->camino, nodomapa_destruir) ;
     free(infoRobot->rastro);

@@ -33,5 +33,4 @@ for ((i = 1; i <= $3; i++)); do
 
     TOTAL=$((TOTAL + LEN))
 done
-
 echo "Average steps to solve a ${1}x${2} maze are: $((TOTAL / $3))"

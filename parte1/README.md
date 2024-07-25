@@ -14,6 +14,14 @@ Compilar y correr parte 1:
 
 > ./parte1 ejemplos/ejemplo8.txt
 
+Debug:
+
+> valgrind --leak-check=full -s ./parte1 mazes/maze_2.txt
+
+Test parte 1:
+
+> ./testing_script.sh 15 15 100
+
 Todo:
 
 - [ ] Ver si vale la pena mejorar la inteligencia al backtrackear (si no se pierde mucha eficiencia, y si acorta el camino bastante). En el ejemplo.txt, si se arranca por abajo se pueden hacer hasta 29 pasos, mientras que la ruta ideal es de 11.
