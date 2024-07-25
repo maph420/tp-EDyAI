@@ -122,6 +122,7 @@ char* print_dir(int d) {
 }
 
 unsigned int movimiento_valido(int** mapa, int N, int M, int posX, int posY) {
+
     if (posX >= M || posY >= N || posX < 0 || posY < 0) {
         printf("%d %d no es valido\n", posY, posX);
         return 0;
@@ -149,6 +150,8 @@ Direccion opuesta(Direccion d) {
     return d;
 }
 
+// toma estructura auxiliar de informacion de nodos, y aumenta la posicion actual 
+// que tenga en 1, segun la direccion d pasada
 void sig_nodo(Direccion d, NodoMapa* nm) {
     switch (d)
             {
@@ -164,13 +167,13 @@ void sig_nodo(Direccion d, NodoMapa* nm) {
             case DER:
                 nm->x++;
                 break;
-            // (INV)
             case INV:
                 printf("BACKTRACK\n");
                 break;
         }
 }
-
+// Toma la estructura con la información del robot y lo desplaza 1 unidad en
+// la direccion d pasada.
 void moverse(Direccion d, InfoRobot* ir) {
     switch (d)
             {
@@ -186,16 +189,14 @@ void moverse(Direccion d, InfoRobot* ir) {
             case DER:
                 ir->x++;
                 break;
-            // (INV)
             case INV:
                 printf("BACKTRACK\n");
                 break;
         }
 }
-
 // se asume que el robot se encuentra parado en una posicion valida, asimismo que 
 // la meta es valida
-Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, Direccion dOrigen) {
+Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, Direccion dOrigen, NodoMapa* verificador) {
     
     Direccion dir1 = (ir->y == ir->j2) ? INV : (ir->y < ir->j2) ? ABA : ARR;
     Direccion dir2 = (ir->x == ir->i2) ? INV : (ir->x < ir->i2) ? DER : IZQ;
@@ -204,36 +205,36 @@ Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, D
     printf("Preferidas: %s, %s\n", print_dir(dir1), print_dir(dir2));
     Direccion pref = aleatorio()? dir1 : dir2;
     Direccion segPref = (pref == dir1)? dir2 : dir1;
-    printf("Probemos primero: %s\n", print_dir(pref));
+    //printf("Probar primer alternativa: %s\n", print_dir(pref));
 
-    NodoMapa* b = malloc(sizeof(NodoMapa)) ;
-    b->x = ir->x; b->y = ir->y;
-    sig_nodo(pref, b);
-    if (pref != INV && movimiento_valido(mapa, N, M, b->x, b->y) 
-    && !avl_buscar(ir->visitados, b))
-        return pref;
+    verificador->x = ir->x; verificador->y = ir->y;
+    sig_nodo(pref, verificador);
+    if (pref != INV && movimiento_valido(mapa, N, M, verificador->x, verificador->y) 
+    && !avl_buscar(ir->visitados, verificador)) return pref;
 
     // si llegamos aca, la dir preferida no se puede, probamos la segunda preferida
     // (si la hay)
     if (pref != INV)
-        sig_nodo(opuesta(pref), b);
+        sig_nodo(opuesta(pref), verificador);
     
-    sig_nodo(segPref, b);
-    if (segPref != INV && movimiento_valido(mapa, N, M, b->x, b->y) 
-    && !avl_buscar(ir->visitados, b)) return segPref;
+    sig_nodo(segPref, verificador);
+    //printf("Probar segunda alternativa\n");
+    if (segPref != INV && movimiento_valido(mapa, N, M, verificador->x, verificador->y) 
+    && !avl_buscar(ir->visitados, verificador)) return segPref;
 
      // no nos podemos mover en ninguna de las direcciones preferidas, veamos
      // si podemos movernos en alguna otra que no sea la op de donde venimos
     if (segPref != INV)
-        sig_nodo(opuesta(pref), b);
+        sig_nodo(opuesta(segPref), verificador);
     
     for (int i = 0 ; i < 4; i++) {
         if ((Direccion)i != pref && (Direccion)i != segPref && (Direccion)i != opuesta(dOrigen)) {
             if ((Direccion)i != INV) {
-                printf("De ultima, se intenta: %s\n", print_dir((Direccion)i));
-                sig_nodo((Direccion)i, b);
-                if (i != INV && movimiento_valido(mapa, N, M, b->x, b->y) 
-                && !avl_buscar(ir->visitados, b)) return i;
+                //printf("De ultima, se intenta: %s\n", print_dir((Direccion)i));
+                //printf("Pos actual: %d, %d\n", verificador->y, verificador->x);
+                sig_nodo((Direccion)i, verificador);
+                if (i != INV && movimiento_valido(mapa, N, M, verificador->x, 
+                verificador->y) && !avl_buscar(ir->visitados, verificador)) return i;
             }
         }
     }
@@ -259,27 +260,28 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
     printf("\n");
     }
 
+    NodoMapa* v = malloc(sizeof(NodoMapa)) ;
     unsigned int pasos = 0, movimientosMax = 50;
     ir->camino = pila_crear();
     ir->visitados = avl_crear(nodomapa_copia, nodomapa_comparar, nodomapa_destruir);
     ir->rastro = malloc(sizeof(char) * movimientosMax) ;
 
     // la pos actual del robot es la inicial
+    NodoMapa* nm = malloc(sizeof(NodoMapa));
     NodoMapa* b = malloc(sizeof(NodoMapa));
     ir->x = ir->i1; ir->y = ir->j1;
     b->x = ir->x; b->y = ir->y;
     Direccion dirActual = INV;
 
     while ((ir->x != ir->i2) || (ir->y != ir->j2)) {
-        printf("Robot: (%d, %d)\n", ir->y, ir->x);
-        dirActual = obtener_direccion(ir, mapa, N, M, dirActual);
-        printf("Se eligio: %s\n", print_dir(dirActual));
-        int flag = 1;
+        dirActual = obtener_direccion(ir, mapa, N, M, dirActual, v);
+        printf("proximo movimiento (es valido): %s\n", print_dir(dirActual));
+        int flag = 1, porChocarse = 0;
 
-        while (flag && dirActual != INV) {
-            printf("movimiento -> %s\n", print_dir(dirActual));
+        while (flag && dirActual != INV && !porChocarse) {
+            printf("Robot: (%d, %d)\n", ir->y, ir->x);
+            //printf("movimiento -> %s\n", print_dir(dirActual));
             
-            NodoMapa* nm = malloc(sizeof(NodoMapa));
             nm->x = ir->x; nm->y = ir->y;
             nm->valido = 1;
             nm->dirOrigen = dirActual;
@@ -295,8 +297,8 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
                 }
                 ir->rastro[pasos++] = asignar_direccion(dirActual);
                 moverse(dirActual, ir);
-            }
-            else flag = 0;
+            } 
+            else porChocarse = 1;
 
             if (ir->x == ir->i2 || ir->y == ir->j2) {
                 printf("y: %d, x:%d\n", ir->y, ir->x) ;
@@ -304,46 +306,50 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
                 flag = 0;
             }
             //pila_imprimir(ir->camino, imprimir_nodo);
+            printf("AVL\n");
+            avl_recorrer(ir->visitados, AVL_RECORRIDO_IN, imprimir_nodo);
             getchar();
         }
-
-
-        
+        /*
         if (dirActual != INV && flag) {
             printf("mueve en la opuesta \n");
             moverse(opuesta(dirActual), ir) ;
+            printf("Robot: (%d, %d)\n", ir->y, ir->x);
             ir->rastro[pasos++] = asignar_direccion(opuesta(dirActual));
-        }
+        }*/
+       printf("porChocarse: %d\n", porChocarse) ;
+       if (porChocarse) {
+            NodoMapa* invalido = malloc(sizeof(NodoMapa));
+            *invalido = (NodoMapa){b->x, b->y, 0, dirActual};
+            
+            avl_insertar(ir->visitados, invalido) ;
+            printf("Cambia de movimiento\n");
+            getchar();
+       }
             
         flag = 1 ;
+        porChocarse = 0;
 
-        NodoMapa* invalido = malloc(sizeof(NodoMapa));
-        invalido->x = ir->x;
-        invalido->y = ir->y;
-        invalido->valido = 0;
-        invalido->dirOrigen = dirActual;
-        avl_insertar(ir->visitados, invalido) ;
-        printf("Cambia de movimiento\n");
-        getchar();
          // vamos al anterior
         if (dirActual == INV) {
             printf("BACKTRACK: retroceder un lugar\n");
             NodoMapa* ant = (NodoMapa*)pila_tope(ir->camino);
             // se mueve "hacia atras" 1 lugar
-            printf("(%d %d), (%d, %d)\n", ir->y, ir->x, ant->y, ant->x);
+            //printf("(%d %d), (%d, %d)\n", ir->y, ir->x, ant->y, ant->x);
 
             Direccion dirVuelta = (ir->y == ant->y) ? (ant->x < ir->x) ? IZQ : DER : 
             (ant->y < ir->y) ? ARR : ABA; 
 
             ir->x = ant->x;
             ir->y = ant->y;
-            printf("dir vuelta: %s\n", print_dir(dirVuelta));
+            //printf("dir vuelta: %s\n", print_dir(dirVuelta));
             ir->rastro[pasos++] = asignar_direccion(dirVuelta);
             pila_desapilar(&(ir->camino));
         }
        
         }
 
+        free(v);
         ir->rastro[pasos] = '\0' ;
         pila_imprimir(ir->camino, imprimir_nodo) ;
         return 1;
