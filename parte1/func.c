@@ -405,7 +405,7 @@ int main (int argc, char** argv) {
         printf("%c", infoRobot->rastro[i]);
     puts("");
     
-    //printf("%zu\n", strlen(infoRobot->rastro));
+    printf("%zu\n", strlen(infoRobot->rastro));
 
     // Liberar memoria usada
     for (unsigned int i = 0; i < numFilas; i++) free(mapa[i]);
