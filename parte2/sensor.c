@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
 
@@ -8,8 +9,72 @@
 //   los valores N, M, D, i1, j1, i2 y j2, respectivamente.
 // - Devuelve un arreglo de arreglos con las filas del entorno, o NULL en caso
 //   de que el formato sea invalido
-char** leer_archivo(FILE* data, int* n, int* m, int* max_d, int* i1, int* j1, int* i2, int* j2) {
-	// Esta funcion se puede completar usando el lector de archivos que escribio para la actividad 1
+// supone el archivo ya abierto, y es valido
+char** leer_archivo(FILE* data, int* nFilas, int* nCols, int* max_d, int* i1, int* j1, int* i2, int* j2) {
+
+    char linea[255];
+    unsigned int check, archivoValido = 1;
+	char** mapa;
+
+    if (data == NULL) return 0;
+
+    //printf("Archivo '%s' abierto con exito\n", nomArchivo);
+    for (int k = 0; (fgets(linea, 255, data)) && archivoValido; k++) {
+        //printf("k -> %d\n", k);
+        switch (k) {
+        case 0: {
+            check = sscanf(linea, "%d %d %d\n", nFilas, nCols, max_d);
+            if (check != 3)
+                archivoValido = 0;
+            else {
+                mapa = malloc(sizeof(char*) * *nFilas);
+                for (int h = 0; h < *nFilas; h++) 
+                    mapa[h] = malloc(*nCols * sizeof(char));
+            }
+            break;
+        }
+        case 1:
+            check = sscanf(linea, "%d %d\n", j1, i1);
+            if (check != 2)
+                archivoValido = 0;
+            break;
+        case 2: 
+            check = sscanf(linea, "%d %d\n", j2, i2);
+            if (check != 2)
+                archivoValido = 0;
+            break;
+        default:
+            // leer laberinto
+            char* l;
+            int j; 
+            // la cant filas del archivo discrepta con el nro de filas pasado
+            ////printf("k-2: %d, N: %d\n", k-2, N);
+            if (k-3 > *nFilas)
+                archivoValido = 0;
+            else {
+                ////printf("long linea: %ld, M: %d\n", strlen(linea), M);
+				int largoLinea = strlen(linea);
+                if (!(k-2 < *nFilas && largoLinea-1 == *nCols))
+                    archivoValido = 0;
+                if (k-2 == *nFilas && largoLinea == *nCols)
+                    archivoValido = 1;
+                //if ( k == M && ! (strlen(linea) == M))
+                  //  archivoValido = 0;
+                
+                for (l = linea, j = 0; *l != '\n' && j < *nCols && archivoValido; l++, j++) {
+                    ////printf("leido: %c\t", *l);
+                    if (*l != '.' && *l != '#')
+                        archivoValido = 0;
+                    else {
+                        mapa[k-3][j] = (*l == '.');
+                    }
+                }
+            }
+            break;
+        }
+    }
+    
+    return archivoValido? mapa : NULL ;
 }
 
 // El resto de este archivo no tiene relevancia para el estudiante.
@@ -20,10 +85,13 @@ int coordenada_valida(int n, int m, int i, int j) {
 
 int lanzar_rayo(char** mapa, int n, int m, int i, int j, int di, int dj, int max_dist) {
 	int dist = 0;
+	// avanza en las direcciones di, dj pasadas hasta chocarse con un obstaculo
+	// o querer salirse del mapa (coord invalida)
 	while (coordenada_valida(n, m, i, j) && mapa[i][j] != '#') {
 		dist++;
 		i += di; j += dj;
 	}
+	// retorna donde se choco o donde se corta el rayo
 	return dist > max_dist ? max_dist+1 : dist;
 }
 
@@ -71,7 +139,9 @@ int main(int argc, char** argv) {
 
 	int operaciones = 0;
 
+	// se queda esperando comandos de robot
 	while (1) {
+		// toma caracter del stdin
 		char c = getchar();
 
 		if (isspace(c)) continue;

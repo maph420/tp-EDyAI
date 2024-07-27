@@ -171,6 +171,7 @@ int sig_nodo_y(Direccion d, int valY) {
 // la meta es valida
 Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, Direccion dOrigen) {
     NodoMapa v;
+    
     // cuando estoy alineado con la meta en alguno de los ejes, solo va a haber
     // 1 direccion preferida (que sea elejible, es otro tema)
     Direccion dir1 = (ir->y == ir->j2) ? INV : (ir->y < ir->j2) ? ABA : ARR;
@@ -221,20 +222,12 @@ char asignar_direccion(Direccion d) {
 void movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) {
 
     unsigned int recalculos = 0;
-    /*printf("(%d, %d) -> (%d, %d)\n", ir->i1, ir->j1, ir->i2, ir->j2);
-    printf("MAPA:\n");
-    for (unsigned int i=0; i < N; i++) {
-        for(unsigned int j = 0; j < M; j++)
-            printf("%d", mapa[i][j]);
-    printf("\n");
-    }*/
     unsigned int pasos = 0, movimientosMax = 50;
     ir->camino = pila_crear();
     ir->visitados = avl_crear(nodomapa_copia, nodomapa_comparar, nodomapa_destruir);
     ir->rastro = malloc(sizeof(char) * movimientosMax) ;
 
     // la pos actual del robot es la inicial
-    //NodoMapa* nm = malloc(sizeof(NodoMapa));
     NodoMapa nm = (NodoMapa){ir->i1, ir->j1, 1, INV};
     pila_apilar((&ir->camino), &nm, nodomapa_copia);
 
@@ -257,13 +250,12 @@ void movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M)
             if (movimiento_valido(mapa, N, M, b->x, b->y)) {
                 
                 if (pasos >= movimientosMax) {
-                    //printf("pasos: %d\n", pasos);
                     movimientosMax *= 2;
                     ir->rastro = realloc(ir->rastro, sizeof(char) * movimientosMax);
                 }
                 ir->rastro[pasos++] = asignar_direccion(dirActual);
                 // mover el robot a la sig pos
-                ir->x = b->x; ir->y = b->y;
+                ir->x = b->x; ir->y = b->y; b->dirOrigen = dirActual; b->valido = 1;
                 nm = (NodoMapa){ir->x, ir->y, 1, dirActual};
                 avl_insertar(ir->visitados, &nm);
                 pila_apilar(&(ir->camino), &nm, nodomapa_copia);
