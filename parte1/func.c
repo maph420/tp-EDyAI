@@ -122,19 +122,9 @@ char* print_dir(int d) {
 }
 
 unsigned int movimiento_valido(int** mapa, int N, int M, int posX, int posY) {
-
-    if (posX >= M || posY >= N || posX < 0 || posY < 0) {
-        //printf("%d %d no es valido\n", posY, posX);
-        return 0;
-    }
-    if (mapa[posY][posX]) {
-        //printf("%d %d es valido\n", posY, posX);
-        return 1;
-    }
-    else {
-        //printf("%d %d no es valido\n", posY, posX);
-        return 0;
-    } 
+    int d = (posX >= M || posY >= N || posX < 0 || posY < 0) ? 0 : mapa[posY][posX];
+    //printf("%d, %d %s\n", posY, posX, d? "es valida" : "no es valida");
+    return d;
 }
 
 int aleatorio() {
@@ -149,51 +139,28 @@ Direccion opuesta(Direccion d) {
     if (d == DER) return IZQ;
     return d;
 }
-
 // toma estructura auxiliar de informacion de nodos, y aumenta la posicion actual 
 // que tenga en 1, segun la direccion d pasada
-void sig_nodo(Direccion d, NodoMapa* nm) {
+void sig_nodo(Direccion d, int* valX, int* valY) {
     switch (d)
             {
             case ABA:
-                nm->y++;
+                (*valY)++;
                 break;
             case ARR:
-                nm->y--;
+                (*valY)--;
                 break;
             case IZQ:
-                nm->x--;
+                (*valX)--;
                 break;
             case DER:
-                nm->x++;
+                (*valX)++;
                 break;
             case INV:
-                //printf("nm: INV\n");
                 break;
         }
 }
-// Toma la estructura con la información del robot y lo desplaza 1 unidad en
-// la direccion d pasada.
-void moverse(Direccion d, InfoRobot* ir) {
-    switch (d)
-            {
-            case ABA:
-                ir->y++;
-                break;
-            case ARR:
-                ir->y--;
-                break;
-            case IZQ:
-                ir->x--;
-                break;
-            case DER:
-                ir->x++;
-                break;
-            case INV:
-                //printf("ir: INV\n");
-                break;
-        }
-}
+
 // se asume que el robot se encuentra parado en una posicion valida, asimismo que 
 // la meta es valida
 Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, Direccion dOrigen, NodoMapa* verificador) {
@@ -210,7 +177,7 @@ Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, D
     //printf("Probar primer alternativa: %s\n", print_dir(pref));
 
     verificador->x = ir->x; verificador->y = ir->y;
-    sig_nodo(pref, verificador);
+    sig_nodo(pref, &(verificador->x), &(verificador->y));
     if (pref != INV && movimiento_valido(mapa, N, M, verificador->x, verificador->y) 
     && !avl_buscar(ir->visitados, verificador)) return pref;
 
@@ -219,7 +186,7 @@ Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, D
     // si llegamos aca, la dir preferida no se puede, probamos la segunda preferida
     // (si la hay)
 
-    sig_nodo(segPref, verificador);
+    sig_nodo(segPref, &(verificador->x), &(verificador->y));
 
     //printf("Probar segunda alternativa\n");
     if (segPref != INV && movimiento_valido(mapa, N, M, verificador->x, verificador->y) 
@@ -234,7 +201,7 @@ Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, D
             if ((Direccion)i != INV) {
                 //printf("De ultima, se intenta: %s\n", print_dir((Direccion)i));
                 ////printf("Pos actual: %d, %d\n", verificador->y, verificador->x);
-                sig_nodo((Direccion)i, verificador);
+                sig_nodo((Direccion)i, &(verificador->x), &(verificador->y));
                 if (i != INV && movimiento_valido(mapa, N, M, verificador->x, 
                 verificador->y) && !avl_buscar(ir->visitados, verificador)) return i;
                 verificador->x = ir->x; verificador->y = ir->y;
@@ -245,7 +212,7 @@ Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, D
     return INV;
 }
 
-// se asume: la direccion pasada no es invalida
+// se asume: la direccion reciba no es INV
 char asignar_direccion(Direccion d) {
     if (d == IZQ) return 'L';
     if (d == DER) return 'R';
@@ -264,7 +231,6 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
     printf("\n");
     }*/
 
-    NodoMapa* v = malloc(sizeof(NodoMapa)) ;
     unsigned int pasos = 0, movimientosMax = 50;
     ir->camino = pila_crear();
     ir->visitados = avl_crear(nodomapa_copia, nodomapa_comparar, nodomapa_destruir);
@@ -275,6 +241,7 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
     NodoMapa nm = (NodoMapa){ir->i1, ir->j1, 1, INV};
     pila_apilar((&ir->camino), &nm, nodomapa_copia);
 
+    NodoMapa* v = malloc(sizeof(NodoMapa)) ;
     NodoMapa* b = malloc(sizeof(NodoMapa));
     ir->x = ir->i1; ir->y = ir->j1;
     b->x = ir->x; b->y = ir->y;
@@ -292,7 +259,7 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
             //printf("movimiento -> %s\n", print_dir(dirActual));
 
             b->x = ir->x; b->y = ir->y;
-            sig_nodo(dirActual, b);
+            sig_nodo(dirActual, &(b->x), &(b->y));
             if (movimiento_valido(mapa, N, M, b->x, b->y)) {
                 
                 if (pasos >= movimientosMax) {
@@ -301,7 +268,7 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
                     ir->rastro = realloc(ir->rastro, sizeof(char) * movimientosMax);
                 }
                 ir->rastro[pasos++] = asignar_direccion(dirActual);
-                moverse(dirActual, ir);
+                sig_nodo(dirActual, &(ir->x), &(ir->y));
                 nm = (NodoMapa){ir->x, ir->y, 1, dirActual};
                 avl_insertar(ir->visitados, &nm);
                 pila_apilar(&(ir->camino), &nm, nodomapa_copia);
@@ -322,8 +289,8 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
        // guardar obstaculos
        if (porChocarse) {
             recalculos++;
-            NodoMapa invalido = {b->x, b->y, 0, dirActual};
-            avl_insertar(ir->visitados, &invalido) ;
+            b->valido = 0; b->dirOrigen = dirActual;
+            avl_insertar(ir->visitados, b) ;
             //printf("Cambia de movimiento\n");
             //getchar();
        }
@@ -359,13 +326,11 @@ int movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) 
             ir->rastro[pasos++] = asignar_direccion(dirVuelta);
             
         }
-       
         }
 
         //printf("recalculos: %d\n", recalculos);
         //free(nm);
         free(b);
-        free(v);
         ir->rastro[pasos] = '\0' ;
         //pila_imprimir(ir->camino, imprimir_nodo) ;
         return 1;
@@ -376,8 +341,8 @@ int main (int argc, char** argv) {
 
     // validacion argumentos
     if (argc != 2) {
-        //////printf("Numero incorrecto de argumentos\n");
-        return -1;
+        printf("Numero incorrecto de argumentos\n");
+        exit(EXIT_FAILURE);
     }
 
     // variables para guardar info del archivo
@@ -387,33 +352,28 @@ int main (int argc, char** argv) {
     infoRobot->f = movimiento_valido;
 
     int v = validar_arch_y_guardar_info(argv[1], &mapa, &numFilas, &numCols, infoRobot);
-
     if (!v) {
-        ////printf("El formato del archivo no es valido (chequear que no haya salto de linea al final)\n");
-        return -1;
-        for (unsigned int h = 0; h < numFilas; h++) free(mapa[h]);
-        free(mapa);
+        printf("El formato del archivo no es valido (chequear que no haya salto de linea al final)\n");
+        free(infoRobot);
+        exit(EXIT_FAILURE);
     }
-    //////printf("El archivo es valido\n");
 
     int r = movimiento_robot(infoRobot, mapa, numFilas, numCols);
-
-    
     ////printf("Movimiento robot -> %d\n", r) ;
     ////printf("Recorrido hecho:\n");
     for (int i = 0; infoRobot->rastro[i]; i++)
         printf("%c", infoRobot->rastro[i]);
     puts("");
     
-    printf("%zu\n", strlen(infoRobot->rastro));
+    fflush(stdout);
+    //printf("%zu\n", strlen(infoRobot->rastro));
 
-    // Liberar memoria usada
+    // liberar memoria usada por las estructuras usadas
     for (unsigned int i = 0; i < numFilas; i++) free(mapa[i]);
     free(mapa);
     avl_destruir(infoRobot->visitados);
     pila_destruir(infoRobot->camino, nodomapa_destruir) ;
     free(infoRobot->rastro);
     free(infoRobot) ;
-
     return 0;
 }
