@@ -56,7 +56,7 @@ int nodomapa_comparar(void*, void*);
 /**
  * Imprime los campos del nodo NodoMapa
  */
-static void imprimir_nodo(void*);
+//static void imprimir_nodo(void*);
 
 /**
  * Toma el nombre del archivo, los 3 datos que el robot no sabe, y la estructura InfoRobot,
@@ -70,16 +70,5 @@ int validar_arch_y_guardar_info(char*, int***, unsigned int*, unsigned int*, Inf
  * el robot no se salga de los limites del mapa, considerando "choque" esta situacion.
  */
 unsigned int movimiento_valido(int**, int, int, int, int);
-
-/**
- * testeo (borrador)
- */
-void test_avl();
-
-/**
- * testeo (borrador)
- */
-void test_pila();
-
 
 #endif
