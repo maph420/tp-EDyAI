@@ -171,46 +171,30 @@ int sig_nodo_y(Direccion d, int valY) {
 // la meta es valida
 Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, Direccion dOrigen) {
     NodoMapa v;
-    
+    Direccion d[4];
     // cuando estoy alineado con la meta en alguno de los ejes, solo va a haber
     // 1 direccion preferida (que sea elejible, es otro tema)
-    Direccion dir1 = (ir->y == ir->j2) ? INV : (ir->y < ir->j2) ? ABA : ARR;
-    Direccion dir2 = (ir->x == ir->i2) ? INV : (ir->x < ir->i2) ? DER : IZQ;
-
-    // Verificar las direcciones preferidas (dir1 y dir2)
-    //printf("Preferidas: %s, %s\n", print_dir(dir1), print_dir(dir2));
-    Direccion pref = aleatorio()? dir1 : dir2;
-    Direccion segPref = (pref == dir1)? dir2 : dir1;
-    //printf("Probar primer alternativa: %s\n", print_dir(pref));
-
-    v = (NodoMapa){sig_nodo_x(pref, ir->x), sig_nodo_y(pref, ir->y), 1, pref}; 
-
-    if (pref != INV && movimiento_valido(mapa, N, M, v.x, v.y) 
-    && !avl_buscar(ir->visitados, &v)) return pref;
-
-    // si llegamos aca, la dir preferida no se puede, probamos la segunda preferida
-    // (si la hay)
-    //printf("Probar segunda alternativa\n");
-    v = (NodoMapa){sig_nodo_x(segPref, ir->x), sig_nodo_y(segPref, ir->y), 1, segPref}; 
-    if (segPref != INV && movimiento_valido(mapa, N, M, v.x, v.y) 
-    && !avl_buscar(ir->visitados, &v)) return segPref;
-
-     // no nos podemos mover en ninguna de las direcciones preferidas, veamos
-     // si podemos movernos en alguna otra que no sea la op de donde venimos
-    
-    for (int i = 0 ; i < 4; i++) {
-        if ((Direccion)i != pref && (Direccion)i != segPref && (Direccion)i != opuesta(dOrigen)) {
-            if ((Direccion)i != INV) {
-                //printf("De ultima, se intenta: %s\n", print_dir((Direccion)i));
-                v = (NodoMapa){sig_nodo_x(i, ir->x), sig_nodo_y(i, ir->y), 1, i}; 
-                if (i != INV && movimiento_valido(mapa, 
-                N, M, v.x, v.y) && 
-                !avl_buscar(ir->visitados, &v)) return i;
-                //verificador->x = ir->x; verificador->y = ir->y;
-            }
+    int c = 2, r = aleatorio();
+    d[r] = (ir->y == ir->j2) ? INV : (ir->y < ir->j2) ? ABA : ARR;
+    d[!r] = (ir->x == ir->i2) ? INV : (ir->x < ir->i2) ? DER : IZQ;
+    for (int h = 0; h < 4; h++) {
+        if ((Direccion)h != d[0] && (Direccion)h != d[1] && (Direccion)h != opuesta(dOrigen)) {
+            d[c++] = (Direccion)h;
         }
+    }  
+
+    for (int l = 0; l < 4; l++) {
+        v = (NodoMapa){
+            sig_nodo_x(d[l], ir->x),
+            sig_nodo_y(d[l], ir->y),
+            1,
+            d[l]};
+        if (d[l] != INV && movimiento_valido(mapa, N, M, v.x, v.y) 
+        && !avl_buscar(ir->visitados, &v)) {
+            //printf("retorna %s\n", print_dir(d[l]));
+            return d[l];
+            }
     }
-    // si tampoco se puede, la unica opcion sera backtracker, retornar invalido
     return INV;
 }
 
@@ -264,8 +248,7 @@ void movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M)
             }
 
             if (ir->x == ir->i2 || ir->y == ir->j2) {
-                //printf("y: %d, x:%d\n", ir->y, ir->x) ;
-                //printf("i2: %d, j2: %d\n", ir->i2, ir->j2);
+                //printf("alineado\n");
                 flag = 0;
             }
             //getchar();
@@ -320,7 +303,7 @@ int main (int argc, char** argv) {
 
     // validacion argumentos
     if (argc != 2) {
-        printf("Numero incorrecto de argumentos\n");
+        printf("Numero incorrecto de argumentos\n"); fflush(stdout);
         exit(EXIT_FAILURE);
     }
 
@@ -333,6 +316,7 @@ int main (int argc, char** argv) {
     int v = validar_arch_y_guardar_info(argv[1], &mapa, &numFilas, &numCols, infoRobot);
     if (!v) {
         printf("El formato del archivo no es valido (chequear que no haya salto de linea al final)\n");
+        fflush(stdout);
         free(infoRobot);
         exit(EXIT_FAILURE);
     }
