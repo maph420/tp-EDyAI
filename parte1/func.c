@@ -111,7 +111,7 @@ int validar_arch_y_guardar_info(char* nomArchivo, char*** mapa, unsigned int* nF
     return archivoValido ;
 }
 
-char* print_dir(int d) {
+char* print_dir(int d) { 
     if (d == 0) return "IZQ";
     else if (d == 1) return "DER";
     else if (d == 2) return "ARR";
@@ -312,7 +312,7 @@ int main (int argc, char** argv) {
 
     int v = validar_arch_y_guardar_info(argv[1], &mapa, &numFilas, &numCols, infoRobot);
     if (!v) {
-        printf("El formato del archivo no es valido (chequear que no haya salto de linea al final)\n");
+        printf("El formato del archivo no es valido (chequear formato)\n");
         fflush(stdout);
         free(infoRobot);
         exit(EXIT_FAILURE);

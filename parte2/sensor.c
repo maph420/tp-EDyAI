@@ -3,6 +3,23 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+/*
+e.g. aca el robot 'x' NO reconoceria al obstaculos 'o'
+simplemente retorna derecha = 2 porque no sabe lo que hay
+
+x . o
+
+si fuera la longitud del scanner 2, entonces:
+x . o
+seguiria dando derecha = 2, de donde aqui si podemos inferir
+que hay obstaculo.
+
+En general, si el scanner es de longitud k, las direcciones que
+retornen k+1, es porque NO detectaron obstaculo, y es seguro 
+moverse hasta ahi k veces en la pos pertinente desde la pos actual
+
+*/
+
 // leer_archivo()
 // - lee el archivo `data` segun el formato especificado en el trabajo.
 // - n, m, max_d, i1, j1, i2 y j2 son parametros de salida. Se corresponden con
@@ -10,11 +27,11 @@
 // - Devuelve un arreglo de arreglos con las filas del entorno, o NULL en caso
 //   de que el formato sea invalido
 // supone el archivo ya abierto, y es valido
+
 char** leer_archivo(FILE* data, int* nFilas, int* nCols, int* max_d, int* i1, int* j1, int* i2, int* j2) {
 
-    char linea[255];
+    char linea[255], **mapa;
     unsigned int check, archivoValido = 1;
-	char** mapa;
 
     if (data == NULL) return 0;
 
@@ -24,8 +41,9 @@ char** leer_archivo(FILE* data, int* nFilas, int* nCols, int* max_d, int* i1, in
         switch (k) {
         case 0: {
             check = sscanf(linea, "%d %d %d\n", nFilas, nCols, max_d);
-            if (check != 3)
+            if (check != 3) {
                 archivoValido = 0;
+			}
             else {
                 mapa = malloc(sizeof(char*) * *nFilas);
                 for (int h = 0; h < *nFilas; h++) 
@@ -35,45 +53,42 @@ char** leer_archivo(FILE* data, int* nFilas, int* nCols, int* max_d, int* i1, in
         }
         case 1:
             check = sscanf(linea, "%d %d\n", j1, i1);
-            if (check != 2)
+            if (check != 2) {
                 archivoValido = 0;
+			}
             break;
         case 2: 
             check = sscanf(linea, "%d %d\n", j2, i2);
-            if (check != 2)
+            if (check != 2) {
                 archivoValido = 0;
+				}
             break;
         default:
             // leer laberinto
-            char* l;
-            int j; 
+            char* l; int j; 
             // la cant filas del archivo discrepta con el nro de filas pasado
             ////printf("k-2: %d, N: %d\n", k-2, N);
             if (k-3 > *nFilas)
                 archivoValido = 0;
             else {
+
                 ////printf("long linea: %ld, M: %d\n", strlen(linea), M);
 				int largoLinea = strlen(linea);
-                if (!(k-2 < *nFilas && largoLinea-1 == *nCols))
+                if (k-2 > *nFilas || largoLinea-1 != *nCols){ 
                     archivoValido = 0;
-                if (k-2 == *nFilas && largoLinea == *nCols)
-                    archivoValido = 1;
-                //if ( k == M && ! (strlen(linea) == M))
-                  //  archivoValido = 0;
-                
+                }
+
                 for (l = linea, j = 0; *l != '\n' && j < *nCols && archivoValido; l++, j++) {
-                    ////printf("leido: %c\t", *l);
                     if (*l != '.' && *l != '#')
                         archivoValido = 0;
                     else {
-                        mapa[k-3][j] = (*l == '.');
+                        mapa[k-3][j] = *l;
                     }
                 }
             }
             break;
         }
     }
-    
     return archivoValido? mapa : NULL ;
 }
 
@@ -105,7 +120,8 @@ int correr_sensor(char** mapa, int n, int m, int i, int j, int* d, int max_d) {
 }
 
 void caracter_inesperado(char c) {
-	fprintf(stderr, "Comando invalido. Caracter inesperado: '%c' (ascii %d)\n", c, (int)c); fflush(stderr);
+	fprintf(stderr, "Comando invalido. Caracter inesperado: '%c' (ascii %d)\n", c, (int)c); 
+	fflush(stderr);
 	exit(EXIT_FAILURE);
 }
 
@@ -114,7 +130,6 @@ int main(int argc, char** argv) {
 		fprintf(stderr, "Uso: ./sensor <archivo>\n"); fflush(stderr);
 		return EXIT_FAILURE;
 	}
-
 	FILE* data = fopen(argv[1], "r");
 	if (!data) {
 		fprintf(stderr, "No existe el archivo\n"); fflush(stderr);
@@ -132,13 +147,13 @@ int main(int argc, char** argv) {
 	}
 	fclose(data);
 
-	printf("%d %d %d\n", n, m, max_d);
-	printf("%d %d\n", i1, j1);
-	printf("%d %d\n", i2, j2);
+	// todo: manejar para que primero lea esto
+	//printf("%d %d %d\n", n, m, max_d);
+	//printf("%d %d\n", i1, j1);
+	//printf("%d %d\n", i2, j2);
 	fflush(stdout);
 
 	int operaciones = 0;
-
 	// se queda esperando comandos de robot
 	while (1) {
 		// toma caracter del stdin
@@ -148,11 +163,17 @@ int main(int argc, char** argv) {
 		else if (c == '?') {
 
 			c = getchar();
-			if (c != ' ') caracter_inesperado(c);
+			if (c != ' ')  {
+				
+			caracter_inesperado(c);
+			fprintf(stderr, "no\n");
+			}
 
 			int i, j;
-			if (scanf("%d%d", &i, &j) != 2) caracter_inesperado(c);
-
+			if (scanf("%d%d", &i, &j) != 2) {
+				fprintf(stderr, "enete\n");
+				caracter_inesperado(c);
+			}
 			operaciones++;
 			int d[4] = {};
 			correr_sensor(mapa, n, m, i, j, d, max_d);
@@ -163,7 +184,7 @@ int main(int argc, char** argv) {
 			fflush(stdout);
 
 		} else if (c == '!') {
-
+			return EXIT_SUCCESS ;
 			c = getchar();
 			if (c != ' ') caracter_inesperado(c);
 
@@ -190,6 +211,7 @@ int main(int argc, char** argv) {
 			}
 
 		} else {
+			fprintf(stderr, "aca ta\n");
 			caracter_inesperado(c);
 		}
 	}
