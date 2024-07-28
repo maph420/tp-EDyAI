@@ -130,7 +130,6 @@ int main (int argc, char** argv) {
     }
     printf("El archivo es valido\n");
 
-
     printf("(%d, %d) -> (%d, %d)\n", infoRobot->i1, infoRobot->j1, infoRobot->i2, infoRobot->j2);
     printf("MAPA:\n");
     //mapa[0][3] = 4;

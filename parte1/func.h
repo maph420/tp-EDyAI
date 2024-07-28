@@ -9,7 +9,7 @@
 #include "estr/avl.h"
 #include "estr/pila.h"
 
-typedef unsigned int (*FuncionValidadora)(int** mapa, int N, int M, int x, int y) ;
+typedef unsigned int (*FuncionValidadora)(char** mapa, int N, int M, int x, int y) ;
 
 // izquierda, derecha, arriba, abajo, invalida
 typedef enum {
@@ -62,13 +62,13 @@ int nodomapa_comparar(void*, void*);
  * Toma el nombre del archivo, los 3 datos que el robot no sabe, y la estructura InfoRobot,
  * donde se guardaran los campos de la informacion que el robot si maneja
  */
-int validar_arch_y_guardar_info(char*, int***, unsigned int*, unsigned int*, InfoRobot*);
+int validar_arch_y_guardar_info(char*, char***, unsigned int*, unsigned int*, InfoRobot*);
 
 /**
  * Funcion a la que recurre el robot al realizar un movimiento. Notifica si
  * el robot se chocó o si se desplazó a una posición válida. Además, verifica que
  * el robot no se salga de los limites del mapa, considerando "choque" esta situacion.
  */
-unsigned int movimiento_valido(int**, int, int, int, int);
+unsigned int movimiento_valido(char**, int, int, int, int);
 
 #endif

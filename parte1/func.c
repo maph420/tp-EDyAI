@@ -35,7 +35,7 @@ static void imprimir_nodo(void* ref) {
  * como sus dimensiones y le pasa a la estructura de info del robot las coords de inicio y fin
  *  */
 // se asume: el laberinto dado tiene solucion, y los puntos de inicio y fin no son '#'
-int validar_arch_y_guardar_info(char* nomArchivo, int*** mapa, unsigned int* nFilas, unsigned int* nCols, InfoRobot* ir) {
+int validar_arch_y_guardar_info(char* nomArchivo, char*** mapa, unsigned int* nFilas, unsigned int* nCols, InfoRobot* ir) {
 
     char linea[LONGITUD_MAX_LINEA];
     FILE* archivoEntrada;
@@ -91,19 +91,16 @@ int validar_arch_y_guardar_info(char* nomArchivo, int*** mapa, unsigned int* nFi
             else {
                 ////printf("long linea: %ld, M: %d\n", strlen(linea), M);
 
-                if (!(k-2 < N && strlen(linea)-1 == M))
+                if (k-2 > N || strlen(linea)-1 != M){ 
                     archivoValido = 0;
-                if (k-2 == N && strlen(linea) == M)
-                    archivoValido = 1;
-                //if ( k == M && ! (strlen(linea) == M))
-                  //  archivoValido = 0;
-                
+                    printf("k-2: %d\n", k-2);
+                }
+
                 for (l = linea, j = 0; *l != '\n' && j < M && archivoValido; l++, j++) {
-                    ////printf("leido: %c\t", *l);
                     if (*l != '.' && *l != '#')
                         archivoValido = 0;
                     else {
-                        (*mapa)[k-3][j] = (*l == '.');
+                        (*mapa)[k-3][j] = *l;
                     }
                 }
             }
@@ -122,8 +119,8 @@ char* print_dir(int d) {
     else return "INV";
 }
 
-unsigned int movimiento_valido(int** mapa, int N, int M, int posX, int posY) {
-    int d = (posX >= M || posY >= N || posX < 0 || posY < 0) ? 0 : mapa[posY][posX];
+unsigned int movimiento_valido(char** mapa, int N, int M, int posX, int posY) {
+    int d = (posX >= M || posY >= N || posX < 0 || posY < 0) ? 0 : (mapa[posY][posX] == '.');
     //printf("%d, %d %s\n", posY, posX, d? "es valida" : "no es valida");
     return d;
 }
@@ -169,7 +166,7 @@ int sig_nodo_y(Direccion d, int valY) {
 }
 // se asume que el robot se encuentra parado en una posicion valida, asimismo que 
 // la meta es valida
-Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, Direccion dOrigen) {
+Direccion obtener_direccion(InfoRobot* ir, char** mapa, unsigned N, unsigned M, Direccion dOrigen) {
     NodoMapa v;
     Direccion d[4];
     // cuando estoy alineado con la meta en alguno de los ejes, solo va a haber
@@ -183,7 +180,7 @@ Direccion obtener_direccion(InfoRobot* ir, int** mapa, unsigned N, unsigned M, D
         }
     }  
 
-    for (int l = 0; l < 4; l++) {
+    for (int l = 0; l < c; l++) {
         v = (NodoMapa){
             sig_nodo_x(d[l], ir->x),
             sig_nodo_y(d[l], ir->y),
@@ -203,7 +200,7 @@ char asignar_direccion(Direccion d) {
     return d == IZQ ? 'L' : d == DER ? 'R' : d == ABA ? 'D' : 'U';
 }
 
-void movimiento_robot(InfoRobot* ir, int** mapa, unsigned int N, unsigned int M) {
+void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M) {
 
     unsigned int recalculos = 0;
     unsigned int pasos = 0, movimientosMax = 50;
@@ -308,7 +305,7 @@ int main (int argc, char** argv) {
     }
 
     // variables para guardar info del archivo
-    int** mapa = NULL;
+    char** mapa = NULL;
     unsigned int numFilas, numCols;
     InfoRobot* infoRobot = malloc(sizeof(InfoRobot));
     infoRobot->f = movimiento_valido;
