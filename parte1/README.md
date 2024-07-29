@@ -22,6 +22,10 @@ Test parte 1:
 
 > ./testing_script.sh 15 15 100
 
+Otro:
+
+> gcc otro.c -Wall -Wextra -std=c99 -g -lm -o otro
+
 Todo:
 
 - [ ] Ver si vale la pena mejorar la inteligencia al backtrackear (si no se pierde mucha eficiencia, y si acorta el camino bastante). En el ejemplo.txt, si se arranca por abajo se pueden hacer hasta 29 pasos, mientras que la ruta ideal es de 11.

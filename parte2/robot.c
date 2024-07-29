@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-int main() {
+int main(int argc, char** argv) {
     // Enviar comando de consulta de sensor
     fflush(stdout);
-    printf("%c 0 3\n", 63);
+    printf("%c 3 6\n", 63);
     fflush(stdout); // Asegúrate de que el comando se envíe inmediatamente
 
     printf("!");

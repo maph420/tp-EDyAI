@@ -126,7 +126,7 @@ void caracter_inesperado(char c) {
 }
 
 int main(int argc, char** argv) {
-	if (argc != 2) {
+	if (argc < 2) {
 		fprintf(stderr, "Uso: ./sensor <archivo>\n"); fflush(stderr);
 		return EXIT_FAILURE;
 	}
