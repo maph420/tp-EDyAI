@@ -145,12 +145,20 @@ int main(int argc, char** argv) {
 		fclose(data);
 		return EXIT_FAILURE;
 	}
+
+
+
 	fclose(data);
 
 	// todo: manejar para que primero lea esto
-	//printf("%d %d %d\n", n, m, max_d);
-	//printf("%d %d\n", i1, j1);
-	//printf("%d %d\n", i2, j2);
+	printf("%d %d %d\n", n, m, max_d);
+	printf("%d %d\n", i1, j1);
+	printf("%d %d\n", i2, j2);
+
+	return 0;
+}
+
+	/*
 	fflush(stdout);
 
 	int operaciones = 0;
@@ -193,7 +201,7 @@ int main(int argc, char** argv) {
 			while (1) {
 				distancia++;
 				c = getchar();
-				/**/ if (c == 'U') i -= 1;
+				 if (c == 'U') i -= 1;
 				else if (c == 'D') i += 1;
 				else if (c == 'L') j -= 1;
 				else if (c == 'R') j += 1;
@@ -216,3 +224,5 @@ int main(int argc, char** argv) {
 		}
 	}
 }
+
+*/

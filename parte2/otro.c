@@ -95,10 +95,13 @@ int validar_arch_y_guardar_info(char* nomArchivo, char*** mapa, unsigned int* nF
     return archivoValido ;
 }
 
+double h (long x1, long y1, long x2, long y2) {
+    return abs(x2 - x1) + abs(y2 - y1);
+}
+
 double dist (long x1, long y1, long x2, long y2) {
     return sqrt(pow(x1-x2, 2) + pow(y1-y2, 2));
 }
-
 
 // verifica si la casilla en (posX, posY) es una posicion valida (no es pared)
 unsigned int movimiento_valido(int** mapa, int posX, int posY) {
@@ -132,17 +135,15 @@ int main (int argc, char** argv) {
     //mapa[0][3] = 4;
     for (unsigned int i=0; i < numFilas; i++) {
         for(unsigned int j = 0; j < numCols; j++) {
-            /*
-            printf("(%.1lf, %.1lf, %.1lf", dist(i,j, infoRobot->i1, infoRobot->j1),
-            dist(i, j, infoRobot->i2, infoRobot->j2),
-            dist(i,j, infoRobot->i1, infoRobot->j1) +
-            dist(i, j, infoRobot->i2, infoRobot->j2));*/
+            
 
-            printf("(%.1lf)", dist(i,j, infoRobot->i1, infoRobot->j1) +
-            dist(i, j, infoRobot->i2, infoRobot->j2));
+            //printf("(%.1lf)", dist(i,j, infoRobot->i1, infoRobot->j1) +
+            //dist(i, j, infoRobot->i2, infoRobot->j2));
 
-            if (mapa[i][j] == '#') printf("*");
-            printf("\t");
+            printf("(%.1lf)", h(i, j, infoRobot->i2, infoRobot->j2));
+            if (mapa[i][j] == '#') printf("*"); printf("\t");
+
+            
             //printf("%d", mapa[i][j]);
         }
     printf("\n");

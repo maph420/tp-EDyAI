@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "colaprioridad.h"
 
-static int compara_int(const void* refA, const void* refB) {
+int compara_int(void* refA, void* refB) {
     const int a = *(int*)refA;
     const int b = *(int*)refB;
     if (a < b) return -1;
@@ -10,11 +10,11 @@ static int compara_int(const void* refA, const void* refB) {
     else return 0;
 }
 
-static void imprimir_int(const void* refD) {
+ void imprimir_int(const void* refD) {
     printf("%d, ", *(int*)refD);
 }
 
-static void* no_copia(void* d) {
+ void* no_copia(void* d) {
     return d;
 }
 
@@ -44,10 +44,8 @@ void cola_prioridad_eliminar_maximo(ColaPrioridad cp) {
     if (cola_prioridad_es_vacia(cp)) {
         return;
     }
-
-    cp->heap->arr[0] = cp->heap->arr[cp->heap->ultimo - 1];
-    cp->heap->ultimo--;
-    hundir(cp->heap, cp->heap->ultimo, 0);
+    bheap_eliminar(cp->heap);
+   
 }
 
 void cola_prioridad_insertar(ColaPrioridad cp, void* elem) {
@@ -60,19 +58,44 @@ void cola_prioridad_insertar(ColaPrioridad cp, void* elem) {
     flotar(cp->heap, cp->heap->ultimo - 1);
 }
 
+
+void cola_prioridad_buscar_eliminar(ColaPrioridad cp, void* elem) {
+    bheap_buscar_eliminar(cp->heap, elem);
+}
+
 int main() {
     ColaPrioridad cp = cola_prioridad_crear(10, compara_int);
 
-    int valores[] = {10, 20, 15, 25, 30, 16, 18, 19};
+    int valores[8] = {10, 20, 15, 25, 30, 16, 18, 19};
 
     for (int i = 0; i < 8; i++) {
-        cola_prioridad_insertar(cp, &valores[i]);
+        cola_prioridad_insertar(cp, &(valores[i]));
     }
 
     printf("Máximo elemento: %d\n", *(int*)cola_prioridad_maximo(cp));
 
     cola_prioridad_eliminar_maximo(cp);
     printf("Máximo elemento después de eliminar: %d\n", *(int*)cola_prioridad_maximo(cp));
+
+    bheap_recorrer(cp->heap, imprimir_int);
+
+    printf("%d\n", valores[7]);
+
+    bheap_buscar_eliminar(cp->heap, &(valores[7]));
+    printf("sdkljfñjslkd\n");
+
+    cola_prioridad_eliminar_maximo(cp);
+    printf("Máximo elemento después de eliminar: %d\n", *(int*)cola_prioridad_maximo(cp));
+
+  cola_prioridad_eliminar_maximo(cp);
+    printf("Máximo elemento después de eliminar: %d\n", *(int*)cola_prioridad_maximo(cp));
+
+  cola_prioridad_eliminar_maximo(cp);
+    printf("Máximo elemento después de eliminar: %d\n", *(int*)cola_prioridad_maximo(cp));
+
+cola_prioridad_eliminar_maximo(cp);
+    printf("Máximo elemento después de eliminar: %d\n", *(int*)cola_prioridad_maximo(cp));
+
 
     cola_prioridad_destruir(cp);
     return 0;

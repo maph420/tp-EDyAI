@@ -19,4 +19,8 @@ void* cola_prioridad_maximo(ColaPrioridad cp);
 
 void cola_prioridad_eliminar_maximo(ColaPrioridad cp);
 
+void cola_prioridad_insertar(ColaPrioridad cp, void* elem);
+
+void cola_prioridad_busca_elimina(ColaPrioridad cp, void* elem);
+
 #endif

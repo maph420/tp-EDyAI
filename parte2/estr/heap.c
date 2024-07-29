@@ -3,6 +3,22 @@
 #include "heap.h"
 #include <math.h>
 
+int compara_int( void* refA,  void* refB) {
+    const int a = *(int*)refA;
+    const int b = *(int*)refB;
+    if (a < b) return -1;
+    else if (a > b) return 1;
+    else return 0;
+}
+
+void imprimir_int( void* refD) {
+    printf("%d, ", *(int*)refD);
+}
+
+void* no_copia(void* d) {
+    return d;
+}
+
 BHeap bheap_crear(int capacidad, FuncionComparadora cmp) {
     if (capacidad == 0) return NULL;
     BHeap heap = malloc(sizeof(struct _BHeap));
@@ -30,7 +46,6 @@ void bheap_recorrer(BHeap b, FuncionVisitante f) {
     for (int i = 0; i < b->ultimo; i++)
         f(b->arr[i]);
 }
-
 
 // ir corrigiendo arbol, de acuerdo a la rel de cada nodo con su padre
 // toma el heap e i que es el nodo hijo a partir de donde empiezan los chequeos
@@ -88,7 +103,7 @@ BHeap bheap_insertar(BHeap h, void* elem) {
 }
 
 
-BHeap bheap_eliminar(BHeap b) {
+BHeap bheap_eliminar_maximo(BHeap b) {
     // Verificar si el heap está vacío
     if (b->ultimo == 0) {
         printf("El heap está vacío. No se puede eliminar ningún elemento.\n");
@@ -145,16 +160,48 @@ void heap_sort(void** arr, int tamArr, FuncionCopiadora copy, FuncionComparadora
     for (int i = tamArr - 1; i >= 0; i--) {
         void* max = heap->arr[0];
         arr[i] = max;
-        heap = bheap_eliminar(heap);
+        heap = bheap_eliminar_maximo(heap);
     }
     // 3- borramos espacio auxiliar usado
     bheap_destruir(heap);
 }
 
-//////
+void bheap_buscar_eliminar(BHeap heap, void* elemento) {
+    printf("capacidad: %d\n", heap->capacidad);
+    int n = heap->ultimo; // Tamaño actual del heap
+    int i;
+
+    // Buscar el elemento en el arreglo
+    for (i = 0; i < n; i++) {
+        if (heap->comp(heap->arr[i], elemento) == 0) {
+            printf("esta\n");
+            break; // Elemento encontrado
+        }
+    }
+
+    // Si el elemento no fue encontrado, no hacer nada
+    if (i == n) {
+        puts("no encontro \n");
+        return;
+    }
+    // Intercambiar con el último elemento
+    void* temp = heap->arr[i];
+    heap->arr[i] = heap->arr[n - 1];
+    heap->arr[n - 1] = temp;
+
+    // Reducir el tamaño del heap
+    heap->ultimo--;
+    // Restaurar la propiedad de heap
+    hundir(heap, n - 1, i);
+}
+
+void* bheap_maximo(BHeap b) {
+    return bheap_es_vacio(b) ? NULL : b->arr[0];
+}
+
+// por cuestion de tiempos, hice el main aca nomas
 
 /*
-// por cuestion de tiempos, hice el main aca nomas
 int main() {
     // 2
     BHeap b = bheap_crear(14, compara_int);
@@ -176,7 +223,7 @@ int main() {
     puts("HEAP:");
     bheap_recorrer(b, imprimir_int);
 
-    b = bheap_eliminar(b);
+    b = bheap_eliminar_maximo(b);
     
     puts("\nHEAP:");
     bheap_recorrer(b, imprimir_int);
@@ -201,5 +248,15 @@ int main() {
     for(int i = 0; i < 8; i++) {
         printf("%d, ", *(int*)otradirValores[i]);
     }
+
+    puts("\nHEAP:");
+    bheap_recorrer(bArr, imprimir_int);
+    bheap_buscar_eliminar(bArr, &(otralistaValores[0]));
+    puts("\nHEAP:");
+    bheap_recorrer(bArr, imprimir_int);
+
+    printf("maximo %d\n", *(int*)bheap_maximo(bArr));
+
 }
+
 */

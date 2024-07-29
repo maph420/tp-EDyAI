@@ -2,10 +2,10 @@
 #define __HEAP_H__
 
 typedef void *(*FuncionCopiadora)(void *dato);
-typedef int (*FuncionComparadora)(const void *, const void *);
+typedef int (*FuncionComparadora)(void *, void *);
 typedef void (*FuncionDestructora)(void *dato);
 typedef void (*FuncionVisitanteExtra)(void *dato, void *extra);
-typedef void (*FuncionVisitante)(const void* dato);
+typedef void (*FuncionVisitante)( void* dato);
 
 typedef struct _BHeap {
 void **arr;
@@ -29,6 +29,10 @@ void hundir(BHeap heap, int n, int indRaiz);
 
 BHeap bheap_insertar(BHeap b, void* elem);
 
-BHeap bheap_eliminar(BHeap b);
+BHeap bheap_eliminar_maximo(BHeap b);
+
+void bheap_buscar_eliminar(BHeap heap, void* elemento);
+
+void* bheap_maximo(BHeap b);
 
 #endif
