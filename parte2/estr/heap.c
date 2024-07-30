@@ -3,6 +3,8 @@
 #include "heap.h"
 #include <math.h>
 
+// MIN HEAP
+
 int compara_int( void* refA,  void* refB) {
     const int a = *(int*)refA;
     const int b = *(int*)refB;
@@ -37,7 +39,7 @@ void bheap_destruir(BHeap b) {
 }
 
 unsigned int bheap_es_vacio(BHeap b) {
-    return b->capacidad == 0;
+    return b->ultimo == 0;
 }
 
 /* ya no se necesita una cola, basta con
@@ -53,7 +55,7 @@ void flotar(BHeap heap, int i) {
     int parent = (i - 1) / 2;
 
     // si el padre es menor al hijo, cambiarlos, y seguir chequeando
-    if (parent >= 0 && heap->comp(heap->arr[i], heap->arr[parent]) > 0) {
+    if (parent >= 0 && heap->comp(heap->arr[i], heap->arr[parent]) < 0) {
         void* tmp = heap->arr[parent];
         heap->arr[parent] = heap->arr[i];
         heap->arr[i] = tmp;
@@ -69,11 +71,11 @@ void hundir(BHeap heap, int n, int indRaiz) {
 
 
     // Si el hijo izquierdo es más grande que la raíz
-    if (indiceIzq < n && heap->comp(heap->arr[indiceIzq], heap->arr[mayor]) > 0)
+    if (indiceIzq < n && heap->comp(heap->arr[indiceIzq], heap->arr[mayor]) < 0)
         mayor = indiceIzq;
 
     // Si el hijo derecho es más grande que el más grande encontrado hasta ahora
-    if (indiceDer < n && heap->comp(heap->arr[indiceDer], heap->arr[mayor]) > 0)
+    if (indiceDer < n && heap->comp(heap->arr[indiceDer], heap->arr[mayor]) < 0)
         mayor = indiceDer;
 
     // si el nodo más grande no es la raíz (hay algun nodo que incumple heap)
@@ -103,7 +105,7 @@ BHeap bheap_insertar(BHeap h, void* elem) {
 }
 
 
-BHeap bheap_eliminar_maximo(BHeap b) {
+BHeap bheap_eliminar_minimo(BHeap b) {
     // Verificar si el heap está vacío
     if (b->ultimo == 0) {
         printf("El heap está vacío. No se puede eliminar ningún elemento.\n");
@@ -142,8 +144,7 @@ BHeap bheap_crear_desde_arr(void **arr, int largo, FuncionCopiadora copy, Funcio
     // heapifeamos todo
     // chequeamos con heapify2 el correcto enlace de cada nodo con cada hijo,
     // arrancando del padre del ultimo, y yendo "para arriba"
-    int i = (largo - 1) / 2;
-    for (i ; i >= 0; i--) {
+    for (int i = (largo - 1) / 2; i >= 0; i--) {
         hundir(heap, largo, i);
     }
 
@@ -160,30 +161,30 @@ void heap_sort(void** arr, int tamArr, FuncionCopiadora copy, FuncionComparadora
     for (int i = tamArr - 1; i >= 0; i--) {
         void* max = heap->arr[0];
         arr[i] = max;
-        heap = bheap_eliminar_maximo(heap);
+        heap = bheap_eliminar_minimo(heap);
     }
     // 3- borramos espacio auxiliar usado
     bheap_destruir(heap);
 }
 
-void bheap_buscar_eliminar(BHeap heap, void* elemento) {
-    printf("capacidad: %d\n", heap->capacidad);
+int bheap_buscar_eliminar(BHeap heap, void* elemento) {
+    //printf("capacidad: %d\n", heap->capacidad);
     int n = heap->ultimo; // Tamaño actual del heap
-    int i;
+    int i, hallado = 0;
 
     // Buscar el elemento en el arreglo
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < n && !hallado; i++) {
         if (heap->comp(heap->arr[i], elemento) == 0) {
-            printf("esta\n");
-            break; // Elemento encontrado
+            hallado = 1; // Elemento encontrado
         }
     }
 
     // Si el elemento no fue encontrado, no hacer nada
     if (i == n) {
-        puts("no encontro \n");
-        return;
+        puts("No encontrado.\n");
+        return -1;
     }
+    printf("Encontrado, se elimina\n");
     // Intercambiar con el último elemento
     void* temp = heap->arr[i];
     heap->arr[i] = heap->arr[n - 1];
@@ -192,21 +193,23 @@ void bheap_buscar_eliminar(BHeap heap, void* elemento) {
     // Reducir el tamaño del heap
     heap->ultimo--;
     // Restaurar la propiedad de heap
-    hundir(heap, n - 1, i);
+    hundir(heap, n - 1, 0);
+    return 0;
 }
 
-void* bheap_maximo(BHeap b) {
+void* bheap_minimo(BHeap b) {
     return bheap_es_vacio(b) ? NULL : b->arr[0];
 }
 
-// por cuestion de tiempos, hice el main aca nomas
 
-/*
-int main() {
+// por cuestion de tiempos, hice el main aca nomas 
+                     
+/* int main() {
     // 2
+
     BHeap b = bheap_crear(14, compara_int);
     int listaValores[] = 
-    {10, 20, 15, 25, 30, 16, 18, 19};
+    {340, 530, 154, 225, 440, 136, 128, 119};
     int** dirValores = malloc(sizeof(int*)*8);
     for (int i=0; i < 9; i++)
         dirValores[i] = listaValores+i;
@@ -223,7 +226,7 @@ int main() {
     puts("HEAP:");
     bheap_recorrer(b, imprimir_int);
 
-    b = bheap_eliminar_maximo(b);
+    b = bheap_eliminar_minimo(b);
     
     puts("\nHEAP:");
     bheap_recorrer(b, imprimir_int);
@@ -251,12 +254,13 @@ int main() {
 
     puts("\nHEAP:");
     bheap_recorrer(bArr, imprimir_int);
-    bheap_buscar_eliminar(bArr, &(otralistaValores[0]));
+    bheap_buscar_eliminar(bArr, &(otralistaValores[3]));
+    bheap_buscar_eliminar(bArr, &(otralistaValores[5]));
+    bheap_buscar_eliminar(bArr, &(otralistaValores[6]));
     puts("\nHEAP:");
     bheap_recorrer(bArr, imprimir_int);
 
-    printf("maximo %d\n", *(int*)bheap_maximo(bArr));
+    printf("maximo %d\n", *(int*)bheap_minimo(bArr));
 
 }
-
 */

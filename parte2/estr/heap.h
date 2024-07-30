@@ -29,10 +29,10 @@ void hundir(BHeap heap, int n, int indRaiz);
 
 BHeap bheap_insertar(BHeap b, void* elem);
 
-BHeap bheap_eliminar_maximo(BHeap b);
+BHeap bheap_eliminar_minimo(BHeap b);
 
-void bheap_buscar_eliminar(BHeap heap, void* elemento);
+int bheap_buscar_eliminar(BHeap heap, void* elemento);
 
-void* bheap_maximo(BHeap b);
+void* bheap_minimo(BHeap b);
 
 #endif
