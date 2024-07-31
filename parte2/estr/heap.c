@@ -45,6 +45,9 @@ unsigned int bheap_es_vacio(BHeap b) {
 /* ya no se necesita una cola, basta con
 recorrer el arreglo iterativamente*/
 void bheap_recorrer(BHeap b, FuncionVisitante f) {
+    if (b->ultimo == -1) {
+        printf("BHeap vacio\n"); return;
+    }
     for (int i = 0; i < b->ultimo; i++)
         f(b->arr[i]);
 }
@@ -170,21 +173,22 @@ void heap_sort(void** arr, int tamArr, FuncionCopiadora copy, FuncionComparadora
 int bheap_buscar_eliminar(BHeap heap, void* elemento) {
     //printf("capacidad: %d\n", heap->capacidad);
     int n = heap->ultimo; // Tamaño actual del heap
-    int i, hallado = 0;
+    int i, hallado = 0, c;
 
     // Buscar el elemento en el arreglo
     for (i = 0; i < n && !hallado; i++) {
-        if (heap->comp(heap->arr[i], elemento) == 0) {
+        c = heap->comp(heap->arr[i], elemento);
+        if (c == 2) {
+            printf("Comparacion -> %d\n", c);
             hallado = 1; // Elemento encontrado
+            --i;
         }
     }
 
     // Si el elemento no fue encontrado, no hacer nada
-    if (i == n) {
-        puts("No encontrado.\n");
+    if (!hallado) {
         return -1;
     }
-    printf("Encontrado, se elimina\n");
     // Intercambiar con el último elemento
     void* temp = heap->arr[i];
     heap->arr[i] = heap->arr[n - 1];
@@ -194,7 +198,7 @@ int bheap_buscar_eliminar(BHeap heap, void* elemento) {
     heap->ultimo--;
     // Restaurar la propiedad de heap
     hundir(heap, n - 1, 0);
-    return 0;
+    return 1;
 }
 
 void* bheap_minimo(BHeap b) {

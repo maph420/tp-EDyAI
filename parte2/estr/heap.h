@@ -12,6 +12,8 @@ void **arr;
 int capacidad;
 int ultimo;
 FuncionComparadora comp;
+FuncionDestructora destroy;
+FuncionCopiadora copy;
 } *BHeap;
 
 
