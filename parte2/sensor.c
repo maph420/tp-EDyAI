@@ -146,19 +146,12 @@ int main(int argc, char** argv) {
 		return EXIT_FAILURE;
 	}
 
-
-
 	fclose(data);
 
 	// todo: manejar para que primero lea esto
 	printf("%d %d %d\n", n, m, max_d);
 	printf("%d %d\n", i1, j1);
 	printf("%d %d\n", i2, j2);
-
-	return 0;
-}
-
-	/*
 	fflush(stdout);
 
 	int operaciones = 0;
@@ -219,10 +212,9 @@ int main(int argc, char** argv) {
 			}
 
 		} else {
-			fprintf(stderr, "aca ta\n");
+			//fprintf(stderr, "aca ta\n");
 			caracter_inesperado(c);
 		}
 	}
 }
 
-*/

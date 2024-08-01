@@ -28,7 +28,7 @@ BHeap bheap_crear(int capacidad, FuncionComparadora cmp) {
     heap->comp = cmp;
     heap->capacidad = capacidad;  
     heap->ultimo = 0;
-    printf("heap creado\n");
+    //printf("heap creado\n");
     return heap; 
 }
 
@@ -46,7 +46,8 @@ unsigned int bheap_es_vacio(BHeap b) {
 recorrer el arreglo iterativamente*/
 void bheap_recorrer(BHeap b, FuncionVisitante f) {
     if (b->ultimo == -1) {
-        printf("BHeap vacio\n"); return;
+        //printf("BHeap vacio\n"); 
+        return;
     }
     for (int i = 0; i < b->ultimo; i++)
         f(b->arr[i]);
@@ -179,7 +180,7 @@ int bheap_buscar_eliminar(BHeap heap, void* elemento) {
     for (i = 0; i < n && !hallado; i++) {
         c = heap->comp(heap->arr[i], elemento);
         if (c == 2) {
-            printf("Comparacion -> %d\n", c);
+            //printf("Comparacion -> %d\n", c);
             hallado = 1; // Elemento encontrado
             --i;
         }

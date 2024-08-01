@@ -1,5 +1,5 @@
-#ifndef __FUNC_H__
-#define __FUNC_H__
+#ifndef __ROBOT_UTILS_H__
+#define __ROBOT_UTILS_H__
 #include "estr/heap.h"
 
 // Definición de las estructuras de datos
@@ -8,8 +8,9 @@ typedef struct {
 } Node;
 
 typedef enum {
-    SIN_VISITAR,
+    DESCONOCIDO,
     VISITADO,
+    SIN_VISITAR_VALIDO,
     OBSTACULO
 } EstadoCasilla;
 
@@ -32,7 +33,8 @@ typedef struct {
     int x, y; // pos actual
     int i1, i2, j1, j2; // arranca en (i1,j1) y destina a (i2,j2)
     BHeap cp;
-    int N, M;
+    int N, M; //sabe? (preg)
+    int d_max; // sabe? (preg)
     State** mapaInterno;
     char* rastro;
 } InfoRobot;
@@ -44,7 +46,6 @@ int heuristic(Node a, Node b);
 int g_val(InfoRobot* ir, Node n);
 
 void imprime_nodo(void* refNodo);
-
 
 int compara_estado(void* rs1, void* rs2) ;
 
@@ -64,11 +65,12 @@ int comp_key(Key kA, Key kB);
 
 void ComputeShortestPath(InfoRobot* ir);
 
-
 Key calcular_key(State s, State start);
 
+State siguiente_movimiento(InfoRobot* ir, int currX, int currY);
 
+void actualizar_segun_direccion(InfoRobot* ir, int distancia, int dx, int dy);
 
-
+void actualizar_mapa_interno(InfoRobot* ir, int* d) ;
 
 #endif
