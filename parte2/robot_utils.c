@@ -34,7 +34,7 @@ int g_val(InfoRobot* ir, Node n) {
 
 void imprime_nodo(void* refNodo) {
     State s = *(State*)refNodo;
-    //printf("(%d, %d); key: (%d, %d)\n", s.node.x, s.node.y, s.k.key1, s.k.key2);
+    fprintf(stderr, "(%d, %d); key: (%d, %d)\n", s.node.x, s.node.y, s.k.key1, s.k.key2);
 }
 
 int compara_estado(void* rs1, void* rs2) {
@@ -72,7 +72,7 @@ void impr_mapa(InfoRobot* ir) {
     fprintf(stderr, "(estado, g, rhs)\n");
     for (int i = 0; i < ir->N; i++) {
         for (int j = 0; j < ir->M; j++) {
-            fprintf(stderr,"(%d, %d, %d)\t ",
+            fprintf(stderr,"(%d, %d, %d) ",
             ir->mapaInterno[i][j].est, 
             ir->mapaInterno[i][j].g,
             ir->mapaInterno[i][j].rhs);
@@ -102,9 +102,12 @@ void inicializa(InfoRobot* ir) {
     ir->mapaInterno[ir->i2][ir->j2].rhs = 0;
     //ir->mapaInterno[ir->j2][ir->i2].est = E;
     Key k = calcular_key(ir->mapaInterno[ir->i2][ir->j2], ir->mapaInterno[ir->i1][ir->j1]);
+    Node nuevoNodo = (Node){ir->i2, ir->j2};
+    State* nuevo = crea_estado(nuevoNodo, k);
+    ir->cp = bheap_insertar(ir->cp, nuevo);
 
-    ir->cp = bheap_insertar(ir->cp,
-     crea_estado(ir->mapaInterno[ir->i2][ir->j2].node, k));
+    fprintf(stderr, "el heap ahora: \n");
+    bheap_recorrer(ir->cp, imprime_nodo);
 
     //printf("sef\n");
 }
@@ -228,9 +231,9 @@ void ComputeShortestPath(InfoRobot* ir) {
     || (ir->mapaInterno[ir->i1][ir->j1].rhs) != (ir->mapaInterno[ir->i1][ir->j1].g)) {
         
 
-        //printf("----\nMAPA:\n----\n"); impr_mapa(ir);
+        printf("----\nMAPA:\n----\n"); impr_mapa(ir);
 
-        //printf("----\nBHEAP:\n----\n"); bheap_recorrer(ir->cp, imprime_nodo);
+        printf("----\nBHEAP:\n----\n"); bheap_recorrer(ir->cp, imprime_nodo);
         
         // popear el maximo elemento de la cola
         State u = *(State*)bheap_minimo(ir->cp);
@@ -314,8 +317,6 @@ void actualizar_mapa_interno(InfoRobot* ir, int* d) {
     actualizar_segun_direccion(ir, d[3], 0, 1); // der
 }
 
-
-
 State siguiente_movimiento(InfoRobot* ir, int currX, int currY) {
     int sucCount = 0;
     State curr; curr.node.x = currX ; curr.node.y = currY;
@@ -347,18 +348,18 @@ State siguiente_movimiento(InfoRobot* ir, int currX, int currY) {
 int mover_robot(InfoRobot* ir, Node sig, int pasos) {
     int difX = ir->x - sig.x;
     if (difX > 0) {
-        ir->x--; //izq
+        ir->x--; //arriba
         ir->rastro[pasos] = 'U';
     } else if (difX < 0) {
-        ir->x ++; //der
+        ir->x ++; //abajo
         ir->rastro[pasos] = 'D';
     } else {
         int difY = ir->y - sig.y;
         if (difY > 0) {
-            ir->y--; // arriba
+            ir->y--; // izquierda
             ir->rastro[pasos] = 'L';
         } else {
-            ir->y++; // abajo
+            ir->y++; // derecha
             ir->rastro[pasos] = 'R';
         }
     }
