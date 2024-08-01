@@ -136,13 +136,14 @@ State* obt_ady(InfoRobot* ir, State curr, int* adyCount) {
 
 //c(u, s')?
 void UpdateVertex(State u, InfoRobot* ir) {
-
+    //fprintf(stderr, "entra %d, %d\n", u.node.x, u.node.y);
     State* est = crea_estado(u.node, calcular_key(u, ir->mapaInterno[ir->i1][ir->j1]));
     
     //printf("Current: (%d, %d)\n", est->node.x, est->node.y);
 
-    // u != ini i.e. (x,y) != (j2,i2)
-    if (u.node.y != ir->j2 || u.node.x != ir->i2) {
+    // (u_x,u_y) != (i2,j2)
+    if (u.node.x != ir->i2 || u.node.y != ir->j2) {
+
         int sucCount = 0;
         State* sucs = obt_ady(ir, u, &sucCount);
 
@@ -150,7 +151,7 @@ void UpdateVertex(State u, InfoRobot* ir) {
         // TODO: poner esto en una funcion
         int minVal = 
         cost(ir, ir->mapaInterno[sucs[0].node.x][sucs[0].node.y], 
-        ir->mapaInterno[u.node.x][u.node.y]) + 
+        u) + 
         ir->mapaInterno[sucs[0].node.x][sucs[0].node.y].g;
         
 
@@ -162,6 +163,7 @@ void UpdateVertex(State u, InfoRobot* ir) {
             );*/
 
         for (int h = 1; h < sucCount; h++) {
+            //fprintf(stderr, "minval: %d\n", minVal);
             //printf("g: %d\n", ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g);
             /*printf("Sucesor %d: (%d, %d)\n",
             h, 
@@ -173,7 +175,7 @@ void UpdateVertex(State u, InfoRobot* ir) {
 
             // aca
             int v = cost(ir, ir->mapaInterno[sucs[h].node.x][sucs[h].node.y], 
-            ir->mapaInterno[u.node.x][u.node.y]) +
+            u) +
             ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g;
 
             if (v < minVal) {
@@ -194,7 +196,6 @@ void UpdateVertex(State u, InfoRobot* ir) {
 //printf("Se ejecuta buscar y elim (%d, %d)\n", u.node.x, u.node.y);
     int e = bheap_buscar_eliminar(ir->cp, &u);
     //printf("%s\n", e>0? "Se encontro y elimino" : "No encontrado");
-
 
     if (ir->mapaInterno[u.node.x][u.node.y].rhs != 
     ir->mapaInterno[u.node.x][u.node.y].g) {

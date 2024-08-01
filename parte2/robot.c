@@ -34,8 +34,8 @@ int main(int argc, char** argv) {
 
     ir->x = ir->i1; ir->y = ir->j1;
     ir->mapaInterno[ir->i1][ir->j1].est = VISITADO;
-    int distancias[4];
-    State sig_est ;
+    int distancias[4], contAdyacentes = 0;
+    State sig_est, *ady;
     // while s_start != s_goal
     int c = 0;
     while(ir->x != ir->i2 || ir->y != ir->j2) {
@@ -46,8 +46,24 @@ int main(int argc, char** argv) {
         
         if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].est == OBSTACULO) {
             // actualizar ruta
-            fprintf(stderr, "actualizar\n");
-            UpdateVertex(ir->mapaInterno[sig_est.node.x][sig_est.node.y], ir);
+            fprintf(stderr, "actualizar %d, %d\n", ir->x, ir->y);
+            //ir->mapaInterno[sig_est.node.x][sig_est.node.y].rhs = 100;
+            UpdateVertex(sig_est, ir);
+            contAdyacentes = 0;
+            ady = obt_ady(ir, sig_est, &contAdyacentes);
+
+            //fprintf(stderr, "contady: %d\n", contAdyacentes);
+            //fprintf(stderr, "obt los ady\n");            
+            //for (int h = 0; h < contAdyacentes; h++) fprintf(stderr, "%d %d\n", ady[h].node.x, ady[h].node.y);
+
+            for (int h = 0; h < contAdyacentes; h++) 
+                UpdateVertex(ir->mapaInterno[ady[h].node.x][ady[h].node.x], ir);
+
+            ComputeShortestPath(ir);
+            fprintf(stderr, "mapa actualizado:\n"); impr_mapa(ir);
+            // todo: hacer que se le pase a obt_ady un State* con
+            // malloc ya asignado
+            free(ady);
         }
         else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].est != DESCONOCIDO) {
             ir->x = sig_est.node.x;
@@ -56,9 +72,10 @@ int main(int argc, char** argv) {
             fprintf(stderr, "Tirar sensor\n");
             printf("%c %d %d\n", 63, ir->x, ir->y);
             fflush(stdout);
+
             obtener_distancias(distancias);
-            fprintf(stderr, "obtuvo dists del sensor\n"); 
             actualizar_mapa_interno(ir, distancias);
+
             fprintf(stderr, "---\nmapa ahora\n"); 
             impr_mapa(ir);
             fprintf(stderr, "---\n");
@@ -67,9 +84,9 @@ int main(int argc, char** argv) {
         //getchar() ;
         //ir->x = ir->i2; ir->y = ir->j2;
         //printf("! LL\n");
-        if (c++ >= 30) break;
-    }
-
+        if (c++ >= 24) break;
+    }   
+    fprintf(stderr, "Sale del while!\n");
     //ir->x = 0; ir->y = 4;
     //ir->mapaInterno[ir->y][ir->x].est = 15;
     impr_mapa(ir);
