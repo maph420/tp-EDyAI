@@ -82,6 +82,8 @@ void impr_mapa(InfoRobot* ir) {
 }
 
 void inicializa(InfoRobot* ir) {
+    // TODO: ver como guardar el rastro del robot, ahora queda medio hardcodeado
+    ir->rastro = malloc(sizeof(char) * 150);
     ir->cp = bheap_crear(ir->N * ir->M, compara_estado);
     ir->mapaInterno = malloc(sizeof(State*) * ir->N);
 
@@ -339,4 +341,26 @@ State siguiente_movimiento(InfoRobot* ir, int currX, int currY) {
     free(sucs);
     fprintf(stderr, "Proximo mov -> (%d, %d)\n", minimo.node.x, minimo.node.y);
     return minimo;
+}
+
+// se asume que (ir->x, ir->y) != (sig.x, sig.y)
+int mover_robot(InfoRobot* ir, Node sig, int pasos) {
+    int difX = ir->x - sig.x;
+    if (difX > 0) {
+        ir->x--; //izq
+        ir->rastro[pasos] = 'U';
+    } else if (difX < 0) {
+        ir->x ++; //der
+        ir->rastro[pasos] = 'D';
+    } else {
+        int difY = ir->y - sig.y;
+        if (difY > 0) {
+            ir->y--; // arriba
+            ir->rastro[pasos] = 'L';
+        } else {
+            ir->y++; // abajo
+            ir->rastro[pasos] = 'R';
+        }
+    }
+    return ++pasos;
 }

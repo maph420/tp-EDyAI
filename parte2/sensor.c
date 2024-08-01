@@ -185,10 +185,9 @@ int main(int argc, char** argv) {
 			fflush(stdout);
 
 		} else if (c == '!') {
-			return EXIT_SUCCESS ;
+			
 			c = getchar();
 			if (c != ' ') caracter_inesperado(c);
-
 			int distancia = 0;
 			int i = i1, j = j1;
 			while (1) {

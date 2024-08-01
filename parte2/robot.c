@@ -11,8 +11,8 @@ void obtener_distancias(int* d) {
         fprintf(stderr, "Error al leer las distancias del sensor\n");
         exit(EXIT_FAILURE);
     }
-    fprintf(stderr, "Distancias recibidas: Arriba=%d, Abajo=%d, Izquierda=%d, Derecha=%d\n", 
-           d[0], d[1], d[2], d[3]);
+    //fprintf(stderr, "Distancias recibidas: Arriba=%d, Abajo=%d, Izquierda=%d, Derecha=%d\n", 
+      //     d[0], d[1], d[2], d[3]);
 }
 
 int main(int argc, char** argv) {
@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
     int distancias[4], contAdyacentes = 0;
     State sig_est, *ady;
     // while s_start != s_goal
-    int c = 0;
+    int c = 0, pasos = 0;
     while(ir->x != ir->i2 || ir->y != ir->j2) {
         fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
 
@@ -60,35 +60,39 @@ int main(int argc, char** argv) {
                 UpdateVertex(ir->mapaInterno[ady[h].node.x][ady[h].node.x], ir);
 
             ComputeShortestPath(ir);
-            fprintf(stderr, "mapa actualizado:\n"); impr_mapa(ir);
+            //fprintf(stderr, "mapa actualizado:\n"); impr_mapa(ir);
             // todo: hacer que se le pase a obt_ady un State* con
             // malloc ya asignado
             free(ady);
         }
         else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].est != DESCONOCIDO) {
-            ir->x = sig_est.node.x;
-            ir->y = sig_est.node.y;   
+            pasos = mover_robot(ir, sig_est.node, pasos);  
         } else {
             fprintf(stderr, "Tirar sensor\n");
-            printf("%c %d %d\n", 63, ir->x, ir->y);
+            printf("%c %d %d\n", '?', ir->x, ir->y);
             fflush(stdout);
 
             obtener_distancias(distancias);
             actualizar_mapa_interno(ir, distancias);
 
-            fprintf(stderr, "---\nmapa ahora\n"); 
-            impr_mapa(ir);
-            fprintf(stderr, "---\n");
+            //fprintf(stderr, "---\nmapa ahora\n"); 
+            //impr_mapa(ir);
+            //fprintf(stderr, "---\n");
         }
 
         //getchar() ;
         //ir->x = ir->i2; ir->y = ir->j2;
         //printf("! LL\n");
-        if (c++ >= 24) break;
+        //if (c++ >= 24) break;
     }   
-    fprintf(stderr, "Sale del while!\n");
+    ir->rastro[pasos] = '\0';
+    // Mandar solucion al sensor para terminar la ejecucionh|
+    printf("%c %s\n", '!', ir->rastro);
+    fflush(stdout);
+
+    fprintf(stderr, "Camino %s\n", ir->rastro);
     //ir->x = 0; ir->y = 4;
     //ir->mapaInterno[ir->y][ir->x].est = 15;
-    impr_mapa(ir);
+    //impr_mapa(ir);
     return 0;
 }
