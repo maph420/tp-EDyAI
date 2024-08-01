@@ -52,13 +52,13 @@ char** leer_archivo(FILE* data, int* nFilas, int* nCols, int* max_d, int* i1, in
             break;
         }
         case 1:
-            check = sscanf(linea, "%d %d\n", j1, i1);
+            check = sscanf(linea, "%d %d\n", i1, j1);
             if (check != 2) {
                 archivoValido = 0;
 			}
             break;
         case 2: 
-            check = sscanf(linea, "%d %d\n", j2, i2);
+            check = sscanf(linea, "%d %d\n", i2, j2);
             if (check != 2) {
                 archivoValido = 0;
 				}
@@ -148,6 +148,8 @@ int main(int argc, char** argv) {
 
 	fclose(data);
 
+	fprintf(stderr, "Archivo leido\n");
+
 	// todo: manejar para que primero lea esto
 	printf("%d %d %d\n", n, m, max_d);
 	printf("%d %d\n", i1, j1);
@@ -167,12 +169,10 @@ int main(int argc, char** argv) {
 			if (c != ' ')  {
 				
 			caracter_inesperado(c);
-			fprintf(stderr, "no\n");
 			}
 
 			int i, j;
 			if (scanf("%d%d", &i, &j) != 2) {
-				fprintf(stderr, "enete\n");
 				caracter_inesperado(c);
 			}
 			operaciones++;
@@ -212,7 +212,7 @@ int main(int argc, char** argv) {
 			}
 
 		} else {
-			//fprintf(stderr, "aca ta\n");
+			fprintf(stderr, "aca ta\n");
 			caracter_inesperado(c);
 		}
 	}

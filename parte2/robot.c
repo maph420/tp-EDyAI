@@ -15,46 +15,49 @@ void obtener_distancias(int* d) {
            d[0], d[1], d[2], d[3]);
 }
 
-
 int main(int argc, char** argv) {
 
     InfoRobot* ir = malloc(sizeof(InfoRobot));
     // leer datos del archivo (de sensor)
     if (scanf("%d %d %d\n%d %d\n %d %d", &(ir->N), &(ir->M), &(ir->d_max),
     &(ir->i1), &(ir->j1), &(ir->i2), &(ir->j2)) != 7) {
-        printf("Error al leer los argumentos del archivo\n");
+        fprintf(stderr, "Error al leer los argumentos del archivo\n");
         exit(EXIT_FAILURE) ;
     }
 
     fprintf(stderr, "%d %d %d\n", ir->N, ir->M, ir->d_max);
-    fprintf(stderr, "%d %d\n", ir->j1,ir->i1);
-    fprintf(stderr, "%d %d\n", ir->j2,ir->i2);
+    fprintf(stderr, "%d %d\n", ir->i1, ir->j1);
+    fprintf(stderr, "%d %d\n", ir->i2, ir->j2);
 
     inicializa(ir);
     ComputeShortestPath(ir);
 
     ir->x = ir->i1; ir->y = ir->j1;
-    ir->mapaInterno[ir->j1][ir->i1].est = VISITADO;
+    ir->mapaInterno[ir->i1][ir->j1].est = VISITADO;
     int distancias[4];
     State sig_est ;
     // while s_start != s_goal
+    int c = 0;
     while(ir->x != ir->i2 || ir->y != ir->j2) {
-        fprintf(stderr, "robot: (%d, %d)\n", ir->y, ir->x);
+        fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
 
         sig_est = siguiente_movimiento(ir, ir->x, ir->y);
         
-        if (ir->mapaInterno[sig_est.node.y][sig_est.node.x].est == OBSTACULO) {
+        
+        if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].est == OBSTACULO) {
             // actualizar ruta
             fprintf(stderr, "actualizar\n");
+            UpdateVertex(ir->mapaInterno[sig_est.node.x][sig_est.node.y], ir);
         }
-        else if (ir->mapaInterno[sig_est.node.y][sig_est.node.x].est != DESCONOCIDO) {
+        else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].est != DESCONOCIDO) {
             ir->x = sig_est.node.x;
             ir->y = sig_est.node.y;   
         } else {
             fprintf(stderr, "Tirar sensor\n");
-            printf("%c %d %d\n", 63, ir->y, ir->x);
+            printf("%c %d %d\n", 63, ir->x, ir->y);
             fflush(stdout);
             obtener_distancias(distancias);
+            fprintf(stderr, "obtuvo dists del sensor\n"); 
             actualizar_mapa_interno(ir, distancias);
             fprintf(stderr, "---\nmapa ahora\n"); 
             impr_mapa(ir);
@@ -64,11 +67,11 @@ int main(int argc, char** argv) {
         //getchar() ;
         //ir->x = ir->i2; ir->y = ir->j2;
         //printf("! LL\n");
+        if (c++ >= 30) break;
     }
 
     //ir->x = 0; ir->y = 4;
     //ir->mapaInterno[ir->y][ir->x].est = 15;
     impr_mapa(ir);
-
     return 0;
 }
