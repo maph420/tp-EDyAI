@@ -231,9 +231,9 @@ void ComputeShortestPath(InfoRobot* ir) {
     || (ir->mapaInterno[ir->i1][ir->j1].rhs) != (ir->mapaInterno[ir->i1][ir->j1].g)) {
         
 
-        printf("----\nMAPA:\n----\n"); impr_mapa(ir);
+        //fprintf(stderr, "----\nMAPA:\n----\n"); impr_mapa(ir);
 
-        printf("----\nBHEAP:\n----\n"); bheap_recorrer(ir->cp, imprime_nodo);
+        //fprintf(stderr, "----\nBHEAP:\n----\n"); bheap_recorrer(ir->cp, imprime_nodo);
         
         // popear el maximo elemento de la cola
         State u = *(State*)bheap_minimo(ir->cp);
