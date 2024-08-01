@@ -5,6 +5,8 @@
 #include "estr/heap.h"
 #include "robot_utils.h"
 
+// TODO: ver como manejar cuando el sensor es 0, por ahora es comportamiento
+// indefinido (?)
 
 void obtener_distancias(int* d) {
     if (scanf("%d %d %d %d", &d[0], &d[1], &d[2], &d[3]) != 4) {
