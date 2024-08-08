@@ -12,7 +12,7 @@ typedef enum {
     VISITADO,
     SIN_VISITAR_VALIDO,
     OBSTACULO
-} EstadoCasilla;
+} TipoCasilla;
 
 typedef struct {
     int key1;
@@ -26,7 +26,7 @@ typedef struct {
     int h; // Función heurística
     Key k;
     int c;
-    EstadoCasilla est;
+    TipoCasilla tipoCasilla;
 } State;
 
 typedef struct {

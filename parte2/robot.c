@@ -35,63 +35,59 @@ int main(int argc, char** argv) {
 
     ComputeShortestPath(ir);
     fprintf(stderr, "computada shortest path\n") ;impr_mapa(ir);
-
+    
     
     ir->x = ir->i1; ir->y = ir->j1;
-    ir->mapaInterno[ir->i1][ir->j1].est = VISITADO;
+    ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VISITADO;
     int distancias[4], contAdyacentes = 0;
     State sig_est, *ady, tmp;
-    sig_est.node.x = 100; sig_est.node.y = 100;
+
 
     // while s_start != s_goal
     int c = 0, pasos = 0;
     while(ir->x != ir->i2 || ir->y != ir->j2) {
         fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
 
-        tmp.node.x = sig_est.node.x;
-        tmp.node.y = sig_est.node.y;
         sig_est = siguiente_movimiento(ir, ir->x, ir->y);
         
-        
-        if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].est == OBSTACULO) {
-            if (sig_est.node.x == tmp.node.x && 
-            sig_est.node.y == tmp.node.y) {
-            
-                fprintf(stderr, "Tirar sensor\n");
-                printf("%c %d %d\n", '?', ir->x, ir->y);
-                fflush(stdout);
+        if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == OBSTACULO) {
+           
+            //fprintf(stderr, "Tirar sensor\n");
+            //printf("%c %d %d\n", '?', ir->x, ir->y);
+            //fflush(stdout);
 
-                obtener_distancias(distancias);
-                actualizar_mapa_interno(ir, distancias);
+            //obtener_distancias(distancias);
+            //actualizar_mapa_interno(ir, distancias);
 
-                fprintf(stderr, "---\nmapa ahora\n"); 
-                impr_mapa(ir);
-                fprintf(stderr, "---\n");
-            }
-
+            //fprintf(stderr, "---\nmapa ahora\n"); 
+            //impr_mapa(ir);
+            //fprintf(stderr, "---\n");
             
             // actualizar ruta
             fprintf(stderr, "actualizar %d, %d\n", ir->x, ir->y);
-            UpdateVertex(sig_est, ir);
+            
             contAdyacentes = 0;
             ady = obt_ady(ir, sig_est, &contAdyacentes);
 
-            //fprintf(stderr, "contady: %d\n", contAdyacentes);
-            //fprintf(stderr, "obt los ady\n");            
-            //for (int h = 0; h < contAdyacentes; h++) fprintf(stderr, "%d %d\n", ady[h].node.x, ady[h].node.y);
+            fprintf(stderr, "contady: %d\n", contAdyacentes);
+            fprintf(stderr, "obt los ady del sig\n");            
+            for (int h = 0; h < contAdyacentes; h++) fprintf(stderr, "%d %d\n", ady[h].node.x, ady[h].node.y);
 
             for (int h = 0; h < contAdyacentes; h++) 
                 UpdateVertex(ir->mapaInterno[ady[h].node.x][ady[h].node.x], ir);
 
+            UpdateVertex(sig_est, ir);
             ComputeShortestPath(ir);
             fprintf(stderr, "mapa actualizado:\n"); impr_mapa(ir);
             // todo: hacer que se le pase a obt_ady un State* con
             // malloc ya asignado
             free(ady);
         }
-        else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].est != DESCONOCIDO) {
+        else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == SIN_VISITAR_VALIDO ||
+        ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VISITADO) {
             pasos = mover_robot(ir, sig_est.node, pasos);  
-        } else {
+            ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla = VISITADO;
+        } else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == DESCONOCIDO){
             fprintf(stderr, "Tirar sensor\n");
             printf("%c %d %d\n", '?', ir->x, ir->y);
             fflush(stdout);
@@ -108,7 +104,7 @@ int main(int argc, char** argv) {
         //ir->x = ir->i2; ir->y = ir->j2;
         //printf("! LL\n");
 
-        if (c++ >= 80) break;
+        if (c++ >= 55) break; 
     }   
     ir->rastro[pasos] = '\0';
     // Mandar solucion al sensor para terminar la ejecucionh|

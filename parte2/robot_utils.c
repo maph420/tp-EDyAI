@@ -64,16 +64,16 @@ State* crea_estado(Node n, Key k) {
 }
 
 int cost(InfoRobot* ir, State s1, State s2) {
-    return (ir->mapaInterno[s1.node.x][s1.node.y].est == OBSTACULO
-    || ir->mapaInterno[s2.node.x][s2.node.y].est == OBSTACULO) ? 100 : 1;
+    return (ir->mapaInterno[s1.node.x][s1.node.y].tipoCasilla == OBSTACULO
+    || ir->mapaInterno[s2.node.x][s2.node.y].tipoCasilla == OBSTACULO) ? 100 : 1;
 }
 
 void impr_mapa(InfoRobot* ir) {
     fprintf(stderr, "(estado, g, rhs)\n");
     for (int i = 0; i < ir->N; i++) {
         for (int j = 0; j < ir->M; j++) {
-            fprintf(stderr,"(%d, %d, %d) ",
-            ir->mapaInterno[i][j].est, 
+            fprintf(stderr,"(%d, %d, %d)\t",
+            ir->mapaInterno[i][j].tipoCasilla, 
             ir->mapaInterno[i][j].g,
             ir->mapaInterno[i][j].rhs);
         }
@@ -93,7 +93,7 @@ void inicializa(InfoRobot* ir) {
             //printf("(%d, %d)\n", i, j);
             ir->mapaInterno[i][j].rhs = 100; 
             ir->mapaInterno[i][j].g = 100;
-            ir->mapaInterno[i][j].est = DESCONOCIDO;
+            ir->mapaInterno[i][j].tipoCasilla = DESCONOCIDO;
         }
     }
     
@@ -154,10 +154,7 @@ void UpdateVertex(State u, InfoRobot* ir) {
 
         //printf("obtuvo suc\n");
         // TODO: poner esto en una funcion
-        int minVal = 
-        cost(ir, ir->mapaInterno[sucs[0].node.x][sucs[0].node.y], 
-        u) + 
-        ir->mapaInterno[sucs[0].node.x][sucs[0].node.y].g;
+        int minVal = 700;
         
 
             //printf("g: %d\n", ir->mapaInterno[sucs[0].node.x][sucs[0].node.y].g);
@@ -167,7 +164,7 @@ void UpdateVertex(State u, InfoRobot* ir) {
             sucs[0].node.y
             );*/
 
-        for (int h = 1; h < sucCount; h++) {
+        for (int h = 0; h < sucCount; h++) {
             //fprintf(stderr, "minval: %d\n", minVal);
             //printf("g: %d\n", ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g);
             /*printf("Sucesor %d: (%d, %d)\n",
@@ -263,7 +260,7 @@ void ComputeShortestPath(InfoRobot* ir) {
         else {
             //printf("No es sobreconsistente\n");
             ir->mapaInterno[u.node.x][u.node.y].g = 600;
-            UpdateVertex(ir->mapaInterno[u.node.x][u.node.y], ir);
+           
 
             int cantPred = 0;
             State* pred = obt_ady(ir, u, &cantPred);
@@ -275,6 +272,7 @@ void ComputeShortestPath(InfoRobot* ir) {
                 UpdateVertex((pred[h]), ir);
              //   printf("---\n");
             }
+             UpdateVertex(ir->mapaInterno[u.node.x][u.node.y], ir);
            // printf("sale del for\n");
     }
 
@@ -303,10 +301,11 @@ void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy) {
 
         if ( (ir->y + (dist * dy)) >= 0 && (ir->y + (dist * dy)) < (ir->M) &&
         (ir->x + (dist * dx)) >= 0 && (ir->x + (dist * dx)) < (ir->N ) )
-        ir->mapaInterno[ir->x + (dist * dx)][ir->y + (dist * dy)].est = OBSTACULO;
+        ir->mapaInterno[ir->x + (dist * dx)][ir->y + (dist * dy)].tipoCasilla = OBSTACULO;
     }
     for (int h = 1; h < dist; h++) {
-        ir->mapaInterno[ir->x + (h * dx)][ir->y + (h * dy)].est = SIN_VISITAR_VALIDO;
+        if (ir->mapaInterno[ir->x + (h * dx)][ir->y + (h * dy)].tipoCasilla == DESCONOCIDO)
+            ir->mapaInterno[ir->x + (h * dx)][ir->y + (h * dy)].tipoCasilla = SIN_VISITAR_VALIDO;
     }
 }
 
