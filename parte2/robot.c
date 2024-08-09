@@ -38,72 +38,57 @@ int main(int argc, char** argv) {
     fprintf(stderr, "mapa:\n"); impr_mapa(ir);
 
     ir->x = ir->i1; ir->y = ir->j1;
-    ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VISITADO;
+    //ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VISITADO;
     int distancias[4], contAdyacentes = 0;
     State sig_est, *ady, tmp;
+    State est_tmp;
+    Node node_tmp = (Node){-1, -1};
+    est_tmp.node = node_tmp;
     State* posiblesSiguientes = malloc(sizeof(State) * 2);
-    int cantPosibles = 0;
+    int cantPosibles = 0, al;
 
     // while s_start != s_goal
     int c = 0, pasos = 0;
     while(ir->x != ir->i2 || ir->y != ir->j2) {
         fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
 
+        
         cantPosibles = siguiente_movimiento(ir, ir->x, ir->y, posiblesSiguientes);
         
-        // falta contemplar el caso que fuera VALIDO (hay que unificar)
-        sig_est = (ir->mapaInterno[posiblesSiguientes[0].node.x][posiblesSiguientes[0].node.y].tipoCasilla 
-        != SIN_VISITAR_VALIDO) && cantPosibles == 2 ? posiblesSiguientes[1] : posiblesSiguientes[0];
+        if (cantPosibles == 2 
+        && ir->mapaInterno[posiblesSiguientes[0].node.x][posiblesSiguientes[0].node.y].tipoCasilla == VALIDO
+        && ir->mapaInterno[posiblesSiguientes[1].node.x][posiblesSiguientes[1].node.y].tipoCasilla == VALIDO) {
+            al = aleatorio();
+            fprintf(stderr, "aleatorio: %d, otro: %d\n", al, !al);
+            sig_est = posiblesSiguientes[al];
+            est_tmp = posiblesSiguientes[!al];
+        } else {
+            sig_est = (ir->mapaInterno[posiblesSiguientes[0].node.x][posiblesSiguientes[0].node.y].tipoCasilla 
+        != VALIDO) && cantPosibles == 2 ? posiblesSiguientes[1] : posiblesSiguientes[0];
+        }
 
-        if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == OBSTACULO) {
-           
-            fprintf(stderr,"siguiente es obstaculo\n");
-            //fprintf(stderr, "actualizar %d, %d\n", sig_est.node.x, sig_est.node.y);
-            
-            // actualizar ruta
-            ir->mapaInterno[sig_est.node.x][sig_est.node.y].rhs = infty();
-
-            UpdateVertex(sig_est, ir);
-
-            contAdyacentes = 0;
-            ady = obt_ady(ir, sig_est, &contAdyacentes);
-            
-            //for (int h = 0; h < contAdyacentes; h++) fprintf(stderr, "%d %d\n", ady[h].node.x, ady[h].node.y);
-
-            for (int h = 0; h < contAdyacentes; h++) {
-                //fprintf(stderr, "actulizar %d,%d\n", ady[h].node.x, ady[h].node.y);
-                UpdateVertex(ady[h], ir);
-            }
-            
-            
-            //fprintf(stderr, "heap ahora:\n"); bheap_recorrer(ir->cp, imprime_nodo);
-            //fprintf(stderr, "el mapa antes de calcular shortest: \n"); impr_mapa(ir);
-
-
-            ComputeShortestPath(ir, sig_est.node);
-            //fprintf(stderr, "computada shortest, mapa actualizado:\n"); impr_mapa(ir);
-            
-            // todo: hacer que se le pase a obt_ady un State* con
-            // malloc ya asignado
-            free(ady);
-        } else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == SIN_VISITAR_VALIDO ||
-        ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VISITADO) {
+       if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VALIDO) {
             
             fprintf(stderr,"siguiente es valido\n");
             pasos = mover_robot(ir, sig_est.node, pasos);  
-            ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla = VISITADO;
-        } else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == DESCONOCIDO){
+            //ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla = VISITADO;
+        } 
+        
+        else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == DESCONOCIDO) {
+            
             fprintf(stderr,"siguiente es desconocido\n");
             fprintf(stderr, "*Tirar sensor\n");
             printf("%c %d %d\n", '?', ir->x, ir->y);
             fflush(stdout);
 
             obtener_distancias(distancias);
-            actualizar_mapa_interno(ir, distancias);
+            actualizar_mapa_interno(ir, distancias, sig_est, (cantPosibles == 2 && est_tmp.node.x != -1));
 
             fprintf(stderr, "---\nmapa ahora\n"); 
             impr_mapa(ir);
-            fprintf(stderr, "---\n");
+            fprintf(stderr, "---\n");       
+        
+            
         }
 
         if (c++ >= 90) break; 

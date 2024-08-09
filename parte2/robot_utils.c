@@ -1,10 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <float.h>
+#include <time.h>
 #include "estr/heap.h"
 #include "robot_utils.h"
 
+int aleatorio() {
+    srand(time(NULL)) ;
+    return (rand() % 2);
+}
 
 int infty() {
     return 500;
@@ -263,8 +267,8 @@ void ComputeShortestPath(InfoRobot* ir, Node start) {
 //printf("El mapa queda:\n"); impr_mapa(ir);
 }
 
-void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy) {
-  
+void actualizar_segun_direccion(InfoRobot* ir, State sig, int dist, int dx, int dy, int* o, int multiplesOpciones) {
+    
     //fprintf(stderr, "dist: %d, dmax: %d, dx: %d, dy: %d\n", dist, ir->d_max, dx, dy);
     // detecto obstaculo
     if (dist <= ir->d_max) {
@@ -275,20 +279,49 @@ void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy) {
         );*/
 
         if ( (ir->y + (dist * dy)) >= 0 && (ir->y + (dist * dy)) < (ir->M) &&
-        (ir->x + (dist * dx)) >= 0 && (ir->x + (dist * dx)) < (ir->N ) )
-        ir->mapaInterno[ir->x + (dist * dx)][ir->y + (dist * dy)].tipoCasilla = OBSTACULO;
+        (ir->x + (dist * dx)) >= 0 && (ir->x + (dist * dx)) < (ir->N ) ) {
+            ir->mapaInterno[ir->x + (dist * dx)][ir->y + (dist * dy)].tipoCasilla = OBSTACULO;
+            (*o)++;
+            fprintf(stderr,"obstaculo detectado\n");
+            int indXObstaculo = ir->x + (dist * dx);
+            int indYObstaculo = ir->y + (dist * dy);
+            Node n = (Node){indXObstaculo, indYObstaculo};
+            ir->mapaInterno[indXObstaculo][indYObstaculo].node = n;
+
+            ir->mapaInterno[indXObstaculo][indYObstaculo].rhs = infty();
+
+            fprintf(stderr, "casilla: %d,%d\n", ir->mapaInterno[indXObstaculo][indYObstaculo].node.x, ir->mapaInterno[indXObstaculo][indYObstaculo].node.y);
+
+
+            UpdateVertex(ir->mapaInterno[indXObstaculo][indYObstaculo], ir);
+            int contAdyacentes = 0;
+            State* ady = obt_ady(ir, ir->mapaInterno[indXObstaculo][indYObstaculo], &contAdyacentes);
+            for (int h = 0; h < contAdyacentes; h++) {
+                UpdateVertex(ady[h], ir);
+            }
+            ComputeShortestPath(ir, ir->mapaInterno[indXObstaculo][indYObstaculo].node);
+            fprintf(stderr, "el robot scanea desde %d,%d\n",ir->x, ir->y);
+            fprintf(stderr, "dx: %d dy: %d\n", dx, dy);
+            fprintf(stderr, "cambia %d, %d\n", ir->x + dx, ir->y + dy);
+            if (*o == 2 && multiplesOpciones) {
+                (ir->mapaInterno[ir->x + dx][ir->y + dy].g) ++;
+            }
+
+        }
+        
     }
     for (int h = 1; h < dist; h++) {
         if (ir->mapaInterno[ir->x + (h * dx)][ir->y + (h * dy)].tipoCasilla == DESCONOCIDO)
-            ir->mapaInterno[ir->x + (h * dx)][ir->y + (h * dy)].tipoCasilla = SIN_VISITAR_VALIDO;
+            ir->mapaInterno[ir->x + (h * dx)][ir->y + (h * dy)].tipoCasilla = VALIDO;
     }
 }
 
-void actualizar_mapa_interno(InfoRobot* ir, int* d) {
-    actualizar_segun_direccion(ir, d[0], -1, 0); // arriba
-    actualizar_segun_direccion(ir, d[1], 1, 0); // abajo
-    actualizar_segun_direccion(ir, d[2], 0, -1); // izq
-    actualizar_segun_direccion(ir, d[3], 0, 1); // der
+void actualizar_mapa_interno(InfoRobot* ir, int* d, State siguiente, int m) {
+    int cantObstaculos = 0;
+    actualizar_segun_direccion(ir, siguiente, d[0], -1, 0, &cantObstaculos, m); // arriba
+    actualizar_segun_direccion(ir, siguiente, d[1], 1, 0, &cantObstaculos, m); // abajo
+    actualizar_segun_direccion(ir, siguiente, d[2], 0, -1, &cantObstaculos, m); // izq
+    actualizar_segun_direccion(ir, siguiente, d[3], 0, 1, &cantObstaculos, m); // der
 }
 
 int siguiente_movimiento(InfoRobot* ir, int currX, int currY, State* posibles) {

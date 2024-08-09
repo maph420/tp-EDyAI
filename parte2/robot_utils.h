@@ -9,8 +9,7 @@ typedef struct {
 
 typedef enum {
     DESCONOCIDO,
-    VISITADO,
-    SIN_VISITAR_VALIDO,
+    VALIDO,
     OBSTACULO
 } TipoCasilla;
 
@@ -68,12 +67,16 @@ Key calcular_key(State s, State start);
 
 int siguiente_movimiento(InfoRobot* ir, int currX, int currY, State* posibles);
 
-void actualizar_segun_direccion(InfoRobot* ir, int distancia, int dx, int dy);
+void actualizar_segun_direccion(InfoRobot* ir, State sig, int dist, int dx, int dy, int* o, int multiplesOpciones);
 
-void actualizar_mapa_interno(InfoRobot* ir, int* d) ;
+void actualizar_mapa_interno(InfoRobot* ir, int* d, State siguiente, int m);
 
 int mover_robot(InfoRobot* ir, Node sig, int pasos);
 
-int infty() ;
+int infty();
+
+int aleatorio() ;
+
+int sum (int a, int b) ;
 
 #endif

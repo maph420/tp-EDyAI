@@ -1,7 +1,5 @@
 #include "func.h"
 
-#define LONGITUD_MAX_LINEA 255
-
 void* nodomapa_copia(void* n) {
     NodoMapa* copia = malloc(sizeof(NodoMapa)) ;
     copia->x = ((NodoMapa*)n)->x;
@@ -325,7 +323,7 @@ int main (int argc, char** argv) {
         printf("%c", infoRobot->rastro[i]);
     puts("");
    
-    //printf("%zu\n", strlen(infoRobot->rastro));
+    printf("(%zu)\n", strlen(infoRobot->rastro));
     fflush(stdout);
     // liberar memoria usada por las estructuras usadas
     for (unsigned int i = 0; i < numFilas; i++) free(mapa[i]);

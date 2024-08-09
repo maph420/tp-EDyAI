@@ -9,6 +9,8 @@
 #include "estr/avl.h"
 #include "estr/pila.h"
 
+#define LONGITUD_MAX_LINEA 255
+
 typedef unsigned int (*FuncionValidadora)(char** mapa, int N, int M, int x, int y) ;
 
 // izquierda, derecha, arriba, abajo, invalida
