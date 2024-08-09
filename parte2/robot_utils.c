@@ -226,7 +226,7 @@ int comp_key(Key kA, Key kB) {
     return (kA.key2 < kB.key2) ? -1 : (kA.key2 > kB.key2) ? 1 : 0;
 }
 
-void ComputeShortestPath(InfoRobot* ir) {
+void ComputeShortestPath(InfoRobot* ir, Node start) {
     fprintf(stderr, "ComputeShortestPath()\n");
     int count = 0;
 
@@ -238,8 +238,8 @@ void ComputeShortestPath(InfoRobot* ir) {
 
 // while (U.TopKey() < CalculateKey(s_start) OR rhs(s_start) != g(s_start))
     while (((!bheap_es_vacio(ir->cp) && (comp_key(((State*)bheap_minimo(ir->cp))->k, 
-    calcular_key(ir->mapaInterno[ir->i1][ir->j1], ir->mapaInterno[ir->i1][ir->j1]))) < 0)) 
-    || (ir->mapaInterno[ir->i1][ir->j1].rhs) != (ir->mapaInterno[ir->i1][ir->j1].g)) {
+    calcular_key(ir->mapaInterno[start.x][start.y], ir->mapaInterno[start.x][start.y]))) < 0)) 
+    || (ir->mapaInterno[start.x][start.y].rhs) != (ir->mapaInterno[start.x][start.y].g)) {
         
 
         //fprintf(stderr, "----\nMAPA:\n----\n"); impr_mapa(ir);

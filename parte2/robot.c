@@ -32,8 +32,8 @@ int main(int argc, char** argv) {
     fprintf(stderr, "%d %d\n", ir->i2, ir->j2);
 
     inicializa(ir);
-
-    ComputeShortestPath(ir);
+    Node ini = (Node){ir->i1, ir->j1};
+    ComputeShortestPath(ir, ini);
     //fprintf(stderr, "computada shortest path\n") ;impr_mapa(ir);
     //fprintf(stderr, "el heap ahoraaaaaaaa: \n");
    
@@ -94,7 +94,7 @@ int main(int argc, char** argv) {
 
 
 
-            ComputeShortestPath(ir);
+            ComputeShortestPath(ir, sig_est.node);
             fprintf(stderr, "computada shortest, mapa actualizado:\n"); impr_mapa(ir);
             // todo: hacer que se le pase a obt_ady un State* con
             // malloc ya asignado
@@ -124,7 +124,7 @@ int main(int argc, char** argv) {
         //ir->x = ir->i2; ir->y = ir->j2;
         //printf("! LL\n");
 
-        if (c++ >= 30) break; 
+        if (c++ >= 90) break; 
     }   
     ir->rastro[pasos] = '\0';
     // Mandar solucion al sensor para terminar la ejecucionh|

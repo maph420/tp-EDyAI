@@ -62,7 +62,7 @@ void UpdateVertex(State u, InfoRobot* ir);
 
 int comp_key(Key kA, Key kB);
 
-void ComputeShortestPath(InfoRobot* ir);
+void ComputeShortestPath(InfoRobot* ir, Node start);
 
 Key calcular_key(State s, State start);
 
@@ -73,5 +73,7 @@ void actualizar_segun_direccion(InfoRobot* ir, int distancia, int dx, int dy);
 void actualizar_mapa_interno(InfoRobot* ir, int* d) ;
 
 int mover_robot(InfoRobot* ir, Node sig, int pasos);
+
+int infty() ;
 
 #endif
