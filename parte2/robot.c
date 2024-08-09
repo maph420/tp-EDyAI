@@ -35,20 +35,27 @@ int main(int argc, char** argv) {
     Node ini = (Node){ir->i1, ir->j1};
     ComputeShortestPath(ir, ini);
     
+    fprintf(stderr, "mapa:\n"); impr_mapa(ir);
+
     ir->x = ir->i1; ir->y = ir->j1;
     ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VISITADO;
     int distancias[4], contAdyacentes = 0;
     State sig_est, *ady, tmp;
+    State* posiblesSiguientes = malloc(sizeof(State) * 2);
+    int cantPosibles = 0;
 
     // while s_start != s_goal
     int c = 0, pasos = 0;
     while(ir->x != ir->i2 || ir->y != ir->j2) {
         fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
 
-        sig_est = siguiente_movimiento(ir, ir->x, ir->y);
+        cantPosibles = siguiente_movimiento(ir, ir->x, ir->y, posiblesSiguientes);
         
+        // falta contemplar el caso que fuera VALIDO (hay que unificar)
+        sig_est = (ir->mapaInterno[posiblesSiguientes[0].node.x][posiblesSiguientes[0].node.y].tipoCasilla 
+        != SIN_VISITAR_VALIDO) && cantPosibles == 2 ? posiblesSiguientes[1] : posiblesSiguientes[0];
+
         if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == OBSTACULO) {
-           
            
             fprintf(stderr,"siguiente es obstaculo\n");
             //fprintf(stderr, "actualizar %d, %d\n", sig_est.node.x, sig_est.node.y);
@@ -61,7 +68,7 @@ int main(int argc, char** argv) {
             contAdyacentes = 0;
             ady = obt_ady(ir, sig_est, &contAdyacentes);
             
-            for (int h = 0; h < contAdyacentes; h++) fprintf(stderr, "%d %d\n", ady[h].node.x, ady[h].node.y);
+            //for (int h = 0; h < contAdyacentes; h++) fprintf(stderr, "%d %d\n", ady[h].node.x, ady[h].node.y);
 
             for (int h = 0; h < contAdyacentes; h++) {
                 //fprintf(stderr, "actulizar %d,%d\n", ady[h].node.x, ady[h].node.y);
@@ -94,9 +101,9 @@ int main(int argc, char** argv) {
             obtener_distancias(distancias);
             actualizar_mapa_interno(ir, distancias);
 
-            //fprintf(stderr, "---\nmapa ahora\n"); 
-            //impr_mapa(ir);
-            //fprintf(stderr, "---\n");
+            fprintf(stderr, "---\nmapa ahora\n"); 
+            impr_mapa(ir);
+            fprintf(stderr, "---\n");
         }
 
         if (c++ >= 90) break; 

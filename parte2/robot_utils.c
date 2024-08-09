@@ -156,7 +156,7 @@ void UpdateVertex(State u, InfoRobot* ir) {
         int sucCount = 0;
         State* sucs = obt_ady(ir, u, &sucCount);
 
-        // TODO: poner esto en una funcion
+        
         int minVal = infty();
         
 
@@ -166,7 +166,7 @@ void UpdateVertex(State u, InfoRobot* ir) {
             sucs[0].node.x,
             sucs[0].node.y
             );*/
-
+        // TODO: poner esto en una funcion
         for (int h = 0; h < sucCount; h++) {
 
             int v = sum(cost(ir, ir->mapaInterno[sucs[h].node.x][sucs[h].node.y], 
@@ -291,12 +291,12 @@ void actualizar_mapa_interno(InfoRobot* ir, int* d) {
     actualizar_segun_direccion(ir, d[3], 0, 1); // der
 }
 
-State siguiente_movimiento(InfoRobot* ir, int currX, int currY) {
-    int sucCount = 0;
+int siguiente_movimiento(InfoRobot* ir, int currX, int currY, State* posibles) {
+    int sucCount = 0, posiblesMovimientos = 0;
     State curr; curr.node.x = currX ; curr.node.y = currY;
     State* sucs = obt_ady(ir, curr, &sucCount);
 
-    State minimo = sucs[0];
+    posibles[0] = sucs[0];
     int minVal = infty();
 
     for (int h = 0; h < sucCount; h++) {
@@ -307,12 +307,19 @@ State siguiente_movimiento(InfoRobot* ir, int currX, int currY) {
 
         if (v < minVal) {
             minVal = v;
-            minimo = sucs[h];
+            posibles[0] = sucs[h];
+            posiblesMovimientos = 1;
+        } else if (v == minVal) {
+            posibles[1] = sucs[h];
+            posiblesMovimientos = 2;
         }
     }
     free(sucs);
-    fprintf(stderr, "Proximo mov -> (%d, %d)\n", minimo.node.x, minimo.node.y);
-    return minimo;
+    fprintf(stderr, "Proximo mov -> (%d, %d)\n", posibles[0].node.x, posibles[0].node.y);
+    
+    if (posiblesMovimientos == 2) fprintf(stderr, "o... (%d, %d)\n", posibles[1].node.x, posibles[1].node.y);
+    else fprintf(stderr, "(solo ese)\n");
+    return posiblesMovimientos;
 }
 
 // se asume que (ir->x, ir->y) != (sig.x, sig.y)

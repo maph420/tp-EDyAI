@@ -66,7 +66,7 @@ void ComputeShortestPath(InfoRobot* ir, Node start);
 
 Key calcular_key(State s, State start);
 
-State siguiente_movimiento(InfoRobot* ir, int currX, int currY);
+int siguiente_movimiento(InfoRobot* ir, int currX, int currY, State* posibles);
 
 void actualizar_segun_direccion(InfoRobot* ir, int distancia, int dx, int dy);
 
