@@ -25,7 +25,6 @@ typedef struct {
     int rhs;
     int h; // Función heurística
     Key k;
-    int c;
     TipoCasilla tipoCasilla;
 } State;
 
