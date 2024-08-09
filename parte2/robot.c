@@ -34,16 +34,11 @@ int main(int argc, char** argv) {
     inicializa(ir);
     Node ini = (Node){ir->i1, ir->j1};
     ComputeShortestPath(ir, ini);
-    //fprintf(stderr, "computada shortest path\n") ;impr_mapa(ir);
-    //fprintf(stderr, "el heap ahoraaaaaaaa: \n");
-   
-    //bheap_recorrer(ir->cp, imprime_nodo);
     
     ir->x = ir->i1; ir->y = ir->j1;
     ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VISITADO;
     int distancias[4], contAdyacentes = 0;
     State sig_est, *ady, tmp;
-
 
     // while s_start != s_goal
     int c = 0, pasos = 0;
@@ -54,53 +49,37 @@ int main(int argc, char** argv) {
         
         if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == OBSTACULO) {
            
-            //fprintf(stderr, "Tirar sensor\n");
-            //printf("%c %d %d\n", '?', ir->x, ir->y);
-            //fflush(stdout);
-
-            //obtener_distancias(distancias);
-            //actualizar_mapa_interno(ir, distancias);
-
-            //fprintf(stderr, "---\nmapa ahora\n"); 
-            //impr_mapa(ir);
-            //fprintf(stderr, "---\n");
+           
             fprintf(stderr,"siguiente es obstaculo\n");
-            // actualizar ruta
-            fprintf(stderr, "actualizar %d, %d\n", sig_est.node.x, sig_est.node.y);
+            //fprintf(stderr, "actualizar %d, %d\n", sig_est.node.x, sig_est.node.y);
             
-
-            ir->mapaInterno[sig_est.node.x][sig_est.node.y].rhs = 500;
-            fprintf(stderr, "mapa tmp: \n"); impr_mapa(ir);
+            // actualizar ruta
+            ir->mapaInterno[sig_est.node.x][sig_est.node.y].rhs = infty();
 
             UpdateVertex(sig_est, ir);
 
             contAdyacentes = 0;
             ady = obt_ady(ir, sig_est, &contAdyacentes);
-
-            //fprintf(stderr, "contady: %d\n", contAdyacentes);
-            fprintf(stderr, "obt los ady del sig\n");            
+            
             for (int h = 0; h < contAdyacentes; h++) fprintf(stderr, "%d %d\n", ady[h].node.x, ady[h].node.y);
 
-
             for (int h = 0; h < contAdyacentes; h++) {
-                fprintf(stderr, "actulizar %d,%d\n", ady[h].node.x, ady[h].node.y);
+                //fprintf(stderr, "actulizar %d,%d\n", ady[h].node.x, ady[h].node.y);
                 UpdateVertex(ady[h], ir);
             }
             
             
-            fprintf(stderr, "heap ahora:\n"); bheap_recorrer(ir->cp, imprime_nodo);
-
-            fprintf(stderr, "el mapa antes de calcular shortest: \n"); impr_mapa(ir);
-
+            //fprintf(stderr, "heap ahora:\n"); bheap_recorrer(ir->cp, imprime_nodo);
+            //fprintf(stderr, "el mapa antes de calcular shortest: \n"); impr_mapa(ir);
 
 
             ComputeShortestPath(ir, sig_est.node);
-            fprintf(stderr, "computada shortest, mapa actualizado:\n"); impr_mapa(ir);
+            //fprintf(stderr, "computada shortest, mapa actualizado:\n"); impr_mapa(ir);
+            
             // todo: hacer que se le pase a obt_ady un State* con
             // malloc ya asignado
             free(ady);
-        }
-        else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == SIN_VISITAR_VALIDO ||
+        } else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == SIN_VISITAR_VALIDO ||
         ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VISITADO) {
             
             fprintf(stderr,"siguiente es valido\n");
@@ -108,21 +87,17 @@ int main(int argc, char** argv) {
             ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla = VISITADO;
         } else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == DESCONOCIDO){
             fprintf(stderr,"siguiente es desconocido\n");
-            fprintf(stderr, "Tirar sensor\n");
+            fprintf(stderr, "*Tirar sensor\n");
             printf("%c %d %d\n", '?', ir->x, ir->y);
             fflush(stdout);
 
             obtener_distancias(distancias);
             actualizar_mapa_interno(ir, distancias);
 
-            fprintf(stderr, "---\nmapa ahora\n"); 
-            impr_mapa(ir);
-            fprintf(stderr, "---\n");
+            //fprintf(stderr, "---\nmapa ahora\n"); 
+            //impr_mapa(ir);
+            //fprintf(stderr, "---\n");
         }
-
-        //getchar() ;
-        //ir->x = ir->i2; ir->y = ir->j2;
-        //printf("! LL\n");
 
         if (c++ >= 90) break; 
     }   
@@ -131,9 +106,6 @@ int main(int argc, char** argv) {
     printf("%c %s\n", '!', ir->rastro);
     fflush(stdout);
 
-    fprintf(stderr, "Camino %s\n", ir->rastro);
-    //ir->x = 0; ir->y = 4;
-    //ir->mapaInterno[ir->y][ir->x].est = 15;
-    //impr_mapa(ir);
+    fprintf(stderr, "Camino: %s\n", ir->rastro);
     return 0;
 }

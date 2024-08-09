@@ -1,5 +1,9 @@
 # tp-EDyAI
 
-Compilar y correr parte 2:
+Compilar:
 
->  gcc sensor.c -o sensor; gcc robot.c -o robot; ./correr.sh ejemplos/ejemplo.txt
+>  gcc robot.c robot_utils.c estr/heap.c -lm -o robot
+
+Correr parte 2:
+
+> rm feedback; ./correr.sh ejemplos/ejemplo12.txt

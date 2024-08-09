@@ -31,15 +31,10 @@ Key calcular_key(State s, State start) {
     int min_g_rhs = min(s.g, s.rhs);
     k.key1 = sum(min_g_rhs, heuristic(start.node, s.node));
     k.key2 = min_g_rhs;
-    //printf("retorna (%d, %d)\n", k.key1, k.key2);
     return k;
 } 
 
 int g_val(InfoRobot* ir, Node n) {
-    //printf("d((%d, %d), (%d, %d))\n", n.x, n.y, 
-     //ir->mapaInterno[ir->j1][ir->i1].node.x, 
-     //ir->mapaInterno[ir->j1][ir->i1].node.y);
-
     return heuristic(n, ir->mapaInterno[ir->j2][ir->i2].node);
 }
 
@@ -52,7 +47,6 @@ int compara_estado(void* rs1, void* rs2) {
     // (si es el mismo nodo) sirve para la busqueda
     if ( ((*(State*)rs1).node.x == (*(State*)rs2).node.x) &&
     ((*(State*)rs1).node.y == (*(State*)rs2).node.y)) {
-        
         return 2;
     }
     int r;
@@ -152,10 +146,8 @@ State* obt_ady(InfoRobot* ir, State curr, int* adyCount) {
 
 //c(u, s')?
 void UpdateVertex(State u, InfoRobot* ir) {
-    fprintf(stderr, "UpdateVertex()\n");
-    //fprintf(stderr, "entra %d, %d\n", u.node.x, u.node.y);
+    //fprintf(stderr, "UpdateVertex()\n");
     State* est = crea_estado(u.node, calcular_key(u, ir->mapaInterno[ir->i1][ir->j1]));
-    
     //printf("Current: (%d, %d)\n", est->node.x, est->node.y);
 
     // (u_x,u_y) != (i2,j2)
@@ -164,7 +156,6 @@ void UpdateVertex(State u, InfoRobot* ir) {
         int sucCount = 0;
         State* sucs = obt_ady(ir, u, &sucCount);
 
-        //printf("obtuvo suc\n");
         // TODO: poner esto en una funcion
         int minVal = infty();
         
@@ -177,17 +168,7 @@ void UpdateVertex(State u, InfoRobot* ir) {
             );*/
 
         for (int h = 0; h < sucCount; h++) {
-            //fprintf(stderr, "minval: %d\n", minVal);
-            //printf("g: %d\n", ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g);
-            /*printf("Sucesor %d: (%d, %d)\n",
-            h, 
-            sucs[h].node.x,
-            sucs[h].node.y
-            );*/
-            //printf("c(s, s'): %d, g(s): %d\n", cost(ir, ir->mapaInterno[sucs[h].node.x][sucs[h].node.y], 
-            //ir->mapaInterno[u.node.x][u.node.y]), ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g);
 
-            // aca
             int v = sum(cost(ir, ir->mapaInterno[sucs[h].node.x][sucs[h].node.y], 
             u),
             ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g);
@@ -197,19 +178,14 @@ void UpdateVertex(State u, InfoRobot* ir) {
             }
         }
         // siguiente nodo a recorrer
-        //printf("Posible rhs del predecesor actual: %d\n", minVal);
         ir->mapaInterno[u.node.x][u.node.y].rhs = minVal;
         est->k = calcular_key(ir->mapaInterno[u.node.x][u.node.y], ir->mapaInterno[ir->i1][ir->j1]);
         free(sucs);
-    } //else printf("Es el nodo meta. No hace nada\n");
+    } 
 
-    //printf("buscar/eliminar: ");
-    //imprime_nodo((State*)est);
-
-
-//printf("Se ejecuta buscar y elim (%d, %d)\n", u.node.x, u.node.y);
+    //printf("Se ejecuta buscar y elim (%d, %d)\n", u.node.x, u.node.y);
     int e = bheap_buscar_eliminar(ir->cp, &u);
-   // fprintf(stderr, "%s\n", e>0? "Se encontro y elimino" : "No encontrado");
+    // fprintf(stderr, "%s\n", e>0? "Se encontro y elimino" : "No encontrado");
 
     // si el nodo no es consistente, agregar al heap
     if (ir->mapaInterno[u.node.x][u.node.y].rhs != 
@@ -227,7 +203,7 @@ int comp_key(Key kA, Key kB) {
 }
 
 void ComputeShortestPath(InfoRobot* ir, Node start) {
-    fprintf(stderr, "ComputeShortestPath()\n");
+    //fprintf(stderr, "ComputeShortestPath()\n");
     int count = 0;
 
 // Pred(curr): conj casillas desde las cuales puedo llegar a curr
@@ -249,46 +225,30 @@ void ComputeShortestPath(InfoRobot* ir, Node start) {
         // popear el maximo elemento de la cola
         State u = *(State*)bheap_minimo(ir->cp);
         ir->cp = bheap_eliminar_minimo(ir->cp);
-        fprintf(stderr, "minimo: %d,%d\n", u.node.x, u.node.y);
-        //printf("Key top: (%d, %d) ", u.k.key1, u.k.key2);
-        //Key llave = calcular_key(ir->mapaInterno[ir->i1][ir->j1], ir->mapaInterno[ir->i1][ir->j1]);
-        //printf("vs Key inicial: (%d, %d)\n", llave.key1, llave.key2);
+        //fprintf(stderr, "minimo: %d,%d\n", u.node.x, u.node.y);
 
-        //printf("comp keys -> %d\n", comp_key(u.k, llave));
         // no descubierto
         if (ir->mapaInterno[u.node.x][u.node.y].g > 
         ir->mapaInterno[u.node.x][u.node.y].rhs) {
-        fprintf(stderr, "Es sobreconsistente (g > rhs). Poner g = rhs\n");
+        //fprintf(stderr, "Es sobreconsistente (g > rhs). Poner g = rhs\n");
             ir->mapaInterno[u.node.x][u.node.y].g = ir->mapaInterno[u.node.x][u.node.y].rhs;
             int cantPred = 0;
             State* pred = obt_ady(ir, u, &cantPred);
             for (int h = 0; h < cantPred; h++) {
-                
-                /*printf("---\nPredecesor %d: (%d, %d)\n",
-                h,
-                pred[h].node.x,
-                pred[h].node.y);*/
                 UpdateVertex(pred[h], ir);
-                //printf("---\n");
             }
         } 
         else {
-            fprintf(stderr, "No es sobreconsistente (g <= rhs), poner g = inf\n");
+            //fprintf(stderr, "No es sobreconsistente (g <= rhs), poner g = inf\n");
             ir->mapaInterno[u.node.x][u.node.y].g = infty();
            
             UpdateVertex(u, ir);
             int cantPred = 0;
             State* pred = obt_ady(ir, u, &cantPred);
             for (int h = 0; h < cantPred; h++) {
-               /* printf("---\nPredecesor %d: (%d, %d)\n",
-                h,
-                pred[h].node.x,
-                pred[h].node.y);*/
                 UpdateVertex(pred[h], ir);
-             //   printf("---\n");
             }
             
-           // printf("sale del for\n");
     }
 
   
