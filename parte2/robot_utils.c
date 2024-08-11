@@ -20,6 +20,12 @@ int sum (int a, int b) {
     return inf;
 }
 
+int mult (int a, int b) {
+    int inf = infty();
+    if (a != inf && b != inf) return a*b;
+    return inf;
+}
+
 int min(int a, int b) {
     return (a < b) ? a : b;
 }
@@ -78,14 +84,19 @@ int cost(InfoRobot* ir, State s1, State s2) {
     || ir->mapaInterno[s2.node.x][s2.node.y].tipoCasilla == OBSTACULO) ? infty() : 1;
 }
 
+
+// node.x no sirve casi nunca!
 void impr_mapa(InfoRobot* ir) {
     fprintf(stderr, "(estado, g, rhs)\n");
     for (int i = 0; i < ir->N; i++) {
         for (int j = 0; j < ir->M; j++) {
-            fprintf(stderr,"(%d, %d, %d)\t",
+            fprintf(stderr,"(%d, %d, %d)",
             ir->mapaInterno[i][j].tipoCasilla, 
             ir->mapaInterno[i][j].g,
             ir->mapaInterno[i][j].rhs);
+            if (i == ir->x && j == ir->y) 
+            fprintf(stderr, "*\t");
+            else fprintf(stderr, "\t");
         }
         fprintf(stderr, "\n");
     }
@@ -108,7 +119,7 @@ void inicializa(InfoRobot* ir) {
     }
     
     //printf("jijodebu\n");
-
+    ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VALIDO;
     ir->mapaInterno[ir->i2][ir->j2].rhs = 0;
     Key k = calcular_key(ir->mapaInterno[ir->i2][ir->j2], ir->mapaInterno[ir->i1][ir->j1]);
     Node nuevoNodo = (Node){ir->i2, ir->j2};
@@ -301,8 +312,8 @@ void actualizar_segun_direccion(InfoRobot* ir, State sig, int dist, int dx, int 
             }
             ComputeShortestPath(ir, ir->mapaInterno[indXObstaculo][indYObstaculo].node);
             fprintf(stderr, "el robot scanea desde %d,%d\n",ir->x, ir->y);
-            fprintf(stderr, "dx: %d dy: %d\n", dx, dy);
-            fprintf(stderr, "cambia %d, %d\n", ir->x + dx, ir->y + dy);
+            //fprintf(stderr, "dx: %d dy: %d\n", dx, dy);
+            //fprintf(stderr, "cambia %d, %d\n", ir->x + dx, ir->y + dy);
             if (*o == 2 && multiplesOpciones) {
                 (ir->mapaInterno[ir->x + dx][ir->y + dy].g) ++;
             }
@@ -337,6 +348,11 @@ int siguiente_movimiento(InfoRobot* ir, int currX, int currY, State* posibles) {
         int v = sum(cost(ir, ir->mapaInterno[sucs[h].node.x][sucs[h].node.y], 
         ir->mapaInterno[curr.node.x][curr.node.y]),
         ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g);
+
+        /*
+        if (ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].tipoCasilla == DESCONOCIDO) {
+            v = mult(v, 1.75);
+        }*/
 
         if (v < minVal) {
             minVal = v;

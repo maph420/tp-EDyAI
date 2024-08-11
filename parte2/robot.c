@@ -22,10 +22,14 @@ void obtener_distancias(int* d, InfoRobot* ir) {
     if (scanf("%d %d %d %d", &d[0], &d[1], &d[2], &d[3]) != 4) {
         fprintf(stderr, "Error al leer las distancias del sensor\n");
         exit(EXIT_FAILURE);
-    }
+    } 
     fprintf(stderr, "Distancias recibidas: Arriba=%d, Abajo=%d, Izquierda=%d, Derecha=%d\n", 
            d[0], d[1], d[2], d[3]);
-    if (m = max(d, 4) > ir->distSensorConocida) ir->distSensorConocida = m;
+
+    if ((m = max(d, 4))> ir->distSensorConocida) {
+        fprintf(stderr, "nueva dist: %d\n", m-1);
+        ir->distSensorConocida = m-1;
+    } 
 }
 
 int main(int argc, char** argv) {
@@ -67,7 +71,7 @@ int main(int argc, char** argv) {
     int c = 0, pasos = 0;
     while(ir->x != ir->i2 || ir->y != ir->j2) {
         fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
-
+        fprintf(stderr, "max sensor (segun robot): %d\n", ir->distSensorConocida);
         
         cantPosibles = siguiente_movimiento(ir, ir->x, ir->y, posiblesSiguientes);
         
@@ -92,6 +96,7 @@ int main(int argc, char** argv) {
         
         else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == DESCONOCIDO) {
             
+            fprintf(stderr, "est tmp: %d, %d\n", est_tmp.node.x, est_tmp.node.y);
             fprintf(stderr,"siguiente es desconocido\n");
             fprintf(stderr, "*Tirar sensor\n");
             printf("%c %d %d\n", '?', ir->x, ir->y);
