@@ -10,6 +10,7 @@ typedef struct {
 typedef enum {
     DESCONOCIDO,
     VALIDO,
+    VISITADO,
     OBSTACULO
 } TipoCasilla;
 
@@ -78,6 +79,6 @@ int infty();
 int aleatorio() ;
 
 int sum (int a, int b) ;
-int mult (int a, int b) ;
+float mult (float a, float b) ;
 
 #endif

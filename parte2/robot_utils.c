@@ -20,7 +20,7 @@ int sum (int a, int b) {
     return inf;
 }
 
-int mult (int a, int b) {
+float mult (float a, float b) {
     int inf = infty();
     if (a != inf && b != inf) return a*b;
     return inf;
@@ -119,7 +119,7 @@ void inicializa(InfoRobot* ir) {
     }
     
     //printf("jijodebu\n");
-    ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VALIDO;
+    ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VISITADO;
     ir->mapaInterno[ir->i2][ir->j2].rhs = 0;
     Key k = calcular_key(ir->mapaInterno[ir->i2][ir->j2], ir->mapaInterno[ir->i1][ir->j1]);
     Node nuevoNodo = (Node){ir->i2, ir->j2};
@@ -340,19 +340,32 @@ int siguiente_movimiento(InfoRobot* ir, int currX, int currY, State* posibles) {
     State curr; curr.node.x = currX ; curr.node.y = currY;
     State* sucs = obt_ady(ir, curr, &sucCount);
 
-    posibles[0] = sucs[0];
     int minVal = infty();
+    int hayConocidos = 0;
 
     for (int h = 0; h < sucCount; h++) {
-         
+        // no funca, pero la idea va por aca
+        if (ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].tipoCasilla == VALIDO &&
+        ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].tipoCasilla != VISITADO) {
+            fprintf(stderr, "hay conocidos: %d, %d\n", sucs[h].node.x, sucs[h].node.y);
+            hayConocidos = 1;
+        }
+    }
+
+    if (hayConocidos) {
+        fprintf(stderr, "guarda! hay conocidos\n");
+        for (int h = 0; h < sucCount; h++) {
+            if (ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].tipoCasilla == DESCONOCIDO) {
+                ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g =
+                mult(ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g, 1.8);
+            }
+        }
+    } 
+
+    for (int h = 0; h < sucCount; h++) {
         int v = sum(cost(ir, ir->mapaInterno[sucs[h].node.x][sucs[h].node.y], 
         ir->mapaInterno[curr.node.x][curr.node.y]),
         ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g);
-
-        /*
-        if (ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].tipoCasilla == DESCONOCIDO) {
-            v = mult(v, 1.75);
-        }*/
 
         if (v < minVal) {
             minVal = v;
@@ -363,6 +376,8 @@ int siguiente_movimiento(InfoRobot* ir, int currX, int currY, State* posibles) {
             posiblesMovimientos = 2;
         }
     }
+
+
     free(sucs);
     fprintf(stderr, "Proximo mov -> (%d, %d)\n", posibles[0].node.x, posibles[0].node.y);
     

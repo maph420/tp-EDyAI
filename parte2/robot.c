@@ -27,7 +27,7 @@ void obtener_distancias(int* d, InfoRobot* ir) {
            d[0], d[1], d[2], d[3]);
 
     if ((m = max(d, 4))> ir->distSensorConocida) {
-        fprintf(stderr, "nueva dist: %d\n", m-1);
+        //fprintf(stderr, "nueva dist: %d\n", m-1);
         ir->distSensorConocida = m-1;
     } 
 }
@@ -71,7 +71,7 @@ int main(int argc, char** argv) {
     int c = 0, pasos = 0;
     while(ir->x != ir->i2 || ir->y != ir->j2) {
         fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
-        fprintf(stderr, "max sensor (segun robot): %d\n", ir->distSensorConocida);
+        //fprintf(stderr, "max sensor (segun robot): %d\n", ir->distSensorConocida);
         
         cantPosibles = siguiente_movimiento(ir, ir->x, ir->y, posiblesSiguientes);
         
@@ -87,16 +87,19 @@ int main(int argc, char** argv) {
         != VALIDO) && cantPosibles == 2 ? posiblesSiguientes[1] : posiblesSiguientes[0];
         }
 
-       if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VALIDO) {
+       if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VALIDO ||
+       ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VISITADO) {
             
             fprintf(stderr,"siguiente es valido\n");
             pasos = mover_robot(ir, sig_est.node, pasos);  
-            //ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla = VISITADO;
+            ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla = VISITADO;
+            ir->mapaInterno[sig_est.node.x][sig_est.node.y].g = 
+            mult(ir->mapaInterno[sig_est.node.x][sig_est.node.y].g, 2);
         } 
         
         else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == DESCONOCIDO) {
             
-            fprintf(stderr, "est tmp: %d, %d\n", est_tmp.node.x, est_tmp.node.y);
+            //fprintf(stderr, "est tmp: %d, %d\n", est_tmp.node.x, est_tmp.node.y);
             fprintf(stderr,"siguiente es desconocido\n");
             fprintf(stderr, "*Tirar sensor\n");
             printf("%c %d %d\n", '?', ir->x, ir->y);
@@ -107,12 +110,12 @@ int main(int argc, char** argv) {
 
             fprintf(stderr, "---\nmapa ahora\n"); 
             impr_mapa(ir);
-            fprintf(stderr, "---\n");       
+            fprintf(stderr, "---\n");
         
             
         }
         // evita loop infinito en caso de algun error
-        if (c++ >= 90) break; 
+        if (c++ >= 120) break; 
     }   
     ir->rastro[pasos] = '\0';
     // Mandar solucion al sensor para terminar la ejecucionh|
