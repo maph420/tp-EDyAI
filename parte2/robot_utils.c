@@ -271,7 +271,7 @@ void actualizar_segun_direccion(InfoRobot* ir, State sig, int dist, int dx, int 
     
     //fprintf(stderr, "dist: %d, dmax: %d, dx: %d, dy: %d\n", dist, ir->d_max, dx, dy);
     // detecto obstaculo
-    if (dist <= ir->d_max) {
+    if (dist <= ir->distSensorConocida) {
 
         /*fprintf(stderr, "%d %d\n",
         (ir->x + (dist * dx)),

@@ -31,8 +31,8 @@ typedef struct {
     int x, y; // pos actual
     int i1, i2, j1, j2; // arranca en (i1,j1) y destina a (i2,j2)
     BHeap cp;
-    int N, M; //sabe? (preg)
-    int d_max; // sabe? (preg)
+    int N, M; //sabe
+    int distSensorConocida; // NO sabe
     State** mapaInterno;
     char* rastro;
 } InfoRobot;

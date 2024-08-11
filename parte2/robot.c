@@ -5,29 +5,45 @@
 #include "estr/heap.h"
 #include "robot_utils.h"
 
+int max(int* l, int tam) {
+    int maxElem = l[0];
+    for(int i = 0; i < tam; i++) {
+        if (l[i] > maxElem) maxElem = l[i];
+    }
+    return maxElem;
+}
+
+
 // TODO: ver como manejar cuando el sensor es 0, por ahora es comportamiento
 // indefinido (?)
 
-void obtener_distancias(int* d) {
+void obtener_distancias(int* d, InfoRobot* ir) {
+    int m;
     if (scanf("%d %d %d %d", &d[0], &d[1], &d[2], &d[3]) != 4) {
         fprintf(stderr, "Error al leer las distancias del sensor\n");
         exit(EXIT_FAILURE);
     }
     fprintf(stderr, "Distancias recibidas: Arriba=%d, Abajo=%d, Izquierda=%d, Derecha=%d\n", 
            d[0], d[1], d[2], d[3]);
+    if (m = max(d, 4) > ir->distSensorConocida) ir->distSensorConocida = m;
 }
 
 int main(int argc, char** argv) {
 
     InfoRobot* ir = malloc(sizeof(InfoRobot));
-    // leer datos del archivo (de sensor)
-    if (scanf("%d %d %d\n%d %d\n %d %d", &(ir->N), &(ir->M), &(ir->d_max),
+    int distSensorMax;
+    // leer datos del archivo (de sensor)s
+    // se asume: el robot sabe las dimensiones del mapa
+    // el robot no sabe: la dist maxima del sensor
+    if (scanf("%d %d %d\n%d %d\n %d %d", &(ir->N), &(ir->M), &distSensorMax,
     &(ir->i1), &(ir->j1), &(ir->i2), &(ir->j2)) != 7) {
         fprintf(stderr, "Error al leer los argumentos del archivo\n");
         exit(EXIT_FAILURE) ;
     }
+    // es la minima que podria tener, ya que 0 no se admite
+    ir->distSensorConocida = 1;
 
-    fprintf(stderr, "%d %d %d\n", ir->N, ir->M, ir->d_max);
+    fprintf(stderr, "%d %d %d\n", ir->N, ir->M, distSensorMax);
     fprintf(stderr, "%d %d\n", ir->i1, ir->j1);
     fprintf(stderr, "%d %d\n", ir->i2, ir->j2);
 
@@ -81,7 +97,7 @@ int main(int argc, char** argv) {
             printf("%c %d %d\n", '?', ir->x, ir->y);
             fflush(stdout);
 
-            obtener_distancias(distancias);
+            obtener_distancias(distancias, ir);
             actualizar_mapa_interno(ir, distancias, sig_est, (cantPosibles == 2 && est_tmp.node.x != -1));
 
             fprintf(stderr, "---\nmapa ahora\n"); 
@@ -90,7 +106,7 @@ int main(int argc, char** argv) {
         
             
         }
-
+        // evita loop infinito en caso de algun error
         if (c++ >= 90) break; 
     }   
     ir->rastro[pasos] = '\0';
