@@ -58,7 +58,7 @@ void inicializa(InfoRobot* ir);
 
 State* obt_ady(InfoRobot* ir, State curr, int* adyCount);
 
-void UpdateVertex(State u, InfoRobot* ir);
+void UpdateVertex(State u, InfoRobot* ir, State start);
 
 int comp_key(Key kA, Key kB);
 

@@ -41,9 +41,12 @@ char** leer_archivo(FILE* data, int* nFilas, int* nCols, int* max_d, int* i1, in
         switch (k) {
         case 0: {
             check = sscanf(linea, "%d %d %d\n", nFilas, nCols, max_d);
-            if (check != 3) {
+			/* Se considera que la longitud del sensor debe ser un numero
+			natural positivo */
+            if (check != 3 || *max_d <= 0) {
                 archivoValido = 0;
 			}
+			
             else {
                 mapa = malloc(sizeof(char*) * *nFilas);
                 for (int h = 0; h < *nFilas; h++) 
