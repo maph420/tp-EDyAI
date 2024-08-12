@@ -67,13 +67,18 @@ int main(int argc, char** argv) {
     State* posiblesSiguientes = malloc(sizeof(State) * 2);
     int cantPosibles = 0, al;
 
+    /* El problema tiene pinta de ser cdo se llama computeshortest sobre un obstaculo
+    que da la casualidad que no fue escaneado la primera vez, y entonces tiene g-valor
+    de 500. Recorriendo asi todo el heap.*/
+
+
     // while s_start != s_goal
     int c = 0, pasos = 0;
     while(ir->x != ir->i2 || ir->y != ir->j2) {
         fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
         //fprintf(stderr, "max sensor (segun robot): %d\n", ir->distSensorConocida);
         
-        cantPosibles = siguiente_movimiento(ir, ir->x, ir->y, posiblesSiguientes);
+        cantPosibles = siguiente_movimiento(ir, posiblesSiguientes);
         
         if (cantPosibles == 2 
         && ir->mapaInterno[posiblesSiguientes[0].node.x][posiblesSiguientes[0].node.y].tipoCasilla == VALIDO
@@ -94,7 +99,7 @@ int main(int argc, char** argv) {
             pasos = mover_robot(ir, sig_est.node, pasos);  
             ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla = VISITADO;
             ir->mapaInterno[sig_est.node.x][sig_est.node.y].g = 
-            mult(ir->mapaInterno[sig_est.node.x][sig_est.node.y].g, 2);
+            mult(ir->mapaInterno[sig_est.node.x][sig_est.node.y].g, 1);
         } 
         
         else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == DESCONOCIDO) {
@@ -116,7 +121,7 @@ int main(int argc, char** argv) {
             
         }
         // evita loop infinito en caso de algun error
-        if (c++ >= 150) break; 
+        if (c++ >= 175) break; 
     }   
     ir->rastro[pasos] = '\0';
     // Mandar solucion al sensor para terminar la ejecucionh|

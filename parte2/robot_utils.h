@@ -58,7 +58,7 @@ void inicializa(InfoRobot* ir);
 
 State* obt_ady(InfoRobot* ir, State curr, int* adyCount);
 
-void UpdateVertex(State u, InfoRobot* ir, State start);
+void UpdateVertex(State u, InfoRobot* ir);
 
 int comp_key(Key kA, Key kB);
 
@@ -66,7 +66,7 @@ void ComputeShortestPath(InfoRobot* ir, Node start);
 
 Key calcular_key(State s, State start);
 
-int siguiente_movimiento(InfoRobot* ir, int currX, int currY, State* posibles);
+int siguiente_movimiento(InfoRobot* ir, State* posibles);
 
 void actualizar_segun_direccion(InfoRobot* ir, State sig, int dist, int dx, int dy, int* o, int multiplesOpciones);
 
