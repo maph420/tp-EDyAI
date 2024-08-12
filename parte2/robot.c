@@ -80,9 +80,11 @@ int main(int argc, char** argv) {
         
         cantPosibles = siguiente_movimiento(ir, posiblesSiguientes);
         
+        
         if (cantPosibles == 2 
         && ir->mapaInterno[posiblesSiguientes[0].node.x][posiblesSiguientes[0].node.y].tipoCasilla == VALIDO
-        && ir->mapaInterno[posiblesSiguientes[1].node.x][posiblesSiguientes[1].node.y].tipoCasilla == VALIDO) {
+        && ir->mapaInterno[posiblesSiguientes[1].node.x][posiblesSiguientes[1].node.y].tipoCasilla == VALIDO
+        ) {
             al = aleatorio();
             fprintf(stderr, "aleatorio: %d, otro: %d\n", al, !al);
             sig_est = posiblesSiguientes[al];
@@ -91,7 +93,12 @@ int main(int argc, char** argv) {
             sig_est = (ir->mapaInterno[posiblesSiguientes[0].node.x][posiblesSiguientes[0].node.y].tipoCasilla 
         != VALIDO) && cantPosibles == 2 ? posiblesSiguientes[1] : posiblesSiguientes[0];
         }
+        if (cantPosibles == 2 && ir->mapaInterno[posiblesSiguientes[1].node.x][posiblesSiguientes[1].node.y].tipoCasilla
+        == VISITADO) {
+            sig_est = posiblesSiguientes[0];
+        }
 
+       //sig_est = posiblesSiguientes[0];
        if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VALIDO ||
        ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VISITADO) {
             
@@ -121,7 +128,7 @@ int main(int argc, char** argv) {
             
         }
         // evita loop infinito en caso de algun error
-        if (c++ >= 175) break; 
+        if (c++ >= 456) break; 
     }   
     ir->rastro[pasos] = '\0';
     // Mandar solucion al sensor para terminar la ejecucionh|

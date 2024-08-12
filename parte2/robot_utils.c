@@ -339,18 +339,19 @@ void actualizar_segun_direccion(InfoRobot* ir, State sig, int dist, int dx, int 
             Node sNode;
             sNode.x = ir->x;
             sNode.y = ir->y;
-
-
+            ComputeShortestPath(ir, sNode);
             
+            /*
             if (ir->mapaInterno[indXObstaculo][indYObstaculo].g != infty()) {
-                ComputeShortestPath(ir, sNode);
+                ComputeShortestPath(ir, ir->mapaInterno[indXObstaculo][indYObstaculo].node);
                 
             } else {
                 fprintf(stderr, "no la computes!\n");
             }
+            */
               
 
-            fprintf(stderr, "heap:\n"); bheap_recorrer(ir->cp, imprime_nodo);
+            //fprintf(stderr, "heap:\n"); bheap_recorrer(ir->cp, imprime_nodo);
 
             fprintf(stderr, "el robot scanea desde %d,%d\n",ir->x, ir->y);
             //fprintf(stderr, "dx: %d dy: %d\n", dx, dy);
