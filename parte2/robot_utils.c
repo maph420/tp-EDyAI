@@ -119,6 +119,7 @@ void inicializa(InfoRobot* ir) {
     }
     
     //printf("jijodebu\n");
+    ir->x = ir->i1; ir->y = ir->j1;
     ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VISITADO;
     ir->mapaInterno[ir->i2][ir->j2].rhs = 0;
     Key k = calcular_key(ir->mapaInterno[ir->i2][ir->j2], ir->mapaInterno[ir->i1][ir->j1]);
@@ -242,12 +243,12 @@ void ComputeShortestPath(InfoRobot* ir, Node start) {
         // popear el maximo elemento de la cola
         State u = *(State*)bheap_minimo(ir->cp);
         ir->cp = bheap_eliminar_minimo(ir->cp);
-        //fprintf(stderr, "minimo: %d,%d\n", u.node.x, u.node.y);
+        fprintf(stderr, "minimo: %d,%d\n", u.node.x, u.node.y);
 
         // no descubierto
         if (ir->mapaInterno[u.node.x][u.node.y].g > 
         ir->mapaInterno[u.node.x][u.node.y].rhs) {
-        //fprintf(stderr, "Es sobreconsistente (g > rhs). Poner g = rhs\n");
+        fprintf(stderr, "Es sobreconsistente (g > rhs). Poner g = rhs\n");
             ir->mapaInterno[u.node.x][u.node.y].g = ir->mapaInterno[u.node.x][u.node.y].rhs;
             int cantPred = 0;
             State* pred = obt_ady(ir, u, &cantPred);
@@ -257,7 +258,7 @@ void ComputeShortestPath(InfoRobot* ir, Node start) {
             }
         } 
         else {
-            //fprintf(stderr, "No es sobreconsistente (g <= rhs), poner g = inf\n");
+            fprintf(stderr, "No es sobreconsistente (g <= rhs), poner g = inf\n");
             ir->mapaInterno[u.node.x][u.node.y].g = infty();
            
             UpdateVertex(u, ir, startState);
@@ -307,13 +308,27 @@ void actualizar_segun_direccion(InfoRobot* ir, State sig, int dist, int dx, int 
             fprintf(stderr, "casilla: %d,%d\n", ir->mapaInterno[indXObstaculo][indYObstaculo].node.x, ir->mapaInterno[indXObstaculo][indYObstaculo].node.y);
 
 
-            UpdateVertex(ir->mapaInterno[indXObstaculo][indYObstaculo], ir, ir->mapaInterno[indXObstaculo][indYObstaculo]);
+            UpdateVertex(ir->mapaInterno[indXObstaculo][indYObstaculo], ir, ir->mapaInterno[ir->x][ir->y]);
             int contAdyacentes = 0;
             State* ady = obt_ady(ir, ir->mapaInterno[indXObstaculo][indYObstaculo], &contAdyacentes);
             for (int h = 0; h < contAdyacentes; h++) {
-                UpdateVertex(ady[h], ir, ir->mapaInterno[indXObstaculo][indYObstaculo]);
+                UpdateVertex(ady[h], ir, ir->mapaInterno[ir->x][ir->y]);
             }
+
+            fprintf(stderr,"Computa por aca: %d,%d en lugar de %d,%d\n",
+            indXObstaculo, indYObstaculo, ir->x, ir->y);
+            fprintf(stderr, "key s_start: %d, %d\n", calcular_key(ir->mapaInterno[indXObstaculo][indYObstaculo],
+            ir->mapaInterno[indXObstaculo][indYObstaculo]).key1,
+            calcular_key(ir->mapaInterno[indXObstaculo][indYObstaculo],
+            ir->mapaInterno[indXObstaculo][indYObstaculo]).key2
+            );
+
+            //fprintf(stderr, "mapa antes:\n"); impr_mapa(ir);
+
             ComputeShortestPath(ir, ir->mapaInterno[indXObstaculo][indYObstaculo].node);
+
+            //fprintf(stderr, "mapa desp:\n"); impr_mapa(ir);
+
             fprintf(stderr, "el robot scanea desde %d,%d\n",ir->x, ir->y);
             //fprintf(stderr, "dx: %d dy: %d\n", dx, dy);
             //fprintf(stderr, "cambia %d, %d\n", ir->x + dx, ir->y + dy);
@@ -360,7 +375,7 @@ int siguiente_movimiento(InfoRobot* ir, int currX, int currY, State* posibles) {
         for (int h = 0; h < sucCount; h++) {
             if (ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].tipoCasilla == DESCONOCIDO) {
                 ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g =
-                mult(ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g, 1.8);
+                mult(ir->mapaInterno[sucs[h].node.x][sucs[h].node.y].g, 1.5);
             }
         }
     } 

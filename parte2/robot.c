@@ -108,6 +108,7 @@ int main(int argc, char** argv) {
             obtener_distancias(distancias, ir);
             actualizar_mapa_interno(ir, distancias, sig_est, (cantPosibles == 2 && est_tmp.node.x != -1));
 
+            // descomentar
             fprintf(stderr, "---\nmapa ahora\n"); 
             impr_mapa(ir);
             fprintf(stderr, "---\n");
@@ -115,7 +116,7 @@ int main(int argc, char** argv) {
             
         }
         // evita loop infinito en caso de algun error
-        if (c++ >= 120) break; 
+        if (c++ >= 150) break; 
     }   
     ir->rastro[pasos] = '\0';
     // Mandar solucion al sensor para terminar la ejecucionh|
