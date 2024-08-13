@@ -50,8 +50,8 @@ int main() {
     fprintf(stderr, "%d %d\n", ir->i1, ir->j1);
     fprintf(stderr, "%d %d\n", ir->i2, ir->j2);
 
+    ir->x = ir->i1; ir->y = ir->j1; 
     inicializa(ir);
-    ir->x = ir->i1; ir->y = ir->j1;
     ComputeShortestPath(ir);
     
     fprintf(stderr, "heap al terminar 1er pasa:\n");
@@ -69,15 +69,11 @@ int main() {
     State* posiblesSiguientes = malloc(sizeof(State) * 2);
     int cantPosibles = 0, al;
 
-    /* El problema tiene pinta de ser cdo se llama computeshortest sobre un obstaculo
-    que da la casualidad que no fue escaneado la primera vez, y entonces tiene g-valor
-    de 500. Recorriendo asi todo el heap.*/
-
-
     // while s_start != s_goal
     int c = 0, pasos = 0;
     while(ir->x != ir->i2 || ir->y != ir->j2) {
         fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
+        fprintf(stderr, "ciclo %d\n", c);
         //fprintf(stderr, "max sensor (segun robot): %d\n", ir->distSensorConocida);
         
         cantPosibles = siguiente_movimiento(ir, posiblesSiguientes);
@@ -99,6 +95,7 @@ int main() {
         == VISITADO) {
             sig_est = posiblesSiguientes[0];
         }
+        //sig_est = posiblesSiguientes[0];
         fprintf(stderr, "finalmente se elige %d,%d\n", sig_est.node.x, sig_est.node.y);
     
        if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VALIDO ||
@@ -123,8 +120,8 @@ int main() {
             actualizar_mapa_interno(ir, distancias, sig_est, (cantPosibles == 2 && est_tmp.node.x != -1));
 
             // descomentar
-            //fprintf(stderr, "---\nmapa ahora\n"); 
-            //impr_mapa(ir);
+            fprintf(stderr, "---\nmapa ahora\n"); 
+            impr_mapa(ir);
             fprintf(stderr, "---\n");
         
             

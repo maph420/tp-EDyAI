@@ -10,7 +10,7 @@ int compara_int( void* refA,  void* refB) {
     const int b = *(int*)refB;
     if (a < b) return -1;
     else if (a > b) return 1;
-    else return 0;
+    else return 2;
 }
 
 void imprimir_int( void* refD) {
@@ -160,7 +160,7 @@ void heap_sort(void** arr, int tamArr, FuncionCopiadora copy, FuncionComparadora
     // 1- arr -> heap
     BHeap heap = bheap_crear_desde_arr(arr, tamArr, copy, cmp);
 
-    printf("hasta aca joya\n");
+    //printf("hasta aca joya\n");
     // 2- ir extrayendo el ultimo
     for (int i = tamArr - 1; i >= 0; i--) {
         void* max = heap->arr[0];
@@ -179,8 +179,8 @@ int bheap_buscar_eliminar(BHeap heap, void* elemento) {
     // Buscar el elemento en el arreglo
     for (i = 0; i < n && !hallado; i++) {
         c = heap->comp(heap->arr[i], elemento);
+        //printf("Comparacion %d vs %d -> %d\n", *(int*)heap->arr[i], *(int*)elemento, c);
         if (c == 2) {
-            //printf("Comparacion -> %d\n", c);
             hallado = 1; // Elemento encontrado
             --i;
         }
@@ -188,17 +188,24 @@ int bheap_buscar_eliminar(BHeap heap, void* elemento) {
 
     // Si el elemento no fue encontrado, no hacer nada
     if (!hallado) {
+       // printf("no fue hallado\n");
         return -1;
     }
-    // Intercambiar con el último elemento
+
+
     void* temp = heap->arr[i];
     heap->arr[i] = heap->arr[n - 1];
     heap->arr[n - 1] = temp;
-
+    
     // Reducir el tamaño del heap
     heap->ultimo--;
     // Restaurar la propiedad de heap
-    hundir(heap, n - 1, 0);
+    hundir(heap, heap->ultimo, i);  
+
+    if (i > 0) {
+        flotar(heap, i);
+    }
+
     return 1;
 }
 
@@ -208,8 +215,8 @@ void* bheap_minimo(BHeap b) {
 
 
 // por cuestion de tiempos, hice el main aca nomas 
-                     
-/* int main() {
+                     /*
+ int main() {
     // 2
 
     BHeap b = bheap_crear(14, compara_int);
@@ -244,25 +251,27 @@ void* bheap_minimo(BHeap b) {
 
     // 4
     int otralistaValores[] = 
-    {10, 20, 15, 25, 30, 16, 18, 19};
-    int** otradirValores = malloc(sizeof(int*)*8);
-    for (int i=0; i < 9; i++)
+    {2, 7, 3, 8, 9, 4,};
+    int** otradirValores = malloc(sizeof(int*)*6);
+    for (int i=0; i < 6; i++)
         otradirValores[i] = otralistaValores+i;
 
     // 4
-    heap_sort((void**)otradirValores, 8, no_copia, compara_int);
 
-    printf("Lista ordenada\n");
-    for(int i = 0; i < 8; i++) {
-        printf("%d, ", *(int*)otradirValores[i]);
-    }
+    BHeap otroBHeap = bheap_crear_desde_arr((void**)otradirValores, 6, no_copia, compara_int);
 
-    puts("\nHEAP:");
+    bheap_recorrer(otroBHeap, imprimir_int);
+    int elem = 8;
+    bheap_buscar_eliminar(otroBHeap, &elem);
+
+    bheap_recorrer(otroBHeap, imprimir_int);
+   
+    puts("\nHEAP antes:");
     bheap_recorrer(bArr, imprimir_int);
-    bheap_buscar_eliminar(bArr, &(otralistaValores[3]));
-    bheap_buscar_eliminar(bArr, &(otralistaValores[5]));
-    bheap_buscar_eliminar(bArr, &(otralistaValores[6]));
-    puts("\nHEAP:");
+    bheap_buscar_eliminar(bArr, &(listaValores[3]));
+    //bheap_buscar_eliminar(bArr, &(listaValores[5]));
+   // bheap_buscar_eliminar(bArr, &(listaValores[6]));
+    puts("\nHEAP desp:");
     bheap_recorrer(bArr, imprimir_int);
 
     printf("maximo %d\n", *(int*)bheap_minimo(bArr));
