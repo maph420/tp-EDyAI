@@ -52,9 +52,12 @@ int main(int argc, char** argv) {
     fprintf(stderr, "%d %d\n", ir->i2, ir->j2);
 
     inicializa(ir);
-    Node ini = (Node){ir->i1, ir->j1};
-    ComputeShortestPath(ir, ini);
+    ir->x = ir->i1; ir->y = ir->j1;
+    ComputeShortestPath(ir);
     
+    fprintf(stderr, "heap al terminar 1er pasa:\n");
+    bheap_recorrer(ir->cp, imprime_nodo);
+
     fprintf(stderr, "mapa:\n"); impr_mapa(ir);
 
     ir->x = ir->i1; ir->y = ir->j1;
@@ -97,7 +100,7 @@ int main(int argc, char** argv) {
         == VISITADO) {
             sig_est = posiblesSiguientes[0];
         }
-
+        fprintf(stderr, "finalmente se elige %d,%d\n", sig_est.node.x, sig_est.node.y);
        //sig_est = posiblesSiguientes[0];
        if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VALIDO ||
        ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VISITADO) {
@@ -128,7 +131,7 @@ int main(int argc, char** argv) {
             
         }
         // evita loop infinito en caso de algun error
-        if (c++ >= 456) break; 
+        if (c++ >= 144) break; 
     }   
     ir->rastro[pasos] = '\0';
     // Mandar solucion al sensor para terminar la ejecucionh|

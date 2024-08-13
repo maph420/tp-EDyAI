@@ -62,7 +62,7 @@ void UpdateVertex(State u, InfoRobot* ir);
 
 int comp_key(Key kA, Key kB);
 
-void ComputeShortestPath(InfoRobot* ir, Node start);
+void ComputeShortestPath(InfoRobot* ir);
 
 Key calcular_key(State s, State start);
 
