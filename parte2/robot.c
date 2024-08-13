@@ -27,12 +27,11 @@ void obtener_distancias(int* d, InfoRobot* ir) {
            d[0], d[1], d[2], d[3]);
 
     if ((m = max(d, 4))> ir->distSensorConocida) {
-        //fprintf(stderr, "nueva dist: %d\n", m-1);
         ir->distSensorConocida = m-1;
     } 
 }
 
-int main(int argc, char** argv) {
+int main() {
 
     InfoRobot* ir = malloc(sizeof(InfoRobot));
     int distSensorMax;
@@ -62,8 +61,8 @@ int main(int argc, char** argv) {
 
     ir->x = ir->i1; ir->y = ir->j1;
     //ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VISITADO;
-    int distancias[4], contAdyacentes = 0;
-    State sig_est, *ady, tmp;
+    int distancias[4];
+    State sig_est;
     State est_tmp;
     Node node_tmp = (Node){-1, -1};
     est_tmp.node = node_tmp;
@@ -101,7 +100,7 @@ int main(int argc, char** argv) {
             sig_est = posiblesSiguientes[0];
         }
         fprintf(stderr, "finalmente se elige %d,%d\n", sig_est.node.x, sig_est.node.y);
-       //sig_est = posiblesSiguientes[0];
+    
        if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VALIDO ||
        ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VISITADO) {
             
@@ -124,8 +123,8 @@ int main(int argc, char** argv) {
             actualizar_mapa_interno(ir, distancias, sig_est, (cantPosibles == 2 && est_tmp.node.x != -1));
 
             // descomentar
-            fprintf(stderr, "---\nmapa ahora\n"); 
-            impr_mapa(ir);
+            //fprintf(stderr, "---\nmapa ahora\n"); 
+            //impr_mapa(ir);
             fprintf(stderr, "---\n");
         
             
