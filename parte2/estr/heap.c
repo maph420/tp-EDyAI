@@ -60,9 +60,9 @@ void flotar(BHeap heap, int i) {
 
     // si el padre es menor al hijo, cambiarlos, y seguir chequeando
     if (parent >= 0 && heap->comp(heap->arr[i], heap->arr[parent]) < 0) {
-        void* tmp = heap->arr[parent];
-        heap->arr[parent] = heap->arr[i];
-        heap->arr[i] = tmp;
+        void* tmp = heap->arr[i];
+        heap->arr[i] = heap->arr[parent];
+        heap->arr[parent] = tmp;
         flotar(heap, parent);
     }
 }
@@ -215,7 +215,7 @@ void* bheap_minimo(BHeap b) {
 
 
 // por cuestion de tiempos, hice el main aca nomas 
-                     /*
+            /*        
  int main() {
     // 2
 
@@ -268,13 +268,26 @@ void* bheap_minimo(BHeap b) {
    
     puts("\nHEAP antes:");
     bheap_recorrer(bArr, imprimir_int);
-    bheap_buscar_eliminar(bArr, &(listaValores[3]));
+    bArr = bheap_eliminar_minimo(bArr);
+    
+    bArr = bheap_eliminar_minimo(bArr);
+    
+    bArr = bheap_eliminar_minimo(bArr);
+    //bheap_buscar_eliminar(bArr, &(listaValores[3]));
     //bheap_buscar_eliminar(bArr, &(listaValores[5]));
    // bheap_buscar_eliminar(bArr, &(listaValores[6]));
+
     puts("\nHEAP desp:");
     bheap_recorrer(bArr, imprimir_int);
 
     printf("maximo %d\n", *(int*)bheap_minimo(bArr));
+ 
+    BHeap bheaptest = bheap_crear(3, compara_int);
+    int x = 11, y = 13, z = 9;
+    bheaptest =  bheap_insertar(bheaptest, &x);
+    bheaptest =  bheap_insertar(bheaptest, &y);
+    bheaptest =  bheap_insertar(bheaptest, &z);
 
-}
-*/
+   bheap_recorrer(bheaptest, imprimir_int);
+
+}*/

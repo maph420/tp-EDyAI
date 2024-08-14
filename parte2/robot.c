@@ -95,7 +95,7 @@ int main() {
         == VISITADO) {
             sig_est = posiblesSiguientes[0];
         }
-        //sig_est = posiblesSiguientes[0];
+       // sig_est = posiblesSiguientes[0];
         fprintf(stderr, "finalmente se elige %d,%d\n", sig_est.node.x, sig_est.node.y);
     
        if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VALIDO ||
@@ -127,9 +127,12 @@ int main() {
             
         }
         // evita loop infinito en caso de algun error
-        if (c++ >= 144) break; 
+        if (c++ >= 250) break; 
     }   
     ir->rastro[pasos] = '\0';
+
+    fprintf(stderr, "asi quedo el mapa\n"); impr_mapa(ir);
+
     // Mandar solucion al sensor para terminar la ejecucionh|
     printf("%c %s\n", '!', ir->rastro);
     fflush(stdout);

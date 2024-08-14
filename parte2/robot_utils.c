@@ -54,11 +54,12 @@ void imprime_nodo(void* refNodo) {
 }
 
 int compara_estado(void* rs1, void* rs2) {
-    fprintf(stderr, "compara %d,%d vs %d,%d\n", (*(State*)rs1).node.x,(*(State*)rs1).node.y,
-    (*(State*)rs2).node.x ,(*(State*)rs2).node.y   );
+    //fprintf(stderr, "compara %d,%d vs %d,%d\n", (*(State*)rs1).node.x,(*(State*)rs1).node.y,
+    //(*(State*)rs2).node.x ,(*(State*)rs2).node.y   );
     // (si es el mismo nodo) sirve para la busqueda
     if ( ((*(State*)rs1).node.x == (*(State*)rs2).node.x) &&
     ((*(State*)rs1).node.y == (*(State*)rs2).node.y)) {
+        fprintf(stderr, "nodos iguales\n");
         return 2;
     }
     int r;
@@ -68,11 +69,11 @@ int compara_estado(void* rs1, void* rs2) {
     kA.key2 = (*(State*)rs1).k.key2;
     kB.key1 = (*(State*)rs2).k.key1;
     kB.key2 = (*(State*)rs2).k.key2;
-    fprintf(stderr, "Claves: [%d,%d] vs [%d,%d]\n", kA.key1, kA.key2, kB.key1, kB.key2);
+    fprintf(stderr, "compara_estado: [%d,%d] vs [%d,%d]\n", kA.key1, kA.key2, kB.key1, kB.key2);
     if (kA.key1 < kB.key1) r = -1;
-    if (kA.key1 > kB.key1) r = 1;
-    r = (kA.key2 < kB.key2) ? -1 : (kA.key2 > kB.key2) ? 1 : 0;
-    
+    else if (kA.key1 > kB.key1) r = 1;
+    else { r = (kA.key2 < kB.key2) ? -1 : (kA.key2 > kB.key2) ? 1 : 0; }
+    fprintf(stderr, "comp: %d\n", r);
     return r;
 }
 
@@ -228,8 +229,14 @@ void UpdateVertex(State u, InfoRobot* ir) {
     } 
 
     //printf("Se ejecuta buscar y elim (%d, %d)\n", u.node.x, u.node.y);
-    int e = bheap_buscar_eliminar(ir->cp, &(ir->mapaInterno[u.node.x][u.node.y]));
+    /*fprintf(stderr, "llave con la cual se busca: [%d,%d]\n",
+    (calcular_key(ir->mapaInterno[u.node.x][u.node.y], ir->mapaInterno[ir->x][ir->y])).key1,
+    (calcular_key(ir->mapaInterno[u.node.x][u.node.y], ir->mapaInterno[ir->x][ir->y]).key2)    
+    );*/
+
+    int e = bheap_buscar_eliminar(ir->cp, est);
     fprintf(stderr, ">(%d,%d) %s\n", u.node.x,u.node.y,e>0? "Se encontro y elimino" : "No encontrado");
+    fprintf(stderr, "heap ahora: \n"); bheap_recorrer(ir->cp, imprime_nodo);
 
     // si el nodo no es consistente, agregar al heap
     if (ir->mapaInterno[u.node.x][u.node.y].rhs != 
@@ -239,6 +246,7 @@ void UpdateVertex(State u, InfoRobot* ir) {
         fprintf(stderr, ">agrega %d,%d; con clave [%d,%d]\n", est->node.x,est->node.y,
         est->k.key1, est->k.key2);
         ir->cp = bheap_insertar(ir->cp, est);
+        fprintf(stderr, "heap ahora: \n"); bheap_recorrer(ir->cp, imprime_nodo);
     }
 
 }
@@ -293,10 +301,7 @@ void ComputeShortestPath(InfoRobot* ir) {
 
         // no descubierto
         fprintf(stderr, "u: %d, rhs: %d\n", ir->mapaInterno[u.node.x][u.node.y].g,
-        ir->mapaInterno[u.node.x][u.node.y].rhs);
-
-        fprintf(stderr, "Alternativa u: %d, rhs: %d\n", u.g,
-        u.rhs);       
+        ir->mapaInterno[u.node.x][u.node.y].rhs);   
 
         if (ir->mapaInterno[u.node.x][u.node.y].g > 
         ir->mapaInterno[u.node.x][u.node.y].rhs) {
@@ -320,6 +325,7 @@ void ComputeShortestPath(InfoRobot* ir) {
             for (int h = 0; h < cantPred; h++) {
                 UpdateVertex(pred[h], ir);
             }
+            
             
     }
    // if (iters++ >= 50) break;
@@ -346,11 +352,13 @@ void actualizar_segun_direccion(InfoRobot* ir, State sig, int dist, int dx, int 
         (ir->x + (dist * dx)) >= 0 && (ir->x + (dist * dx)) < (ir->N ) ) {
 
           //  if (ir->mapaInterno[ir->x + (dist * dx)][ir->y + (dist * dy)].tipoCasilla == DESCONOCIDO) {
-ir->mapaInterno[ir->x + (dist * dx)][ir->y + (dist * dy)].tipoCasilla = OBSTACULO;
-            (*o)++;
+            
             fprintf(stderr,"obstaculo detectado\n");
             int indXObstaculo = ir->x + (dist * dx);
             int indYObstaculo = ir->y + (dist * dy);
+            ir->mapaInterno[indXObstaculo][indYObstaculo].tipoCasilla = OBSTACULO;
+            
+            (*o)++;
             /*if (ir->mapaInterno[indXObstaculo][indYObstaculo].g == infty()) {
                 return;
             }*/
@@ -361,11 +369,13 @@ ir->mapaInterno[ir->x + (dist * dx)][ir->y + (dist * dy)].tipoCasilla = OBSTACUL
             fprintf(stderr, "casilla: %d,%d\n", ir->mapaInterno[indXObstaculo][indYObstaculo].node.x, ir->mapaInterno[indXObstaculo][indYObstaculo].node.y);
             
             int contAdyacentes = 0;
+
+             UpdateVertex(ir->mapaInterno[indXObstaculo][indYObstaculo], ir);
             State* ady = obt_ady(ir, ir->mapaInterno[indXObstaculo][indYObstaculo], &contAdyacentes);
             for (int h = 0; h < contAdyacentes; h++) {
                 UpdateVertex(ady[h], ir);
             }
-               
+           
             ir->mapaInterno[ir->x][ir->y].node.x = ir->x;
             ir->mapaInterno[ir->x][ir->y].node.y = ir->y;
 
@@ -385,12 +395,10 @@ ir->mapaInterno[ir->x + (dist * dx)][ir->y + (dist * dy)].tipoCasilla = OBSTACUL
                 fprintf(stderr, "heap vacio!\n");
             }
            
-            
-         
-
-                
             // descomentar
-            //fprintf(stderr, "bheap: \n"); bheap_recorrer(ir->cp, imprime_nodo);
+            // TODO: arreglar funcion eliminar minimo del heap
+            fprintf(stderr, "bheap: \n"); 
+            bheap_recorrer(ir->cp, imprime_nodo);
 
             fprintf(stderr, "actual: %d,%d\n", ir->mapaInterno[ir->x][ir->y].node.x,
             ir->mapaInterno[ir->x][ir->y].node.y);
