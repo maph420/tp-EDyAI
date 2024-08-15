@@ -3,9 +3,6 @@
 #include "estr/heap.h"
 
 // Definición de las estructuras de datos
-typedef struct {
-    int x, y; // Posición del nodo
-} Node;
 
 typedef enum {
     DESCONOCIDO,
@@ -15,15 +12,18 @@ typedef enum {
 } TipoCasilla;
 
 typedef struct {
-    int key1;
-    int key2;
+    int id_1;
+    int id_2;
 } Key;
 
 typedef struct {
-    Node node;
+    int x, y;
+} Nodo;
+
+typedef struct {
+    Nodo nodo;
     int g;
     int rhs;
-    int h; // Función heurística
     Key k;
     TipoCasilla tipoCasilla;
 } State;
@@ -38,48 +38,48 @@ typedef struct {
     char* rastro;
 } InfoRobot;
 
-int min(int a, int b) ;
+int min(int, int) ;
 
-int heuristic(Node a, Node b);
+int heuristic(Nodo, Nodo);
 
-int g_val(InfoRobot* ir, Node n);
+int g_val(InfoRobot*, Nodo);
 
-void imprime_nodo(void* refNodo);
+void imprime_nodo(void*);
 
-int compara_estado(void* rs1, void* rs2) ;
+int compara_estado(void*, void*) ;
 
-State* crea_estado(Node n, Key k) ;
+State* crea_estado(Nodo, Key) ;
 
-int cost(InfoRobot* ir, State s1, State s2);
+int cost(InfoRobot*, State, State);
 
-void impr_mapa(InfoRobot* ir);
+void impr_mapa(InfoRobot*);
 
-void inicializa(InfoRobot* ir);
+void inicializa(InfoRobot*);
 
-State* obt_ady(InfoRobot* ir, State curr, int* adyCount);
+State* obt_ady(InfoRobot*, State, int*);
 
-void UpdateVertex(State u, InfoRobot* ir);
+void UpdateVertex(State, InfoRobot*);
 
-int comp_key(Key kA, Key kB);
+int comp_key(Key, Key);
 
-void ComputeShortestPath(InfoRobot* ir);
+void ComputeShortestPath(InfoRobot*);
 
-Key calcular_key(State s, State start);
+Key calcular_key(State, State);
 
-int siguiente_movimiento(InfoRobot* ir, State* posibles);
+int siguiente_movimiento(InfoRobot*, State*);
 
-void actualizar_segun_direccion(InfoRobot* ir, State sig, int dist, int dx, int dy, int* o, int multiplesOpciones);
+void actualizar_segun_direccion(InfoRobot*, int, int, int, int*, int);
 
-void actualizar_mapa_interno(InfoRobot* ir, int* d, State siguiente, int m);
+void actualizar_mapa_interno(InfoRobot*, int*, int);
 
-int mover_robot(InfoRobot* ir, Node sig, int pasos);
+int mover_robot(InfoRobot*, Nodo, int);
 
 int infty();
 
-int aleatorio() ;
+int aleatorio();
 
-int sum (int a, int b) ;
+int sum (int, int);
 
-float mult (float a, float b) ;
+int max(int*, int);
 
 #endif

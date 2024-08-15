@@ -9,7 +9,7 @@ simplemente retorna derecha = 2 porque no sabe lo que hay
 
 x . o
 
-si fuera la longitud del scanner 2, entonces:
+si fuera nolongitud del scanner 2, entonces:
 x . o
 seguiria dando derecha = 2, de donde aqui si podemos inferir
 que hay obstaculo.

@@ -5,18 +5,6 @@
 #include "estr/heap.h"
 #include "robot_utils.h"
 
-int max(int* l, int tam) {
-    int maxElem = l[0];
-    for(int i = 0; i < tam; i++) {
-        if (l[i] > maxElem) maxElem = l[i];
-    }
-    return maxElem;
-}
-
-
-// TODO: ver como manejar cuando el sensor es 0, por ahora es comportamiento
-// indefinido (?)
-
 void obtener_distancias(int* d, InfoRobot* ir) {
     int m;
     if (scanf("%d %d %d %d", &d[0], &d[1], &d[2], &d[3]) != 4) {
@@ -35,7 +23,7 @@ int main() {
 
     InfoRobot* ir = malloc(sizeof(InfoRobot));
     int distSensorMax;
-    // leer datos del archivo (de sensor)s
+    // leer datos del archivo (de sensor)
     // se asume: el robot sabe las dimensiones del mapa
     // el robot no sabe: la dist maxima del sensor
     if (scanf("%d %d %d\n%d %d\n %d %d", &(ir->N), &(ir->M), &distSensorMax,
@@ -55,88 +43,72 @@ int main() {
     ComputeShortestPath(ir);
     
     fprintf(stderr, "heap al terminar 1er pasa:\n");
-    bheap_recorrer(ir->cp, imprime_nodo);
+    //bheap_recorrer(ir->cp, imprime_nodo);
 
-    fprintf(stderr, "mapa:\n"); impr_mapa(ir);
-
-    ir->x = ir->i1; ir->y = ir->j1;
-    //ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VISITADO;
-    int distancias[4];
-    State sig_est;
-    State est_tmp;
-    Node node_tmp = (Node){-1, -1};
-    est_tmp.node = node_tmp;
+    //fprintf(stderr, "mapa:\n"); impr_mapa(ir);
+ 
+    int distancias[4], c = 0, pasos = 0;
+    State sig_est, otro_posible;
+    otro_posible.nodo = (Nodo){-1, -1};
     State* posiblesSiguientes = malloc(sizeof(State) * 2);
-    int cantPosibles = 0, al;
+    int cantPosibles = 0, binAleatorio;
 
     // while s_start != s_goal
-    int c = 0, pasos = 0;
     while(ir->x != ir->i2 || ir->y != ir->j2) {
         fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
         fprintf(stderr, "ciclo %d\n", c);
-        //fprintf(stderr, "max sensor (segun robot): %d\n", ir->distSensorConocida);
-        
+
         cantPosibles = siguiente_movimiento(ir, posiblesSiguientes);
         
-        
         if (cantPosibles == 2 
-        && ir->mapaInterno[posiblesSiguientes[0].node.x][posiblesSiguientes[0].node.y].tipoCasilla == VALIDO
-        && ir->mapaInterno[posiblesSiguientes[1].node.x][posiblesSiguientes[1].node.y].tipoCasilla == VALIDO
+        && ir->mapaInterno[posiblesSiguientes[0].nodo.x][posiblesSiguientes[0].nodo.y].tipoCasilla == VALIDO
+        && ir->mapaInterno[posiblesSiguientes[1].nodo.x][posiblesSiguientes[1].nodo.y].tipoCasilla == VALIDO
         ) {
-            al = aleatorio();
-            fprintf(stderr, "aleatorio: %d, otro: %d\n", al, !al);
-            sig_est = posiblesSiguientes[al];
-            est_tmp = posiblesSiguientes[!al];
+            binAleatorio = aleatorio();
+            sig_est = posiblesSiguientes[binAleatorio];
+            otro_posible = posiblesSiguientes[!binAleatorio];
         } else {
-            sig_est = (ir->mapaInterno[posiblesSiguientes[0].node.x][posiblesSiguientes[0].node.y].tipoCasilla 
+            sig_est = (ir->mapaInterno[posiblesSiguientes[0].nodo.x][posiblesSiguientes[0].nodo.y].tipoCasilla 
         != VALIDO) && cantPosibles == 2 ? posiblesSiguientes[1] : posiblesSiguientes[0];
         }
-        if (cantPosibles == 2 && ir->mapaInterno[posiblesSiguientes[1].node.x][posiblesSiguientes[1].node.y].tipoCasilla
+        if (cantPosibles == 2 && ir->mapaInterno[posiblesSiguientes[1].nodo.x][posiblesSiguientes[1].nodo.y].tipoCasilla
         == VISITADO) {
             sig_est = posiblesSiguientes[0];
         }
-       // sig_est = posiblesSiguientes[0];
-        fprintf(stderr, "finalmente se elige %d,%d\n", sig_est.node.x, sig_est.node.y);
+
+        fprintf(stderr, "finalmente se elige %d,%d\n", sig_est.nodo.x, sig_est.nodo.y);
     
-       if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VALIDO ||
-       ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == VISITADO) {
+       if (ir->mapaInterno[sig_est.nodo.x][sig_est.nodo.y].tipoCasilla == VALIDO ||
+       ir->mapaInterno[sig_est.nodo.x][sig_est.nodo.y].tipoCasilla == VISITADO) {
             
             fprintf(stderr,"siguiente es valido\n");
-            pasos = mover_robot(ir, sig_est.node, pasos);  
-            ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla = VISITADO;
-            ir->mapaInterno[sig_est.node.x][sig_est.node.y].g = 
-            mult(ir->mapaInterno[sig_est.node.x][sig_est.node.y].g, 1);
+            pasos = mover_robot(ir, sig_est.nodo, pasos);  
+            ir->mapaInterno[sig_est.nodo.x][sig_est.nodo.y].tipoCasilla = VISITADO;
         } 
         
-        else if (ir->mapaInterno[sig_est.node.x][sig_est.node.y].tipoCasilla == DESCONOCIDO) {
-            
-            //fprintf(stderr, "est tmp: %d, %d\n", est_tmp.node.x, est_tmp.node.y);
+        else if (ir->mapaInterno[sig_est.nodo.x][sig_est.nodo.y].tipoCasilla == DESCONOCIDO) {
+
             fprintf(stderr,"siguiente es desconocido\n");
             fprintf(stderr, "*Tirar sensor\n");
             printf("%c %d %d\n", '?', ir->x, ir->y);
             fflush(stdout);
 
             obtener_distancias(distancias, ir);
-            actualizar_mapa_interno(ir, distancias, sig_est, (cantPosibles == 2 && est_tmp.node.x != -1));
-
-            // descomentar
-            fprintf(stderr, "---\nmapa ahora\n"); 
-            impr_mapa(ir);
-            fprintf(stderr, "---\n");
-        
-            
+            actualizar_mapa_interno(ir, distancias, (cantPosibles == 2 && otro_posible.nodo.x != -1));
         }
         // evita loop infinito en caso de algun error
-        if (c++ >= 250) break; 
+       // if (c++ >= 145) break; 
     }   
     ir->rastro[pasos] = '\0';
-
-    fprintf(stderr, "asi quedo el mapa\n"); impr_mapa(ir);
 
     // Mandar solucion al sensor para terminar la ejecucionh|
     printf("%c %s\n", '!', ir->rastro);
     fflush(stdout);
-
     fprintf(stderr, "Camino: %s\n", ir->rastro);
+    
+    // liberar memoria
+    free(ir->mapaInterno);
+    bheap_destruir(ir->cp);
+    free(ir->rastro);
     return 0;
 }
