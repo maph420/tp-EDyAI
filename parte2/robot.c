@@ -38,15 +38,10 @@ int main() {
     fprintf(stderr, "%d %d\n", ir->i1, ir->j1);
     fprintf(stderr, "%d %d\n", ir->i2, ir->j2);
 
-    ir->x = ir->i1; ir->y = ir->j1; 
     inicializa(ir);
     ComputeShortestPath(ir);
     
     fprintf(stderr, "heap al terminar 1er pasa:\n");
-    //bheap_recorrer(ir->cp, imprime_nodo);
-
-    //fprintf(stderr, "mapa:\n"); impr_mapa(ir);
- 
     int distancias[4], c = 0, pasos = 0;
     State sig_est, otro_posible;
     otro_posible.nodo = (Nodo){-1, -1};
