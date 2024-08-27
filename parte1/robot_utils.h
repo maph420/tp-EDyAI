@@ -1,5 +1,5 @@
-#ifndef FUNC_H
-#define FUNC_H
+#ifndef __ROBOT_UTILS_H__
+#define __ROBOT_UTILS_H__
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,10 +8,7 @@
 #include <time.h>
 #include "estr/avl.h"
 #include "estr/pila.h"
-
-#define LONGITUD_MAX_LINEA 255
-
-typedef unsigned int (*FuncionValidadora)(char** mapa, int N, int M, int x, int y) ;
+#define LONGITUD_MAX_LINEA 1600
 
 // izquierda, derecha, arriba, abajo, invalida
 typedef enum {
@@ -22,12 +19,9 @@ typedef enum {
     INV
 } Direccion;
 
-// estructuras
-
 typedef struct {
     int x, y; // pos actual
     int i1, i2, j1, j2; // arranca en (i1,j1) y destina a (i2,j2)
-    FuncionValidadora f;
     AVL visitados;
     Pila camino;
     char* rastro;
@@ -39,7 +33,14 @@ typedef struct {
     Direccion dirOrigen;
 } NodoMapa;
 
-// prototipos
+
+/**
+ * Notifica si el robot se chocó o si se desplazó a una posición válida. 
+ * Además, verifica que el robot no se salga de los limites del mapa, considerando 
+ * esta situacion como un "choque".
+ */
+unsigned int movimiento_valido(char**, int, int, int, int);
+
 /**
  * Retorna copia fisica de puntero a estructura NodoMapa
  */
@@ -55,22 +56,21 @@ void nodomapa_destruir(void *);
  */
 int nodomapa_comparar(void*, void*);
 
-/**
- * Imprime los campos del nodo NodoMapa
- */
-//static void imprimir_nodo(void*);
+int aleatorio();
 
-/**
- * Toma el nombre del archivo, los 3 datos que el robot no sabe, y la estructura InfoRobot,
- * donde se guardaran los campos de la informacion que el robot si maneja
- */
-int validar_arch_y_guardar_info(char*, char***, unsigned int*, unsigned int*, InfoRobot*);
-
-/**
- * Funcion a la que recurre el robot al realizar un movimiento. Notifica si
- * el robot se chocó o si se desplazó a una posición válida. Además, verifica que
- * el robot no se salga de los limites del mapa, considerando "choque" esta situacion.
- */
 unsigned int movimiento_valido(char**, int, int, int, int);
+
+int sig_nodo_x(Direccion, int);
+
+int sig_nodo_y(Direccion, int);
+
+Direccion opuesta(Direccion);
+
+Direccion obtener_direccion(InfoRobot*, char**, unsigned, unsigned, Direccion);
+
+char asignar_direccion(Direccion);
+
+void movimiento_robot(InfoRobot*, char**, unsigned int, unsigned int);
+
 
 #endif

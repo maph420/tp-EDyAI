@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
-
+#define LONGITUD_MAX_LINEA 1600
 /*
 e.g. aca el robot 'x' NO reconoceria al obstaculos 'o'
 simplemente retorna derecha = 2 porque no sabe lo que hay
@@ -30,13 +30,13 @@ moverse hasta ahi k veces en la pos pertinente desde la pos actual
 
 char** leer_archivo(FILE* data, int* nFilas, int* nCols, int* max_d, int* i1, int* j1, int* i2, int* j2) {
 
-    char linea[255], **mapa;
+    char linea[LONGITUD_MAX_LINEA], **mapa;
     unsigned int check, archivoValido = 1;
 
     if (data == NULL) return 0;
 
     //printf("Archivo '%s' abierto con exito\n", nomArchivo);
-    for (int k = 0; (fgets(linea, 255, data)) && archivoValido; k++) {
+    for (int k = 0; (fgets(linea, LONGITUD_MAX_LINEA, data)) && archivoValido; k++) {
         //printf("k -> %d\n", k);
         switch (k) {
         case 0: {

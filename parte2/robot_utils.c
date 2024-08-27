@@ -42,7 +42,7 @@ Key obt_key(State s, State start) {
 } 
 
 int g_val(InfoRobot* ir, Nodo n) {
-    return heuristica(n, ir->mapaInterno[ir->j2][ir->i2].nodo);
+    return heuristica(n, ir->mapaInterno[ir->i2][ir->j2].nodo);
 }
 
 void imprime_nodo(void* refNodo) {
