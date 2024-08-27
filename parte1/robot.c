@@ -83,7 +83,7 @@ int validar_arch_y_guardar_info(char* nomArchivo, char*** mapa, unsigned int* nF
 int main (int argc, char** argv) {
 
     if (argc != 2) {
-        printf("Numero incorrecto de argumentos. Uso: ./parte1 nombre_archivo\n");
+        printf("Numero incorrecto de argumentos. Uso: ./parte1 nombre_archivo\n"); fflush(stdout);
         exit(EXIT_FAILURE);
     }
 
