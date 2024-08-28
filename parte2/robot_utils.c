@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#include "estr/heap.h"
 #include "robot_utils.h"
 
 // retorna 0 o 1 de manera aleatoria
@@ -204,7 +203,7 @@ void UpdateVertex(State u, InfoRobot* ir) {
         free(sucs);
     } 
 
-    int e = bheap_buscar_eliminar(ir->cp, sk); fprintf(stderr, "e: %d\n", e);
+    bheap_buscar_eliminar(ir->cp, sk);
 
     // si el nodo no es consistente, agregar al heap
     if (ir->mapaInterno[u.nodo.x][u.nodo.y].rhs != 

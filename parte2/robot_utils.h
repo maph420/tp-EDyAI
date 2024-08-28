@@ -1,6 +1,6 @@
 #ifndef __ROBOT_UTILS_H__
 #define __ROBOT_UTILS_H__
-#include "estr/heap.h"
+#include "estr/bheap.h"
 
 // Definición de las estructuras de datos
 

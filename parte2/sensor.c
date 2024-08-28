@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
-#define LONGITUD_MAX_LINEA 1600
+#define LONGITUD_MAX_LINEA 100
 /*
 e.g. aca el robot 'x' NO reconoceria al obstaculos 'o'
 simplemente retorna derecha = 2 porque no sabe lo que hay

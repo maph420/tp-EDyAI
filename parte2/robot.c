@@ -1,8 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include <float.h>
-#include "estr/heap.h"
 #include "robot_utils.h"
 
 void obtener_distancias(int* d, InfoRobot* ir) {
