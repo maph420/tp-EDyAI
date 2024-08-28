@@ -82,7 +82,7 @@ Direccion obtener_direccion(InfoRobot* ir, char** mapa, unsigned N, unsigned M, 
     }  
 
     for (int l = 0; l < c; l++) {
-        printf("Prueba direccion: %s\n", print_dir(d[l]));
+        //printf("Prueba direccion: %s\n", print_dir(d[l]));
         v = (NodoMapa){
             sig_nodo_x(d[l], ir->x),
             sig_nodo_y(d[l], ir->y),
@@ -90,10 +90,10 @@ Direccion obtener_direccion(InfoRobot* ir, char** mapa, unsigned N, unsigned M, 
             d[l]};
         if (d[l] != INV && movimiento_valido(mapa, N, M, v.x, v.y) && 
         !avl_buscar(ir->visitados, &v)) return d[l];
-        else printf("no se pudo, probar con otra\n");
+        //else printf("no se pudo, probar con otra\n");
     }
     // ninguna direccion parece factible => backtrackear
-    printf("Ninguna direccion parece valida, backtrackear\n");
+    //printf("Ninguna direccion parece valida, backtrackear\n");
     return INV;
 }
 
@@ -119,10 +119,10 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
 
     while ((ir->x != ir->i2) || (ir->y != ir->j2)) {
 
-        printf("Robot: (%d, %d)\n", ir->y, ir->x);
+        //printf("Robot: (%d, %d)\n", ir->y, ir->x);
         
         // indica al robot el proximo movimiento
-        printf("Calcular direccion\n");
+       // printf("Calcular direccion\n");
        
         dirActual = obtener_direccion(ir, mapa, N, M, dirActual);
         int alcanzoMeta = 0, porChocarse = 0;
@@ -131,8 +131,8 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
         meta, lo hace */
         while (!alcanzoMeta && dirActual != INV && !porChocarse) { 
             
-            printf("Robot: (%d, %d)\n", ir->y, ir->x);
-            printf("movimiento -> %s\n", print_dir(dirActual));
+            //printf("Robot: (%d, %d)\n", ir->y, ir->x);
+            //printf("movimiento -> %s\n", print_dir(dirActual));
             //getchar();
 
             b->x = sig_nodo_x(dirActual, ir->x);
@@ -153,7 +153,7 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
             } 
             else { 
                 porChocarse = 1;
-                printf("Cambia de movimiento\n");
+                //printf("Cambia de movimiento\n");
                 //getchar();
                 b->valido = 0; b->dirOrigen = dirActual;
                 avl_insertar(ir->visitados, b) ;
@@ -167,21 +167,21 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
                 alcanzoMeta = 1;
 
             else if (ir->x == ir->i2 || ir->y == ir->j2) {
-                printf("alineado con alguno de los ejes\n");
+                //printf("alineado con alguno de los ejes\n");
                 dirActual = obtener_direccion(ir, mapa, N, M, dirActual);
-                printf("probar ahora: %s\n", print_dir(dirActual));
+                //printf("probar ahora: %s\n", print_dir(dirActual));
             } 
             
         }
-        printf("sale del while, alcanzometa=%d, porchocarse:%d, diractual: %s\n",
-        alcanzoMeta, porChocarse, print_dir(dirActual));
-        porChocarse = 0;
+        //printf("sale del while, alcanzometa=%d, porchocarse:%d, diractual: %s\n",
+        //alcanzoMeta, porChocarse, print_dir(dirActual));
+        //porChocarse = 0;
          // vamos al anterior
         if (dirActual == INV) {
             
-            printf("Pila: \n\n");
-            pila_imprimir(ir->camino, imprimir_nodo);
-            printf("BACKTRACK: retroceder un lugar\n");
+            //printf("Pila: \n\n");
+            //pila_imprimir(ir->camino, imprimir_nodo);
+            //printf("BACKTRACK: retroceder un lugar\n");
 
             pila_desapilar(&(ir->camino));
             NodoMapa* ant = (NodoMapa*)pila_tope(ir->camino);
@@ -189,10 +189,10 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
             Direccion dirVuelta = (ir->y == ant->y) ? (ant->x < ir->x) ? IZQ : DER : 
             (ant->y < ir->y) ? ARR : ABA; 
 
-            printf("nodo anterior: %d, %d, nodo actual: %d, %d\n",
-            ant->y, ant->x, ir->y, ir->x);
+            //printf("nodo anterior: %d, %d, nodo actual: %d, %d\n",
+            //ant->y, ant->x, ir->y, ir->x);
 
-            printf("dir vuelta: %s\n", print_dir(dirVuelta)) ;
+            //printf("dir vuelta: %s\n", print_dir(dirVuelta)) ;
 
             // se mueve "hacia atras" 1 lugar
             ir->x = ant->x; ir->y = ant->y;
