@@ -1,5 +1,4 @@
 #include "glist.h"
-#include "pila.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -8,6 +7,9 @@
  * Devuelve una lista vacía.
  */
 GList glist_crear() { return NULL; }
+
+
+int glist_vacia(GList l) {return l == NULL;}
 
 /**
  * Destruccion de la lista.
@@ -56,6 +58,30 @@ void* glist_dato_primero(GList l) {
   return l->data;
 }
 
+/**
+ * Busca elemento, si lo encuentra 1 y sino 0
+ */
+void* glist_buscar(GList lista, void *dato, FuncionComparadora comp) {
+  if (lista == NULL) return 0;
+
+  int encontrado = 0, comparacion;
+  // cuando lo que busquemos contra lo que hay en la lista nos de 1, ya va a ser porque
+  // estamos buscando algo mas chico que lo que hay en la lista (ORDENADA), entonces claramente
+  // no va a estar
+
+  while (lista != NULL && !encontrado) {
+    comparacion = comp(dato, lista->data);
+    if (comparacion == 0) {
+      encontrado = 1;
+    } else {
+      lista = lista->next;
+    }
+  }
+  if (encontrado) {
+    return lista->data;
+  }
+  else return NULL;
+}
 
 
 
