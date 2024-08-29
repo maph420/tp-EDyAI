@@ -61,7 +61,7 @@ void* glist_dato_primero(GList l) {
 /**
  * Busca elemento, si lo encuentra 1 y sino 0
  */
-void* glist_buscar(GList lista, void *dato, FuncionComparadora comp) {
+int glist_buscar(GList lista, void *dato, FuncionComparadora comp) {
   if (lista == NULL) return 0;
 
   int encontrado = 0, comparacion;
@@ -77,10 +77,7 @@ void* glist_buscar(GList lista, void *dato, FuncionComparadora comp) {
       lista = lista->next;
     }
   }
-  if (encontrado) {
-    return lista->data;
-  }
-  else return NULL;
+  return encontrado;
 }
 
 

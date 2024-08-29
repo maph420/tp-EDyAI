@@ -84,4 +84,4 @@ void actualizar_segun_direccion(InfoRobot*, int, int, int, int*, int);
 
 void actualizar_mapa_interno(InfoRobot*, int*, int);
 
-#endif
+#endif /* __ROBOT_UTILS_H__ */

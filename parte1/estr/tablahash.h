@@ -15,6 +15,15 @@ typedef void (*FuncionVisitante)(void* dato);
 
 typedef struct _TablaHash *TablaHash;
 
+
+// Funciones auxiliares
+unsigned int primo_mas_cercano(int n);
+
+unsigned int es_primo(int n);
+
+
+
+
 /**
  * Crea una nueva tabla hash vacia, con la capacidad dada.
  */
@@ -43,10 +52,9 @@ void tablahash_destruir(TablaHash tabla);
 void tablahash_insertar(TablaHash tabla, void *dato, float umbralMax);
 
 /**
- * Retorna el dato de la tabla que coincida con el dato dado, o NULL si el dato
- * buscado no se encuentra en la tabla.
+ * Retorna 1 si se encontro, 0 sino.
  */
-void *tablahash_buscar(TablaHash tabla, void *dato);
+int tablahash_buscar(TablaHash tabla, void *dato);
 
 /**
  * Imprime la lista enlazada correspondiente al casillero k

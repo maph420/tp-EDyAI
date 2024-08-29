@@ -49,5 +49,5 @@ imprime en orden los elementos de la pila
 void pila_imprimir(Pila p, FuncionVisitante visit);
 
 
-#endif
+#endif /* __PILA_H__ */
 

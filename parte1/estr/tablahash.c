@@ -2,7 +2,6 @@
 #include "glist.h"
 #include <assert.h>
 #include <stdlib.h>
-#include "utils.h"
 
 // sacar
 #include <stdio.h>
@@ -26,6 +25,33 @@ struct _TablaHash {
   FuncionDestructora destr;
   FuncionHash hash;
 };
+
+// Funciones auxiliares
+
+unsigned int es_primo(int n) {
+  if (n < 2) return 0;
+  if (n == 2) return 1;
+  int flag = 1;
+  // va hasta n/2 ya que no existen valores en (n/2, n) que puedan dividir a n
+  for (int k = 2 ; k < n / 2 && flag; k++) {
+    if (n % k == 0) {
+      flag = 0;
+    }
+  }
+  return flag;
+}
+
+/** Funcion para hallar el numero primo
+ * mas cercano por arriba al argumento
+ * dado. Complejidad: sus
+*/
+unsigned int primo_mas_cercano(int n) {
+  int candidato = (n % 2 == 0) ? n + 1 : n;
+  while (!es_primo(candidato)) candidato += 2 ;
+  return candidato;
+}
+
+// Funciones de TablaHash
 
 /**
  * Crea una nueva tabla hash vacia, con la capacidad dada.
@@ -72,7 +98,7 @@ void tablahash_destruir(TablaHash tabla) {
   // Destruir cada uno de los casilleros.
   for (unsigned int idx = 0; idx < tabla->capacidad; ++idx)
     if (!glist_vacia(tabla->elems[idx].datos)) {
-      printf("liberado casillero %d\n", idx);
+      //printf("liberado casillero %d\n", idx);
       glist_destruir(tabla->elems[idx].datos, tabla->destr);
       tabla->elems[idx].datos = NULL;
     }
@@ -96,14 +122,12 @@ void tablahash_insertar(TablaHash tabla, void *dato, float umbralMax) {
 
   // Calculamos la posicion del dato dado, de acuerdo a la funcion hash.
   unsigned int idx = tabla->hash(dato) % tabla->capacidad;
-  printf("Casillero: %d\n", idx);
+  //printf("Casillero: %d\n", idx);
 
   // si era un casillero aun sin usar, aumentar
   if (glist_vacia(tabla->elems[idx].datos)) {
      tabla->numElems++;
-  } else {
-    printf("colision\n");
-  }
+  } 
 
   tabla->elems[idx].datos = glist_agregar_inicio(tabla->elems[idx].datos, dato, tabla->copia);
 
@@ -121,17 +145,17 @@ void tablahash_insertar(TablaHash tabla, void *dato, float umbralMax) {
  * Retorna el dato de la tabla que coincida con el dato dado, o NULL si el dato
  * buscado no se encuentra en la tabla.
  */
-void *tablahash_buscar(TablaHash tabla, void *dato) {
+int tablahash_buscar(TablaHash tabla, void *dato) {
   // Calculamos la posicion del dato dado, de acuerdo a la funcion hash.
   unsigned idx = tabla->hash(dato) % tabla->capacidad;
 
-  void* hallado = glist_buscar(tabla->elems[idx].datos, dato, tabla->comp);
+  int hallado = glist_buscar(tabla->elems[idx].datos, dato, tabla->comp);
 
   return hallado ;
 }
 
 void tablahash_visitar_casillero(TablaHash t, unsigned int k, FuncionVisitante f) {
-  printf("Recorre casillero %d\n", k);
+  //printf("Recorre casillero %d\n", k);
   glist_recorrer(t->elems[k].datos, f);
 }
 
@@ -162,7 +186,7 @@ void tablahash_redimensionar(TablaHash tabla) {
             for (; tmp != NULL; tmp = tmp->next) {
               idx = tabla->hash(tmp->data) % nuevaCapacidad;
               nuevosElems[idx].datos = glist_agregar_inicio(nuevosElems[idx].datos, tmp->data, tabla->copia);
-              printf("%s -> en %d\n", *(char**)tmp->data, idx);
+              //printf("%s -> en %d\n", *(char**)tmp->data, idx);
             }
         }
     }

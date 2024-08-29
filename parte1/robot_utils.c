@@ -1,5 +1,11 @@
 #include "robot_utils.h"
 
+unsigned int hash(void* dato) {
+  int x = ((NodoMapa*)dato)->x;
+  int y = ((NodoMapa*)dato)->y;
+  return (y << 16) ^ x;
+}
+
 void* nodomapa_copia(void* n) {
     NodoMapa* copia = malloc(sizeof(NodoMapa)) ;
     copia->x = ((NodoMapa*)n)->x;
@@ -22,11 +28,11 @@ int nodomapa_comparar(void* refA, void* refB) {
     (a->y > b->y) ? 1 : 0;
 }
 
-
+/*
 static void imprimir_nodo(void* ref) {
     NodoMapa* nm = (NodoMapa*)ref;
     printf("(%d, %d)\tvalido: %d\n", nm->y, nm->x, nm->valido);
-}
+}*/
 
 // sacar
 char* print_dir(int d) { 
@@ -89,7 +95,7 @@ Direccion obtener_direccion(InfoRobot* ir, char** mapa, unsigned N, unsigned M, 
             1,
             d[l]};
         if (d[l] != INV && movimiento_valido(mapa, N, M, v.x, v.y) && 
-        !avl_buscar(ir->visitados, &v)) return d[l];
+        !tablahash_buscar(ir->visitados, &v)) return d[l];
         //else printf("no se pudo, probar con otra\n");
     }
     // ninguna direccion parece factible => backtrackear
@@ -107,7 +113,9 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
     printf("(%d, %d) -> (%d, %d)\n", ir->i1, ir->j1, ir->i2, ir->j2);
     unsigned int pasos = 0, movimientosMax = 50;
     ir->camino = pila_crear();
-    ir->visitados = avl_crear(nodomapa_copia, nodomapa_comparar, nodomapa_destruir);
+    int tamInicialTabla = primo_mas_cercano(abs(ir->i2 - ir->i1) * abs(ir->j2 - ir->j1) * 1.8);
+    printf("tamanio: %d\n", tamInicialTabla);
+    ir->visitados = tablahash_crear(tamInicialTabla, nodomapa_copia, nodomapa_comparar, nodomapa_destruir, hash);
     ir->rastro = malloc(sizeof(char) * movimientosMax) ;
 
     NodoMapa* b = malloc(sizeof(NodoMapa));
@@ -148,7 +156,7 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
                 
                 // mover el robot a la sig pos
                 ir->x = b->x; ir->y = b->y; b->dirOrigen = dirActual; b->valido = 1;
-                avl_insertar(ir->visitados, b);
+                tablahash_insertar(ir->visitados, b, FACTOR_CARGA_UMBRAL);
                 pila_apilar(&(ir->camino), b, nodomapa_copia);
             } 
             else { 
@@ -156,7 +164,7 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
                 //printf("Cambia de movimiento\n");
                 //getchar();
                 b->valido = 0; b->dirOrigen = dirActual;
-                avl_insertar(ir->visitados, b) ;
+                tablahash_insertar(ir->visitados, b, FACTOR_CARGA_UMBRAL);
             }
 
             /* el robot se movio hasta estar alineado en algun eje con la meta,

@@ -44,6 +44,6 @@ void glist_elim_primero(GList* refLista);
 
 void* glist_dato_primero(GList l);
 
-void* glist_buscar(GList lista, void *dato, FuncionComparadora comp);
+int glist_buscar(GList lista, void *dato, FuncionComparadora comp);
 
 #endif /* __GLIST_H__ */

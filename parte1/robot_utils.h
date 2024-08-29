@@ -5,10 +5,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <math.h>
 #include <time.h>
-#include "estr/avl.h"
 #include "estr/pila.h"
+#include "estr/tablahash.h"
 #define LONGITUD_MAX_LINEA 1600
+#define FACTOR_CARGA_UMBRAL 0.75
 
 // izquierda, derecha, arriba, abajo, invalida
 typedef enum {
@@ -22,7 +24,7 @@ typedef enum {
 typedef struct {
     int x, y; // pos actual
     int i1, i2, j1, j2; // arranca en (i1,j1) y destina a (i2,j2)
-    AVL visitados;
+    TablaHash visitados;
     Pila camino;
     char* rastro;
 } InfoRobot;
@@ -73,4 +75,4 @@ char asignar_direccion(Direccion);
 void movimiento_robot(InfoRobot*, char**, unsigned int, unsigned int);
 
 
-#endif
+#endif /* __ROBOT_UTILS_H__ */

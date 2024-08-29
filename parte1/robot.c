@@ -110,7 +110,7 @@ int main (int argc, char** argv) {
     // liberar memoria usada por las estructuras
     for (unsigned int i = 0; i < numFilas; i++) free(mapa[i]);
     free(mapa);
-    avl_destruir(infoRobot.visitados);
+    tablahash_destruir(infoRobot.visitados);
     pila_destruir(infoRobot.camino, nodomapa_destruir) ;
     free(infoRobot.rastro);
     return 0;

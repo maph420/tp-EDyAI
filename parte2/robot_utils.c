@@ -36,7 +36,7 @@ int heuristica(Nodo a, Nodo b) {
 
 // Implementación de la función key
 Key obt_key(State s, State start) {
-    int min_g_rhs = (s.g < s.rhs) ? s.g : s.rhs;
+    int min_g_rhs =  (s.g < s.rhs) ? s.g : s.rhs;
     return (Key){suma_inf(min_g_rhs, heuristica(start.nodo, s.nodo)), min_g_rhs};
 } 
 
@@ -45,8 +45,14 @@ int g_val(InfoRobot* ir, Nodo n) {
 }
 
 void imprime_nodo(void* refNodo) {
+    fprintf(stderr,"impr nodo\n");
+    if (refNodo == NULL)
+        fprintf(stderr,"es null\n");
+    else {
+    // aca segfault
     EstadoConClave sk = *(EstadoConClave*)refNodo;
     fprintf(stderr, "(%d, %d); key: (%d, %d)\n", sk.est.nodo.x, sk.est.nodo.y, sk.key.id_1, sk.key.id_2);
+    }
 }
 
 int comp_keys(Key kA, Key kB) {
@@ -105,7 +111,7 @@ void impr_mapa(InfoRobot* ir) {
 void inicializa(InfoRobot* ir) {
     // TODO: ver como guardar el rastro del robot, ahora queda medio hardcodeado
     ir->rastro = malloc(sizeof(char) * 150);
-    ir->cp = bheap_crear(ir->N * ir->M, compara_estado_con_clave);
+    ir->cp = bheap_crear(ir->N * ir->M * 100, compara_estado_con_clave);
     ir->mapaInterno = malloc(sizeof(State*) * ir->N);
     // ubicar al robot en la pos inicial dada
     ir->x = ir->i1; ir->y = ir->j1;
@@ -254,7 +260,6 @@ void ComputeShortestPath(InfoRobot* ir) {
         } 
         else {
             fprintf(stderr, "No es sobreconsistente (g <= rhs), poner g = inf\n");
-            //ir->mapaInterno[u.Nodo.x][u.Nodo.y].g = infty();
             u.g = infty();
            
             UpdateVertex(u, ir);

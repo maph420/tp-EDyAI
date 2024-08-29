@@ -72,4 +72,4 @@ BHeap bheap_eliminar_minimo(BHeap);
  */
 void bheap_buscar_eliminar(BHeap, void*);
 
-#endif
+#endif /* __BHEAP_H__ */
