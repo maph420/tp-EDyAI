@@ -200,11 +200,16 @@ void UpdateVertex(State u, InfoRobot* ir) {
 
         fprintf(stderr, "rhs := %d\n", minVal);
         sk->key = obt_key(ir->mapaInterno[u.nodo.x][u.nodo.y], ir->mapaInterno[ir->x][ir->y]);
+        fprintf(stderr, "obtuvo la key\n");
         free(sucs);
     } 
-
-    bheap_buscar_eliminar(ir->cp, sk);
-
+    fprintf(stderr, "ejecuta\n");
+    if (!bheap_es_vacio(ir->cp)) {
+        fprintf(stderr, "no es vacio\n");
+        bheap_recorrer(ir->cp, imprime_nodo);
+        bheap_buscar_eliminar(ir->cp, sk);
+    }
+    fprintf(stderr, "busco y elimino\n");
     // si el nodo no es consistente, agregar al heap
     if (ir->mapaInterno[u.nodo.x][u.nodo.y].rhs != 
     ir->mapaInterno[u.nodo.x][u.nodo.y].g) {

@@ -2,6 +2,18 @@
 #include <stdlib.h>
 #include "bheap.h"
 
+void bheap_recorrer(BHeap b, FuncionVisitante f) {
+    if (b->ultimo == 0) {
+        return;
+    }
+    fprintf(stderr, "test1:\n");
+    if(b->ultimo >1)
+        f(b->arr[1]);
+    fprintf(stderr, " sjdkfklsjd\n");
+    for (int i = 1; i < b->ultimo; i++)
+        f(b->arr[i]);
+    fprintf(stderr, "test2\n");
+}
 
 BHeap bheap_crear(int capacidad, FuncionComparadora cmp) {
     if (capacidad == 0) return NULL;
@@ -95,28 +107,33 @@ BHeap bheap_eliminar_minimo(BHeap bheap) {
 }
 
 void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
-
-    int pos, hallado = 0;
+    int pos;
+    int hallado = 0;
 
     // Buscar el elemento en el arreglo
-    for (pos = 0; pos < bheap->ultimo && !hallado; pos++) {
+    for (pos = 0; pos < bheap->ultimo; pos++) {
         if ((bheap->comp(bheap->arr[pos], elemento)) == 2) {
             hallado = 1;
-            --pos;
+            break;  // Encontrado, salir del bucle
         }
     }
+
     // Si el elemento no fue encontrado, no hacer nada
     if (!hallado) return;
-    
-    /* Eliminar el elemento. Se intercambia con el ultimo y se restaura la
-     propiedad de heap */
+
+    // Intercambiar el elemento con el último y reducir el tamaño del heap
     void* temp = bheap->arr[pos];
     bheap->arr[pos] = bheap->arr[bheap->ultimo - 1];
     bheap->arr[bheap->ultimo - 1] = temp;
     bheap->ultimo--;
 
-    // Restaurar la propiedad de heap hacia abajo en la pos donde estaba el elemento.
-    hundir(bheap, pos, bheap->ultimo);  
-    // Restaurar la propiedad hacia arriba
-    if (pos > 0) flotar(bheap, pos);
+    // Restaurar la propiedad del heap solo si se eliminó algo
+    if (pos < bheap->ultimo) { 
+        // Comparar el elemento con su padre para decidir si flotar o hundir
+        if (pos > 0 && bheap->comp(bheap->arr[pos], bheap->arr[(pos - 1) / 2]) < 0) {
+            flotar(bheap, pos);
+        } else {
+            hundir(bheap, pos, bheap->ultimo);
+        }
+    }
 }

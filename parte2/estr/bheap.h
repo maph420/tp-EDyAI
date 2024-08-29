@@ -15,6 +15,8 @@ FuncionDestructora destroy;
 FuncionCopiadora copy;
 } *BHeap;
 
+void bheap_recorrer(BHeap b, FuncionVisitante f);
+
 /*
     Implementacion de min heap
 */
