@@ -84,6 +84,21 @@ EstadoConClave* crea_estado_con_clave(Nodo n, Key k, int g, int rhs, int estadoC
     return sk;
 }
 
+void* copia_est_con_clave(void* s) {
+    EstadoConClave* sk = malloc(sizeof(EstadoConClave));
+    sk->est.nodo = (Nodo){((EstadoConClave*)s)->est.nodo.x, ((EstadoConClave*)s)->est.nodo.y};
+    sk->key = (Key){((EstadoConClave*)s)->key.id_1,((EstadoConClave*)s)->key.id_2};
+    sk->est.g = ((EstadoConClave*)s)->est.g;
+    sk->est.rhs = ((EstadoConClave*)s)->est.rhs;
+    sk->est.tipoCasilla = ((EstadoConClave*)s)->est.tipoCasilla;
+    return sk;
+}
+
+void destruir_est_con_clave(void* s) {
+    free((EstadoConClave*)s);
+}
+
+
 // El costo entre dos estados es infinito si alguno es un obstaculo 
 // (imposible moverse entre ellos). En otro caso, es 1.
 int costo_movimiento(InfoRobot* ir, State s1, State s2) {
@@ -111,7 +126,7 @@ void impr_mapa(InfoRobot* ir) {
 void inicializa(InfoRobot* ir) {
     // TODO: ver como guardar el rastro del robot, ahora queda medio hardcodeado
     ir->rastro = malloc(sizeof(char) * 150);
-    ir->cp = bheap_crear(ir->N * ir->M * 100, compara_estado_con_clave);
+    ir->cp = bheap_crear(ir->N * ir->M, compara_estado_con_clave, destruir_est_con_clave, copia_est_con_clave);
     ir->mapaInterno = malloc(sizeof(State*) * ir->N);
     // ubicar al robot en la pos inicial dada
     ir->x = ir->i1; ir->y = ir->j1;
@@ -212,7 +227,7 @@ void UpdateVertex(State u, InfoRobot* ir) {
     fprintf(stderr, "ejecuta\n");
     if (!bheap_es_vacio(ir->cp)) {
         fprintf(stderr, "no es vacio\n");
-        bheap_recorrer(ir->cp, imprime_nodo);
+       // bheap_recorrer(ir->cp, imprime_nodo);
         bheap_buscar_eliminar(ir->cp, sk);
     }
     fprintf(stderr, "busco y elimino\n");

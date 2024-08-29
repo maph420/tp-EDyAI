@@ -15,11 +15,13 @@ void bheap_recorrer(BHeap b, FuncionVisitante f) {
     fprintf(stderr, "test2\n");
 }
 
-BHeap bheap_crear(int capacidad, FuncionComparadora cmp) {
+BHeap bheap_crear(int capacidad, FuncionComparadora cmp, FuncionDestructora d, FuncionCopiadora c) {
     if (capacidad == 0) return NULL;
     BHeap heap = malloc(sizeof(struct _BHeap));
     heap->arr = malloc(sizeof(void*) * capacidad);
     heap->comp = cmp;
+    heap->destroy = d;
+    heap->copy = c;
     heap->capacidad = capacidad;  
     heap->ultimo = 0;
     return heap; 
@@ -28,6 +30,10 @@ BHeap bheap_crear(int capacidad, FuncionComparadora cmp) {
 // arreglar
 void bheap_destruir(BHeap bheap) {
     if (bheap == NULL) return;
+    // -ultimo o capacidad?
+    for (int i = 0; i < bheap->ultimo; i++) {
+        bheap->destroy(bheap->arr[i]);
+    }
     free(bheap->arr);
     free(bheap);
 }
@@ -83,7 +89,7 @@ BHeap bheap_insertar(BHeap bheap, void* elem) {
         bheap->arr = realloc(bheap->arr, bheap->capacidad * sizeof(void *));
     }
     // Insercion. El ultimo elem hasta ese momento estaba en la pos bheap->ultimo -1
-    bheap->arr[bheap->ultimo] = elem;
+    bheap->arr[bheap->ultimo] = bheap->copy(elem);
     flotar(bheap, bheap->ultimo);
     bheap->ultimo++;
     return bheap;
@@ -96,6 +102,7 @@ BHeap bheap_eliminar_minimo(BHeap bheap) {
         return bheap;
     }
     // Reemplazar la raíz del heap con el último elemento del arreglo
+    bheap->destroy(bheap->arr[0]);
     bheap->arr[0] = bheap->arr[bheap->ultimo - 1];
     bheap->ultimo--;
 
@@ -122,9 +129,11 @@ void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
     if (!hallado) return;
 
     // Intercambiar el elemento con el último y reducir el tamaño del heap
+    // chequear
     void* temp = bheap->arr[pos];
     bheap->arr[pos] = bheap->arr[bheap->ultimo - 1];
     bheap->arr[bheap->ultimo - 1] = temp;
+    bheap->destroy(bheap->arr[bheap->ultimo - 1]);
     bheap->ultimo--;
 
     // Restaurar la propiedad del heap solo si se eliminó algo

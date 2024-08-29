@@ -15,8 +15,6 @@ FuncionDestructora destroy;
 FuncionCopiadora copy;
 } *BHeap;
 
-void bheap_recorrer(BHeap b, FuncionVisitante f);
-
 /*
     Implementacion de min heap
 */
@@ -24,7 +22,7 @@ void bheap_recorrer(BHeap b, FuncionVisitante f);
 /**
  * Crea un heap de una capacidad dada
  */
-BHeap bheap_crear(int, FuncionComparadora);
+BHeap bheap_crear(int, FuncionComparadora, FuncionDestructora, FuncionCopiadora);
 
 /**
  *  Destruye el heap (funcion destructora?)
@@ -71,5 +69,8 @@ BHeap bheap_eliminar_minimo(BHeap);
  * retornar 2 para saber que dos nodos son iguales (segun el criterio usado).
  */
 void bheap_buscar_eliminar(BHeap, void*);
+
+// sacar
+void bheap_recorrer(BHeap b, FuncionVisitante f);
 
 #endif /* __BHEAP_H__ */

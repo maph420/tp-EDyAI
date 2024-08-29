@@ -102,5 +102,6 @@ int main() {
     free(ir->mapaInterno);
     bheap_destruir(ir->cp);
     free(ir->rastro);
+    free(ir);
     return 0;
 }
