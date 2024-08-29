@@ -99,6 +99,8 @@ int main() {
     fprintf(stderr, "Camino: %s\n", ir->rastro);
     
     // liberar memoria
+    for (int i=0; i < ir->N; i++) free(ir->mapaInterno[i]);
+    free(posiblesSiguientes);
     free(ir->mapaInterno);
     bheap_destruir(ir->cp);
     free(ir->rastro);

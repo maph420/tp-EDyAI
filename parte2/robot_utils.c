@@ -144,18 +144,16 @@ void inicializa(InfoRobot* ir) {
     ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VISITADO;
     ir->mapaInterno[ir->i2][ir->j2].rhs = 0;
 
-    EstadoConClave* estadoMeta = crea_estado_con_clave(ir->mapaInterno[ir->i2][ir->j2].nodo, 
-    obt_key(ir->mapaInterno[ir->i2][ir->j2], ir->mapaInterno[ir->i1][ir->j1]), 
-    ir->mapaInterno[ir->i2][ir->j2].g, ir->mapaInterno[ir->i2][ir->j2].rhs,
-    ir->mapaInterno[ir->i2][ir->j2].tipoCasilla);
-
-    ir->cp = bheap_insertar(ir->cp, estadoMeta);
+    EstadoConClave estadoMeta = {ir->mapaInterno[ir->i2][ir->j2], 
+    obt_key(ir->mapaInterno[ir->i2][ir->j2], ir->mapaInterno[ir->i1][ir->j1])};
+    
+    ir->cp = bheap_insertar(ir->cp, &estadoMeta);
 }
 
 // todo: cambiar el argumento State por Nodo (con el Nodo alcanza)
 State* obt_ady(InfoRobot* ir, State curr, int* adyCount) {
     State* adyacentes = malloc(sizeof(State) * 4);
-
+    // malloc en cada vuelta
     if (curr.nodo.y < ir-> M - 1) {
         adyacentes[*adyCount].nodo.x = curr.nodo.x;
         adyacentes[*adyCount].nodo.y = curr.nodo.y + 1;
@@ -190,11 +188,7 @@ State* obt_ady(InfoRobot* ir, State curr, int* adyCount) {
 void UpdateVertex(State u, InfoRobot* ir) {
     fprintf(stderr, "updatevertex: %d,%d\n", u.nodo.x, u.nodo.y);
 
-    Key clave = obt_key(u, ir->mapaInterno[ir->x][ir->y]);
-    EstadoConClave* sk = crea_estado_con_clave(u.nodo, 
-    clave, ir->mapaInterno[u.nodo.x][u.nodo.y].g,
-    ir->mapaInterno[u.nodo.x][u.nodo.y].rhs, 
-    ir->mapaInterno[u.nodo.x][u.nodo.y].tipoCasilla);
+    EstadoConClave sk = {u, obt_key(u, ir->mapaInterno[ir->x][ir->y])};
 
     // (u_x,u_y) != (i2,j2)
     if (u.nodo.x != ir->i2 || u.nodo.y != ir->j2) {
@@ -215,12 +209,11 @@ void UpdateVertex(State u, InfoRobot* ir) {
         }
         // siguiente nodo a recorrer
 
-
         ir->mapaInterno[u.nodo.x][u.nodo.y].rhs = minVal;
         ir->mapaInterno[u.nodo.x][u.nodo.y].g = u.g;
 
         fprintf(stderr, "rhs := %d\n", minVal);
-        sk->key = obt_key(ir->mapaInterno[u.nodo.x][u.nodo.y], ir->mapaInterno[ir->x][ir->y]);
+        sk.key = obt_key(ir->mapaInterno[u.nodo.x][u.nodo.y], ir->mapaInterno[ir->x][ir->y]);
         fprintf(stderr, "obtuvo la key\n");
         free(sucs);
     } 
@@ -228,13 +221,13 @@ void UpdateVertex(State u, InfoRobot* ir) {
     if (!bheap_es_vacio(ir->cp)) {
         fprintf(stderr, "no es vacio\n");
        // bheap_recorrer(ir->cp, imprime_nodo);
-        bheap_buscar_eliminar(ir->cp, sk);
+        bheap_buscar_eliminar(ir->cp, &sk);
     }
     fprintf(stderr, "busco y elimino\n");
     // si el nodo no es consistente, agregar al heap
     if (ir->mapaInterno[u.nodo.x][u.nodo.y].rhs != 
     ir->mapaInterno[u.nodo.x][u.nodo.y].g) {
-        ir->cp = bheap_insertar(ir->cp, sk);
+        ir->cp = bheap_insertar(ir->cp, &sk);
     }
 
 }
@@ -260,7 +253,6 @@ void ComputeShortestPath(InfoRobot* ir) {
         // popear el minimo elemento de la cola
         State u = *(State*)bheap_minimo(ir->cp);
         ir->cp = bheap_eliminar_minimo(ir->cp);
-      
     
 
         if (ir->mapaInterno[u.nodo.x][u.nodo.y].g > ir->mapaInterno[u.nodo.x][u.nodo.y].rhs) {
@@ -272,6 +264,7 @@ void ComputeShortestPath(InfoRobot* ir) {
             for (int h = 0; h < cantPred; h++) {
                 UpdateVertex(pred[h], ir);
             }
+            free(pred);
         } 
         else {
             fprintf(stderr, "No es sobreconsistente (g <= rhs), poner g = inf\n");
@@ -283,7 +276,7 @@ void ComputeShortestPath(InfoRobot* ir) {
             for (int h = 0; h < cantPred; h++) {
                 UpdateVertex(pred[h], ir);
             }
-            
+            free(pred);
     }
 }
 fprintf(stderr, "termina de computar\n");
@@ -318,6 +311,7 @@ void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy, int* o,
             for (int h = 0; h < contAdyacentes; h++) {
                 UpdateVertex(ady[h], ir);
             }
+            free(ady);
             UpdateVertex(ir->mapaInterno[indXObstaculo][indYObstaculo], ir);
             ir->mapaInterno[ir->x][ir->y].nodo.x = ir->x;
             ir->mapaInterno[ir->x][ir->y].nodo.y = ir->y;
