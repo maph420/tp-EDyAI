@@ -40,7 +40,7 @@ GList glist_agregar_inicio(GList lista, void *dato, FuncionCopia copiar);
  */
 void glist_recorrer(GList lista, FuncionVisitante visitar);
 
-void glist_elim_primero(GList* refLista);
+void glist_elim_primero(GList* refLista, FuncionDestructora destroy);
 
 void* glist_dato_primero(GList l);
 

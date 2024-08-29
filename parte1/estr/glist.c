@@ -20,8 +20,6 @@ void glist_destruir(GList list, FuncionDestructora destroy) {
   while (list != NULL) {
     nodeToDelete = list;
     list = list->next;
-    // como los datos ya NO SON necesariamente enteros, podrian ser tranquilamente estructuras etc etc... que
-    // tienen que ser liberadas en caso que se haya asignado memoria en ellas
     destroy(nodeToDelete->data);
     free(nodeToDelete);
   }
@@ -48,9 +46,10 @@ void glist_recorrer(GList list, FuncionVisitante visit) {
     visit(node->data);
 }
 
-void glist_elim_primero(GList* refLista) {
+void glist_elim_primero(GList* refLista, FuncionDestructora destroy) {
   GList tmp = *refLista;
   *refLista = tmp->next;
+  destroy(tmp->data);
   free(tmp);
 }
 

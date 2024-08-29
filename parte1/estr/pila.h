@@ -41,7 +41,7 @@ void pila_apilar(Pila* p, void* dato, FuncionCopia c);
 /**
 elimina el elemento que se encuentra en el tope de la pila
 **/
-void pila_desapilar(Pila* p);
+void pila_desapilar(Pila* p, FuncionDestructora destroy);
 
 /**
 imprime en orden los elementos de la pila

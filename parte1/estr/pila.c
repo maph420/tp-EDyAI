@@ -25,10 +25,8 @@ void pila_apilar(Pila* pilaRef, void* dato, FuncionCopia copiar) {
     *pilaRef = (Pila)glist_agregar_inicio((GList)*pilaRef, dato, copiar);
 }
 
-// interpretacion: simplemente queda el lugar libre, NO reduce
-// el tam de la pila
-void pila_desapilar(Pila* p) {
-    glist_elim_primero((GList*)p);
+void pila_desapilar(Pila* p, FuncionDestructora destroy) {
+    glist_elim_primero((GList*)p, destroy);
 }
 
 void pila_imprimir(Pila p, FuncionVisitante visit) {

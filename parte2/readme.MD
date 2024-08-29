@@ -2,7 +2,7 @@
 
 Compilar:
 
->  gcc robot.c robot_utils.c estr/heap.c -lm -Wall -Werror -std=c99 -o robot
+>  gcc robot.c robot_utils.c estr/bheap.c -lm -Wall -Werror -std=c99 -o robot
 
 Correr parte 2:
 

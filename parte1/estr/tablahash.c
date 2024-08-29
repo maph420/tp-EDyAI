@@ -182,12 +182,14 @@ void tablahash_redimensionar(TablaHash tabla) {
     for (unsigned int i = 0; i < tabla->capacidad; ++i) {
         if (! glist_vacia(tabla->elems[i].datos)) {
             GList tmp = tabla->elems[i].datos;
+            // esta faltando liberar los elems de la lista anterior
             unsigned int idx;
-            for (; tmp != NULL; tmp = tmp->next) {
+            while (tmp != NULL) {
               idx = tabla->hash(tmp->data) % nuevaCapacidad;
               nuevosElems[idx].datos = glist_agregar_inicio(nuevosElems[idx].datos, tmp->data, tabla->copia);
-              //printf("%s -> en %d\n", *(char**)tmp->data, idx);
+              tmp = tmp->next;
             }
+          glist_destruir(tabla->elems[i].datos, tabla->destr);
         }
     }
     

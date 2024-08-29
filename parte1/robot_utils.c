@@ -1,5 +1,13 @@
 #include "robot_utils.h"
 
+
+/* Funcion hash usada para la tabla. 
+Aplica un shift hacia la izquierda en 16 bits.
+Al resultado de eso en binario, se le aplica un XOR con el valor x binario, 
+obteniendo asi la clave del dato (x,y). Se usa un XOR y no por ejemplo AND 
+ya que la tabla de verdad del XOR distribuye las probabilidades de 0/1 de 
+manera mas uniforme (mientras que en un AND la aparicion de un 0 es la mas 
+probable) */
 unsigned int hash(void* dato) {
   int x = ((NodoMapa*)dato)->x;
   int y = ((NodoMapa*)dato)->y;
@@ -28,11 +36,10 @@ int nodomapa_comparar(void* refA, void* refB) {
     (a->y > b->y) ? 1 : 0;
 }
 
-/*
 static void imprimir_nodo(void* ref) {
     NodoMapa* nm = (NodoMapa*)ref;
     printf("(%d, %d)\tvalido: %d\n", nm->y, nm->x, nm->valido);
-}*/
+}
 
 // sacar
 char* print_dir(int d) { 
@@ -71,24 +78,21 @@ int sig_nodo_y(Direccion d, int y) {
 }
 
 // se asume que el robot se encuentra parado en una posicion valida
-Direccion obtener_direccion(InfoRobot* ir, char** mapa, unsigned N, unsigned M, Direccion dOrigen) {
+Direccion obtener_direccion(InfoRobot* ir, char** mapa, unsigned N, unsigned M, Direccion dOrigen, Direccion* d) {
     NodoMapa v;
-    // creo en cada vuelta esto
-    Direccion d[4];
     // cuando estoy alineado con la meta en alguno de los ejes, solo va a haber
-    // 1 direccion preferida (que sea elejible, es otro tema)
+    // 1 direccion "preferida" por recorrer
     int c = 2, r = aleatorio();
     d[r] = (ir->y == ir->j2) ? INV : (ir->y < ir->j2) ? ABA : ARR;
     d[!r] = (ir->x == ir->i2) ? INV : (ir->x < ir->i2) ? DER : IZQ;
     // reconocer la otra direccion, la que no es candidata, pero tampoco es la menos deseable
-    for (int h = 0; h < 4; h++) {
-        if ((Direccion)h != d[0] && (Direccion)h != d[1] && (Direccion)h != opuesta(dOrigen)) {
-            d[c++] = (Direccion)h;
+    for (Direccion h = IZQ; h <= ABA; h++) {
+        if (h != d[0] && h != d[1] && h != opuesta(dOrigen)) {
+            d[c++] = h;
         }
     }  
 
     for (int l = 0; l < c; l++) {
-        //printf("Prueba direccion: %s\n", print_dir(d[l]));
         v = (NodoMapa){
             sig_nodo_x(d[l], ir->x),
             sig_nodo_y(d[l], ir->y),
@@ -124,66 +128,44 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
 
     ir->x = ir->i1; ir->y = ir->j1;
     Direccion dirActual = INV;
+    Direccion* direcciones = malloc(sizeof(Direccion) * 5);
 
     while ((ir->x != ir->i2) || (ir->y != ir->j2)) {
 
         //printf("Robot: (%d, %d)\n", ir->y, ir->x);
+        //getchar();
         
         // indica al robot el proximo movimiento
        // printf("Calcular direccion\n");
        
-        dirActual = obtener_direccion(ir, mapa, N, M, dirActual);
-        int alcanzoMeta = 0, porChocarse = 0;
+        dirActual = obtener_direccion(ir, mapa, N, M, dirActual, direcciones);
 
         /* mientras el robot pueda moverse en una misma direccion que lo acerque a la
-        meta, lo hace */
-        while (!alcanzoMeta && dirActual != INV && !porChocarse) { 
+        meta, lo hace */ 
             
-            //printf("Robot: (%d, %d)\n", ir->y, ir->x);
-            //printf("movimiento -> %s\n", print_dir(dirActual));
-            //getchar();
-
-            b->x = sig_nodo_x(dirActual, ir->x);
-            b->y = sig_nodo_y(dirActual, ir->y);
+        b->x = sig_nodo_x(dirActual, ir->x);
+        b->y = sig_nodo_y(dirActual, ir->y);
             
-            if (movimiento_valido(mapa, N, M, b->x, b->y)) {
+        if (dirActual != INV && movimiento_valido(mapa, N, M, b->x, b->y)) {
                 
-                if (pasos >= movimientosMax) {
-                    movimientosMax *= 2;
-                    ir->rastro = realloc(ir->rastro, sizeof(char) * movimientosMax);
-                }
-                ir->rastro[pasos++] = asignar_direccion(dirActual);
+            if (pasos >= movimientosMax) {
+                movimientosMax *= 2;
+                ir->rastro = realloc(ir->rastro, sizeof(char) * movimientosMax);
+            }
+            ir->rastro[pasos++] = asignar_direccion(dirActual);
                 
-                // mover el robot a la sig pos
-                ir->x = b->x; ir->y = b->y; b->dirOrigen = dirActual; b->valido = 1;
-                tablahash_insertar(ir->visitados, b, FACTOR_CARGA_UMBRAL);
-                pila_apilar(&(ir->camino), b, nodomapa_copia);
-            } 
-            else { 
-                porChocarse = 1;
+            // mover el robot a la sig pos
+            ir->x = b->x; ir->y = b->y; b->dirOrigen = dirActual; b->valido = 1;
+            tablahash_insertar(ir->visitados, b, FACTOR_CARGA_UMBRAL);
+            pila_apilar(&(ir->camino), b, nodomapa_copia);
+        } 
+        else { 
                 //printf("Cambia de movimiento\n");
                 //getchar();
                 b->valido = 0; b->dirOrigen = dirActual;
                 tablahash_insertar(ir->visitados, b, FACTOR_CARGA_UMBRAL);
             }
 
-            /* el robot se movio hasta estar alineado en algun eje con la meta,
-            dejar de ir en la misma direccion, por si hace falta recalcular la
-            direccion que esta tomando */
-       
-            if (ir->x == ir->i2 && ir->y == ir->j2)
-                alcanzoMeta = 1;
-
-            else if (ir->x == ir->i2 || ir->y == ir->j2) {
-                //printf("alineado con alguno de los ejes\n");
-                dirActual = obtener_direccion(ir, mapa, N, M, dirActual);
-                //printf("probar ahora: %s\n", print_dir(dirActual));
-            } 
-            
-        }
-        //printf("sale del while, alcanzometa=%d, porchocarse:%d, diractual: %s\n",
-        //alcanzoMeta, porChocarse, print_dir(dirActual));
-        //porChocarse = 0;
          // vamos al anterior
         if (dirActual == INV) {
             
@@ -191,7 +173,7 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
             //pila_imprimir(ir->camino, imprimir_nodo);
             //printf("BACKTRACK: retroceder un lugar\n");
 
-            pila_desapilar(&(ir->camino));
+            pila_desapilar(&(ir->camino), nodomapa_destruir);
             NodoMapa* ant = (NodoMapa*)pila_tope(ir->camino);
             // chequear
             Direccion dirVuelta = (ir->y == ant->y) ? (ant->x < ir->x) ? IZQ : DER : 
@@ -212,6 +194,16 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
             ir->rastro[pasos++] = asignar_direccion(dirVuelta);
         }
         }
+        free(direcciones);
         free(b);
         ir->rastro[pasos] = '\0' ;
+        printf("termino\n");
+
+        // descomentar para ver tablahash
+        /*int nelems = tablahash_nelems(ir->visitados);
+        printf("tabla hash (nelems: %d)\n", nelems);
+        for (int i = 0; i < nelems ; i++) {
+            tablahash_visitar_casillero(ir->visitados, i, imprimir_nodo);
+        }*/
+
         }

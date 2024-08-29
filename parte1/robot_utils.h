@@ -68,7 +68,7 @@ int sig_nodo_y(Direccion, int);
 
 Direccion opuesta(Direccion);
 
-Direccion obtener_direccion(InfoRobot*, char**, unsigned, unsigned, Direccion);
+Direccion obtener_direccion(InfoRobot*, char**, unsigned, unsigned, Direccion, Direccion*);
 
 char asignar_direccion(Direccion);
 

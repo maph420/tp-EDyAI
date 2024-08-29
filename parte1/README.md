@@ -10,7 +10,7 @@ Approach 2: similar al 1 pero tratar de mejorar eficiencia eligiendo direccion c
 
 Compilar y correr parte 1:
 
-> gcc robot.c robot_utils.c estr/avl.c estr/pila.c estr/glist.c -Wall -Wextra -std=c99 -g -o parte1
+> gcc robot.c robot_utils.c estr/pila.c estr/glist.c estr/tablahash.c -Wall -Wextra -std=c99 -g -o parte1
 
 > ./parte1 ejemplos/ejemplo8.txt
 
