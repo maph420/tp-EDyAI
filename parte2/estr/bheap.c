@@ -4,18 +4,13 @@
 
 void bheap_recorrer(BHeap b, FuncionVisitante f) {
     
-    fprintf(stderr, "entra\n");
+    //fprintf(stderr, "entra\n");
     if (b->ultimo == 0) {
-        fprintf(stderr, "sale de aca\n");
+        fprintf(stderr, "bheap ta vacio\n");
         return;
     }
-    for (int i=0; i < 40; i++) {
-        if (b->ultimo > i)
-            f(b->arr[i]);
-    }
-    fprintf(stderr, "sale de aca\n");
-    //for (int i = 0; i < b->ultimo; i++)
-      //  f(b->arr[i]);
+    for (int i = 0; i < b->ultimo; i++)
+        f(b->arr[i]);
 }
 
 BHeap bheap_crear(int capacidad, FuncionComparadora cmp, FuncionDestructora d, FuncionCopiadora c) {
@@ -33,7 +28,7 @@ BHeap bheap_crear(int capacidad, FuncionComparadora cmp, FuncionDestructora d, F
 // arreglar
 void bheap_destruir(BHeap bheap) {
     if (bheap == NULL) return;
-    // -ultimo o capacidad?
+    
     for (int i = 0; i < bheap->ultimo; i++) {
         bheap->destroy(bheap->arr[i]);
     }
@@ -119,6 +114,8 @@ BHeap bheap_eliminar_minimo(BHeap bheap) {
 void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
     int pos;
     int hallado = 0;
+
+    if (bheap->ultimo <= 0) return;
 
     // Buscar el elemento en el arreglo
     for (pos = 0; pos < bheap->ultimo && !hallado; pos++) {

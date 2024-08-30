@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "robot_utils.h"
 
 void obtener_distancias(int* d, InfoRobot* ir) {
@@ -38,50 +39,56 @@ int main() {
     inicializa(ir);
     ComputeShortestPath(ir);
     
-    int distancias[4], c = 0, pasos = 0;
-    State sig_est, otro_posible;
+    int distancias[4], pasos = 0, movMax = 150;
+    State siguiente, otro_posible;
+    // ? probablemente lo saque
     otro_posible.nodo = (Nodo){-1, -1};
     State* posiblesSiguientes = malloc(sizeof(State) * 2);
-    int cantPosibles = 0, binAleatorio;
+    int cantPosibles = 0, a;
 
     // while s_start != s_goal
     while(ir->x != ir->i2 || ir->y != ir->j2) {
         fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
-        fprintf(stderr, "ciclo %d\n", c);
-        fprintf(stderr, "heap:"); bheap_recorrer(ir->cp, imprime_nodo);
+        fprintf(stderr, "heap:\n"); bheap_recorrer(ir->cp, imprime_nodo);
     
-
+        // podrian haber dos nodos con el mismo g-valor para que el robot se mueva
         cantPosibles = siguiente_movimiento(ir, posiblesSiguientes);
         
-        fprintf(stderr, "heap:"); bheap_recorrer(ir->cp, imprime_nodo);
+        fprintf(stderr, "heap:"); 
+        bheap_recorrer(ir->cp, imprime_nodo);
 
-        if (cantPosibles == 2 
-        && ir->mapaInterno[posiblesSiguientes[0].nodo.x][posiblesSiguientes[0].nodo.y].tipoCasilla == VALIDO
-        && ir->mapaInterno[posiblesSiguientes[1].nodo.x][posiblesSiguientes[1].nodo.y].tipoCasilla == VALIDO
-        ) {
-            binAleatorio = aleatorio();
-            sig_est = posiblesSiguientes[binAleatorio];
-            otro_posible = posiblesSiguientes[!binAleatorio];
+        if (cantPosibles == 2) {
+            if (ir->mapaInterno[posiblesSiguientes[0].nodo.x][posiblesSiguientes[0].nodo.y].tipoCasilla == VALIDO
+            && ir->mapaInterno[posiblesSiguientes[1].nodo.x][posiblesSiguientes[1].nodo.y].tipoCasilla == VALIDO) {
+                a = aleatorio();
+                siguiente = posiblesSiguientes[a];
+                otro_posible = posiblesSiguientes[!a];
+            }
+            else if (ir->mapaInterno[posiblesSiguientes[0].nodo.x][posiblesSiguientes[0].nodo.y].tipoCasilla 
+        != VALIDO) {
+                siguiente = posiblesSiguientes[1];
         } else {
-            sig_est = (ir->mapaInterno[posiblesSiguientes[0].nodo.x][posiblesSiguientes[0].nodo.y].tipoCasilla 
-        != VALIDO) && cantPosibles == 2 ? posiblesSiguientes[1] : posiblesSiguientes[0];
+                siguiente = posiblesSiguientes[0];
+            }
         }
-        if (cantPosibles == 2 && ir->mapaInterno[posiblesSiguientes[1].nodo.x][posiblesSiguientes[1].nodo.y].tipoCasilla
-        == VISITADO) {
-            sig_est = posiblesSiguientes[0];
-        }
+        else siguiente = posiblesSiguientes[0];
 
-        fprintf(stderr, "finalmente se elige %d,%d\n", sig_est.nodo.x, sig_est.nodo.y);
+        fprintf(stderr, "finalmente se elige %d,%d\n", siguiente.nodo.x, siguiente.nodo.y);
     
-       if (ir->mapaInterno[sig_est.nodo.x][sig_est.nodo.y].tipoCasilla == VALIDO ||
-       ir->mapaInterno[sig_est.nodo.x][sig_est.nodo.y].tipoCasilla == VISITADO) {
+       if (ir->mapaInterno[siguiente.nodo.x][siguiente.nodo.y].tipoCasilla == VALIDO ||
+       ir->mapaInterno[siguiente.nodo.x][siguiente.nodo.y].tipoCasilla == VISITADO) {
+            
             
             fprintf(stderr,"siguiente es valido\n");
-            pasos = mover_robot(ir, sig_est.nodo, pasos);  
-            ir->mapaInterno[sig_est.nodo.x][sig_est.nodo.y].tipoCasilla = VISITADO;
+            if (pasos >= movMax) {
+                movMax *= 2;
+                ir->rastro = realloc(ir->rastro, sizeof(char) * movMax);
+            }
+            pasos = mover_robot(ir, siguiente.nodo, pasos);  
+            ir->mapaInterno[siguiente.nodo.x][siguiente.nodo.y].tipoCasilla = VISITADO;
         } 
         
-        else if (ir->mapaInterno[sig_est.nodo.x][sig_est.nodo.y].tipoCasilla == DESCONOCIDO) {
+        else if (ir->mapaInterno[siguiente.nodo.x][siguiente.nodo.y].tipoCasilla == DESCONOCIDO) {
 
             fprintf(stderr,"siguiente es desconocido\n");
             fprintf(stderr, "*Tirar sensor\n");
@@ -92,7 +99,7 @@ int main() {
             actualizar_mapa_interno(ir, distancias, (cantPosibles == 2 && otro_posible.nodo.x != -1));
         }
         // evita loop infinito en caso de algun error
-        //if (c++ >= 1450) break; 
+        if (strlen(ir->rastro) > 450) break; 
     }   
     ir->rastro[pasos] = '\0';
 

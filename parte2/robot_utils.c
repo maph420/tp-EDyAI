@@ -11,7 +11,7 @@ int aleatorio() {
 }
 
 int infty() {
-    return 500;
+    return 5000;
 }
 
 // suma en base al infinito designado
@@ -49,7 +49,6 @@ void imprime_nodo(void* refNodo) {
     if (refNodo == NULL)
         fprintf(stderr,"es null\n");
     else {
-    // aca segfault
     EstadoConClave sk = *(EstadoConClave*)refNodo;
     fprintf(stderr, "(%d, %d); key: (%d, %d)\n", sk.est.nodo.x, sk.est.nodo.y, sk.key.id_1, sk.key.id_2);
     }
@@ -98,7 +97,6 @@ void destruir_est_con_clave(void* s) {
     free((EstadoConClave*)s);
 }
 
-
 // El costo entre dos estados es infinito si alguno es un obstaculo 
 // (imposible moverse entre ellos). En otro caso, es 1.
 int costo_movimiento(InfoRobot* ir, State s1, State s2) {
@@ -106,9 +104,9 @@ int costo_movimiento(InfoRobot* ir, State s1, State s2) {
     || ir->mapaInterno[s2.nodo.x][s2.nodo.y].tipoCasilla == OBSTACULO) ? infty() : 1;
 }
 
-// Nodo.x no sirve casi nunca!
+
 void impr_mapa(InfoRobot* ir) {
-    fprintf(stderr, "(estado, g, rhs)\n");
+    //fprintf(stderr, "(estado, g, rhs)\n");
     for (int i = 0; i < ir->N; i++) {
         for (int j = 0; j < ir->M; j++) {
             fprintf(stderr,"(%d, %d, %d)",
@@ -116,7 +114,9 @@ void impr_mapa(InfoRobot* ir) {
             ir->mapaInterno[i][j].g,
             ir->mapaInterno[i][j].rhs);
             if (i == ir->x && j == ir->y) 
-            fprintf(stderr, "*\t");
+                fprintf(stderr, "*\t");
+            if (i == ir->i2 && j == ir->j2)
+                fprintf(stderr, "!\t");
             else fprintf(stderr, "\t");
         }
         fprintf(stderr, "\n");
@@ -124,9 +124,8 @@ void impr_mapa(InfoRobot* ir) {
 }
 
 void inicializa(InfoRobot* ir) {
-    // TODO: ver como guardar el rastro del robot, ahora queda medio hardcodeado
     ir->rastro = malloc(sizeof(char) * 150);
-    ir->cp = bheap_crear(ir->N * ir->M * 300, compara_estado_con_clave, destruir_est_con_clave, copia_est_con_clave);
+    ir->cp = bheap_crear(ir->N * ir->M, compara_estado_con_clave, destruir_est_con_clave, copia_est_con_clave);
     ir->mapaInterno = malloc(sizeof(State*) * ir->N);
     // ubicar al robot en la pos inicial dada
     ir->x = ir->i1; ir->y = ir->j1;
@@ -137,9 +136,11 @@ void inicializa(InfoRobot* ir) {
             ir->mapaInterno[i][j].rhs = infty(); 
             ir->mapaInterno[i][j].g = infty();
             ir->mapaInterno[i][j].tipoCasilla = DESCONOCIDO;
-            ir->mapaInterno[i][j].nodo = (Nodo){i, j};
+            ir->mapaInterno[i][j].nodo.x = i;
+            ir->mapaInterno[i][j].nodo.y = j;
         }
     }
+
     //printf("jijodebu\n");
     ir->mapaInterno[ir->i1][ir->j1].tipoCasilla = VISITADO;
     ir->mapaInterno[ir->i2][ir->j2].rhs = 0;
@@ -207,25 +208,19 @@ void UpdateVertex(State u, InfoRobot* ir) {
                 minVal = v;
             }
         }
+        free(sucs);
         // siguiente nodo a recorrer
-
         ir->mapaInterno[u.nodo.x][u.nodo.y].rhs = minVal;
         ir->mapaInterno[u.nodo.x][u.nodo.y].g = u.g;
 
         fprintf(stderr, "rhs := %d\n", minVal);
         sk.key = obt_key(ir->mapaInterno[u.nodo.x][u.nodo.y], ir->mapaInterno[ir->x][ir->y]);
         fprintf(stderr, "obtuvo la key, (%d,%d)\n", sk.key.id_1, sk.key.id_2);
-        free(sucs);
     } 
-    fprintf(stderr, "ejecuta\n");
-    if (!bheap_es_vacio(ir->cp)) {
-        //fprintf(stderr, "no es vacio\n");
-        //impr_mapa(ir);
-        //bheap_recorrer(ir->cp, imprime_nodo);
-        //fprintf(stderr,"imprimio heap\n");
-        bheap_buscar_eliminar(ir->cp, &sk);
-    }
-    fprintf(stderr, "busco y elimino\n");
+    fprintf(stderr, "busca y elimina\n");
+    bheap_buscar_eliminar(ir->cp, &sk);
+    //fprintf(stderr, "busco y elimino\n");
+
     // si el nodo no es consistente, agregar al heap
     if (ir->mapaInterno[u.nodo.x][u.nodo.y].rhs != 
     ir->mapaInterno[u.nodo.x][u.nodo.y].g) {
@@ -235,11 +230,11 @@ void UpdateVertex(State u, InfoRobot* ir) {
 }
 
 void ComputeShortestPath(InfoRobot* ir) {
-    fprintf(stderr, "ComputeShortestPath()\n");
+    //fprintf(stderr, "ComputeShortestPath()\n");
     int cond1 = 1, cond2 = 1;
 
-    ir->mapaInterno[ir->x][ir->y].nodo.x = ir->x;
-    ir->mapaInterno[ir->x][ir->y].nodo.y = ir->y;
+    //ir->mapaInterno[ir->x][ir->y].nodo.x = ir->x;
+    //ir->mapaInterno[ir->x][ir->y].nodo.y = ir->y;
 
     // while (U.TopKey() < CalculateKey(s_start) OR rhs(s_start) != g(s_start))
     while ((cond1 = ((!bheap_es_vacio(ir->cp) && (comp_keys(((EstadoConClave*)bheap_minimo(ir->cp))->key, 
@@ -247,10 +242,12 @@ void ComputeShortestPath(InfoRobot* ir) {
     || (cond2 = ((ir->mapaInterno[ir->x][ir->y].rhs) != (ir->mapaInterno[ir->x][ir->y].g))) 
   ) {   
 
-       
+        // MAPA:
+        fprintf(stderr, "MAPA\n");
+        //impr_mapa(ir);
+        fprintf(stderr, "rastro hasta ahora: %s\n", ir->rastro);
         ir->mapaInterno[ir->x][ir->y].nodo.x = ir->x;
         ir->mapaInterno[ir->x][ir->y].nodo.y = ir->y;
-      
         
         // popear el minimo elemento de la cola
         State u = *(State*)bheap_minimo(ir->cp);
@@ -259,7 +256,7 @@ void ComputeShortestPath(InfoRobot* ir) {
     
 
         if (ir->mapaInterno[u.nodo.x][u.nodo.y].g > ir->mapaInterno[u.nodo.x][u.nodo.y].rhs) {
-        fprintf(stderr, "Es sobreconsistente (g > rhs). Poner g = rhs\n");
+        //fprintf(stderr, "Es sobreconsistente (g > rhs). Poner g = rhs\n");
             ir->mapaInterno[u.nodo.x][u.nodo.y].g = ir->mapaInterno[u.nodo.x][u.nodo.y].rhs;
             int cantPred = 0;
             State* pred = obt_ady(ir, u, &cantPred);
@@ -282,7 +279,7 @@ void ComputeShortestPath(InfoRobot* ir) {
             free(pred);
     }
 }
-fprintf(stderr, "termina de computar\n");
+//fprintf(stderr, "termina de computar\n");
 }
 
 void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy, int* o, int multiplesOpciones) {
@@ -298,7 +295,7 @@ void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy, int* o,
         if ( (ir->y + (dist * dy)) >= 0 && (ir->y + (dist * dy)) < (ir->M) &&
         (ir->x + (dist * dx)) >= 0 && (ir->x + (dist * dx)) < (ir->N ) ) {
             
-            fprintf(stderr,"obstaculo detectado\n");
+            //fprintf(stderr,"obstaculo detectado\n");
             int indXObstaculo = ir->x + (dist * dx);
             int indYObstaculo = ir->y + (dist * dy);
             ir->mapaInterno[indXObstaculo][indYObstaculo].tipoCasilla = OBSTACULO;
@@ -307,7 +304,7 @@ void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy, int* o,
             ir->mapaInterno[indXObstaculo][indYObstaculo].nodo.x = indXObstaculo;
             ir->mapaInterno[indXObstaculo][indYObstaculo].nodo.y = indYObstaculo;
 
-            fprintf(stderr, "casilla: %d,%d\n", ir->mapaInterno[indXObstaculo][indYObstaculo].nodo.x, ir->mapaInterno[indXObstaculo][indYObstaculo].nodo.y);
+            //fprintf(stderr, "casilla: %d,%d\n", ir->mapaInterno[indXObstaculo][indYObstaculo].nodo.x, ir->mapaInterno[indXObstaculo][indYObstaculo].nodo.y);
             
             int contAdyacentes = 0;
             State* ady = obt_ady(ir, ir->mapaInterno[indXObstaculo][indYObstaculo], &contAdyacentes);
@@ -316,18 +313,18 @@ void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy, int* o,
             }
             free(ady);
             UpdateVertex(ir->mapaInterno[indXObstaculo][indYObstaculo], ir);
-            ir->mapaInterno[ir->x][ir->y].nodo.x = ir->x;
-            ir->mapaInterno[ir->x][ir->y].nodo.y = ir->y;
+            //ir->mapaInterno[ir->x][ir->y].nodo.x = ir->x;
+            //ir->mapaInterno[ir->x][ir->y].nodo.y = ir->y;
 
-            fprintf(stderr, "s_start key1: [%d, %d]\n",
-            obt_key(ir->mapaInterno[ir->x][ir->y], ir->mapaInterno[ir->x][ir->y]).id_1,
-            obt_key(ir->mapaInterno[ir->x][ir->y], ir->mapaInterno[ir->x][ir->y]).id_2);
+            //fprintf(stderr, "s_start key1: [%d, %d]\n",
+            //obt_key(ir->mapaInterno[ir->x][ir->y], ir->mapaInterno[ir->x][ir->y]).id_1,
+            //obt_key(ir->mapaInterno[ir->x][ir->y], ir->mapaInterno[ir->x][ir->y]).id_2);
           
             ComputeShortestPath(ir);
          
-            /*if (*o == 2 && multiplesOpciones) {
+            if (*o == 2 && multiplesOpciones) {
                 (ir->mapaInterno[ir->x + dx][ir->y + dy].g) ++;
-            }*/
+            }
         }
     }
 }
