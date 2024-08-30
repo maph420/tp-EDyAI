@@ -282,7 +282,7 @@ void ComputeShortestPath(InfoRobot* ir) {
 //fprintf(stderr, "termina de computar\n");
 }
 
-void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy, int* o, int multiplesOpciones) {
+void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy, int* o) {
     
     // actualizar casillas validas descubiertas
     for (int h = 1; h < dist; h++) {
@@ -322,19 +322,16 @@ void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy, int* o,
           
             ComputeShortestPath(ir);
          
-            if (*o == 2 && multiplesOpciones) {
-                (ir->mapaInterno[ir->x + dx][ir->y + dy].g) ++;
-            }
         }
     }
 }
 
-void actualizar_mapa_interno(InfoRobot* ir, int* d, int hayMultiplesOp) {
+void actualizar_mapa_interno(InfoRobot* ir, int* d) {
     int cantObstaculos = 0;
-    actualizar_segun_direccion(ir, d[0], -1, 0, &cantObstaculos, hayMultiplesOp); // arriba
-    actualizar_segun_direccion(ir, d[1], 1, 0, &cantObstaculos, hayMultiplesOp); // abajo
-    actualizar_segun_direccion(ir, d[2], 0, -1, &cantObstaculos, hayMultiplesOp); // izq
-    actualizar_segun_direccion(ir, d[3], 0, 1, &cantObstaculos, hayMultiplesOp); // der
+    actualizar_segun_direccion(ir, d[0], -1, 0, &cantObstaculos); // arriba
+    actualizar_segun_direccion(ir, d[1], 1, 0, &cantObstaculos); // abajo
+    actualizar_segun_direccion(ir, d[2], 0, -1, &cantObstaculos); // izq
+    actualizar_segun_direccion(ir, d[3], 0, 1, &cantObstaculos); // der
 }
 
 int siguiente_movimiento(InfoRobot* ir, State* posibles) {

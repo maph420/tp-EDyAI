@@ -80,8 +80,8 @@ int mover_robot(InfoRobot*, Nodo, int);
 
 int siguiente_movimiento(InfoRobot*, State*);
 
-void actualizar_segun_direccion(InfoRobot*, int, int, int, int*, int);
+void actualizar_segun_direccion(InfoRobot*, int, int, int, int*);
 
-void actualizar_mapa_interno(InfoRobot*, int*, int);
+void actualizar_mapa_interno(InfoRobot*, int*);
 
 #endif /* __ROBOT_UTILS_H__ */

@@ -40,11 +40,8 @@ int main() {
     ComputeShortestPath(ir);
     
     int distancias[4], pasos = 0, movMax = 150;
-    State siguiente, otro_posible;
-    // ? probablemente lo saque
-    otro_posible.nodo = (Nodo){-1, -1};
-    State* posiblesSiguientes = malloc(sizeof(State) * 2);
-    int cantPosibles = 0, a;
+    State sig, posiblesSiguientes[2];
+    int cantPosibles = 0;
 
     // while s_start != s_goal
     while(ir->x != ir->i2 || ir->y != ir->j2) {
@@ -56,27 +53,25 @@ int main() {
         
         fprintf(stderr, "heap:"); 
         bheap_recorrer(ir->cp, imprime_nodo);
-
+    
         if (cantPosibles == 2) {
             if (ir->mapaInterno[posiblesSiguientes[0].nodo.x][posiblesSiguientes[0].nodo.y].tipoCasilla == VALIDO
             && ir->mapaInterno[posiblesSiguientes[1].nodo.x][posiblesSiguientes[1].nodo.y].tipoCasilla == VALIDO) {
-                a = aleatorio();
-                siguiente = posiblesSiguientes[a];
-                otro_posible = posiblesSiguientes[!a];
+                sig = posiblesSiguientes[aleatorio()];
             }
             else if (ir->mapaInterno[posiblesSiguientes[0].nodo.x][posiblesSiguientes[0].nodo.y].tipoCasilla 
         != VALIDO) {
-                siguiente = posiblesSiguientes[1];
+                sig = posiblesSiguientes[1];
         } else {
-                siguiente = posiblesSiguientes[0];
+                sig = posiblesSiguientes[0];
             }
         }
-        else siguiente = posiblesSiguientes[0];
+        else sig = posiblesSiguientes[0];
 
-        fprintf(stderr, "finalmente se elige %d,%d\n", siguiente.nodo.x, siguiente.nodo.y);
+        fprintf(stderr, "finalmente se elige %d,%d\n", sig.nodo.x, sig.nodo.y);
     
-       if (ir->mapaInterno[siguiente.nodo.x][siguiente.nodo.y].tipoCasilla == VALIDO ||
-       ir->mapaInterno[siguiente.nodo.x][siguiente.nodo.y].tipoCasilla == VISITADO) {
+       if (ir->mapaInterno[sig.nodo.x][sig.nodo.y].tipoCasilla == VALIDO ||
+       ir->mapaInterno[sig.nodo.x][sig.nodo.y].tipoCasilla == VISITADO) {
             
             
             fprintf(stderr,"siguiente es valido\n");
@@ -84,11 +79,11 @@ int main() {
                 movMax *= 2;
                 ir->rastro = realloc(ir->rastro, sizeof(char) * movMax);
             }
-            pasos = mover_robot(ir, siguiente.nodo, pasos);  
-            ir->mapaInterno[siguiente.nodo.x][siguiente.nodo.y].tipoCasilla = VISITADO;
+            pasos = mover_robot(ir, sig.nodo, pasos);  
+            ir->mapaInterno[sig.nodo.x][sig.nodo.y].tipoCasilla = VISITADO;
         } 
         
-        else if (ir->mapaInterno[siguiente.nodo.x][siguiente.nodo.y].tipoCasilla == DESCONOCIDO) {
+        else if (ir->mapaInterno[sig.nodo.x][sig.nodo.y].tipoCasilla == DESCONOCIDO) {
 
             fprintf(stderr,"siguiente es desconocido\n");
             fprintf(stderr, "*Tirar sensor\n");
@@ -96,7 +91,7 @@ int main() {
             fflush(stdout);
 
             obtener_distancias(distancias, ir);
-            actualizar_mapa_interno(ir, distancias, (cantPosibles == 2 && otro_posible.nodo.x != -1));
+            actualizar_mapa_interno(ir, distancias);
         }
         // evita loop infinito en caso de algun error
         if (strlen(ir->rastro) > 450) break; 
@@ -110,7 +105,6 @@ int main() {
     
     // liberar memoria
     for (int i = 0; i < ir->N; i++) free(ir->mapaInterno[i]);
-    free(posiblesSiguientes);
     free(ir->mapaInterno);
     bheap_destruir(ir->cp);
     free(ir->rastro);

@@ -132,7 +132,7 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
 
     while ((ir->x != ir->i2) || (ir->y != ir->j2)) {
 
-        //printf("Robot: (%d, %d)\n", ir->y, ir->x);
+        printf("Robot: (%d, %d)\n", ir->y, ir->x);
         //getchar();
         
         // indica al robot el proximo movimiento
@@ -153,7 +153,7 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned int N, unsigned int M
                 ir->rastro = realloc(ir->rastro, sizeof(char) * movimientosMax);
             }
             ir->rastro[pasos++] = asignar_direccion(dirActual);
-                
+              
             // mover el robot a la sig pos
             ir->x = b->x; ir->y = b->y; b->dirOrigen = dirActual; b->valido = 1;
             tablahash_insertar(ir->visitados, b, FACTOR_CARGA_UMBRAL);
