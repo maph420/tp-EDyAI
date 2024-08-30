@@ -3,16 +3,19 @@
 #include "bheap.h"
 
 void bheap_recorrer(BHeap b, FuncionVisitante f) {
+    
+    fprintf(stderr, "entra\n");
     if (b->ultimo == 0) {
+        fprintf(stderr, "sale de aca\n");
         return;
     }
-    fprintf(stderr, "test1:\n");
-    if(b->ultimo >1)
-        f(b->arr[1]);
-    fprintf(stderr, " sjdkfklsjd\n");
-    for (int i = 1; i < b->ultimo; i++)
-        f(b->arr[i]);
-    fprintf(stderr, "test2\n");
+    for (int i=0; i < 40; i++) {
+        if (b->ultimo > i)
+            f(b->arr[i]);
+    }
+    fprintf(stderr, "sale de aca\n");
+    //for (int i = 0; i < b->ultimo; i++)
+      //  f(b->arr[i]);
 }
 
 BHeap bheap_crear(int capacidad, FuncionComparadora cmp, FuncionDestructora d, FuncionCopiadora c) {
@@ -118,10 +121,10 @@ void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
     int hallado = 0;
 
     // Buscar el elemento en el arreglo
-    for (pos = 0; pos < bheap->ultimo; pos++) {
+    for (pos = 0; pos < bheap->ultimo && !hallado; pos++) {
         if ((bheap->comp(bheap->arr[pos], elemento)) == 2) {
             hallado = 1;
-            break;  // Encontrado, salir del bucle
+            --pos;
         }
     }
 

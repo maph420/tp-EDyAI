@@ -45,7 +45,7 @@ int g_val(InfoRobot* ir, Nodo n) {
 }
 
 void imprime_nodo(void* refNodo) {
-    fprintf(stderr,"impr nodo\n");
+    //fprintf(stderr,"impr nodo\n");
     if (refNodo == NULL)
         fprintf(stderr,"es null\n");
     else {
@@ -126,7 +126,7 @@ void impr_mapa(InfoRobot* ir) {
 void inicializa(InfoRobot* ir) {
     // TODO: ver como guardar el rastro del robot, ahora queda medio hardcodeado
     ir->rastro = malloc(sizeof(char) * 150);
-    ir->cp = bheap_crear(ir->N * ir->M, compara_estado_con_clave, destruir_est_con_clave, copia_est_con_clave);
+    ir->cp = bheap_crear(ir->N * ir->M * 300, compara_estado_con_clave, destruir_est_con_clave, copia_est_con_clave);
     ir->mapaInterno = malloc(sizeof(State*) * ir->N);
     // ubicar al robot en la pos inicial dada
     ir->x = ir->i1; ir->y = ir->j1;
@@ -214,13 +214,15 @@ void UpdateVertex(State u, InfoRobot* ir) {
 
         fprintf(stderr, "rhs := %d\n", minVal);
         sk.key = obt_key(ir->mapaInterno[u.nodo.x][u.nodo.y], ir->mapaInterno[ir->x][ir->y]);
-        fprintf(stderr, "obtuvo la key\n");
+        fprintf(stderr, "obtuvo la key, (%d,%d)\n", sk.key.id_1, sk.key.id_2);
         free(sucs);
     } 
     fprintf(stderr, "ejecuta\n");
     if (!bheap_es_vacio(ir->cp)) {
-        fprintf(stderr, "no es vacio\n");
-       // bheap_recorrer(ir->cp, imprime_nodo);
+        //fprintf(stderr, "no es vacio\n");
+        //impr_mapa(ir);
+        //bheap_recorrer(ir->cp, imprime_nodo);
+        //fprintf(stderr,"imprimio heap\n");
         bheap_buscar_eliminar(ir->cp, &sk);
     }
     fprintf(stderr, "busco y elimino\n");
@@ -252,6 +254,7 @@ void ComputeShortestPath(InfoRobot* ir) {
         
         // popear el minimo elemento de la cola
         State u = *(State*)bheap_minimo(ir->cp);
+
         ir->cp = bheap_eliminar_minimo(ir->cp);
     
 
@@ -322,9 +325,9 @@ void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy, int* o,
           
             ComputeShortestPath(ir);
          
-            if (*o == 2 && multiplesOpciones) {
+            /*if (*o == 2 && multiplesOpciones) {
                 (ir->mapaInterno[ir->x + dx][ir->y + dy].g) ++;
-            }
+            }*/
         }
     }
 }

@@ -38,7 +38,6 @@ int main() {
     inicializa(ir);
     ComputeShortestPath(ir);
     
-    fprintf(stderr, "heap al terminar 1er pasa:\n");
     int distancias[4], c = 0, pasos = 0;
     State sig_est, otro_posible;
     otro_posible.nodo = (Nodo){-1, -1};
@@ -49,9 +48,13 @@ int main() {
     while(ir->x != ir->i2 || ir->y != ir->j2) {
         fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
         fprintf(stderr, "ciclo %d\n", c);
+        fprintf(stderr, "heap:"); bheap_recorrer(ir->cp, imprime_nodo);
+    
 
         cantPosibles = siguiente_movimiento(ir, posiblesSiguientes);
         
+        fprintf(stderr, "heap:"); bheap_recorrer(ir->cp, imprime_nodo);
+
         if (cantPosibles == 2 
         && ir->mapaInterno[posiblesSiguientes[0].nodo.x][posiblesSiguientes[0].nodo.y].tipoCasilla == VALIDO
         && ir->mapaInterno[posiblesSiguientes[1].nodo.x][posiblesSiguientes[1].nodo.y].tipoCasilla == VALIDO
@@ -89,17 +92,17 @@ int main() {
             actualizar_mapa_interno(ir, distancias, (cantPosibles == 2 && otro_posible.nodo.x != -1));
         }
         // evita loop infinito en caso de algun error
-       // if (c++ >= 145) break; 
+        //if (c++ >= 1450) break; 
     }   
     ir->rastro[pasos] = '\0';
 
-    // Mandar solucion al sensor para terminar la ejecucionh|
+    // Mandar solucion al sensor para terminar la ejecucion
     printf("%c %s\n", '!', ir->rastro);
     fflush(stdout);
     fprintf(stderr, "Camino: %s\n", ir->rastro);
     
     // liberar memoria
-    for (int i=0; i < ir->N; i++) free(ir->mapaInterno[i]);
+    for (int i = 0; i < ir->N; i++) free(ir->mapaInterno[i]);
     free(posiblesSiguientes);
     free(ir->mapaInterno);
     bheap_destruir(ir->cp);

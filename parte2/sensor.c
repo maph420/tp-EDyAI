@@ -3,22 +3,6 @@
 #include <ctype.h>
 #include <stdlib.h>
 #define LONGITUD_MAX_LINEA 1000
-/*
-e.g. aca el robot 'x' NO reconoceria al obstaculos 'o'
-simplemente retorna derecha = 2 porque no sabe lo que hay
-
-x . o
-
-si fuera nolongitud del scanner 2, entonces:
-x . o
-seguiria dando derecha = 2, de donde aqui si podemos inferir
-que hay obstaculo.
-
-En general, si el scanner es de longitud k, las direcciones que
-retornen k+1, es porque NO detectaron obstaculo, y es seguro 
-moverse hasta ahi k veces en la pos pertinente desde la pos actual
-
-*/
 
 // leer_archivo()
 // - lee el archivo `data` segun el formato especificado en el trabajo.
@@ -214,7 +198,6 @@ int main(int argc, char** argv) {
 			}
 
 		} else {
-			fprintf(stderr, "aca ta\n");
 			caracter_inesperado(c);
 		}
 	}
