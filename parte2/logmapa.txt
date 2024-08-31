@@ -1,0 +1,7787 @@
+Archivo leido
+25 25 5
+10 7
+1 14
+key de la meta:(16,0)
+ComputeShortestPath()
+rastro hasta ahora: 
+popea:(1, 14); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 1,15
+rhs := 1
+obtuvo la key, (18,1)
+busca y elimina
+g:100 vs rhs:1
+mapa int g:100 vs rhs:1
+inserta (1,15) con clave:(18,1)
+UpdateVertex(): 1,13
+rhs := 1
+obtuvo la key, (16,1)
+busca y elimina
+g:100 vs rhs:1
+mapa int g:100 vs rhs:1
+inserta (1,13) con clave:(16,1)
+UpdateVertex(): 2,14
+rhs := 1
+obtuvo la key, (16,1)
+busca y elimina
+g:100 vs rhs:1
+mapa int g:100 vs rhs:1
+inserta (2,14) con clave:(16,1)
+UpdateVertex(): 0,14
+rhs := 1
+obtuvo la key, (18,1)
+busca y elimina
+g:100 vs rhs:1
+mapa int g:100 vs rhs:1
+inserta (0,14) con clave:(18,1)
+rastro hasta ahora: 
+popea:(1, 13); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 1,14
+busca y elimina
+g:0 vs rhs:0
+mapa int g:0 vs rhs:0
+UpdateVertex(): 1,12
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:100 vs rhs:2
+mapa int g:100 vs rhs:2
+inserta (1,12) con clave:(16,2)
+UpdateVertex(): 2,13
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:100 vs rhs:2
+mapa int g:100 vs rhs:2
+inserta (2,13) con clave:(16,2)
+UpdateVertex(): 0,13
+rhs := 2
+obtuvo la key, (18,2)
+busca y elimina
+g:100 vs rhs:2
+mapa int g:100 vs rhs:2
+inserta (0,13) con clave:(18,2)
+rastro hasta ahora: 
+popea:(2, 14); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 2,15
+rhs := 2
+obtuvo la key, (18,2)
+busca y elimina
+g:100 vs rhs:2
+mapa int g:100 vs rhs:2
+inserta (2,15) con clave:(18,2)
+UpdateVertex(): 2,13
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:100 vs rhs:2
+mapa int g:100 vs rhs:2
+inserta (2,13) con clave:(16,2)
+UpdateVertex(): 3,14
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:100 vs rhs:2
+mapa int g:100 vs rhs:2
+inserta (3,14) con clave:(16,2)
+UpdateVertex(): 1,14
+busca y elimina
+g:0 vs rhs:0
+mapa int g:0 vs rhs:0
+rastro hasta ahora: 
+popea:(1, 12); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 1,13
+rhs := 1
+obtuvo la key, (16,1)
+busca y elimina
+g:1 vs rhs:1
+mapa int g:1 vs rhs:1
+UpdateVertex(): 1,11
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (1,11) con clave:(16,3)
+UpdateVertex(): 2,12
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (2,12) con clave:(16,3)
+UpdateVertex(): 0,12
+rhs := 3
+obtuvo la key, (18,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (0,12) con clave:(18,3)
+rastro hasta ahora: 
+popea:(3, 14); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 3,15
+rhs := 3
+obtuvo la key, (18,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (3,15) con clave:(18,3)
+UpdateVertex(): 3,13
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (3,13) con clave:(16,3)
+UpdateVertex(): 4,14
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (4,14) con clave:(16,3)
+UpdateVertex(): 2,14
+rhs := 1
+obtuvo la key, (16,1)
+busca y elimina
+g:1 vs rhs:1
+mapa int g:1 vs rhs:1
+rastro hasta ahora: 
+popea:(2, 13); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 2,14
+rhs := 1
+obtuvo la key, (16,1)
+busca y elimina
+g:1 vs rhs:1
+mapa int g:1 vs rhs:1
+UpdateVertex(): 2,12
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (2,12) con clave:(16,3)
+UpdateVertex(): 3,13
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (3,13) con clave:(16,3)
+UpdateVertex(): 1,13
+rhs := 1
+obtuvo la key, (16,1)
+busca y elimina
+g:1 vs rhs:1
+mapa int g:1 vs rhs:1
+rastro hasta ahora: 
+popea:(4, 14); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 4,15
+rhs := 4
+obtuvo la key, (18,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (4,15) con clave:(18,4)
+UpdateVertex(): 4,13
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (4,13) con clave:(16,4)
+UpdateVertex(): 5,14
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (5,14) con clave:(16,4)
+UpdateVertex(): 3,14
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+rastro hasta ahora: 
+popea:(2, 12); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 2,13
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+UpdateVertex(): 2,11
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (2,11) con clave:(16,4)
+UpdateVertex(): 3,12
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (3,12) con clave:(16,4)
+UpdateVertex(): 1,12
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+rastro hasta ahora: 
+popea:(3, 13); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 3,14
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+UpdateVertex(): 3,12
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (3,12) con clave:(16,4)
+UpdateVertex(): 4,13
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (4,13) con clave:(16,4)
+UpdateVertex(): 2,13
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+rastro hasta ahora: 
+popea:(1, 11); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 1,12
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+UpdateVertex(): 1,10
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (1,10) con clave:(16,4)
+UpdateVertex(): 2,11
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (2,11) con clave:(16,4)
+UpdateVertex(): 0,11
+rhs := 4
+obtuvo la key, (18,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (0,11) con clave:(18,4)
+rastro hasta ahora: 
+popea:(4, 13); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 4,14
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+UpdateVertex(): 4,12
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (4,12) con clave:(16,5)
+UpdateVertex(): 5,13
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (5,13) con clave:(16,5)
+UpdateVertex(): 3,13
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+rastro hasta ahora: 
+popea:(3, 12); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 3,13
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+UpdateVertex(): 3,11
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (3,11) con clave:(16,5)
+UpdateVertex(): 4,12
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (4,12) con clave:(16,5)
+UpdateVertex(): 2,12
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+rastro hasta ahora: 
+popea:(1, 10); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 1,11
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+UpdateVertex(): 1,9
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (1,9) con clave:(16,5)
+UpdateVertex(): 2,10
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (2,10) con clave:(16,5)
+UpdateVertex(): 0,10
+rhs := 5
+obtuvo la key, (18,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (0,10) con clave:(18,5)
+rastro hasta ahora: 
+popea:(5, 14); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 5,15
+rhs := 5
+obtuvo la key, (18,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (5,15) con clave:(18,5)
+UpdateVertex(): 5,13
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (5,13) con clave:(16,5)
+UpdateVertex(): 6,14
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (6,14) con clave:(16,5)
+UpdateVertex(): 4,14
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+rastro hasta ahora: 
+popea:(2, 11); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 2,12
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+UpdateVertex(): 2,10
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (2,10) con clave:(16,5)
+UpdateVertex(): 3,11
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (3,11) con clave:(16,5)
+UpdateVertex(): 1,11
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+rastro hasta ahora: 
+popea:(5, 13); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 5,14
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+UpdateVertex(): 5,12
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (5,12) con clave:(16,6)
+UpdateVertex(): 6,13
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (6,13) con clave:(16,6)
+UpdateVertex(): 4,13
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+rastro hasta ahora: 
+popea:(6, 14); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 6,15
+rhs := 6
+obtuvo la key, (18,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (6,15) con clave:(18,6)
+UpdateVertex(): 6,13
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (6,13) con clave:(16,6)
+UpdateVertex(): 7,14
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (7,14) con clave:(16,6)
+UpdateVertex(): 5,14
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+rastro hasta ahora: 
+popea:(2, 10); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 2,11
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+UpdateVertex(): 2,9
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (2,9) con clave:(16,6)
+UpdateVertex(): 3,10
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (3,10) con clave:(16,6)
+UpdateVertex(): 1,10
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+rastro hasta ahora: 
+popea:(3, 11); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 3,12
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+UpdateVertex(): 3,10
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (3,10) con clave:(16,6)
+UpdateVertex(): 4,11
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (4,11) con clave:(16,6)
+UpdateVertex(): 2,11
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+rastro hasta ahora: 
+popea:(4, 12); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 4,13
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+UpdateVertex(): 4,11
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (4,11) con clave:(16,6)
+UpdateVertex(): 5,12
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (5,12) con clave:(16,6)
+UpdateVertex(): 3,12
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+rastro hasta ahora: 
+popea:(1, 9); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 1,10
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+UpdateVertex(): 1,8
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (1,8) con clave:(16,6)
+UpdateVertex(): 2,9
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (2,9) con clave:(16,6)
+UpdateVertex(): 0,9
+rhs := 6
+obtuvo la key, (18,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (0,9) con clave:(18,6)
+rastro hasta ahora: 
+popea:(5, 12); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 5,13
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+UpdateVertex(): 5,11
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (5,11) con clave:(16,7)
+UpdateVertex(): 6,12
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (6,12) con clave:(16,7)
+UpdateVertex(): 4,12
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+rastro hasta ahora: 
+popea:(4, 11); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 4,12
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+UpdateVertex(): 4,10
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (4,10) con clave:(16,7)
+UpdateVertex(): 5,11
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (5,11) con clave:(16,7)
+UpdateVertex(): 3,11
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+rastro hasta ahora: 
+popea:(6, 13); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 6,14
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+UpdateVertex(): 6,12
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (6,12) con clave:(16,7)
+UpdateVertex(): 7,13
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (7,13) con clave:(16,7)
+UpdateVertex(): 5,13
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+rastro hasta ahora: 
+popea:(7, 14); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,15
+rhs := 7
+obtuvo la key, (18,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (7,15) con clave:(18,7)
+UpdateVertex(): 7,13
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (7,13) con clave:(16,7)
+UpdateVertex(): 8,14
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (8,14) con clave:(16,7)
+UpdateVertex(): 6,14
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+rastro hasta ahora: 
+popea:(2, 9); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 2,10
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+UpdateVertex(): 2,8
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (2,8) con clave:(16,7)
+UpdateVertex(): 3,9
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (3,9) con clave:(16,7)
+UpdateVertex(): 1,9
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+rastro hasta ahora: 
+popea:(3, 10); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 3,11
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+UpdateVertex(): 3,9
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (3,9) con clave:(16,7)
+UpdateVertex(): 4,10
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (4,10) con clave:(16,7)
+UpdateVertex(): 2,10
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+rastro hasta ahora: 
+popea:(1, 8); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 1,9
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+UpdateVertex(): 1,7
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (1,7) con clave:(16,7)
+UpdateVertex(): 2,8
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (2,8) con clave:(16,7)
+UpdateVertex(): 0,8
+rhs := 7
+obtuvo la key, (18,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (0,8) con clave:(18,7)
+rastro hasta ahora: 
+popea:(4, 10); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 4,11
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+UpdateVertex(): 4,9
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (4,9) con clave:(16,8)
+UpdateVertex(): 5,10
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (5,10) con clave:(16,8)
+UpdateVertex(): 3,10
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+rastro hasta ahora: 
+popea:(5, 11); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 5,12
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+UpdateVertex(): 5,10
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (5,10) con clave:(16,8)
+UpdateVertex(): 6,11
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (6,11) con clave:(16,8)
+UpdateVertex(): 4,11
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+rastro hasta ahora: 
+popea:(6, 12); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 6,13
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+UpdateVertex(): 6,11
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (6,11) con clave:(16,8)
+UpdateVertex(): 7,12
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (7,12) con clave:(16,8)
+UpdateVertex(): 5,12
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+rastro hasta ahora: 
+popea:(3, 9); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 3,10
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+UpdateVertex(): 3,8
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (3,8) con clave:(16,8)
+UpdateVertex(): 4,9
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (4,9) con clave:(16,8)
+UpdateVertex(): 2,9
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+rastro hasta ahora: 
+popea:(7, 13); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,14
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+UpdateVertex(): 7,12
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (7,12) con clave:(16,8)
+UpdateVertex(): 8,13
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (8,13) con clave:(16,8)
+UpdateVertex(): 6,13
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+rastro hasta ahora: 
+popea:(2, 8); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 2,9
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+UpdateVertex(): 2,7
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (2,7) con clave:(16,8)
+UpdateVertex(): 3,8
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (3,8) con clave:(16,8)
+UpdateVertex(): 1,8
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+rastro hasta ahora: 
+popea:(1, 7); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 1,8
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+UpdateVertex(): 1,6
+rhs := 8
+obtuvo la key, (18,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (1,6) con clave:(18,8)
+UpdateVertex(): 2,7
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (2,7) con clave:(16,8)
+UpdateVertex(): 0,7
+rhs := 8
+obtuvo la key, (18,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (0,7) con clave:(18,8)
+rastro hasta ahora: 
+popea:(8, 14); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 8,15
+rhs := 8
+obtuvo la key, (18,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (8,15) con clave:(18,8)
+UpdateVertex(): 8,13
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (8,13) con clave:(16,8)
+UpdateVertex(): 9,14
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (9,14) con clave:(16,8)
+UpdateVertex(): 7,14
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+rastro hasta ahora: 
+popea:(4, 9); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 4,10
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+UpdateVertex(): 4,8
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (4,8) con clave:(16,9)
+UpdateVertex(): 5,9
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (5,9) con clave:(16,9)
+UpdateVertex(): 3,9
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+rastro hasta ahora: 
+popea:(5, 10); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 5,11
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+UpdateVertex(): 5,9
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (5,9) con clave:(16,9)
+UpdateVertex(): 6,10
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (6,10) con clave:(16,9)
+UpdateVertex(): 4,10
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+rastro hasta ahora: 
+popea:(6, 11); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 6,12
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+UpdateVertex(): 6,10
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (6,10) con clave:(16,9)
+UpdateVertex(): 7,11
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (7,11) con clave:(16,9)
+UpdateVertex(): 5,11
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+rastro hasta ahora: 
+popea:(7, 12); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,13
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+UpdateVertex(): 7,11
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (7,11) con clave:(16,9)
+UpdateVertex(): 8,12
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (8,12) con clave:(16,9)
+UpdateVertex(): 6,12
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+rastro hasta ahora: 
+popea:(2, 7); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 2,8
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+UpdateVertex(): 2,6
+rhs := 9
+obtuvo la key, (18,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (2,6) con clave:(18,9)
+UpdateVertex(): 3,7
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (3,7) con clave:(16,9)
+UpdateVertex(): 1,7
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+rastro hasta ahora: 
+popea:(3, 8); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 3,9
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+UpdateVertex(): 3,7
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (3,7) con clave:(16,9)
+UpdateVertex(): 4,8
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (4,8) con clave:(16,9)
+UpdateVertex(): 2,8
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+rastro hasta ahora: 
+popea:(8, 13); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 8,14
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+UpdateVertex(): 8,12
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (8,12) con clave:(16,9)
+UpdateVertex(): 9,13
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (9,13) con clave:(16,9)
+UpdateVertex(): 7,13
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+rastro hasta ahora: 
+popea:(9, 14); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,15
+rhs := 9
+obtuvo la key, (18,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (9,15) con clave:(18,9)
+UpdateVertex(): 9,13
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (9,13) con clave:(16,9)
+UpdateVertex(): 10,14
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (10,14) con clave:(16,9)
+UpdateVertex(): 8,14
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+rastro hasta ahora: 
+popea:(6, 10); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 6,11
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+UpdateVertex(): 6,9
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (6,9) con clave:(16,10)
+UpdateVertex(): 7,10
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (7,10) con clave:(16,10)
+UpdateVertex(): 5,10
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+rastro hasta ahora: 
+popea:(10, 14); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 10,15
+rhs := 10
+obtuvo la key, (18,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (10,15) con clave:(18,10)
+UpdateVertex(): 10,13
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (10,13) con clave:(16,10)
+UpdateVertex(): 11,14
+rhs := 10
+obtuvo la key, (18,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (11,14) con clave:(18,10)
+UpdateVertex(): 9,14
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+rastro hasta ahora: 
+popea:(5, 9); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 5,10
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+UpdateVertex(): 5,8
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (5,8) con clave:(16,10)
+UpdateVertex(): 6,9
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (6,9) con clave:(16,10)
+UpdateVertex(): 4,9
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+rastro hasta ahora: 
+popea:(4, 8); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 4,9
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+UpdateVertex(): 4,7
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (4,7) con clave:(16,10)
+UpdateVertex(): 5,8
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (5,8) con clave:(16,10)
+UpdateVertex(): 3,8
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+rastro hasta ahora: 
+popea:(7, 11); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,12
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+UpdateVertex(): 7,10
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (7,10) con clave:(16,10)
+UpdateVertex(): 8,11
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (8,11) con clave:(16,10)
+UpdateVertex(): 6,11
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+rastro hasta ahora: 
+popea:(8, 12); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 8,13
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+UpdateVertex(): 8,11
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (8,11) con clave:(16,10)
+UpdateVertex(): 9,12
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (9,12) con clave:(16,10)
+UpdateVertex(): 7,12
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+rastro hasta ahora: 
+popea:(3, 7); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 3,8
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+UpdateVertex(): 3,6
+rhs := 10
+obtuvo la key, (18,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (3,6) con clave:(18,10)
+UpdateVertex(): 4,7
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (4,7) con clave:(16,10)
+UpdateVertex(): 2,7
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+rastro hasta ahora: 
+popea:(9, 13); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,14
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+UpdateVertex(): 9,12
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (9,12) con clave:(16,10)
+UpdateVertex(): 10,13
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (10,13) con clave:(16,10)
+UpdateVertex(): 8,13
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+rastro hasta ahora: 
+popea:(8, 11); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 8,12
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+UpdateVertex(): 8,10
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (8,10) con clave:(16,11)
+UpdateVertex(): 9,11
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (9,11) con clave:(16,11)
+UpdateVertex(): 7,11
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+rastro hasta ahora: 
+popea:(10, 13); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 10,14
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+UpdateVertex(): 10,12
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (10,12) con clave:(16,11)
+UpdateVertex(): 11,13
+rhs := 11
+obtuvo la key, (18,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (11,13) con clave:(18,11)
+UpdateVertex(): 9,13
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+rastro hasta ahora: 
+popea:(5, 8); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 5,9
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+UpdateVertex(): 5,7
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (5,7) con clave:(16,11)
+UpdateVertex(): 6,8
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (6,8) con clave:(16,11)
+UpdateVertex(): 4,8
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+rastro hasta ahora: 
+popea:(6, 9); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 6,10
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+UpdateVertex(): 6,8
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (6,8) con clave:(16,11)
+UpdateVertex(): 7,9
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (7,9) con clave:(16,11)
+UpdateVertex(): 5,9
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+rastro hasta ahora: 
+popea:(9, 12); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,13
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+UpdateVertex(): 9,11
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (9,11) con clave:(16,11)
+UpdateVertex(): 10,12
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (10,12) con clave:(16,11)
+UpdateVertex(): 8,12
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+rastro hasta ahora: 
+popea:(7, 10); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,11
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+UpdateVertex(): 7,9
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (7,9) con clave:(16,11)
+UpdateVertex(): 8,10
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (8,10) con clave:(16,11)
+UpdateVertex(): 6,10
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+rastro hasta ahora: 
+popea:(4, 7); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 4,8
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+UpdateVertex(): 4,6
+rhs := 11
+obtuvo la key, (18,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (4,6) con clave:(18,11)
+UpdateVertex(): 5,7
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (5,7) con clave:(16,11)
+UpdateVertex(): 3,7
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+rastro hasta ahora: 
+popea:(8, 10); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 8,11
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 8,9
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (8,9) con clave:(16,12)
+UpdateVertex(): 9,10
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (9,10) con clave:(16,12)
+UpdateVertex(): 7,10
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: 
+popea:(5, 7); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 5,8
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 5,6
+rhs := 12
+obtuvo la key, (18,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (5,6) con clave:(18,12)
+UpdateVertex(): 6,7
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (6,7) con clave:(16,12)
+UpdateVertex(): 4,7
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: 
+popea:(10, 12); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 10,13
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 10,11
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (10,11) con clave:(16,12)
+UpdateVertex(): 11,12
+rhs := 12
+obtuvo la key, (18,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (11,12) con clave:(18,12)
+UpdateVertex(): 9,12
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: 
+popea:(6, 8); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 6,9
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 6,7
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (6,7) con clave:(16,12)
+UpdateVertex(): 7,8
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (7,8) con clave:(16,12)
+UpdateVertex(): 5,8
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: 
+popea:(7, 9); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,10
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 7,8
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (7,8) con clave:(16,12)
+UpdateVertex(): 8,9
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (8,9) con clave:(16,12)
+UpdateVertex(): 6,9
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: 
+popea:(9, 11); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,12
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 9,10
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (9,10) con clave:(16,12)
+UpdateVertex(): 10,11
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (10,11) con clave:(16,12)
+UpdateVertex(): 8,11
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: 
+popea:(6, 7); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 6,8
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 6,6
+rhs := 13
+obtuvo la key, (18,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (6,6) con clave:(18,13)
+UpdateVertex(): 7,7
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (7,7) con clave:(16,13)
+UpdateVertex(): 5,7
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+rastro hasta ahora: 
+popea:(7, 8); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,9
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 7,7
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (7,7) con clave:(16,13)
+UpdateVertex(): 8,8
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (8,8) con clave:(16,13)
+UpdateVertex(): 6,8
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+rastro hasta ahora: 
+popea:(8, 9); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 8,10
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 8,8
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (8,8) con clave:(16,13)
+UpdateVertex(): 9,9
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (9,9) con clave:(16,13)
+UpdateVertex(): 7,9
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+rastro hasta ahora: 
+popea:(9, 10); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,11
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 9,9
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (9,9) con clave:(16,13)
+UpdateVertex(): 10,10
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (10,10) con clave:(16,13)
+UpdateVertex(): 8,10
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+rastro hasta ahora: 
+popea:(10, 11); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 10,12
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 10,10
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (10,10) con clave:(16,13)
+UpdateVertex(): 11,11
+rhs := 13
+obtuvo la key, (18,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (11,11) con clave:(18,13)
+UpdateVertex(): 9,11
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+rastro hasta ahora: 
+popea:(7, 7); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,8
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 7,6
+rhs := 14
+obtuvo la key, (18,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (7,6) con clave:(18,14)
+UpdateVertex(): 8,7
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (8,7) con clave:(16,14)
+UpdateVertex(): 6,7
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+rastro hasta ahora: 
+popea:(8, 8); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 8,9
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 8,7
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (8,7) con clave:(16,14)
+UpdateVertex(): 9,8
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (9,8) con clave:(16,14)
+UpdateVertex(): 7,8
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+rastro hasta ahora: 
+popea:(9, 9); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,10
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 9,8
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (9,8) con clave:(16,14)
+UpdateVertex(): 10,9
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (10,9) con clave:(16,14)
+UpdateVertex(): 8,9
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+rastro hasta ahora: 
+popea:(10, 10); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 10,11
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 10,9
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (10,9) con clave:(16,14)
+UpdateVertex(): 11,10
+rhs := 14
+obtuvo la key, (18,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (11,10) con clave:(18,14)
+UpdateVertex(): 9,10
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+rastro hasta ahora: 
+popea:(8, 7); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 8,8
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 8,6
+rhs := 15
+obtuvo la key, (18,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (8,6) con clave:(18,15)
+UpdateVertex(): 9,7
+rhs := 15
+obtuvo la key, (16,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (9,7) con clave:(16,15)
+UpdateVertex(): 7,7
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+rastro hasta ahora: 
+popea:(9, 8); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,9
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 9,7
+rhs := 15
+obtuvo la key, (16,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (9,7) con clave:(16,15)
+UpdateVertex(): 10,8
+rhs := 15
+obtuvo la key, (16,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (10,8) con clave:(16,15)
+UpdateVertex(): 8,8
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+rastro hasta ahora: 
+popea:(10, 9); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 10,10
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 10,8
+rhs := 15
+obtuvo la key, (16,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (10,8) con clave:(16,15)
+UpdateVertex(): 11,9
+rhs := 15
+obtuvo la key, (18,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (11,9) con clave:(18,15)
+UpdateVertex(): 9,9
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+rastro hasta ahora: 
+popea:(9, 7); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,8
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 9,6
+rhs := 16
+obtuvo la key, (18,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (9,6) con clave:(18,16)
+UpdateVertex(): 10,7
+rhs := 16
+obtuvo la key, (16,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (10,7) con clave:(16,16)
+UpdateVertex(): 8,7
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+rastro hasta ahora: 
+popea:(10, 8); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 10,9
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 10,7
+rhs := 16
+obtuvo la key, (16,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (10,7) con clave:(16,16)
+UpdateVertex(): 11,8
+rhs := 16
+obtuvo la key, (18,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (11,8) con clave:(18,16)
+UpdateVertex(): 9,8
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+rastro hasta ahora: 
+popea:(10, 7); key: (25, 16)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 10,8
+rhs := 15
+obtuvo la key, (16,15)
+busca y elimina
+g:15 vs rhs:15
+mapa int g:15 vs rhs:15
+UpdateVertex(): 10,6
+rhs := 17
+obtuvo la key, (18,17)
+busca y elimina
+g:100 vs rhs:17
+mapa int g:100 vs rhs:17
+inserta (10,6) con clave:(18,17)
+UpdateVertex(): 11,7
+rhs := 17
+obtuvo la key, (18,17)
+busca y elimina
+g:100 vs rhs:17
+mapa int g:100 vs rhs:17
+inserta (11,7) con clave:(18,17)
+UpdateVertex(): 9,7
+rhs := 15
+obtuvo la key, (16,15)
+busca y elimina
+g:15 vs rhs:15
+mapa int g:15 vs rhs:15
+termina de computar
+MAPA
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 1
+costo mov: (10,7)->(10,6): 1
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (10, 8)
+o... (9, 7)
+heap:
+finalmente se elige 9,7
+siguiente es desconocido
+*Tirar sensor
+Distancias recibidas: Arriba=4, Abajo=3, Izquierda=1, Derecha=1
+UpdateVertex(): 13,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 13,6
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 14,7
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 12,7
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+s_start key1: [16, 16]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 10,7
+rhs := 16
+obtuvo la key, (16,16)
+busca y elimina
+g:16 vs rhs:16
+mapa int g:16 vs rhs:16
+UpdateVertex(): 10,5
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 11,6
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,6
+rhs := 16
+obtuvo la key, (18,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (9,6) con clave:(18,16)
+s_start key1: [16, 16]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 10,9
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 10,7
+rhs := 16
+obtuvo la key, (16,16)
+busca y elimina
+g:16 vs rhs:16
+mapa int g:16 vs rhs:16
+UpdateVertex(): 11,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,8
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+s_start key1: [16, 16]
+ComputeShortestPath()
+termina de computar
+MAPA
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (9, 7)
+(solo ese)
+heap:
+finalmente se elige 9,7
+siguiente es valido
+robot: (9, 7)
+costo mov: (9,7)->(9,8): 1
+costo mov: (9,7)->(9,6): 1
+costo mov: (9,7)->(10,7): 1
+costo mov: (9,7)->(8,7): 1
+Proximo mov -> (9, 8)
+o... (8, 7)
+heap:
+finalmente se elige 8,7
+siguiente es valido
+robot: (8, 7)
+costo mov: (8,7)->(8,8): 1
+costo mov: (8,7)->(8,6): 1
+costo mov: (8,7)->(9,7): 1
+costo mov: (8,7)->(7,7): 1
+Proximo mov -> (8, 8)
+o... (7, 7)
+heap:
+finalmente se elige 7,7
+siguiente es valido
+robot: (7, 7)
+costo mov: (7,7)->(7,8): 1
+costo mov: (7,7)->(7,6): 1
+costo mov: (7,7)->(8,7): 1
+costo mov: (7,7)->(6,7): 1
+Proximo mov -> (7, 8)
+o... (6, 7)
+heap:
+finalmente se elige 6,7
+siguiente es desconocido
+*Tirar sensor
+Distancias recibidas: Arriba=1, Abajo=6, Izquierda=5, Derecha=1
+UpdateVertex(): 6,8
+rhs := 11
+obtuvo la key, (13,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 6,6
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 7,7
+rhs := 13
+obtuvo la key, (13,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 5,7
+rhs := 11
+obtuvo la key, (13,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+s_start key1: [13, 13]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 7,3
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 7,1
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,2
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 6,2
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+s_start key1: [13, 13]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 7,9
+rhs := 11
+obtuvo la key, (13,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 7,7
+rhs := 15
+obtuvo la key, (13,13)
+busca y elimina
+g:13 vs rhs:15
+mapa int g:13 vs rhs:15
+inserta (7,7) con clave:(13,13)
+UpdateVertex(): 8,8
+rhs := 13
+obtuvo la key, (15,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 6,8
+rhs := 11
+obtuvo la key, (13,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+s_start key1: [13, 13]
+ComputeShortestPath()
+rastro hasta ahora: UUU
+popea:(7, 7); key: (13, 13)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 7,7
+rhs := 15
+obtuvo la key, (15,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (7,7) con clave:(15,15)
+UpdateVertex(): 7,8
+rhs := 100
+obtuvo la key, (13,12)
+busca y elimina
+g:12 vs rhs:100
+mapa int g:12 vs rhs:100
+inserta (7,8) con clave:(13,12)
+UpdateVertex(): 7,6
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,7
+rhs := 14
+obtuvo la key, (15,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 6,7
+rhs := 100
+obtuvo la key, (13,12)
+busca y elimina
+g:12 vs rhs:100
+mapa int g:12 vs rhs:100
+inserta (6,7) con clave:(13,12)
+rastro hasta ahora: UUU
+popea:(7, 8); key: (13, 13)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 7,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 7,9
+rhs := 11
+obtuvo la key, (13,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 7,7
+rhs := 15
+obtuvo la key, (15,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (7,7) con clave:(15,15)
+UpdateVertex(): 8,8
+rhs := 13
+obtuvo la key, (15,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 6,8
+rhs := 11
+obtuvo la key, (13,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+rastro hasta ahora: UUU
+popea:(6, 7); key: (13, 13)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 6,7
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 6,8
+rhs := 11
+obtuvo la key, (13,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 6,6
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 7,7
+rhs := 15
+obtuvo la key, (15,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (7,7) con clave:(15,15)
+UpdateVertex(): 5,7
+rhs := 11
+obtuvo la key, (13,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+rastro hasta ahora: UUU
+popea:(7, 7); key: (13, 13)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 7,6
+rhs := 16
+obtuvo la key, (17,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (7,6) con clave:(17,16)
+UpdateVertex(): 8,7
+rhs := 14
+obtuvo la key, (15,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 6,7
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+termina de computar
+MAPA
+robot: (7, 7)
+costo mov: (7,7)->(7,8): 100
+costo mov: (7,7)->(7,6): 1
+costo mov: (7,7)->(8,7): 1
+costo mov: (7,7)->(6,7): 100
+Proximo mov -> (8, 7)
+(solo ese)
+heap:
+finalmente se elige 8,7
+siguiente es valido
+robot: (8, 7)
+costo mov: (8,7)->(8,8): 1
+costo mov: (8,7)->(8,6): 1
+costo mov: (8,7)->(9,7): 1
+costo mov: (8,7)->(7,7): 1
+Proximo mov -> (8, 8)
+(solo ese)
+heap:
+finalmente se elige 8,8
+siguiente es desconocido
+*Tirar sensor
+Distancias recibidas: Arriba=2, Abajo=5, Izquierda=3, Derecha=3
+UpdateVertex(): 6,8
+rhs := 11
+obtuvo la key, (14,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 6,6
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 7,7
+rhs := 15
+obtuvo la key, (16,15)
+busca y elimina
+g:15 vs rhs:15
+mapa int g:15 vs rhs:15
+UpdateVertex(): 5,7
+rhs := 11
+obtuvo la key, (14,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+s_start key1: [14, 14]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 13,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 13,6
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 14,7
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 12,7
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+s_start key1: [14, 14]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 8,5
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,3
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,4
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 7,4
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+s_start key1: [14, 14]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 8,11
+rhs := 10
+obtuvo la key, (14,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 8,9
+rhs := 12
+obtuvo la key, (14,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 9,10
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 7,10
+rhs := 10
+obtuvo la key, (14,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+s_start key1: [14, 14]
+ComputeShortestPath()
+termina de computar
+MAPA
+robot: (8, 7)
+costo mov: (8,7)->(8,8): 1
+costo mov: (8,7)->(8,6): 1
+costo mov: (8,7)->(9,7): 1
+costo mov: (8,7)->(7,7): 1
+Proximo mov -> (8, 8)
+(solo ese)
+heap:
+finalmente se elige 8,8
+siguiente es valido
+robot: (8, 8)
+costo mov: (8,8)->(8,9): 1
+costo mov: (8,8)->(8,7): 1
+costo mov: (8,8)->(9,8): 1
+costo mov: (8,8)->(7,8): 100
+Proximo mov -> (8, 9)
+(solo ese)
+heap:
+finalmente se elige 8,9
+siguiente es valido
+robot: (8, 9)
+costo mov: (8,9)->(8,10): 100
+costo mov: (8,9)->(8,8): 1
+costo mov: (8,9)->(9,9): 1
+costo mov: (8,9)->(7,9): 1
+Proximo mov -> (7, 9)
+(solo ese)
+heap:
+finalmente se elige 7,9
+siguiente es desconocido
+*Tirar sensor
+Distancias recibidas: Arriba=1, Abajo=4, Izquierda=5, Derecha=1
+UpdateVertex(): 7,10
+rhs := 10
+obtuvo la key, (12,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 7,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,9
+rhs := 14
+obtuvo la key, (12,12)
+busca y elimina
+g:12 vs rhs:14
+mapa int g:12 vs rhs:14
+inserta (8,9) con clave:(12,12)
+UpdateVertex(): 6,9
+rhs := 10
+obtuvo la key, (12,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+s_start key1: [12, 12]
+ComputeShortestPath()
+rastro hasta ahora: UUUDRR
+popea:(8, 9); key: (12, 12)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 8,9
+rhs := 14
+obtuvo la key, (14,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (8,9) con clave:(14,14)
+UpdateVertex(): 8,10
+rhs := 100
+obtuvo la key, (12,11)
+busca y elimina
+g:11 vs rhs:100
+mapa int g:11 vs rhs:100
+inserta (8,10) con clave:(12,11)
+UpdateVertex(): 8,8
+rhs := 15
+obtuvo la key, (14,13)
+busca y elimina
+g:13 vs rhs:15
+mapa int g:13 vs rhs:15
+inserta (8,8) con clave:(14,13)
+UpdateVertex(): 9,9
+rhs := 13
+obtuvo la key, (14,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 7,9
+rhs := 100
+obtuvo la key, (12,11)
+busca y elimina
+g:11 vs rhs:100
+mapa int g:11 vs rhs:100
+inserta (7,9) con clave:(12,11)
+rastro hasta ahora: UUUDRR
+popea:(8, 10); key: (12, 12)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 8,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,11
+rhs := 10
+obtuvo la key, (12,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 8,9
+rhs := 14
+obtuvo la key, (14,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (8,9) con clave:(14,14)
+UpdateVertex(): 9,10
+rhs := 12
+obtuvo la key, (14,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 7,10
+rhs := 10
+obtuvo la key, (12,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: UUUDRR
+popea:(7, 9); key: (12, 12)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 7,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 7,10
+rhs := 10
+obtuvo la key, (12,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 7,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,9
+rhs := 14
+obtuvo la key, (14,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (8,9) con clave:(14,14)
+UpdateVertex(): 6,9
+rhs := 10
+obtuvo la key, (12,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: UUUDRR
+popea:(8, 8); key: (12, 12)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 8,8
+rhs := 15
+obtuvo la key, (16,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (8,8) con clave:(16,15)
+UpdateVertex(): 8,9
+rhs := 14
+obtuvo la key, (14,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (8,9) con clave:(14,14)
+UpdateVertex(): 8,7
+rhs := 16
+obtuvo la key, (16,14)
+busca y elimina
+g:14 vs rhs:16
+mapa int g:14 vs rhs:16
+inserta (8,7) con clave:(16,14)
+UpdateVertex(): 9,8
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 7,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+rastro hasta ahora: UUUDRR
+popea:(8, 9); key: (12, 12)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 8,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,8
+rhs := 15
+obtuvo la key, (16,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (8,8) con clave:(16,15)
+UpdateVertex(): 9,9
+rhs := 13
+obtuvo la key, (14,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 7,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+termina de computar
+MAPA
+UpdateVertex(): 12,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 12,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 13,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 11,9
+rhs := 15
+obtuvo la key, (18,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (11,9) con clave:(18,15)
+s_start key1: [14, 14]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 8,5
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,3
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,4
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 7,4
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+s_start key1: [14, 14]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 8,11
+rhs := 10
+obtuvo la key, (12,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 8,9
+rhs := 14
+obtuvo la key, (14,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 9,10
+rhs := 12
+obtuvo la key, (14,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 7,10
+rhs := 10
+obtuvo la key, (12,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+s_start key1: [14, 14]
+ComputeShortestPath()
+termina de computar
+MAPA
+robot: (8, 9)
+costo mov: (8,9)->(8,10): 100
+costo mov: (8,9)->(8,8): 1
+costo mov: (8,9)->(9,9): 1
+costo mov: (8,9)->(7,9): 100
+Proximo mov -> (9, 9)
+(solo ese)
+heap:
+finalmente se elige 9,9
+siguiente es valido
+robot: (9, 9)
+costo mov: (9,9)->(9,10): 1
+costo mov: (9,9)->(9,8): 1
+costo mov: (9,9)->(10,9): 1
+costo mov: (9,9)->(8,9): 1
+Proximo mov -> (9, 10)
+(solo ese)
+heap:
+finalmente se elige 9,10
+siguiente es desconocido
+*Tirar sensor
+Distancias recibidas: Arriba=2, Abajo=3, Izquierda=5, Derecha=2
+UpdateVertex(): 7,10
+rhs := 10
+obtuvo la key, (13,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 7,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,9
+rhs := 14
+obtuvo la key, (15,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 6,9
+rhs := 10
+obtuvo la key, (13,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+s_start key1: [13, 13]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 12,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 12,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 13,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 11,9
+rhs := 15
+obtuvo la key, (17,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (11,9) con clave:(17,15)
+s_start key1: [13, 13]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 9,5
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,3
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 10,4
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,4
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+s_start key1: [13, 13]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 9,12
+rhs := 10
+obtuvo la key, (13,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 9,10
+rhs := 14
+obtuvo la key, (13,12)
+busca y elimina
+g:12 vs rhs:14
+mapa int g:12 vs rhs:14
+inserta (9,10) con clave:(13,12)
+UpdateVertex(): 10,11
+rhs := 12
+obtuvo la key, (15,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 8,11
+rhs := 10
+obtuvo la key, (13,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+s_start key1: [13, 13]
+ComputeShortestPath()
+rastro hasta ahora: UUUDRRD
+popea:(9, 10); key: (13, 13)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 9,10
+rhs := 14
+obtuvo la key, (15,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (9,10) con clave:(15,14)
+UpdateVertex(): 9,11
+rhs := 100
+obtuvo la key, (13,11)
+busca y elimina
+g:11 vs rhs:100
+mapa int g:11 vs rhs:100
+inserta (9,11) con clave:(13,11)
+UpdateVertex(): 9,9
+rhs := 15
+obtuvo la key, (13,13)
+busca y elimina
+g:13 vs rhs:15
+mapa int g:13 vs rhs:15
+inserta (9,9) con clave:(13,13)
+UpdateVertex(): 10,10
+rhs := 13
+obtuvo la key, (15,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 8,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+rastro hasta ahora: UUUDRRD
+popea:(9, 11); key: (13, 13)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 9,11
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,12
+rhs := 10
+obtuvo la key, (13,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 9,10
+rhs := 14
+obtuvo la key, (15,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (9,10) con clave:(15,14)
+UpdateVertex(): 10,11
+rhs := 12
+obtuvo la key, (15,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 8,11
+rhs := 10
+obtuvo la key, (13,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: UUUDRRD
+popea:(9, 9); key: (13, 13)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 9,9
+rhs := 15
+obtuvo la key, (15,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (9,9) con clave:(15,15)
+UpdateVertex(): 9,10
+rhs := 14
+obtuvo la key, (15,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (9,10) con clave:(15,14)
+UpdateVertex(): 9,8
+rhs := 16
+obtuvo la key, (15,14)
+busca y elimina
+g:14 vs rhs:16
+mapa int g:14 vs rhs:16
+inserta (9,8) con clave:(15,14)
+UpdateVertex(): 10,9
+rhs := 14
+obtuvo la key, (15,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 8,9
+rhs := 100
+obtuvo la key, (15,14)
+busca y elimina
+g:14 vs rhs:100
+mapa int g:14 vs rhs:100
+inserta (8,9) con clave:(15,14)
+rastro hasta ahora: UUUDRRD
+popea:(9, 10); key: (13, 13)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,11
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,9
+rhs := 15
+obtuvo la key, (15,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (9,9) con clave:(15,15)
+UpdateVertex(): 10,10
+rhs := 13
+obtuvo la key, (15,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 8,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+rastro hasta ahora: UUUDRRD
+popea:(9, 8); key: (13, 13)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 9,8
+rhs := 16
+obtuvo la key, (17,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (9,8) con clave:(17,16)
+UpdateVertex(): 9,9
+rhs := 15
+obtuvo la key, (15,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (9,9) con clave:(15,15)
+UpdateVertex(): 9,7
+rhs := 15
+obtuvo la key, (17,15)
+busca y elimina
+g:15 vs rhs:15
+mapa int g:15 vs rhs:15
+UpdateVertex(): 10,8
+rhs := 100
+obtuvo la key, (17,15)
+busca y elimina
+g:15 vs rhs:100
+mapa int g:15 vs rhs:100
+inserta (10,8) con clave:(17,15)
+UpdateVertex(): 8,8
+rhs := 15
+obtuvo la key, (17,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (8,8) con clave:(17,15)
+rastro hasta ahora: UUUDRRD
+popea:(8, 9); key: (13, 13)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 8,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,8
+rhs := 15
+obtuvo la key, (17,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (8,8) con clave:(17,15)
+UpdateVertex(): 9,9
+rhs := 15
+obtuvo la key, (15,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (9,9) con clave:(15,15)
+UpdateVertex(): 7,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+rastro hasta ahora: UUUDRRD
+popea:(9, 9); key: (13, 13)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,10
+rhs := 14
+obtuvo la key, (15,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 9,8
+rhs := 16
+obtuvo la key, (17,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (9,8) con clave:(17,16)
+UpdateVertex(): 10,9
+rhs := 14
+obtuvo la key, (15,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 8,9
+rhs := 16
+obtuvo la key, (17,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (8,9) con clave:(17,16)
+termina de computar
+MAPA
+robot: (9, 9)
+costo mov: (9,9)->(9,10): 1
+costo mov: (9,9)->(9,8): 1
+costo mov: (9,9)->(10,9): 1
+costo mov: (9,9)->(8,9): 1
+Proximo mov -> (9, 10)
+o... (10, 9)
+heap:
+finalmente se elige 9,10
+siguiente es valido
+robot: (9, 10)
+costo mov: (9,10)->(9,11): 100
+costo mov: (9,10)->(9,9): 1
+costo mov: (9,10)->(10,10): 1
+costo mov: (9,10)->(8,10): 100
+Proximo mov -> (10, 10)
+(solo ese)
+heap:
+finalmente se elige 10,10
+siguiente es desconocido
+*Tirar sensor
+Distancias recibidas: Arriba=1, Abajo=1, Izquierda=6, Derecha=1
+UpdateVertex(): 8,11
+rhs := 10
+obtuvo la key, (12,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 8,9
+rhs := 16
+obtuvo la key, (18,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (8,9) con clave:(18,16)
+UpdateVertex(): 9,10
+rhs := 14
+obtuvo la key, (14,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 7,10
+rhs := 10
+obtuvo la key, (12,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+s_start key1: [14, 14]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 10,11
+rhs := 12
+obtuvo la key, (14,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 10,9
+rhs := 16
+obtuvo la key, (16,14)
+busca y elimina
+g:14 vs rhs:16
+mapa int g:14 vs rhs:16
+inserta (10,9) con clave:(16,14)
+UpdateVertex(): 11,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,10
+rhs := 16
+obtuvo la key, (14,14)
+busca y elimina
+g:14 vs rhs:16
+mapa int g:14 vs rhs:16
+inserta (9,10) con clave:(14,14)
+s_start key1: [14, 14]
+ComputeShortestPath()
+rastro hasta ahora: UUUDRRDR
+popea:(9, 10); key: (14, 14)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 9,10
+rhs := 16
+obtuvo la key, (16,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (9,10) con clave:(16,16)
+UpdateVertex(): 9,11
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,9
+rhs := 15
+obtuvo la key, (16,15)
+busca y elimina
+g:15 vs rhs:15
+mapa int g:15 vs rhs:15
+UpdateVertex(): 10,10
+rhs := 100
+obtuvo la key, (14,13)
+busca y elimina
+g:13 vs rhs:100
+mapa int g:13 vs rhs:100
+inserta (10,10) con clave:(14,13)
+UpdateVertex(): 8,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+rastro hasta ahora: UUUDRRDR
+popea:(10, 10); key: (14, 14)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 10,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 10,11
+rhs := 12
+obtuvo la key, (14,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 10,9
+rhs := 16
+obtuvo la key, (16,14)
+busca y elimina
+g:14 vs rhs:16
+mapa int g:14 vs rhs:16
+inserta (10,9) con clave:(16,14)
+UpdateVertex(): 11,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,10
+rhs := 16
+obtuvo la key, (16,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (9,10) con clave:(16,16)
+rastro hasta ahora: UUUDRRDR
+popea:(8, 7); key: (14, 14)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 8,7
+rhs := 16
+obtuvo la key, (20,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (8,7) con clave:(20,16)
+UpdateVertex(): 8,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,6
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,7
+rhs := 17
+obtuvo la key, (18,15)
+busca y elimina
+g:15 vs rhs:17
+mapa int g:15 vs rhs:17
+inserta (9,7) con clave:(18,15)
+UpdateVertex(): 7,7
+rhs := 100
+obtuvo la key, (20,15)
+busca y elimina
+g:15 vs rhs:100
+mapa int g:15 vs rhs:100
+inserta (7,7) con clave:(20,15)
+rastro hasta ahora: UUUDRRDR
+popea:(10, 9); key: (14, 14)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 10,9
+rhs := 16
+obtuvo la key, (18,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (10,9) con clave:(18,16)
+UpdateVertex(): 10,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 10,8
+rhs := 100
+obtuvo la key, (18,15)
+busca y elimina
+g:15 vs rhs:100
+mapa int g:15 vs rhs:100
+inserta (10,8) con clave:(18,15)
+UpdateVertex(): 11,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,9
+rhs := 100
+obtuvo la key, (16,15)
+busca y elimina
+g:15 vs rhs:100
+mapa int g:15 vs rhs:100
+inserta (9,9) con clave:(16,15)
+rastro hasta ahora: UUUDRRDR
+popea:(9, 9); key: (14, 14)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 9,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,8
+rhs := 16
+obtuvo la key, (18,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (9,8) con clave:(18,16)
+UpdateVertex(): 10,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+rastro hasta ahora: UUUDRRDR
+popea:(7, 6); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,7
+rhs := 17
+obtuvo la key, (20,15)
+busca y elimina
+g:15 vs rhs:17
+mapa int g:15 vs rhs:17
+inserta (7,7) con clave:(20,15)
+UpdateVertex(): 7,5
+rhs := 17
+obtuvo la key, (24,17)
+busca y elimina
+g:100 vs rhs:17
+mapa int g:100 vs rhs:17
+inserta (7,5) con clave:(24,17)
+UpdateVertex(): 8,6
+rhs := 17
+obtuvo la key, (22,17)
+busca y elimina
+g:100 vs rhs:17
+mapa int g:100 vs rhs:17
+inserta (8,6) con clave:(22,17)
+UpdateVertex(): 6,6
+rhs := 17
+obtuvo la key, (24,17)
+busca y elimina
+g:100 vs rhs:17
+mapa int g:100 vs rhs:17
+inserta (6,6) con clave:(24,17)
+rastro hasta ahora: UUUDRRDR
+popea:(1, 15); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 1,16
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:100 vs rhs:2
+mapa int g:100 vs rhs:2
+inserta (1,16) con clave:(16,2)
+UpdateVertex(): 1,14
+busca y elimina
+g:0 vs rhs:0
+mapa int g:0 vs rhs:0
+UpdateVertex(): 2,15
+rhs := 2
+obtuvo la key, (14,2)
+busca y elimina
+g:100 vs rhs:2
+mapa int g:100 vs rhs:2
+inserta (2,15) con clave:(14,2)
+UpdateVertex(): 0,15
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:100 vs rhs:2
+mapa int g:100 vs rhs:2
+inserta (0,15) con clave:(16,2)
+rastro hasta ahora: UUUDRRDR
+popea:(2, 15); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 2,16
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (2,16) con clave:(16,3)
+UpdateVertex(): 2,14
+rhs := 1
+obtuvo la key, (12,1)
+busca y elimina
+g:1 vs rhs:1
+mapa int g:1 vs rhs:1
+UpdateVertex(): 3,15
+rhs := 3
+obtuvo la key, (14,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (3,15) con clave:(14,3)
+UpdateVertex(): 1,15
+rhs := 1
+obtuvo la key, (14,1)
+busca y elimina
+g:1 vs rhs:1
+mapa int g:1 vs rhs:1
+rastro hasta ahora: UUUDRRDR
+popea:(3, 15); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 3,16
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (3,16) con clave:(16,4)
+UpdateVertex(): 3,14
+rhs := 2
+obtuvo la key, (12,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+UpdateVertex(): 4,15
+rhs := 4
+obtuvo la key, (14,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (4,15) con clave:(14,4)
+UpdateVertex(): 2,15
+rhs := 2
+obtuvo la key, (14,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+rastro hasta ahora: UUUDRRDR
+popea:(4, 15); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 4,16
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (4,16) con clave:(16,5)
+UpdateVertex(): 4,14
+rhs := 3
+obtuvo la key, (12,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+UpdateVertex(): 5,15
+rhs := 5
+obtuvo la key, (14,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (5,15) con clave:(14,5)
+UpdateVertex(): 3,15
+rhs := 3
+obtuvo la key, (14,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+rastro hasta ahora: UUUDRRDR
+popea:(5, 15); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 5,16
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (5,16) con clave:(16,6)
+UpdateVertex(): 5,14
+rhs := 4
+obtuvo la key, (12,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+UpdateVertex(): 6,15
+rhs := 6
+obtuvo la key, (14,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (6,15) con clave:(14,6)
+UpdateVertex(): 4,15
+rhs := 4
+obtuvo la key, (14,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+rastro hasta ahora: UUUDRRDR
+popea:(6, 15); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 6,16
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (6,16) con clave:(16,7)
+UpdateVertex(): 6,14
+rhs := 5
+obtuvo la key, (12,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+UpdateVertex(): 7,15
+rhs := 7
+obtuvo la key, (14,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (7,15) con clave:(14,7)
+UpdateVertex(): 5,15
+rhs := 5
+obtuvo la key, (14,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+rastro hasta ahora: UUUDRRDR
+popea:(7, 15); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,16
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (7,16) con clave:(16,8)
+UpdateVertex(): 7,14
+rhs := 6
+obtuvo la key, (12,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+UpdateVertex(): 8,15
+rhs := 8
+obtuvo la key, (14,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (8,15) con clave:(14,8)
+UpdateVertex(): 6,15
+rhs := 6
+obtuvo la key, (14,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+rastro hasta ahora: UUUDRRDR
+popea:(8, 15); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 8,16
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (8,16) con clave:(16,9)
+UpdateVertex(): 8,14
+rhs := 7
+obtuvo la key, (12,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+UpdateVertex(): 9,15
+rhs := 9
+obtuvo la key, (14,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (9,15) con clave:(14,9)
+UpdateVertex(): 7,15
+rhs := 7
+obtuvo la key, (14,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+rastro hasta ahora: UUUDRRDR
+popea:(9, 15); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,16
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (9,16) con clave:(16,10)
+UpdateVertex(): 9,14
+rhs := 8
+obtuvo la key, (12,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+UpdateVertex(): 10,15
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (10,15) con clave:(16,10)
+UpdateVertex(): 8,15
+rhs := 8
+obtuvo la key, (14,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+rastro hasta ahora: UUUDRRDR
+popea:(1, 16); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 1,17
+rhs := 3
+obtuvo la key, (18,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (1,17) con clave:(18,3)
+UpdateVertex(): 1,15
+rhs := 1
+obtuvo la key, (14,1)
+busca y elimina
+g:1 vs rhs:1
+mapa int g:1 vs rhs:1
+UpdateVertex(): 2,16
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (2,16) con clave:(16,3)
+UpdateVertex(): 0,16
+rhs := 3
+obtuvo la key, (18,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (0,16) con clave:(18,3)
+rastro hasta ahora: UUUDRRDR
+popea:(0, 15); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 0,16
+rhs := 3
+obtuvo la key, (18,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (0,16) con clave:(18,3)
+UpdateVertex(): 0,14
+rhs := 1
+obtuvo la key, (14,1)
+busca y elimina
+g:100 vs rhs:1
+mapa int g:100 vs rhs:1
+inserta (0,14) con clave:(14,1)
+UpdateVertex(): 1,15
+rhs := 1
+obtuvo la key, (14,1)
+busca y elimina
+g:1 vs rhs:1
+mapa int g:1 vs rhs:1
+rastro hasta ahora: UUUDRRDR
+popea:(0, 14); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 0,15
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+UpdateVertex(): 0,13
+rhs := 2
+obtuvo la key, (14,2)
+busca y elimina
+g:100 vs rhs:2
+mapa int g:100 vs rhs:2
+inserta (0,13) con clave:(14,2)
+UpdateVertex(): 1,14
+busca y elimina
+g:0 vs rhs:0
+mapa int g:0 vs rhs:0
+rastro hasta ahora: UUUDRRDR
+popea:(0, 13); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 0,14
+rhs := 1
+obtuvo la key, (14,1)
+busca y elimina
+g:1 vs rhs:1
+mapa int g:1 vs rhs:1
+UpdateVertex(): 0,12
+rhs := 3
+obtuvo la key, (14,3)
+busca y elimina
+g:100 vs rhs:3
+mapa int g:100 vs rhs:3
+inserta (0,12) con clave:(14,3)
+UpdateVertex(): 1,13
+rhs := 1
+obtuvo la key, (12,1)
+busca y elimina
+g:1 vs rhs:1
+mapa int g:1 vs rhs:1
+rastro hasta ahora: UUUDRRDR
+popea:(0, 12); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 0,13
+rhs := 2
+obtuvo la key, (14,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+UpdateVertex(): 0,11
+rhs := 4
+obtuvo la key, (14,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (0,11) con clave:(14,4)
+UpdateVertex(): 1,12
+rhs := 2
+obtuvo la key, (12,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+rastro hasta ahora: UUUDRRDR
+popea:(0, 11); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 0,12
+rhs := 3
+obtuvo la key, (14,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+UpdateVertex(): 0,10
+rhs := 5
+obtuvo la key, (14,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (0,10) con clave:(14,5)
+UpdateVertex(): 1,11
+rhs := 3
+obtuvo la key, (12,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+rastro hasta ahora: UUUDRRDR
+popea:(0, 10); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 0,11
+rhs := 4
+obtuvo la key, (14,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+UpdateVertex(): 0,9
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (0,9) con clave:(16,6)
+UpdateVertex(): 1,10
+rhs := 4
+obtuvo la key, (12,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+rastro hasta ahora: UUUDRRDR
+popea:(2, 16); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 2,17
+rhs := 4
+obtuvo la key, (18,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (2,17) con clave:(18,4)
+UpdateVertex(): 2,15
+rhs := 2
+obtuvo la key, (14,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+UpdateVertex(): 3,16
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (3,16) con clave:(16,4)
+UpdateVertex(): 1,16
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+rastro hasta ahora: UUUDRRDR
+popea:(3, 16); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 3,17
+rhs := 5
+obtuvo la key, (18,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (3,17) con clave:(18,5)
+UpdateVertex(): 3,15
+rhs := 3
+obtuvo la key, (14,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+UpdateVertex(): 4,16
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (4,16) con clave:(16,5)
+UpdateVertex(): 2,16
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+rastro hasta ahora: UUUDRRDR
+popea:(4, 16); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 4,17
+rhs := 6
+obtuvo la key, (18,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (4,17) con clave:(18,6)
+UpdateVertex(): 4,15
+rhs := 4
+obtuvo la key, (14,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+UpdateVertex(): 5,16
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (5,16) con clave:(16,6)
+UpdateVertex(): 3,16
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+rastro hasta ahora: UUUDRRDR
+popea:(0, 9); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 0,10
+rhs := 5
+obtuvo la key, (14,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+UpdateVertex(): 0,8
+rhs := 7
+obtuvo la key, (18,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (0,8) con clave:(18,7)
+UpdateVertex(): 1,9
+rhs := 5
+obtuvo la key, (14,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+rastro hasta ahora: UUUDRRDR
+popea:(5, 16); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 5,17
+rhs := 7
+obtuvo la key, (18,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (5,17) con clave:(18,7)
+UpdateVertex(): 5,15
+rhs := 5
+obtuvo la key, (14,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+UpdateVertex(): 6,16
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (6,16) con clave:(16,7)
+UpdateVertex(): 4,16
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+rastro hasta ahora: UUUDRRDR
+popea:(6, 16); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 6,17
+rhs := 8
+obtuvo la key, (18,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (6,17) con clave:(18,8)
+UpdateVertex(): 6,15
+rhs := 6
+obtuvo la key, (14,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+UpdateVertex(): 7,16
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (7,16) con clave:(16,8)
+UpdateVertex(): 5,16
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+rastro hasta ahora: UUUDRRDR
+popea:(7, 16); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,17
+rhs := 9
+obtuvo la key, (18,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (7,17) con clave:(18,9)
+UpdateVertex(): 7,15
+rhs := 7
+obtuvo la key, (14,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+UpdateVertex(): 8,16
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (8,16) con clave:(16,9)
+UpdateVertex(): 6,16
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+rastro hasta ahora: UUUDRRDR
+popea:(8, 16); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 8,17
+rhs := 10
+obtuvo la key, (18,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (8,17) con clave:(18,10)
+UpdateVertex(): 8,15
+rhs := 8
+obtuvo la key, (14,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+UpdateVertex(): 9,16
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (9,16) con clave:(16,10)
+UpdateVertex(): 7,16
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+rastro hasta ahora: UUUDRRDR
+popea:(10, 15); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 10,16
+rhs := 11
+obtuvo la key, (18,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (10,16) con clave:(18,11)
+UpdateVertex(): 10,14
+rhs := 9
+obtuvo la key, (14,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+UpdateVertex(): 11,15
+rhs := 11
+obtuvo la key, (18,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (11,15) con clave:(18,11)
+UpdateVertex(): 9,15
+rhs := 9
+obtuvo la key, (14,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+rastro hasta ahora: UUUDRRDR
+popea:(9, 16); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,17
+rhs := 11
+obtuvo la key, (18,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (9,17) con clave:(18,11)
+UpdateVertex(): 9,15
+rhs := 9
+obtuvo la key, (14,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+UpdateVertex(): 10,16
+rhs := 11
+obtuvo la key, (18,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (10,16) con clave:(18,11)
+UpdateVertex(): 8,16
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+rastro hasta ahora: UUUDRRDR
+popea:(1, 17); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 1,18
+rhs := 4
+obtuvo la key, (20,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (1,18) con clave:(20,4)
+UpdateVertex(): 1,16
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+UpdateVertex(): 2,17
+rhs := 4
+obtuvo la key, (18,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (2,17) con clave:(18,4)
+UpdateVertex(): 0,17
+rhs := 4
+obtuvo la key, (20,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (0,17) con clave:(20,4)
+rastro hasta ahora: UUUDRRDR
+popea:(0, 16); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 0,17
+rhs := 4
+obtuvo la key, (20,4)
+busca y elimina
+g:100 vs rhs:4
+mapa int g:100 vs rhs:4
+inserta (0,17) con clave:(20,4)
+UpdateVertex(): 0,15
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+UpdateVertex(): 1,16
+rhs := 2
+obtuvo la key, (16,2)
+busca y elimina
+g:2 vs rhs:2
+mapa int g:2 vs rhs:2
+rastro hasta ahora: UUUDRRDR
+popea:(2, 17); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 2,18
+rhs := 5
+obtuvo la key, (20,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (2,18) con clave:(20,5)
+UpdateVertex(): 2,16
+rhs := 3
+obtuvo la key, (16,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+UpdateVertex(): 3,17
+rhs := 5
+obtuvo la key, (18,5)
+busca y elimina
+g:100 vs rhs:5
+mapa int g:100 vs rhs:5
+inserta (3,17) con clave:(18,5)
+UpdateVertex(): 1,17
+rhs := 3
+obtuvo la key, (18,3)
+busca y elimina
+g:3 vs rhs:3
+mapa int g:3 vs rhs:3
+rastro hasta ahora: UUUDRRDR
+popea:(3, 17); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 3,18
+rhs := 6
+obtuvo la key, (20,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (3,18) con clave:(20,6)
+UpdateVertex(): 3,16
+rhs := 4
+obtuvo la key, (16,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+UpdateVertex(): 4,17
+rhs := 6
+obtuvo la key, (18,6)
+busca y elimina
+g:100 vs rhs:6
+mapa int g:100 vs rhs:6
+inserta (4,17) con clave:(18,6)
+UpdateVertex(): 2,17
+rhs := 4
+obtuvo la key, (18,4)
+busca y elimina
+g:4 vs rhs:4
+mapa int g:4 vs rhs:4
+rastro hasta ahora: UUUDRRDR
+popea:(4, 17); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 4,18
+rhs := 7
+obtuvo la key, (20,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (4,18) con clave:(20,7)
+UpdateVertex(): 4,16
+rhs := 5
+obtuvo la key, (16,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+UpdateVertex(): 5,17
+rhs := 7
+obtuvo la key, (18,7)
+busca y elimina
+g:100 vs rhs:7
+mapa int g:100 vs rhs:7
+inserta (5,17) con clave:(18,7)
+UpdateVertex(): 3,17
+rhs := 5
+obtuvo la key, (18,5)
+busca y elimina
+g:5 vs rhs:5
+mapa int g:5 vs rhs:5
+rastro hasta ahora: UUUDRRDR
+popea:(0, 8); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 0,9
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+UpdateVertex(): 0,7
+rhs := 8
+obtuvo la key, (20,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (0,7) con clave:(20,8)
+UpdateVertex(): 1,8
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+rastro hasta ahora: UUUDRRDR
+popea:(5, 17); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 5,18
+rhs := 8
+obtuvo la key, (20,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (5,18) con clave:(20,8)
+UpdateVertex(): 5,16
+rhs := 6
+obtuvo la key, (16,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+UpdateVertex(): 6,17
+rhs := 8
+obtuvo la key, (18,8)
+busca y elimina
+g:100 vs rhs:8
+mapa int g:100 vs rhs:8
+inserta (6,17) con clave:(18,8)
+UpdateVertex(): 4,17
+rhs := 6
+obtuvo la key, (18,6)
+busca y elimina
+g:6 vs rhs:6
+mapa int g:6 vs rhs:6
+rastro hasta ahora: UUUDRRDR
+popea:(1, 6); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 1,7
+rhs := 7
+obtuvo la key, (18,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+UpdateVertex(): 1,5
+rhs := 9
+obtuvo la key, (22,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (1,5) con clave:(22,9)
+UpdateVertex(): 2,6
+rhs := 9
+obtuvo la key, (20,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (2,6) con clave:(20,9)
+UpdateVertex(): 0,6
+rhs := 9
+obtuvo la key, (22,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (0,6) con clave:(22,9)
+rastro hasta ahora: UUUDRRDR
+popea:(6, 17); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 6,18
+rhs := 9
+obtuvo la key, (20,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (6,18) con clave:(20,9)
+UpdateVertex(): 6,16
+rhs := 7
+obtuvo la key, (16,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+UpdateVertex(): 7,17
+rhs := 9
+obtuvo la key, (18,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (7,17) con clave:(18,9)
+UpdateVertex(): 5,17
+rhs := 7
+obtuvo la key, (18,7)
+busca y elimina
+g:7 vs rhs:7
+mapa int g:7 vs rhs:7
+rastro hasta ahora: UUUDRRDR
+popea:(7, 17); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 7,18
+rhs := 10
+obtuvo la key, (20,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (7,18) con clave:(20,10)
+UpdateVertex(): 7,16
+rhs := 8
+obtuvo la key, (16,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+UpdateVertex(): 8,17
+rhs := 10
+obtuvo la key, (18,10)
+busca y elimina
+g:100 vs rhs:10
+mapa int g:100 vs rhs:10
+inserta (8,17) con clave:(18,10)
+UpdateVertex(): 6,17
+rhs := 8
+obtuvo la key, (18,8)
+busca y elimina
+g:8 vs rhs:8
+mapa int g:8 vs rhs:8
+rastro hasta ahora: UUUDRRDR
+popea:(11, 14); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 11,15
+rhs := 11
+obtuvo la key, (18,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (11,15) con clave:(18,11)
+UpdateVertex(): 11,13
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (11,13) con clave:(16,11)
+UpdateVertex(): 12,14
+rhs := 11
+obtuvo la key, (18,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (12,14) con clave:(18,11)
+UpdateVertex(): 10,14
+rhs := 9
+obtuvo la key, (14,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+rastro hasta ahora: UUUDRRDR
+popea:(11, 13); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 11,14
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 11,12
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (11,12) con clave:(16,12)
+UpdateVertex(): 12,13
+rhs := 12
+obtuvo la key, (18,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (12,13) con clave:(18,12)
+UpdateVertex(): 10,13
+rhs := 10
+obtuvo la key, (14,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: UUUDRRDR
+popea:(11, 12); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 11,13
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 11,11
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (11,11) con clave:(16,13)
+UpdateVertex(): 12,12
+rhs := 13
+obtuvo la key, (18,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (12,12) con clave:(18,13)
+UpdateVertex(): 10,12
+rhs := 11
+obtuvo la key, (14,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+rastro hasta ahora: UUUDRRDR
+popea:(11, 11); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 11,12
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 11,10
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (11,10) con clave:(16,14)
+UpdateVertex(): 12,11
+rhs := 14
+obtuvo la key, (18,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (12,11) con clave:(18,14)
+UpdateVertex(): 10,11
+rhs := 12
+obtuvo la key, (14,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+rastro hasta ahora: UUUDRRDR
+popea:(11, 10); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 11,11
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 11,9
+rhs := 15
+obtuvo la key, (18,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (11,9) con clave:(18,15)
+UpdateVertex(): 12,10
+rhs := 15
+obtuvo la key, (18,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (12,10) con clave:(18,15)
+UpdateVertex(): 10,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+rastro hasta ahora: UUUDRRDR
+popea:(8, 17); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 8,18
+rhs := 11
+obtuvo la key, (20,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (8,18) con clave:(20,11)
+UpdateVertex(): 8,16
+rhs := 9
+obtuvo la key, (16,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+UpdateVertex(): 9,17
+rhs := 11
+obtuvo la key, (18,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (9,17) con clave:(18,11)
+UpdateVertex(): 7,17
+rhs := 9
+obtuvo la key, (18,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+rastro hasta ahora: UUUDRRDR
+popea:(3, 6); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 3,7
+rhs := 9
+obtuvo la key, (18,9)
+busca y elimina
+g:9 vs rhs:9
+mapa int g:9 vs rhs:9
+UpdateVertex(): 3,5
+rhs := 11
+obtuvo la key, (22,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (3,5) con clave:(22,11)
+UpdateVertex(): 4,6
+rhs := 11
+obtuvo la key, (20,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (4,6) con clave:(20,11)
+UpdateVertex(): 2,6
+rhs := 9
+obtuvo la key, (20,9)
+busca y elimina
+g:100 vs rhs:9
+mapa int g:100 vs rhs:9
+inserta (2,6) con clave:(20,9)
+rastro hasta ahora: UUUDRRDR
+popea:(11, 15); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 11,16
+rhs := 12
+obtuvo la key, (20,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (11,16) con clave:(20,12)
+UpdateVertex(): 11,14
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 12,15
+rhs := 12
+obtuvo la key, (20,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (12,15) con clave:(20,12)
+UpdateVertex(): 10,15
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: UUUDRRDR
+popea:(12, 14); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 12,15
+rhs := 12
+obtuvo la key, (20,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (12,15) con clave:(20,12)
+UpdateVertex(): 12,13
+rhs := 12
+obtuvo la key, (18,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (12,13) con clave:(18,12)
+UpdateVertex(): 13,14
+rhs := 12
+obtuvo la key, (20,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (13,14) con clave:(20,12)
+UpdateVertex(): 11,14
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: UUUDRRDR
+popea:(9, 17); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,18
+rhs := 12
+obtuvo la key, (20,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (9,18) con clave:(20,12)
+UpdateVertex(): 9,16
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 10,17
+rhs := 12
+obtuvo la key, (20,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (10,17) con clave:(20,12)
+UpdateVertex(): 8,17
+rhs := 10
+obtuvo la key, (18,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: UUUDRRDR
+popea:(10, 16); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 10,17
+rhs := 12
+obtuvo la key, (20,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (10,17) con clave:(20,12)
+UpdateVertex(): 10,15
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 11,16
+rhs := 12
+obtuvo la key, (20,12)
+busca y elimina
+g:100 vs rhs:12
+mapa int g:100 vs rhs:12
+inserta (11,16) con clave:(20,12)
+UpdateVertex(): 9,16
+rhs := 10
+obtuvo la key, (16,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+rastro hasta ahora: UUUDRRDR
+popea:(12, 13); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 12,14
+rhs := 11
+obtuvo la key, (18,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 12,12
+rhs := 13
+obtuvo la key, (18,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (12,12) con clave:(18,13)
+UpdateVertex(): 13,13
+rhs := 13
+obtuvo la key, (20,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (13,13) con clave:(20,13)
+UpdateVertex(): 11,13
+rhs := 11
+obtuvo la key, (16,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+rastro hasta ahora: UUUDRRDR
+popea:(5, 6); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 5,7
+rhs := 11
+obtuvo la key, (18,11)
+busca y elimina
+g:11 vs rhs:11
+mapa int g:11 vs rhs:11
+UpdateVertex(): 5,5
+rhs := 13
+obtuvo la key, (22,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (5,5) con clave:(22,13)
+UpdateVertex(): 6,6
+rhs := 13
+obtuvo la key, (20,13)
+busca y elimina
+g:100 vs rhs:13
+mapa int g:100 vs rhs:13
+inserta (6,6) con clave:(20,13)
+UpdateVertex(): 4,6
+rhs := 11
+obtuvo la key, (20,11)
+busca y elimina
+g:100 vs rhs:11
+mapa int g:100 vs rhs:11
+inserta (4,6) con clave:(20,11)
+rastro hasta ahora: UUUDRRDR
+popea:(12, 12); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 12,13
+rhs := 12
+obtuvo la key, (18,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 12,11
+rhs := 14
+obtuvo la key, (18,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (12,11) con clave:(18,14)
+UpdateVertex(): 13,12
+rhs := 14
+obtuvo la key, (20,14)
+busca y elimina
+g:100 vs rhs:14
+mapa int g:100 vs rhs:14
+inserta (13,12) con clave:(20,14)
+UpdateVertex(): 11,12
+rhs := 12
+obtuvo la key, (16,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+rastro hasta ahora: UUUDRRDR
+popea:(12, 11); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 12,12
+rhs := 13
+obtuvo la key, (18,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 12,10
+rhs := 15
+obtuvo la key, (18,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (12,10) con clave:(18,15)
+UpdateVertex(): 13,11
+rhs := 15
+obtuvo la key, (20,15)
+busca y elimina
+g:100 vs rhs:15
+mapa int g:100 vs rhs:15
+inserta (13,11) con clave:(20,15)
+UpdateVertex(): 11,11
+rhs := 13
+obtuvo la key, (16,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+rastro hasta ahora: UUUDRRDR
+popea:(11, 9); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 11,10
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 11,8
+rhs := 16
+obtuvo la key, (20,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (11,8) con clave:(20,16)
+UpdateVertex(): 12,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 10,9
+rhs := 16
+obtuvo la key, (18,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (10,9) con clave:(18,16)
+rastro hasta ahora: UUUDRRDR
+popea:(9, 7); key: (14, 14)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 9,7
+rhs := 17
+obtuvo la key, (20,17)
+busca y elimina
+g:100 vs rhs:17
+mapa int g:100 vs rhs:17
+inserta (9,7) con clave:(20,17)
+UpdateVertex(): 9,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,6
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 10,7
+rhs := 100
+obtuvo la key, (20,16)
+busca y elimina
+g:16 vs rhs:100
+mapa int g:16 vs rhs:100
+inserta (10,7) con clave:(20,16)
+UpdateVertex(): 8,7
+rhs := 16
+obtuvo la key, (20,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (8,7) con clave:(20,16)
+rastro hasta ahora: UUUDRRDR
+popea:(12, 10); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 12,11
+rhs := 14
+obtuvo la key, (18,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+UpdateVertex(): 12,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 13,10
+rhs := 16
+obtuvo la key, (20,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (13,10) con clave:(20,16)
+UpdateVertex(): 11,10
+rhs := 14
+obtuvo la key, (16,14)
+busca y elimina
+g:14 vs rhs:14
+mapa int g:14 vs rhs:14
+rastro hasta ahora: UUUDRRDR
+popea:(10, 8); key: (14, 14)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 10,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 10,9
+rhs := 16
+obtuvo la key, (18,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (10,9) con clave:(18,16)
+UpdateVertex(): 10,7
+rhs := 100
+obtuvo la key, (20,16)
+busca y elimina
+g:16 vs rhs:100
+mapa int g:16 vs rhs:100
+inserta (10,7) con clave:(20,16)
+UpdateVertex(): 11,8
+rhs := 16
+obtuvo la key, (20,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (11,8) con clave:(20,16)
+UpdateVertex(): 9,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+rastro hasta ahora: UUUDRRDR
+popea:(10, 9); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 10,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 10,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 11,9
+rhs := 15
+obtuvo la key, (18,15)
+busca y elimina
+g:15 vs rhs:15
+mapa int g:15 vs rhs:15
+UpdateVertex(): 9,9
+rhs := 17
+obtuvo la key, (18,17)
+busca y elimina
+g:100 vs rhs:17
+mapa int g:100 vs rhs:17
+inserta (9,9) con clave:(18,17)
+rastro hasta ahora: UUUDRRDR
+popea:(11, 7); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 11,8
+rhs := 16
+obtuvo la key, (20,16)
+busca y elimina
+g:100 vs rhs:16
+mapa int g:100 vs rhs:16
+inserta (11,8) con clave:(20,16)
+UpdateVertex(): 11,6
+rhs := 18
+obtuvo la key, (24,18)
+busca y elimina
+g:100 vs rhs:18
+mapa int g:100 vs rhs:18
+inserta (11,6) con clave:(24,18)
+UpdateVertex(): 12,7
+rhs := 18
+obtuvo la key, (24,18)
+busca y elimina
+g:100 vs rhs:18
+mapa int g:100 vs rhs:18
+inserta (12,7) con clave:(24,18)
+UpdateVertex(): 10,7
+rhs := 18
+obtuvo la key, (20,16)
+busca y elimina
+g:16 vs rhs:18
+mapa int g:16 vs rhs:18
+inserta (10,7) con clave:(20,16)
+rastro hasta ahora: UUUDRRDR
+popea:(9, 9); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,10
+rhs := 18
+obtuvo la key, (18,18)
+busca y elimina
+g:100 vs rhs:18
+mapa int g:100 vs rhs:18
+inserta (9,10) con clave:(18,18)
+UpdateVertex(): 9,8
+rhs := 18
+obtuvo la key, (20,18)
+busca y elimina
+g:100 vs rhs:18
+mapa int g:100 vs rhs:18
+inserta (9,8) con clave:(20,18)
+UpdateVertex(): 10,9
+rhs := 16
+obtuvo la key, (18,16)
+busca y elimina
+g:16 vs rhs:16
+mapa int g:16 vs rhs:16
+UpdateVertex(): 8,9
+rhs := 18
+obtuvo la key, (20,18)
+busca y elimina
+g:100 vs rhs:18
+mapa int g:100 vs rhs:18
+inserta (8,9) con clave:(20,18)
+rastro hasta ahora: UUUDRRDR
+popea:(10, 6); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 10,7
+rhs := 18
+obtuvo la key, (20,16)
+busca y elimina
+g:16 vs rhs:18
+mapa int g:16 vs rhs:18
+inserta (10,7) con clave:(20,16)
+UpdateVertex(): 10,5
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 11,6
+rhs := 18
+obtuvo la key, (24,18)
+busca y elimina
+g:100 vs rhs:18
+mapa int g:100 vs rhs:18
+inserta (11,6) con clave:(24,18)
+UpdateVertex(): 9,6
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+rastro hasta ahora: UUUDRRDR
+popea:(9, 10); key: (14, 14)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 9,11
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,9
+rhs := 17
+obtuvo la key, (18,17)
+busca y elimina
+g:17 vs rhs:17
+mapa int g:17 vs rhs:17
+UpdateVertex(): 10,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+termina de computar
+MAPA
+UpdateVertex(): 9,12
+rhs := 10
+obtuvo la key, (12,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 9,10
+rhs := 18
+obtuvo la key, (18,18)
+busca y elimina
+g:18 vs rhs:18
+mapa int g:18 vs rhs:18
+UpdateVertex(): 10,11
+rhs := 12
+obtuvo la key, (14,12)
+busca y elimina
+g:12 vs rhs:12
+mapa int g:12 vs rhs:12
+UpdateVertex(): 8,11
+rhs := 10
+obtuvo la key, (12,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+s_start key1: [18, 18]
+ComputeShortestPath()
+termina de computar
+MAPA
+robot: (9, 10)
+costo mov: (9,10)->(9,11): 100
+costo mov: (9,10)->(9,9): 1
+costo mov: (9,10)->(10,10): 100
+costo mov: (9,10)->(8,10): 100
+Proximo mov -> (9, 9)
+(solo ese)
+heap:
+finalmente se elige 9,9
+siguiente es valido
+robot: (9, 9)
+costo mov: (9,9)->(9,10): 1
+costo mov: (9,9)->(9,8): 1
+costo mov: (9,9)->(10,9): 1
+costo mov: (9,9)->(8,9): 1
+Proximo mov -> (10, 9)
+(solo ese)
+heap:
+finalmente se elige 10,9
+siguiente es valido
+robot: (10, 9)
+costo mov: (10,9)->(10,10): 100
+costo mov: (10,9)->(10,8): 100
+costo mov: (10,9)->(11,9): 1
+costo mov: (10,9)->(9,9): 1
+Proximo mov -> (11, 9)
+(solo ese)
+heap:
+finalmente se elige 11,9
+siguiente es valido
+robot: (11, 9)
+costo mov: (11,9)->(11,10): 1
+costo mov: (11,9)->(11,8): 1
+costo mov: (11,9)->(12,9): 100
+costo mov: (11,9)->(10,9): 1
+Proximo mov -> (11, 10)
+(solo ese)
+heap:
+finalmente se elige 11,10
+siguiente es desconocido
+*Tirar sensor
+Distancias recibidas: Arriba=4, Abajo=1, Izquierda=3, Derecha=1
+UpdateVertex(): 7,10
+rhs := 10
+obtuvo la key, (15,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+UpdateVertex(): 7,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,9
+rhs := 18
+obtuvo la key, (21,18)
+busca y elimina
+g:100 vs rhs:18
+mapa int g:100 vs rhs:18
+inserta (8,9) con clave:(21,18)
+UpdateVertex(): 6,9
+rhs := 10
+obtuvo la key, (15,10)
+busca y elimina
+g:10 vs rhs:10
+mapa int g:10 vs rhs:10
+s_start key1: [15, 15]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 12,10
+rhs := 15
+obtuvo la key, (17,15)
+busca y elimina
+g:15 vs rhs:15
+mapa int g:15 vs rhs:15
+UpdateVertex(): 12,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 13,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 11,9
+rhs := 15
+obtuvo la key, (15,15)
+busca y elimina
+g:15 vs rhs:15
+mapa int g:15 vs rhs:15
+s_start key1: [15, 15]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 11,7
+rhs := 17
+obtuvo la key, (19,17)
+busca y elimina
+g:17 vs rhs:17
+mapa int g:17 vs rhs:17
+UpdateVertex(): 11,5
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 12,6
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 10,6
+rhs := 100
+obtuvo la key, (21,17)
+busca y elimina
+g:17 vs rhs:100
+mapa int g:17 vs rhs:100
+inserta (10,6) con clave:(21,17)
+s_start key1: [15, 15]
+ComputeShortestPath()
+termina de computar
+MAPA
+UpdateVertex(): 11,11
+rhs := 13
+obtuvo la key, (15,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 11,9
+rhs := 17
+obtuvo la key, (15,15)
+busca y elimina
+g:15 vs rhs:17
+mapa int g:15 vs rhs:17
+inserta (11,9) con clave:(15,15)
+UpdateVertex(): 12,10
+rhs := 15
+obtuvo la key, (17,15)
+busca y elimina
+g:15 vs rhs:15
+mapa int g:15 vs rhs:15
+UpdateVertex(): 10,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+s_start key1: [15, 15]
+ComputeShortestPath()
+rastro hasta ahora: UUUDRRDRLDD
+popea:(11, 9); key: (15, 15)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 11,9
+rhs := 17
+obtuvo la key, (17,17)
+busca y elimina
+g:100 vs rhs:17
+mapa int g:100 vs rhs:17
+inserta (11,9) con clave:(17,17)
+UpdateVertex(): 11,10
+rhs := 100
+obtuvo la key, (15,14)
+busca y elimina
+g:14 vs rhs:100
+mapa int g:14 vs rhs:100
+inserta (11,10) con clave:(15,14)
+UpdateVertex(): 11,8
+rhs := 18
+obtuvo la key, (19,18)
+busca y elimina
+g:100 vs rhs:18
+mapa int g:100 vs rhs:18
+inserta (11,8) con clave:(19,18)
+UpdateVertex(): 12,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 10,9
+rhs := 18
+obtuvo la key, (17,16)
+busca y elimina
+g:16 vs rhs:18
+mapa int g:16 vs rhs:18
+inserta (10,9) con clave:(17,16)
+rastro hasta ahora: UUUDRRDRLDD
+popea:(11, 10); key: (15, 15)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 11,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 11,11
+rhs := 13
+obtuvo la key, (15,13)
+busca y elimina
+g:13 vs rhs:13
+mapa int g:13 vs rhs:13
+UpdateVertex(): 11,9
+rhs := 17
+obtuvo la key, (17,17)
+busca y elimina
+g:100 vs rhs:17
+mapa int g:100 vs rhs:17
+inserta (11,9) con clave:(17,17)
+UpdateVertex(): 12,10
+rhs := 15
+obtuvo la key, (17,15)
+busca y elimina
+g:15 vs rhs:15
+mapa int g:15 vs rhs:15
+UpdateVertex(): 10,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+rastro hasta ahora: UUUDRRDRLDD
+popea:(10, 9); key: (15, 15)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 10,9
+rhs := 18
+obtuvo la key, (19,18)
+busca y elimina
+g:100 vs rhs:18
+mapa int g:100 vs rhs:18
+inserta (10,9) con clave:(19,18)
+UpdateVertex(): 10,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 10,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 11,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 9,9
+rhs := 19
+obtuvo la key, (19,17)
+busca y elimina
+g:17 vs rhs:19
+mapa int g:17 vs rhs:19
+inserta (9,9) con clave:(19,17)
+rastro hasta ahora: UUUDRRDRLDD
+popea:(9, 9); key: (15, 15)
+No es sobreconsistente (g <= rhs), poner g = inf
+UpdateVertex(): 9,9
+rhs := 19
+obtuvo la key, (21,19)
+busca y elimina
+g:100 vs rhs:19
+mapa int g:100 vs rhs:19
+inserta (9,9) con clave:(21,19)
+UpdateVertex(): 9,10
+rhs := 100
+obtuvo la key, (21,18)
+busca y elimina
+g:18 vs rhs:100
+mapa int g:18 vs rhs:100
+inserta (9,10) con clave:(21,18)
+UpdateVertex(): 9,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 10,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 8,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+rastro hasta ahora: UUUDRRDRLDD
+popea:(11, 8); key: (15, 15)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 11,9
+rhs := 19
+obtuvo la key, (19,19)
+busca y elimina
+g:100 vs rhs:19
+mapa int g:100 vs rhs:19
+inserta (11,9) con clave:(19,19)
+UpdateVertex(): 11,7
+rhs := 17
+obtuvo la key, (19,17)
+busca y elimina
+g:17 vs rhs:17
+mapa int g:17 vs rhs:17
+UpdateVertex(): 12,8
+rhs := 19
+obtuvo la key, (21,19)
+busca y elimina
+g:100 vs rhs:19
+mapa int g:100 vs rhs:19
+inserta (12,8) con clave:(21,19)
+UpdateVertex(): 10,8
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+rastro hasta ahora: UUUDRRDRLDD
+popea:(11, 9); key: (15, 15)
+Es sobreconsistente (g > rhs). Poner g = rhs
+UpdateVertex(): 11,10
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 11,8
+rhs := 18
+obtuvo la key, (19,18)
+busca y elimina
+g:18 vs rhs:18
+mapa int g:18 vs rhs:18
+UpdateVertex(): 12,9
+rhs := 100
+obtuvo la key, (100,100)
+busca y elimina
+g:100 vs rhs:100
+mapa int g:100 vs rhs:100
+UpdateVertex(): 10,9
+rhs := 20
+obtuvo la key, (21,20)
+busca y elimina
+g:100 vs rhs:20
+mapa int g:100 vs rhs:20
+inserta (10,9) con clave:(21,20)
+termina de computar
+MAPA
+robot: (11, 9)
+costo mov: (11,9)->(11,10): 100
+costo mov: (11,9)->(11,8): 1
+costo mov: (11,9)->(12,9): 100
+costo mov: (11,9)->(10,9): 1
+Proximo mov -> (11, 8)
+(solo ese)
+heap:
+finalmente se elige 11,8
+siguiente es valido
+robot: (11, 8)
+costo mov: (11,8)->(11,9): 1
+costo mov: (11,8)->(11,7): 1
+costo mov: (11,8)->(12,8): 1
+costo mov: (11,8)->(10,8): 100
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+robot: (11, 7)
+costo mov: (11,7)->(11,8): 1
+costo mov: (11,7)->(11,6): 100
+costo mov: (11,7)->(12,7): 1
+costo mov: (11,7)->(10,7): 1
+Proximo mov -> (10, 7)
+(solo ese)
+heap:
+finalmente se elige 10,7
+siguiente es valido
+robot: (10, 7)
+costo mov: (10,7)->(10,8): 100
+costo mov: (10,7)->(10,6): 100
+costo mov: (10,7)->(11,7): 1
+costo mov: (10,7)->(9,7): 1
+Proximo mov -> (11, 7)
+(solo ese)
+heap:
+finalmente se elige 11,7
+siguiente es valido
+Camino: UUUDRRDRLDDLLUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUDUD
+El robot no llego a su destino. Posicion final: (11, 7).

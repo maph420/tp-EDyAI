@@ -60,13 +60,11 @@ int g_val(InfoRobot*, Nodo);
 
 int costo_movimiento(InfoRobot*, State, State);
 
-EstadoConClave* crea_estado_con_clave(Nodo, Key, int, int, int) ;
-
 int comp_keys(Key, Key);
 
 int compara_estado_con_clave(void*, void*) ;
 // todo: cambiar p que no tome estado
-Key obt_key(State, State, InfoRobot*);
+Key obt_key(State, InfoRobot*);
 
 State* obt_ady(InfoRobot*, State, int*);
 

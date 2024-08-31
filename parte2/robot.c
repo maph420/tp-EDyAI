@@ -9,8 +9,8 @@ void obtener_distancias(int* d, InfoRobot* ir) {
         fprintf(stderr, "Error al leer las distancias del sensor\n");
         exit(EXIT_FAILURE);
     } 
-   // fprintf(stderr, "Distancias recibidas: Arriba=%d, Abajo=%d, Izquierda=%d, Derecha=%d\n", 
-     //      d[0], d[1], d[2], d[3]);
+    fprintf(stderr, "Distancias recibidas: Arriba=%d, Abajo=%d, Izquierda=%d, Derecha=%d\n", 
+           d[0], d[1], d[2], d[3]);
 
     if ((m = max(d, 4))> ir->distSensorConocida) {
         ir->distSensorConocida = m-1;
@@ -29,8 +29,6 @@ int main() {
         fprintf(stderr, "Error al leer los argumentos del archivo\n");
         exit(EXIT_FAILURE) ;
     }
-    // es la minima que podria tener, ya que 0 no se admite
-    ir->distSensorConocida = 1;
 
     fprintf(stderr, "%d %d %d\n", ir->N, ir->M, distSensorMax);
     fprintf(stderr, "%d %d\n", ir->i1, ir->j1);
@@ -47,19 +45,19 @@ int main() {
     while(ir->x != ir->i2 || ir->y != ir->j2) {
         fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
     
-        // podrian haber dos nodos con el mismo g-valor para que el robot se mueva
+        // podrian haber dos nodos con el mismo valor "ideal" para que el robot 
+        // se mueva
         cantPosibles = siguiente_movimiento(ir, posiblesSiguientes);
         
         fprintf(stderr, "heap:\n"); 
-        bheap_recorrer(ir->cp, imprime_nodo);
+        //bheap_recorrer(ir->cp, imprime_nodo);
 
         if (cantPosibles == 2) {
-            if (ir->mapaInterno[posiblesSiguientes[0].nodo.x][posiblesSiguientes[0].nodo.y].tipoCasilla == VALIDO
-            && ir->mapaInterno[posiblesSiguientes[1].nodo.x][posiblesSiguientes[1].nodo.y].tipoCasilla == VALIDO) {
+            if (posiblesSiguientes[0].tipoCasilla == VALIDO
+            && posiblesSiguientes[1].tipoCasilla == VALIDO) {
                 sig = posiblesSiguientes[aleatorio()];
             }
-            else if (ir->mapaInterno[posiblesSiguientes[0].nodo.x][posiblesSiguientes[0].nodo.y].tipoCasilla 
-        != VALIDO) {
+            else if (posiblesSiguientes[0].tipoCasilla != VALIDO) {
                 sig = posiblesSiguientes[1];
         } else {
                 sig = posiblesSiguientes[0];
@@ -69,9 +67,7 @@ int main() {
 
         fprintf(stderr, "finalmente se elige %d,%d\n", sig.nodo.x, sig.nodo.y);
     
-       if (ir->mapaInterno[sig.nodo.x][sig.nodo.y].tipoCasilla == VALIDO ||
-       ir->mapaInterno[sig.nodo.x][sig.nodo.y].tipoCasilla == VISITADO) {
-            
+       if (sig.tipoCasilla == VALIDO || sig.tipoCasilla == VISITADO) {
             
             fprintf(stderr,"siguiente es valido\n");
             if (pasos >= movMax) {
@@ -82,7 +78,7 @@ int main() {
             ir->mapaInterno[sig.nodo.x][sig.nodo.y].tipoCasilla = VISITADO;
         } 
         
-        else if (ir->mapaInterno[sig.nodo.x][sig.nodo.y].tipoCasilla == DESCONOCIDO) {
+        else if (sig.tipoCasilla == DESCONOCIDO) {
 
             fprintf(stderr,"siguiente es desconocido\n");
             fprintf(stderr, "*Tirar sensor\n");
@@ -93,7 +89,7 @@ int main() {
             actualizar_mapa_interno(ir, distancias);
         }
         // evita loop infinito en caso de algun error
-        if (strlen(ir->rastro) > 500) break; 
+        if (strlen(ir->rastro) > 400) break; 
     }   
     ir->rastro[pasos] = '\0';
 
