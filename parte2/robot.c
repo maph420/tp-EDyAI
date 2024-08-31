@@ -9,8 +9,8 @@ void obtener_distancias(int* d, InfoRobot* ir) {
         fprintf(stderr, "Error al leer las distancias del sensor\n");
         exit(EXIT_FAILURE);
     } 
-    fprintf(stderr, "Distancias recibidas: Arriba=%d, Abajo=%d, Izquierda=%d, Derecha=%d\n", 
-           d[0], d[1], d[2], d[3]);
+   // fprintf(stderr, "Distancias recibidas: Arriba=%d, Abajo=%d, Izquierda=%d, Derecha=%d\n", 
+     //      d[0], d[1], d[2], d[3]);
 
     if ((m = max(d, 4))> ir->distSensorConocida) {
         ir->distSensorConocida = m-1;
@@ -45,15 +45,14 @@ int main() {
 
     // while s_start != s_goal
     while(ir->x != ir->i2 || ir->y != ir->j2) {
-        fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
-        fprintf(stderr, "heap:\n"); bheap_recorrer(ir->cp, imprime_nodo);
+        //fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
     
         // podrian haber dos nodos con el mismo g-valor para que el robot se mueva
         cantPosibles = siguiente_movimiento(ir, posiblesSiguientes);
         
         fprintf(stderr, "heap:"); 
-        bheap_recorrer(ir->cp, imprime_nodo);
-    
+        //bheap_recorrer(ir->cp, imprime_nodo);
+
         if (cantPosibles == 2) {
             if (ir->mapaInterno[posiblesSiguientes[0].nodo.x][posiblesSiguientes[0].nodo.y].tipoCasilla == VALIDO
             && ir->mapaInterno[posiblesSiguientes[1].nodo.x][posiblesSiguientes[1].nodo.y].tipoCasilla == VALIDO) {
@@ -68,13 +67,13 @@ int main() {
         }
         else sig = posiblesSiguientes[0];
 
-        fprintf(stderr, "finalmente se elige %d,%d\n", sig.nodo.x, sig.nodo.y);
+        //fprintf(stderr, "finalmente se elige %d,%d\n", sig.nodo.x, sig.nodo.y);
     
        if (ir->mapaInterno[sig.nodo.x][sig.nodo.y].tipoCasilla == VALIDO ||
        ir->mapaInterno[sig.nodo.x][sig.nodo.y].tipoCasilla == VISITADO) {
             
             
-            fprintf(stderr,"siguiente es valido\n");
+            //fprintf(stderr,"siguiente es valido\n");
             if (pasos >= movMax) {
                 movMax *= 2;
                 ir->rastro = realloc(ir->rastro, sizeof(char) * movMax);
@@ -94,7 +93,7 @@ int main() {
             actualizar_mapa_interno(ir, distancias);
         }
         // evita loop infinito en caso de algun error
-        if (strlen(ir->rastro) > 450) break; 
+        if (strlen(ir->rastro) > 100) break; 
     }   
     ir->rastro[pasos] = '\0';
 

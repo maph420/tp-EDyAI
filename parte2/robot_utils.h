@@ -46,11 +46,11 @@ void imprime_nodo(void*);
 
 void impr_mapa(InfoRobot*);
 
-int infty();
+int infty(int, int);
 
 int aleatorio();
 
-int suma_inf(int, int);
+int suma_inf(int, int, int, int);
 
 int max(int*, int);
 
@@ -66,7 +66,7 @@ int comp_keys(Key, Key);
 
 int compara_estado_con_clave(void*, void*) ;
 // todo: cambiar p que no tome estado
-Key obt_key(State, State);
+Key obt_key(State, State, InfoRobot*);
 
 State* obt_ady(InfoRobot*, State, int*);
 

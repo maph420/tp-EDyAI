@@ -115,13 +115,11 @@ void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
     int pos;
     int hallado = 0;
 
-    if (bheap->ultimo <= 0) return;
-
     // Buscar el elemento en el arreglo
-    for (pos = 0; pos < bheap->ultimo && !hallado; pos++) {
+    for (pos = 0; pos < bheap->ultimo; pos++) {
         if ((bheap->comp(bheap->arr[pos], elemento)) == 2) {
             hallado = 1;
-            --pos;
+            break;  // Encontrado, salir del bucle
         }
     }
 

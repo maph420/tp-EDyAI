@@ -10,13 +10,22 @@ int aleatorio() {
     return (rand() % 2);
 }
 
-int infty() {
-    return 5000;
+/* En un mapa de n x m, la distancia maxima de manhattan
+entre dos puntos es n+m-2, en efecto:
+|0 - (n-1)| + |0 - (m-1)| = n-1+m-1 = n+m-2
+De modo que, basta asignar un "infinito" en nuestro universo
+como 2(n+m), de modo que ningun valor puede ser mayor que el.
+Multiplicando por 2 porque una key puede tener 2k, con k
+la mayor dist manhattan entre dos puntos
+*/
+// chequear
+int infty(int n, int m) {
+    return (n + m) * 2;
 }
 
 // suma en base al infinito designado
-int suma_inf (int a, int b) {
-    int inf = infty();
+int suma_inf (int a, int b, int n, int m) {
+    int inf = infty(n, m);
     if (a != inf && b != inf) return a+b;
     return inf;
 }
@@ -35,9 +44,9 @@ int heuristica(Nodo a, Nodo b) {
 }
 
 // Implementación de la función key
-Key obt_key(State s, State start) {
+Key obt_key(State s, State start, InfoRobot* ir) {
     int min_g_rhs =  (s.g < s.rhs) ? s.g : s.rhs;
-    return (Key){suma_inf(min_g_rhs, heuristica(start.nodo, s.nodo)), min_g_rhs};
+    return (Key){suma_inf(min_g_rhs, heuristica(start.nodo, s.nodo),ir->N,ir->M), min_g_rhs};
 } 
 
 int g_val(InfoRobot* ir, Nodo n) {
@@ -101,7 +110,7 @@ void destruir_est_con_clave(void* s) {
 // (imposible moverse entre ellos). En otro caso, es 1.
 int costo_movimiento(InfoRobot* ir, State s1, State s2) {
     return (ir->mapaInterno[s1.nodo.x][s1.nodo.y].tipoCasilla == OBSTACULO
-    || ir->mapaInterno[s2.nodo.x][s2.nodo.y].tipoCasilla == OBSTACULO) ? infty() : 1;
+    || ir->mapaInterno[s2.nodo.x][s2.nodo.y].tipoCasilla == OBSTACULO) ? infty(ir->N, ir->M) : 1;
 }
 
 
@@ -133,8 +142,8 @@ void inicializa(InfoRobot* ir) {
     for (int i = 0; i < ir->N; i++) {
         ir->mapaInterno[i] = malloc(sizeof(State) * ir->M);
         for (int j = 0; j < ir->M; j++) {
-            ir->mapaInterno[i][j].rhs = infty(); 
-            ir->mapaInterno[i][j].g = infty();
+            ir->mapaInterno[i][j].rhs = infty(ir->N, ir->M); 
+            ir->mapaInterno[i][j].g = infty(ir->N, ir->M);
             ir->mapaInterno[i][j].tipoCasilla = DESCONOCIDO;
             ir->mapaInterno[i][j].nodo.x = i;
             ir->mapaInterno[i][j].nodo.y = j;
@@ -146,7 +155,7 @@ void inicializa(InfoRobot* ir) {
     ir->mapaInterno[ir->i2][ir->j2].rhs = 0;
 
     EstadoConClave estadoMeta = {ir->mapaInterno[ir->i2][ir->j2], 
-    obt_key(ir->mapaInterno[ir->i2][ir->j2], ir->mapaInterno[ir->i1][ir->j1])};
+    obt_key(ir->mapaInterno[ir->i2][ir->j2], ir->mapaInterno[ir->i1][ir->j1], ir)};
     
     ir->cp = bheap_insertar(ir->cp, &estadoMeta);
 }
@@ -187,9 +196,9 @@ State* obt_ady(InfoRobot* ir, State curr, int* adyCount) {
 }
 
 void UpdateVertex(State u, InfoRobot* ir) {
-    fprintf(stderr, "updatevertex: %d,%d\n", u.nodo.x, u.nodo.y);
+    //fprintf(stderr, "updatevertex: %d,%d\n", u.nodo.x, u.nodo.y);
 
-    EstadoConClave sk = {u, obt_key(u, ir->mapaInterno[ir->x][ir->y])};
+    EstadoConClave sk = {u, obt_key(u, ir->mapaInterno[ir->x][ir->y], ir)};
 
     // (u_x,u_y) != (i2,j2)
     if (u.nodo.x != ir->i2 || u.nodo.y != ir->j2) {
@@ -197,12 +206,12 @@ void UpdateVertex(State u, InfoRobot* ir) {
         int sucCount = 0;
         State* sucs = obt_ady(ir, u, &sucCount);
 
-        int minVal = infty();
+        int minVal = infty(ir->N, ir->M);
         for (int h = 0; h < sucCount; h++) {
 
             int v = suma_inf(costo_movimiento(ir, ir->mapaInterno[sucs[h].nodo.x][sucs[h].nodo.y], 
             ir->mapaInterno[u.nodo.x][u.nodo.y]),
-            ir->mapaInterno[sucs[h].nodo.x][sucs[h].nodo.y].g);
+            ir->mapaInterno[sucs[h].nodo.x][sucs[h].nodo.y].g, ir->N, ir->M);
 
             if (v < minVal) {
                 minVal = v;
@@ -213,11 +222,12 @@ void UpdateVertex(State u, InfoRobot* ir) {
         ir->mapaInterno[u.nodo.x][u.nodo.y].rhs = minVal;
         ir->mapaInterno[u.nodo.x][u.nodo.y].g = u.g;
 
-        fprintf(stderr, "rhs := %d\n", minVal);
-        sk.key = obt_key(ir->mapaInterno[u.nodo.x][u.nodo.y], ir->mapaInterno[ir->x][ir->y]);
-        fprintf(stderr, "obtuvo la key, (%d,%d)\n", sk.key.id_1, sk.key.id_2);
+        //fprintf(stderr, "rhs := %d\n", minVal);
+        sk.key = obt_key(ir->mapaInterno[u.nodo.x][u.nodo.y], ir->mapaInterno[ir->x][ir->y], ir);
+        //fprintf(stderr, "obtuvo la key, (%d,%d)\n", sk.key.id_1, sk.key.id_2);
     } 
-    fprintf(stderr, "busca y elimina\n");
+    
+    //fprintf(stderr, "busca y elimina\n");
     bheap_buscar_eliminar(ir->cp, &sk);
     //fprintf(stderr, "busco y elimino\n");
 
@@ -238,14 +248,14 @@ void ComputeShortestPath(InfoRobot* ir) {
 
     // while (U.TopKey() < CalculateKey(s_start) OR rhs(s_start) != g(s_start))
     while ((cond1 = ((!bheap_es_vacio(ir->cp) && (comp_keys(((EstadoConClave*)bheap_minimo(ir->cp))->key, 
-    obt_key(ir->mapaInterno[ir->x][ir->y], ir->mapaInterno[ir->x][ir->y]))) < 0)))
+    obt_key(ir->mapaInterno[ir->x][ir->y], ir->mapaInterno[ir->x][ir->y], ir))) < 0)))
     || (cond2 = ((ir->mapaInterno[ir->x][ir->y].rhs) != (ir->mapaInterno[ir->x][ir->y].g))) 
   ) {   
 
         // MAPA:
-        fprintf(stderr, "MAPA\n");
+        //fprintf(stderr, "MAPA\n");
         //impr_mapa(ir);
-        fprintf(stderr, "rastro hasta ahora: %s\n", ir->rastro);
+        //fprintf(stderr, "rastro hasta ahora: %s\n", ir->rastro);
         ir->mapaInterno[ir->x][ir->y].nodo.x = ir->x;
         ir->mapaInterno[ir->x][ir->y].nodo.y = ir->y;
         
@@ -267,8 +277,8 @@ void ComputeShortestPath(InfoRobot* ir) {
             free(pred);
         } 
         else {
-            fprintf(stderr, "No es sobreconsistente (g <= rhs), poner g = inf\n");
-            u.g = infty();
+            //fprintf(stderr, "No es sobreconsistente (g <= rhs), poner g = inf\n");
+            u.g = infty(ir->N, ir->M);
            
             UpdateVertex(u, ir);
             int cantPred = 0;
@@ -338,12 +348,12 @@ int siguiente_movimiento(InfoRobot* ir, State* posibles) {
     int sucCount = 0, posiblesMovimientos = 0;
     State* sucs = obt_ady(ir, ir->mapaInterno[ir->x][ir->y], &sucCount);
 
-    int minVal = infty();
+    int minVal = infty(ir->N, ir->M);
 
     for (int h = 0; h < sucCount; h++) {
         int v = suma_inf(costo_movimiento(ir, ir->mapaInterno[ir->x][ir->y],
         ir->mapaInterno[sucs[h].nodo.x][sucs[h].nodo.y]),
-        ir->mapaInterno[sucs[h].nodo.x][sucs[h].nodo.y].g);
+        ir->mapaInterno[sucs[h].nodo.x][sucs[h].nodo.y].g, ir->N, ir->M);
 
         if (v < minVal) {
             minVal = v;
@@ -355,9 +365,9 @@ int siguiente_movimiento(InfoRobot* ir, State* posibles) {
         }
     }
     free(sucs);
-    fprintf(stderr, "Proximo mov -> (%d, %d)\n", posibles[0].nodo.x, posibles[0].nodo.y);
+    //fprintf(stderr, "Proximo mov -> (%d, %d)\n", posibles[0].nodo.x, posibles[0].nodo.y);
     if (posiblesMovimientos == 2) fprintf(stderr, "o... (%d, %d)\n", posibles[1].nodo.x, posibles[1].nodo.y);
-    else fprintf(stderr, "(solo ese)\n");
+    //else fprintf(stderr, "(solo ese)\n");
     return posiblesMovimientos;
 }
 
