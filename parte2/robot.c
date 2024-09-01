@@ -38,7 +38,7 @@ int main() {
     ComputeShortestPath(ir);
     
     int distancias[4], pasos = 0, movMax = 150;
-    State sig, posiblesSiguientes[2];
+    Estado sig, posiblesSiguientes[2];
     int cantPosibles = 0;
 
     // while s_start != s_goal
@@ -49,36 +49,37 @@ int main() {
         // se mueva
         cantPosibles = siguiente_movimiento(ir, posiblesSiguientes);
         
-        fprintf(stderr, "heap:\n"); 
+        //fprintf(stderr, "heap:\n"); 
         //bheap_recorrer(ir->cp, imprime_nodo);
 
         if (cantPosibles == 2) {
-            if (posiblesSiguientes[0].tipoCasilla == VALIDO
-            && posiblesSiguientes[1].tipoCasilla == VALIDO) {
+            if (posiblesSiguientes[0].tipoCelda == VALIDO
+            && posiblesSiguientes[1].tipoCelda == VALIDO) {
                 sig = posiblesSiguientes[aleatorio()];
             }
-            else if (posiblesSiguientes[0].tipoCasilla != VALIDO) {
+            else if (posiblesSiguientes[0].tipoCelda != VALIDO) {
                 sig = posiblesSiguientes[1];
         } else {
                 sig = posiblesSiguientes[0];
             }
         }
-        else sig = posiblesSiguientes[0];
+        else sig = posiblesSiguientes[0]; 
+  
 
-        fprintf(stderr, "finalmente se elige %d,%d\n", sig.nodo.x, sig.nodo.y);
+        fprintf(stderr, "finalmente se elige %d,%d\n", sig.pos.x, sig.pos.y);
     
-       if (sig.tipoCasilla == VALIDO || sig.tipoCasilla == VISITADO) {
+       if (sig.tipoCelda == VALIDO || sig.tipoCelda == VISITADO) {
             
             fprintf(stderr,"siguiente es valido\n");
             if (pasos >= movMax) {
                 movMax *= 2;
                 ir->rastro = realloc(ir->rastro, sizeof(char) * movMax);
             }
-            pasos = mover_robot(ir, sig.nodo, pasos);  
-            ir->mapaInterno[sig.nodo.x][sig.nodo.y].tipoCasilla = VISITADO;
+            pasos = mover_robot(ir, sig.pos, pasos);  
+            ir->mapaInterno[sig.pos.x][sig.pos.y].tipoCelda = VISITADO;
         } 
         
-        else if (sig.tipoCasilla == DESCONOCIDO) {
+        else if (sig.tipoCelda == DESCONOCIDO) {
 
             fprintf(stderr,"siguiente es desconocido\n");
             fprintf(stderr, "*Tirar sensor\n");

@@ -9,7 +9,7 @@ typedef enum {
     VALIDO,
     VISITADO,
     OBSTACULO
-} TipoCasilla;
+} TipoCelda;
 
 typedef struct {
     int id_1;
@@ -18,17 +18,17 @@ typedef struct {
 
 typedef struct {
     int x, y;
-} Nodo;
+} Pos;
 
 typedef struct {
-    Nodo nodo;
+    Pos pos;
     int g;
-    int rhs;
-    TipoCasilla tipoCasilla;
-} State;
+    int rhs; // rhs: estim
+    TipoCelda tipoCelda;
+} Estado;
 
 typedef struct {
-    State est;
+    Estado est;
     Key key;
 } EstadoConClave;
 
@@ -38,7 +38,7 @@ typedef struct {
     BHeap cp;
     int N, M; //sabe
     int distSensorConocida; // sabe solo lo que puede inferir de los result de los escaneos
-    State** mapaInterno;
+    Estado** mapaInterno;
     char* rastro;
 } InfoRobot;
 
@@ -54,29 +54,31 @@ int suma_inf(int, int, int, int);
 
 int max(int*, int);
 
-int heuristica(Nodo, Nodo);
+int dist_manhattan(Pos, Pos);
 
-int g_val(InfoRobot*, Nodo);
+int g_val(InfoRobot*, Pos);
 
-int costo_movimiento(InfoRobot*, State, State);
+int costo_movimiento(InfoRobot*, Estado, Estado);
 
 int comp_keys(Key, Key);
 
 int compara_estado_con_clave(void*, void*) ;
 // todo: cambiar p que no tome estado
-Key obt_key(State, InfoRobot*);
+Key obt_key(Estado, InfoRobot*);
 
-State* obt_ady(InfoRobot*, State, int*);
+int asigna_adyacencias(Estado*, Estado, InfoRobot*, int, int, int);
 
-void inicializa(InfoRobot*);
+Estado* obt_ady(InfoRobot*, Estado, int*);
 
-void UpdateVertex(State, InfoRobot*);
+void inicializa(InfoRobot*); // InicializaRobot
 
-void ComputeShortestPath(InfoRobot*);
+void UpdateVertex(Estado, InfoRobot*); // ActualizarCelda
 
-int mover_robot(InfoRobot*, Nodo, int);
+void ComputeShortestPath(InfoRobot*); // CalcularRutaOptima
 
-int siguiente_movimiento(InfoRobot*, State*);
+int mover_robot(InfoRobot*, Pos, int);
+
+int siguiente_movimiento(InfoRobot*, Estado*);
 
 void actualizar_segun_direccion(InfoRobot*, int, int, int);
 
