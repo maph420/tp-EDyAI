@@ -111,9 +111,9 @@ BHeap bheap_eliminar_minimo(BHeap bheap) {
     return bheap;
 }
 
-void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
+int bheap_buscar(BHeap bheap, void* elemento) {
     int pos;
-    int hallado = 0;
+    int hallado = 0; 
 
     // Buscar el elemento en el arreglo
     for (pos = 0; pos < bheap->ultimo; pos++) {
@@ -122,10 +122,11 @@ void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
             break;  // Encontrado, salir del bucle
         }
     }
+    return hallado ? pos : -1;
+   
+}
 
-    // Si el elemento no fue encontrado, no hacer nada
-    if (!hallado) return;
-
+void bheap_eliminar(BHeap bheap, int pos) {
     // Intercambiar el elemento con el último y reducir el tamaño del heap
     // chequear
     void* temp = bheap->arr[pos];
@@ -145,6 +146,8 @@ void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
     }
 }
 
+
+// sacar
 int es_bheap_r(BHeap bheap, int pos, int n) {
     if (pos >= (n - 1) /2) return 1;
 

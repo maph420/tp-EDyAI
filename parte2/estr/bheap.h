@@ -68,14 +68,15 @@ BHeap bheap_eliminar_minimo(BHeap);
  * Al tratarse de otro criterio de comparacion, la funcion comparadora debe
  * retornar 2 para saber que dos nodos son iguales (segun el criterio usado).
  */
-void bheap_buscar_eliminar(BHeap, void*);
+int bheap_buscar(BHeap, void*);
+
+void bheap_eliminar(BHeap, int);
 
 // sacar
 void bheap_recorrer(BHeap b, FuncionVisitante f);
 
 int es_bheap_r(BHeap bheap, int pos, int n);
+
 int es_bheap(BHeap bheap) ;
-
-
 
 #endif /* __BHEAP_H__ */

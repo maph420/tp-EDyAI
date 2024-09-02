@@ -10,8 +10,8 @@ void obtener_distancias(int* d, InfoRobot* ir) {
         fprintf(stderr, "Error al leer las distancias del sensor\n");
         exit(EXIT_FAILURE);
     } 
-    fprintf(stderr, "Distancias recibidas: Arriba=%d, Abajo=%d, Izquierda=%d, Derecha=%d\n", 
-           d[0], d[1], d[2], d[3]);
+    //fprintf(stderr, "Distancias recibidas: Arriba=%d, Abajo=%d, Izquierda=%d, Derecha=%d\n", 
+    //       d[0], d[1], d[2], d[3]);
 
     if ((m = max(d, 4)) > ir->distSensorConocida) {
         ir->distSensorConocida = m-1;
@@ -46,7 +46,7 @@ int main() {
 
     // while s_start != s_goal
     while(ir->x != ir->i2 || ir->y != ir->j2) {
-        fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
+        //fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
     
         // podrian haber dos nodos con el mismo valor "ideal" para que el robot 
         // se mueva
@@ -82,8 +82,8 @@ int main() {
         
         else if (sig.tipoCelda == DESCONOCIDO) {
 
-            fprintf(stderr,"siguiente es de onocido\n");
-            fprintf(stderr, "*Tirar sensor\n");
+            //fprintf(stderr,"siguiente es de onocido\n");
+            //fprintf(stderr, "*Tirar sensor\n");
             printf("%c %d %d\n", '?', ir->x, ir->y);
             fflush(stdout);
 
@@ -91,14 +91,14 @@ int main() {
             actualizar_mapa_interno(ir, distancias, last);
         }
         // evita loop infinito en caso de algun error
-        if (strlen(ir->rastro) > 1400) break; 
+        if (strlen(ir->rastro) > 500) break; 
     }   
     ir->rastro[pasos] = '\0';
 
     // Mandar solucion al sensor para terminar la ejecucion
     printf("%c %s\n", '!', ir->rastro);
     fflush(stdout);
-    fprintf(stderr, "Camino: %s\n", ir->rastro);
+    //fprintf(stderr, "Camino: %s\n", ir->rastro);
     
     // liberar memoria
     for (int i = 0; i < ir->N; i++) free(ir->mapaInterno[i]);

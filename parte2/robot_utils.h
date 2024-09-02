@@ -47,11 +47,11 @@ void imprime_nodo(void*);
 
 void impr_mapa(InfoRobot*);
 
-int infty(int, int);
+int infty(InfoRobot* ir);
 
 int aleatorio();
 
-int suma_inf(int, int, int, int);
+int suma_inf(int, int, InfoRobot* ir);
 
 int max(int*, int);
 
