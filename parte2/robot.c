@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 #include "robot_utils.h"
 
 void obtener_distancias(int* d, InfoRobot* ir) {
@@ -12,7 +13,7 @@ void obtener_distancias(int* d, InfoRobot* ir) {
     fprintf(stderr, "Distancias recibidas: Arriba=%d, Abajo=%d, Izquierda=%d, Derecha=%d\n", 
            d[0], d[1], d[2], d[3]);
 
-    if ((m = max(d, 4))> ir->distSensorConocida) {
+    if ((m = max(d, 4)) > ir->distSensorConocida) {
         ir->distSensorConocida = m-1;
     } 
 }
@@ -38,7 +39,9 @@ int main() {
     ComputeShortestPath(ir);
     
     int distancias[4], pasos = 0, movMax = 150;
-    Estado sig, posiblesSiguientes[2];
+    Estado sig, posiblesSiguientes[2], last;
+    last.pos.x = ir->i1; last.pos.y = ir->i2;
+
     int cantPosibles = 0;
 
     // while s_start != s_goal
@@ -48,9 +51,6 @@ int main() {
         // podrian haber dos nodos con el mismo valor "ideal" para que el robot 
         // se mueva
         cantPosibles = siguiente_movimiento(ir, posiblesSiguientes);
-        
-        //fprintf(stderr, "heap:\n"); 
-        //bheap_recorrer(ir->cp, imprime_nodo);
 
         if (cantPosibles == 2) {
             if (posiblesSiguientes[0].tipoCelda == VALIDO
@@ -65,12 +65,13 @@ int main() {
         }
         else sig = posiblesSiguientes[0]; 
   
+        
 
-        fprintf(stderr, "finalmente se elige %d,%d\n", sig.pos.x, sig.pos.y);
+       // fprintf(stderr, "finalmente se elige %d,%d\n", sig.pos.x, sig.pos.y);
     
        if (sig.tipoCelda == VALIDO || sig.tipoCelda == VISITADO) {
             
-            fprintf(stderr,"siguiente es valido\n");
+           // fprintf(stderr,"siguiente es valido\n");
             if (pasos >= movMax) {
                 movMax *= 2;
                 ir->rastro = realloc(ir->rastro, sizeof(char) * movMax);
@@ -81,16 +82,16 @@ int main() {
         
         else if (sig.tipoCelda == DESCONOCIDO) {
 
-            fprintf(stderr,"siguiente es desconocido\n");
+            fprintf(stderr,"siguiente es de onocido\n");
             fprintf(stderr, "*Tirar sensor\n");
             printf("%c %d %d\n", '?', ir->x, ir->y);
             fflush(stdout);
 
             obtener_distancias(distancias, ir);
-            actualizar_mapa_interno(ir, distancias);
+            actualizar_mapa_interno(ir, distancias, last);
         }
         // evita loop infinito en caso de algun error
-        if (strlen(ir->rastro) > 400) break; 
+        if (strlen(ir->rastro) > 1400) break; 
     }   
     ir->rastro[pasos] = '\0';
 

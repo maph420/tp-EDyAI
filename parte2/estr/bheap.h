@@ -73,4 +73,9 @@ void bheap_buscar_eliminar(BHeap, void*);
 // sacar
 void bheap_recorrer(BHeap b, FuncionVisitante f);
 
+int es_bheap_r(BHeap bheap, int pos, int n);
+int es_bheap(BHeap bheap) ;
+
+
+
 #endif /* __BHEAP_H__ */

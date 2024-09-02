@@ -40,6 +40,7 @@ typedef struct {
     int distSensorConocida; // sabe solo lo que puede inferir de los result de los escaneos
     Estado** mapaInterno;
     char* rastro;
+    int km;
 } InfoRobot;
 
 void imprime_nodo(void*);
@@ -80,8 +81,8 @@ int mover_robot(InfoRobot*, Pos, int);
 
 int siguiente_movimiento(InfoRobot*, Estado*);
 
-void actualizar_segun_direccion(InfoRobot*, int, int, int);
+void actualizar_segun_direccion(InfoRobot*, int, int, int, Estado);
 
-void actualizar_mapa_interno(InfoRobot*, int*);
+void actualizar_mapa_interno(InfoRobot*, int*, Estado);
 
 #endif /* __ROBOT_UTILS_H__ */

@@ -144,3 +144,75 @@ void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
         }
     }
 }
+
+int es_bheap_r(BHeap bheap, int pos, int n) {
+    if (pos >= (n - 1) /2) return 1;
+
+    if ((bheap->comp(bheap->arr[pos], bheap->arr[2*pos +1]) <= 0) &&
+    (bheap->comp(bheap->arr[pos], bheap->arr[2*pos +2]) <= 0) &&
+    es_bheap_r(bheap, 2*pos +1, n) &&
+    es_bheap_r(bheap, 2*pos + 2, n)) {
+        return 1;
+    }
+    return 0;
+}
+
+int es_bheap(BHeap bheap) {
+    return es_bheap_r(bheap, 0, bheap->ultimo);
+}
+
+/*
+int compara_int( void* refA,  void* refB) {
+    const int a = *(int*)refA;
+    const int b = *(int*)refB;
+    if (a < b) return -1;
+    else if (a > b) return 1;
+    else return 2;
+}
+
+void imprimir_int( void* refD) {
+    printf("%d, ", *(int*)refD);
+}
+
+void* no_copia(void* d) {
+    return d;
+}
+
+
+void no_destruye(void* d) {
+    return;
+}
+
+
+
+int main() {
+
+    BHeap b = bheap_crear(15, compara_int, no_destruye, no_copia);
+
+     int listaValores[] = 
+    {340, 530, 154, 225, 440, 136, 128, 119};
+    int** dirValores = malloc(sizeof(int*)*8);
+    for (int i=0; i < 9; i++)
+        dirValores[i] = listaValores+i;
+    
+    b = bheap_insertar(b, dirValores[0]);
+    b = bheap_insertar(b, dirValores[1]);
+    b = bheap_insertar(b, dirValores[2]);
+    b = bheap_insertar(b, dirValores[3]);
+    b = bheap_insertar(b, dirValores[4]);
+    b = bheap_insertar(b, dirValores[5]);
+    b = bheap_insertar(b, dirValores[6]);
+    b = bheap_insertar(b, dirValores[7]);
+
+    fprintf(stderr, "HEAP:\n");
+    bheap_recorrer(b, imprimir_int);
+    int r =es_bheap(b);
+    printf("Es bheap: %d\n", r);
+    int val = 156;
+    b->arr[2] = &val;
+
+    fprintf(stderr, "HEAP:\n");
+    bheap_recorrer(b, imprimir_int);
+    r =es_bheap(b);
+    printf("Es bheap: %d\n", r);
+}*/
