@@ -30,7 +30,6 @@ typedef struct {
 
 typedef struct {
     int x, y;
-    unsigned int valido;
 } NodoMapa;
 
 /* Funcion hash usada para la tabla. 

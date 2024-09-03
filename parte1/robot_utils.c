@@ -10,7 +10,6 @@ void* nodomapa_copia(void* n) {
     NodoMapa* copia = malloc(sizeof(NodoMapa)) ;
     copia->x = ((NodoMapa*)n)->x;
     copia->y = ((NodoMapa*)n)->y;
-    copia->valido = ((NodoMapa*)n)->valido;
     return copia;
 }
 
@@ -81,8 +80,7 @@ Direccion obtener_direccion(InfoRobot* ir, char** mapa, unsigned N, unsigned M, 
     for (int l = 0; l < c; l++) {
         v = (NodoMapa){
             sig_nodo_x(d[l], ir->x),
-            sig_nodo_y(d[l], ir->y),
-            1
+            sig_nodo_y(d[l], ir->y)
             };
         if (movimiento_valido(mapa, N, M, v.x, v.y) && 
         !tablahash_buscar(ir->visitados, &v)) return d[l];
@@ -102,7 +100,7 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned N, unsigned M, unsign
     
     // Estructura auxiliar con la que se verifica posiciones validas,
     // utilizada para guardar la informacion recopilada por el robot
-    NodoMapa b = (NodoMapa){ir->i1, ir->j1, 1};
+    NodoMapa b = (NodoMapa){ir->i1, ir->j1};
     pila_apilar((&ir->camino), &b, nodomapa_copia);
 
     /* Mientras el robot no llegue a la meta */
@@ -124,15 +122,11 @@ void movimiento_robot(InfoRobot* ir, char** mapa, unsigned N, unsigned M, unsign
               
             // Mover el robot a la sig posicion
             ir->x = b.x; ir->y = b.y; 
-            b.valido = 1;
             tablahash_insertar(ir->visitados, &b, FACTOR_CARGA_UMBRAL);
             pila_apilar(&(ir->camino), &b, nodomapa_copia);
         }
         // El movimento es invalido => (obstaculo / limite de mapa) 
         else {
-            b.valido = 0;
-            tablahash_insertar(ir->visitados, &b, FACTOR_CARGA_UMBRAL);
-
             pila_desapilar(&(ir->camino), nodomapa_destruir);
             NodoMapa* ant = (NodoMapa*)pila_tope(ir->camino);
             // Se mueve "hacia atras" 1 lugar
