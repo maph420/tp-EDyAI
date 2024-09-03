@@ -20,11 +20,8 @@ void nodomapa_destruir(void* n) {
 int nodomapa_comparar(void* refA, void* refB) {
     NodoMapa* a = (NodoMapa*)refA;
     NodoMapa* b = (NodoMapa*)refB;
-
-    return (a->x < b->x) ? -1 : 
-    (a->x > b->x) ? 1 : 
-    (a->y < b->y) ? -1 :
-    (a->y > b->y) ? 1 : 0;
+    if ((a->x == b->x) && (a->y == b->y)) return 0;
+    else return -1;
 }
 
 unsigned int movimiento_valido(char** mapa, int N, int M, int posX, int posY) {
@@ -78,10 +75,7 @@ Direccion obtener_direccion(InfoRobot* ir, char** mapa, unsigned N, unsigned M, 
     /* Entre las direcciones candidatas, preferir las
     que aun no fueron visitadas */
     for (int l = 0; l < c; l++) {
-        v = (NodoMapa){
-            sig_nodo_x(d[l], ir->x),
-            sig_nodo_y(d[l], ir->y)
-            };
+        v = (NodoMapa){ sig_nodo_x(d[l], ir->x), sig_nodo_y(d[l], ir->y) };
         if (movimiento_valido(mapa, N, M, v.x, v.y) && 
         !tablahash_buscar(ir->visitados, &v)) return d[l];
     }

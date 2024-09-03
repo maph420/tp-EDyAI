@@ -33,12 +33,8 @@ typedef struct {
 } NodoMapa;
 
 /* Funcion hash usada para la tabla. 
-Aplica un shift hacia la izquierda en 16 bits.
-Al resultado de eso en binario, se le aplica un XOR con el valor x binario, 
-obteniendo asi la clave del dato (x,y). Se usa un XOR y no por ejemplo AND 
-ya que la tabla de verdad del XOR distribuye las probabilidades de 0/1 de 
-manera mas uniforme (mientras que en un AND la aparicion de un 0 es la mas 
-probable) */
+(mas detalles en el informe)
+*/
 unsigned int hash(void*);
 
 /**

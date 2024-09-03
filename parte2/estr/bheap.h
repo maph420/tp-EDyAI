@@ -4,7 +4,7 @@
 typedef void *(*FuncionCopiadora)(void *dato);
 typedef int (*FuncionComparadora)(void *, void *);
 typedef void (*FuncionDestructora)(void *dato);
-typedef void (*FuncionVisitante)( void* dato);
+typedef void (*FuncionVisitante)( void* dato); //sacar
 
 typedef struct _BHeap {
 void **arr;
@@ -54,13 +54,13 @@ void hundir(BHeap, int, int);
 /**
  * Inserta el dato en el heap
  */
-BHeap bheap_insertar(BHeap, void*);
+void bheap_insertar(BHeap, void*);
 
 /**
  * Elimina el primer elemento del heap, i.e. el minimo.
  * En caso de estar el heap vacio, no se hace nada
  */
-BHeap bheap_eliminar_minimo(BHeap);
+void bheap_eliminar_minimo(BHeap);
 
 /**
  * Busca un elemento en el heap y, si lo encuentra lo elimina.
@@ -68,13 +68,9 @@ BHeap bheap_eliminar_minimo(BHeap);
  * Al tratarse de otro criterio de comparacion, la funcion comparadora debe
  * retornar 2 para saber que dos nodos son iguales (segun el criterio usado).
  */
-void bheap_buscar_eliminar(BHeap bheap, void* elemento);
+void bheap_buscar_eliminar(BHeap, void*);
 
 // sacar
 void bheap_recorrer(BHeap b, FuncionVisitante f);
-
-int es_bheap_r(BHeap bheap, int pos, int n);
-
-int es_bheap(BHeap bheap) ;
 
 #endif /* __BHEAP_H__ */

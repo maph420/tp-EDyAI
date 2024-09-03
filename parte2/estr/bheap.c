@@ -1,17 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> 
 #include "bheap.h"
-
-void bheap_recorrer(BHeap b, FuncionVisitante f) {
-    
-    //fprintf(stderr, "entra\n");
-    if (b->ultimo == 0) {
-        fprintf(stderr, "bheap ta vacio\n");
-        return;
-    }
-    for (int i = 0; i < b->ultimo; i++)
-        f(b->arr[i]);
-}
 
 BHeap bheap_crear(int capacidad, FuncionComparadora cmp, FuncionDestructora d, FuncionCopiadora c) {
     if (capacidad == 0) return NULL;
@@ -25,7 +13,6 @@ BHeap bheap_crear(int capacidad, FuncionComparadora cmp, FuncionDestructora d, F
     return heap; 
 }
 
-// arreglar
 void bheap_destruir(BHeap bheap) {
     if (bheap == NULL) return;
     
@@ -37,7 +24,7 @@ void bheap_destruir(BHeap bheap) {
 }
 
 unsigned int bheap_es_vacio(BHeap bheap) {
-    return (bheap->ultimo == 0);
+    return (bheap->ultimo < 0);
 }
 
 void* bheap_minimo(BHeap bheap) {
@@ -80,46 +67,36 @@ void hundir(BHeap bheap, int pos, int n) {
     }
 }
 
-BHeap bheap_insertar(BHeap bheap, void* elem) {
+void bheap_insertar(BHeap bheap, void* elem) {
     // En caso de necesitar espacio, pedirlo
     if (bheap->ultimo == bheap->capacidad) {
         bheap->capacidad *= 2;
         bheap->arr = realloc(bheap->arr, bheap->capacidad * sizeof(void *));
     }
-    // Insercion. El ultimo elem hasta ese momento estaba en la pos bheap->ultimo -1
     bheap->arr[bheap->ultimo] = bheap->copy(elem);
     flotar(bheap, bheap->ultimo);
     bheap->ultimo++;
-    return bheap;
 }
 
-BHeap bheap_eliminar_minimo(BHeap bheap) {
+void bheap_eliminar_minimo(BHeap bheap) {
 
-    if (bheap->ultimo == 0) {
-        printf("El heap está vacío. No se puede eliminar ningún elemento.\n");
-        return bheap;
-    }
-    // Reemplazar la raíz del heap con el último elemento del arreglo
+    // Reemplaza la raíz del heap con el último elemento del arreglo
     bheap->destroy(bheap->arr[0]);
     bheap->arr[0] = bheap->arr[bheap->ultimo - 1];
     bheap->ultimo--;
 
-    // Reordenar el heap para restaurar su propiedad de heap
-    // arrancamos desde la raiz (indice 0) para chequear TODO el arbol
+    // Restaurar la propiedad de heap
     hundir(bheap, 0, bheap->ultimo);
-
-    return bheap;
 }
 
 void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
     int pos;
     int hallado = 0;
 
-    // Buscar el elemento en el arreglo
-    for (pos = 0; pos < bheap->ultimo; pos++) {
+    for (pos = 0; pos < bheap->ultimo && !hallado; pos++) {
         if ((bheap->comp(bheap->arr[pos], elemento)) == 2) {
             hallado = 1;
-            break;  // Encontrado, salir del bucle
+            --pos;
         }
     }
 
@@ -127,14 +104,14 @@ void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
     if (!hallado) return;
 
     // Intercambiar el elemento con el último y reducir el tamaño del heap
-    // chequear
     void* temp = bheap->arr[pos];
     bheap->arr[pos] = bheap->arr[bheap->ultimo - 1];
     bheap->arr[bheap->ultimo - 1] = temp;
+
     bheap->destroy(bheap->arr[bheap->ultimo - 1]);
     bheap->ultimo--;
 
-    // Restaurar la propiedad del heap solo si se eliminó algo
+    // Restaurar la propiedad del heap
     if (pos < bheap->ultimo) { 
         // Comparar el elemento con su padre para decidir si flotar o hundir
         if (pos > 0 && bheap->comp(bheap->arr[pos], bheap->arr[(pos - 1) / 2]) < 0) {
@@ -145,86 +122,13 @@ void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
     }
 }
 
-
-// sacar
-int es_bheap_r(BHeap bheap, int pos, int n) {
-    if (pos >= (n - 1) /2) return 1;
-
-    if ((bheap->comp(bheap->arr[pos], bheap->arr[2*pos +1]) <= 0) &&
-    (bheap->comp(bheap->arr[pos], bheap->arr[2*pos +2]) <= 0) &&
-    es_bheap_r(bheap, 2*pos +1, n) &&
-    es_bheap_r(bheap, 2*pos + 2, n)) {
-        return 1;
+// SACAR
+void bheap_recorrer(BHeap b, FuncionVisitante f) {
+    
+    //fprintf(stderr, "entra\n");
+    if (b->ultimo == 0) {
+        exit(EXIT_FAILURE);
     }
-    return 0;
+    for (int i = 0; i < b->ultimo; i++)
+        f(b->arr[i]);
 }
-
-int es_bheap(BHeap bheap) {
-    return es_bheap_r(bheap, 0, bheap->ultimo);
-}
-
-
-int compara_int( void* refA,  void* refB) {
-    const int a = *(int*)refA;
-    const int b = *(int*)refB;
-    if (a < b) return -1;
-    else if (a > b) return 1;
-    else return 2;
-}
-
-void imprimir_int( void* refD) {
-    printf("%d, ", *(int*)refD);
-}
-
-void* no_copia(void* d) {
-    return d;
-}
-
-
-void no_destruye(void* d) {
-    return;
-}
-
-
-/*
-int main() {
-
-    BHeap b = bheap_crear(15, compara_int, no_destruye, no_copia);
-
-     int listaValores[] = 
-    {340, 530, 154, 225, 440, 136, 128, 119};
-    int** dirValores = malloc(sizeof(int*)*8);
-    for (int i=0; i < 9; i++)
-        dirValores[i] = listaValores+i;
-    
-    bheap_insertar(b, dirValores[0]);
-   bheap_insertar(b, dirValores[1]);
-     bheap_insertar(b, dirValores[2]);
-     bheap_insertar(b, dirValores[3]);
-    bheap_insertar(b, dirValores[4]);
-     bheap_insertar(b, dirValores[5]);
-     bheap_insertar(b, dirValores[6]);
-    bheap_insertar(b, dirValores[7]);
-
-    fprintf(stderr, "HEAP:\n");
-    bheap_recorrer(b, imprimir_int);
-    int r =es_bheap(b);
-    printf("Es bheap: %d\n", r);
-    int val = 156;
-    b->arr[2] = &val;
-
-    fprintf(stderr, "HEAP:\n");
-    bheap_recorrer(b, imprimir_int);
-    
-    int otro = 21;
-
-
-    int otroval = 211;
-    int t;
-    t = bheap_insertar(b, &otro);
-    printf("lo puso en %d\n", t);
-      bheap_recorrer(b, imprimir_int);
-     t = bheap_insertar(b, &otroval);
-    printf("lo puso en %d\n", t);
-      bheap_recorrer(b, imprimir_int);
-}*/

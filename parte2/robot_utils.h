@@ -2,8 +2,6 @@
 #define __ROBOT_UTILS_H__
 #include "estr/bheap.h"
 
-// Definición de las estructuras de datos
-
 typedef enum {
     DESCONOCIDO,
     VALIDO,
@@ -18,10 +16,10 @@ typedef struct {
 
 typedef struct {
     int x, y;
-} Pos;
+} Coord;
 
 typedef struct {
-    Pos pos;
+    Coord coord;
     int g;
     int rhs; // rhs: estim
     TipoCelda tipoCelda;
@@ -56,9 +54,9 @@ int suma_inf(int, int, InfoRobot* ir);
 
 int max(int*, int);
 
-int dist_manhattan(Pos, Pos);
+int dist_manhattan(Coord, Coord);
 
-int g_val(InfoRobot*, Pos);
+int g_val(InfoRobot*, Coord);
 
 int costo_movimiento(InfoRobot*, Estado, Estado);
 
@@ -78,7 +76,7 @@ void UpdateVertex(Estado, InfoRobot*);
 
 void CalcularRutaOptima(InfoRobot*);
 
-int mover_robot(InfoRobot*, Pos, int);
+int mover_robot(InfoRobot*, Coord, int);
 
 int siguiente_movimiento(InfoRobot*, Estado*);
 

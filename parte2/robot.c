@@ -4,6 +4,10 @@
 #include <assert.h>
 #include "robot_utils.h"
 
+/**
+ * Lee las distancias pasadas por el sensor y las guarda en el arreglo
+ * d. Tambien actualiza la longitud del sensor de ser necesario.
+ */
 void obtener_distancias(int* d, InfoRobot* ir) {
     int m;
     if (scanf("%d %d %d %d", &d[0], &d[1], &d[2], &d[3]) != 4) {
@@ -20,25 +24,19 @@ int main() {
 
     InfoRobot* ir = malloc(sizeof(InfoRobot));
     int distSensorMax;
-    // leer datos del archivo (de sensor)
-    // se asume: el robot sabe las dimensiones del mapa
-    // el robot no sabe: la dist maxima del sensor
+
     if (scanf("%d %d %d\n%d %d\n %d %d", &(ir->N), &(ir->M), &distSensorMax,
     &(ir->i1), &(ir->j1), &(ir->i2), &(ir->j2)) != 7) {
         fprintf(stderr, "Error al leer los argumentos del archivo\n");
         exit(EXIT_FAILURE) ;
     }
 
-    fprintf(stderr, "%d %d %d\n", ir->N, ir->M, distSensorMax);
-    fprintf(stderr, "%d %d\n", ir->i1, ir->j1);
-    fprintf(stderr, "%d %d\n", ir->i2, ir->j2);
-
     InicializaRobot(ir);
     CalcularRutaOptima(ir);
     
     int distancias[4], pasos = 0, movMax = ir->N * ir->M;
     Estado sig, posiblesSiguientes[2], last;
-    last.pos.x = ir->i1; last.pos.y = ir->i2;
+    last.coord.x = ir->i1; last.coord.y = ir->i2;
 
     int cantPosibles = 0;
 
@@ -49,7 +47,7 @@ int main() {
         // podrian haber dos nodos con el mismo valor "ideal" para que el robot 
         // se mueva
         cantPosibles = siguiente_movimiento(ir, posiblesSiguientes);
-
+        
         if (cantPosibles == 2) {
             if (posiblesSiguientes[0].tipoCelda == VALIDO
             && posiblesSiguientes[1].tipoCelda == VALIDO) {
@@ -62,8 +60,6 @@ int main() {
             }
         }
         else sig = posiblesSiguientes[0]; 
-  
-        
 
        // fprintf(stderr, "finalmente se elige %d,%d\n", sig.pos.x, sig.pos.y);
     
@@ -74,8 +70,8 @@ int main() {
                 movMax *= 2;
                 ir->rastro = realloc(ir->rastro, sizeof(char) * movMax);
             }
-            pasos = mover_robot(ir, sig.pos, pasos);  
-            ir->mapaInterno[sig.pos.x][sig.pos.y].tipoCelda = VISITADO;
+            pasos = mover_robot(ir, sig.coord, pasos);  
+            ir->mapaInterno[sig.coord.x][sig.coord.y].tipoCelda = VISITADO;
         } 
         
         else if (sig.tipoCelda == DESCONOCIDO) {
@@ -88,8 +84,7 @@ int main() {
             obtener_distancias(distancias, ir);
             actualizar_mapa_interno(ir, distancias, last);
         }
-        // evita loop infinito en caso de algun error
-        //if (strlen(ir->rastro) > 500) break; 
+
     }   
     ir->rastro[pasos] = '\0';
 
