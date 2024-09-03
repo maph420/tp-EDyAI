@@ -32,6 +32,7 @@ typedef struct {
     Key key;
 } EstadoConClave;
 
+
 typedef struct {
     int x, y; // pos actual
     int i1, i2, j1, j2; // arranca en (i1,j1) y destina a (i2,j2)
@@ -71,11 +72,11 @@ int asigna_adyacencias(Estado*, Estado, InfoRobot*, int, int, int);
 
 Estado* obt_ady(InfoRobot*, Estado, int*);
 
-void inicializa(InfoRobot*); // InicializaRobot
+void InicializaRobot(InfoRobot*); 
 
-void UpdateVertex(Estado, InfoRobot*); // ActualizarCelda
+void UpdateVertex(Estado, InfoRobot*);
 
-void ComputeShortestPath(InfoRobot*); // CalcularRutaOptima
+void CalcularRutaOptima(InfoRobot*);
 
 int mover_robot(InfoRobot*, Pos, int);
 

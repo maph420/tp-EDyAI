@@ -10,6 +10,10 @@ Approach 2: similar al 1 pero tratar de mejorar eficiencia eligiendo direccion c
 
 Compilar y correr parte 1:
 
+> make
+
+Alternativamente:
+
 > gcc robot.c robot_utils.c estr/pila.c estr/glist.c estr/tablahash.c -Wall -Wextra -std=c99 -g -o parte1
 
 > ./parte1 ejemplos/ejemplo8.txt
@@ -25,15 +29,3 @@ Test parte 1:
 Otro:
 
 > gcc otro.c -Wall -Wextra -std=c99 -g -lm -o otro
-
-Todo:
-
-- [ ] Ver si vale la pena mejorar la inteligencia al backtrackear (si no se pierde mucha eficiencia, y si acorta el camino bastante). En el ejemplo.txt, si se arranca por abajo se pueden hacer hasta 29 pasos, mientras que la ruta ideal es de 11.
-
-- [ ] Testear con mapas mas retorcidos
-
-- [ ] Seguir mejorando calidad de codigo, va queriendo. e.g. se declaran muchas variables nuevas en cada vuelta, ver como mejorar eso
-
-- [ ] Ver si vale la pena la utilizacion del arbol
-
-- [ ] Medir eficiencia

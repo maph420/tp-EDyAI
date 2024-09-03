@@ -10,8 +10,6 @@ void obtener_distancias(int* d, InfoRobot* ir) {
         fprintf(stderr, "Error al leer las distancias del sensor\n");
         exit(EXIT_FAILURE);
     } 
-    //fprintf(stderr, "Distancias recibidas: Arriba=%d, Abajo=%d, Izquierda=%d, Derecha=%d\n", 
-    //       d[0], d[1], d[2], d[3]);
 
     if ((m = max(d, 4)) > ir->distSensorConocida) {
         ir->distSensorConocida = m-1;
@@ -35,10 +33,10 @@ int main() {
     fprintf(stderr, "%d %d\n", ir->i1, ir->j1);
     fprintf(stderr, "%d %d\n", ir->i2, ir->j2);
 
-    inicializa(ir);
-    ComputeShortestPath(ir);
+    InicializaRobot(ir);
+    CalcularRutaOptima(ir);
     
-    int distancias[4], pasos = 0, movMax = 150;
+    int distancias[4], pasos = 0, movMax = ir->N * ir->M;
     Estado sig, posiblesSiguientes[2], last;
     last.pos.x = ir->i1; last.pos.y = ir->i2;
 
@@ -91,7 +89,7 @@ int main() {
             actualizar_mapa_interno(ir, distancias, last);
         }
         // evita loop infinito en caso de algun error
-        if (strlen(ir->rastro) > 500) break; 
+        //if (strlen(ir->rastro) > 500) break; 
     }   
     ir->rastro[pasos] = '\0';
 

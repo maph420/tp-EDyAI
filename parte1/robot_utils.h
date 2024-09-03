@@ -3,14 +3,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <assert.h>
+#include <string.h> // sacar
 #include <math.h>
 #include <time.h>
 #include "estr/pila.h"
 #include "estr/tablahash.h"
-#define LONGITUD_MAX_LINEA 1600
-// chequear
+#define LONGITUD_MAX_LINEA 150
 #define FACTOR_CARGA_UMBRAL 0.75
 
 // izquierda, derecha, arriba, abajo, invalida
@@ -33,16 +31,16 @@ typedef struct {
 typedef struct {
     int x, y;
     unsigned int valido;
-    Direccion dirOrigen;
 } NodoMapa;
 
-
-/**
- * Notifica si el robot se chocó o si se desplazó a una posición válida. 
- * Además, verifica que el robot no se salga de los limites del mapa, considerando 
- * esta situacion como un "choque".
- */
-unsigned int movimiento_valido(char**, int, int, int, int);
+/* Funcion hash usada para la tabla. 
+Aplica un shift hacia la izquierda en 16 bits.
+Al resultado de eso en binario, se le aplica un XOR con el valor x binario, 
+obteniendo asi la clave del dato (x,y). Se usa un XOR y no por ejemplo AND 
+ya que la tabla de verdad del XOR distribuye las probabilidades de 0/1 de 
+manera mas uniforme (mientras que en un AND la aparicion de un 0 es la mas 
+probable) */
+unsigned int hash(void*);
 
 /**
  * Retorna copia fisica de puntero a estructura NodoMapa
@@ -60,14 +58,33 @@ void nodomapa_destruir(void *);
 int nodomapa_comparar(void*, void*);
 
 /**
+ * Notifica si el robot se chocó o si se desplazó a una posición válida. 
+ * Además, verifica que el robot no se salga de los limites del mapa, considerando 
+ * esta situacion como un "choque".
+ */
+unsigned int movimiento_valido(char**, int, int, int, int);
+
+/**
  * Genera aleatorio entre 0 y 1
  */
 int aleatorio();
 
+/**
+ * Asigna la memoria para las estructuras utilizadas por
+ * el robot.
+ */
 void inicializa_robot(InfoRobot*, int);
 
+/**
+ * Modifica el valor de la abcisa segun la
+ * direccion de movimiento.
+ */
 int sig_nodo_x(Direccion, int);
 
+/**
+ * Modifica el valor de la ordenada segun la
+ * direccion de movimiento.
+ */
 int sig_nodo_y(Direccion, int);
 
 /**
@@ -76,13 +93,21 @@ int sig_nodo_y(Direccion, int);
  */
 Direccion opuesta(Direccion);
 
-
+/**
+ * Obtiene la o las direcciones "preferidas" a las cuales el robot
+ * se debe mover para llegar a la meta.
+ * Se asume que el robot se encuentra parado en una posicion valida.
+ */
 Direccion obtener_direccion(InfoRobot*, char**, unsigned, unsigned, Direccion, Direccion*);
 
+/**
+ * Asigna el caracter correspondiente a la direccion dada.
+ */
 char asignar_direccion(Direccion);
 
-
-void movimiento_robot(InfoRobot*, char**, unsigned int, unsigned int);
-
+/**
+ * Lleva el robot a la meta, dada su posicion inicial.
+ */
+void movimiento_robot(InfoRobot*, char**, unsigned int, unsigned int, unsigned int, Direccion*);
 
 #endif /* __ROBOT_UTILS_H__ */

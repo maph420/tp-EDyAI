@@ -88,6 +88,9 @@ int main (int argc, char** argv) {
     char** mapa = NULL;
     unsigned int numFilas, numCols;
     InfoRobot infoRobot;
+    // El numero de pasos maximos inicial. De ser necesario, es incrementado.
+    int movMax = 150;
+    Direccion* dirArr = malloc(sizeof(Direccion) * 5);
 
     int v = validar_arch_y_guardar_info(argv[1], &mapa, &numFilas, &numCols, &infoRobot);
     if (!v) {
@@ -95,10 +98,10 @@ int main (int argc, char** argv) {
         exit(EXIT_FAILURE);
     }
 
-    inicializa_robot(&infoRobot, 150);
-    movimiento_robot(&infoRobot, mapa, numFilas, numCols);
+    inicializa_robot(&infoRobot, movMax);
+    movimiento_robot(&infoRobot, mapa, numFilas, numCols, movMax, dirArr);
     
-    // mostrar recorrido hecho por el robot
+    // Mostrar recorrido hecho por el robot
     for (int i = 0; infoRobot.rastro[i]; i++)
         printf("%c", infoRobot.rastro[i]);
     puts("");
@@ -106,12 +109,12 @@ int main (int argc, char** argv) {
     // sacar
     printf("%zu\n", strlen(infoRobot.rastro));
 
-
     // liberar memoria usada por las estructuras
     for (unsigned int i = 0; i < numFilas; i++) free(mapa[i]);
     free(mapa);
     tablahash_destruir(infoRobot.visitados);
     pila_destruir(infoRobot.camino, nodomapa_destruir) ;
     free(infoRobot.rastro);
+    free(dirArr);
     return 0;
 }

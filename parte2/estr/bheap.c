@@ -111,9 +111,9 @@ BHeap bheap_eliminar_minimo(BHeap bheap) {
     return bheap;
 }
 
-int bheap_buscar(BHeap bheap, void* elemento) {
+void bheap_buscar_eliminar(BHeap bheap, void* elemento) {
     int pos;
-    int hallado = 0; 
+    int hallado = 0;
 
     // Buscar el elemento en el arreglo
     for (pos = 0; pos < bheap->ultimo; pos++) {
@@ -122,11 +122,10 @@ int bheap_buscar(BHeap bheap, void* elemento) {
             break;  // Encontrado, salir del bucle
         }
     }
-    return hallado ? pos : -1;
-   
-}
 
-void bheap_eliminar(BHeap bheap, int pos) {
+    // Si el elemento no fue encontrado, no hacer nada
+    if (!hallado) return;
+
     // Intercambiar el elemento con el último y reducir el tamaño del heap
     // chequear
     void* temp = bheap->arr[pos];
@@ -164,7 +163,7 @@ int es_bheap(BHeap bheap) {
     return es_bheap_r(bheap, 0, bheap->ultimo);
 }
 
-/*
+
 int compara_int( void* refA,  void* refB) {
     const int a = *(int*)refA;
     const int b = *(int*)refB;
@@ -187,7 +186,7 @@ void no_destruye(void* d) {
 }
 
 
-
+/*
 int main() {
 
     BHeap b = bheap_crear(15, compara_int, no_destruye, no_copia);
@@ -198,14 +197,14 @@ int main() {
     for (int i=0; i < 9; i++)
         dirValores[i] = listaValores+i;
     
-    b = bheap_insertar(b, dirValores[0]);
-    b = bheap_insertar(b, dirValores[1]);
-    b = bheap_insertar(b, dirValores[2]);
-    b = bheap_insertar(b, dirValores[3]);
-    b = bheap_insertar(b, dirValores[4]);
-    b = bheap_insertar(b, dirValores[5]);
-    b = bheap_insertar(b, dirValores[6]);
-    b = bheap_insertar(b, dirValores[7]);
+    bheap_insertar(b, dirValores[0]);
+   bheap_insertar(b, dirValores[1]);
+     bheap_insertar(b, dirValores[2]);
+     bheap_insertar(b, dirValores[3]);
+    bheap_insertar(b, dirValores[4]);
+     bheap_insertar(b, dirValores[5]);
+     bheap_insertar(b, dirValores[6]);
+    bheap_insertar(b, dirValores[7]);
 
     fprintf(stderr, "HEAP:\n");
     bheap_recorrer(b, imprimir_int);
@@ -216,6 +215,16 @@ int main() {
 
     fprintf(stderr, "HEAP:\n");
     bheap_recorrer(b, imprimir_int);
-    r =es_bheap(b);
-    printf("Es bheap: %d\n", r);
+    
+    int otro = 21;
+
+
+    int otroval = 211;
+    int t;
+    t = bheap_insertar(b, &otro);
+    printf("lo puso en %d\n", t);
+      bheap_recorrer(b, imprimir_int);
+     t = bheap_insertar(b, &otroval);
+    printf("lo puso en %d\n", t);
+      bheap_recorrer(b, imprimir_int);
 }*/

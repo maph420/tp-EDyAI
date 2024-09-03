@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
-#define LONGITUD_MAX_LINEA 1000
+#define LONGITUD_MAX_LINEA 1600
 
 // leer_archivo()
 // - lee el archivo `data` segun el formato especificado en el trabajo.
