@@ -10,6 +10,7 @@
 #include "estr/pila.h"
 #include "estr/tablahash.h"
 #define LONGITUD_MAX_LINEA 1600
+// chequear
 #define FACTOR_CARGA_UMBRAL 0.75
 
 // izquierda, derecha, arriba, abajo, invalida
@@ -49,7 +50,7 @@ unsigned int movimiento_valido(char**, int, int, int, int);
 void* nodomapa_copia(void *);
 
 /**
- * Destruye estructura NodoMapa dado su puntero
+ * Destruye estructura NodoMapa dada
  */
 void nodomapa_destruir(void *);
 
@@ -58,19 +59,28 @@ void nodomapa_destruir(void *);
  */
 int nodomapa_comparar(void*, void*);
 
+/**
+ * Genera aleatorio entre 0 y 1
+ */
 int aleatorio();
 
-unsigned int movimiento_valido(char**, int, int, int, int);
+void inicializa_robot(InfoRobot*, int);
 
 int sig_nodo_x(Direccion, int);
 
 int sig_nodo_y(Direccion, int);
 
+/**
+ * Retorna la direccion opuesta a la pasada. Utilizada para
+ * regristrar el backtracking
+ */
 Direccion opuesta(Direccion);
+
 
 Direccion obtener_direccion(InfoRobot*, char**, unsigned, unsigned, Direccion, Direccion*);
 
 char asignar_direccion(Direccion);
+
 
 void movimiento_robot(InfoRobot*, char**, unsigned int, unsigned int);
 

@@ -57,9 +57,7 @@ int validar_arch_y_guardar_info(char* nomArchivo, char*** mapa, unsigned int* nF
             // leer laberinto
             char* l;
             unsigned int j; 
-            // la cant filas del archivo discrepa con el nro de filas pasado
-            
-            
+            // la cant filas del archivo es distinto a la cant de filas pasada
                 if (k-2 > N || strlen(linea)-1 != M) { 
                     archivoValido = 0;
                 }
@@ -97,15 +95,17 @@ int main (int argc, char** argv) {
         exit(EXIT_FAILURE);
     }
 
+    inicializa_robot(&infoRobot, 150);
     movimiento_robot(&infoRobot, mapa, numFilas, numCols);
     
     // mostrar recorrido hecho por el robot
     for (int i = 0; infoRobot.rastro[i]; i++)
         printf("%c", infoRobot.rastro[i]);
     puts("");
-   
+
     // sacar
-    printf("(%zu)\n", strlen(infoRobot.rastro));
+    printf("%zu\n", strlen(infoRobot.rastro));
+
 
     // liberar memoria usada por las estructuras
     for (unsigned int i = 0; i < numFilas; i++) free(mapa[i]);

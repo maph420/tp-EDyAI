@@ -3,51 +3,48 @@
 
 #include "glist.h"
 
-/** el compilador infiere del .c respectivo 
-al .h para saber que def de pila usar**/
-typedef GNode* Pila;
-
 typedef void (*FuncionDestructora)(void *dato);
 typedef void *(*FuncionCopia)(void *dato);
+// sacar
 typedef void (*FuncionVisitante)(void *dato);
 
+typedef GNode* Pila;
 /**
- crea e inicializa una nueva pila vac ́ıa con la capacidad dada
+ * Crea e inicializa una nueva pila vacia con la capacidad dada
 **/
 Pila pila_crear();
 
 /**
- libera la memoria requerida para la pila
+ * Libera la memoria requerida para la pila
 **/
-void pila_destruir(Pila p, FuncionDestructora f);
+void pila_destruir(Pila, FuncionDestructora);
 
 /**
- retorna 1 si la pila est ́a vac ́ıa, y 0 en caso contrario.
+ * Retorna 1 si la pila esta vacia, y 0 en caso contrario.
 **/
-int pila_es_vacia(Pila p);
+int pila_es_vacia(Pila);
 
 /**
- retorna el elemento que se encuentre en el tope de la pila, pero sin
-eliminarlo
+ * Retorna el elemento que se encuentre en el tope de la pila, pero sin
+ * eliminarlo
 **/
-void* pila_tope(Pila p);
+void* pila_tope(Pila);
 
 /**
-inserta un elemento en el tope de la pila, en caso que la pila
-se encuentre llena, debera aumentar al doble la capacidad del arreglo.
+* Inserta un elemento en el tope de la pila. 
 **/
-void pila_apilar(Pila* p, void* dato, FuncionCopia c);
+void pila_apilar(Pila*, void*, FuncionCopia);
 
 /**
-elimina el elemento que se encuentra en el tope de la pila
+* Elimina el elemento que se encuentra en el tope de la pila
 **/
-void pila_desapilar(Pila* p, FuncionDestructora destroy);
+void pila_desapilar(Pila*, FuncionDestructora);
 
 /**
-imprime en orden los elementos de la pila
+ * Sacar
+Imprime en orden los elementos de la pila
 **/
-void pila_imprimir(Pila p, FuncionVisitante visit);
-
+void pila_imprimir(Pila, FuncionVisitante);
 
 #endif /* __PILA_H__ */
 

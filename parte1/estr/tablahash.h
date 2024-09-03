@@ -1,28 +1,36 @@
 #ifndef __TABLAHASH_H__
 #define __TABLAHASH_H__
 
-typedef void *(*FuncionCopiadora)(void *dato);
 /** Retorna una copia fisica del dato */
-typedef int (*FuncionComparadora)(void *dato1, void *dato2);
+typedef void *(*FuncionCopiadora)(void *dato);
+
 /** Retorna un entero negativo si dato1 < dato2, 0 si son iguales y un entero
  * positivo si dato1 > dato2  */
-typedef void (*FuncionDestructora)(void *dato);
-/** Libera la memoria alocada para el dato */
-typedef unsigned int (*FuncionHash)(void *dato);
-/** Retorna un entero sin signo para el dato */
+typedef int (*FuncionComparadora)(void *dato1, void *dato2);
 
+/** Libera la memoria reservada para el dato */
+typedef void (*FuncionDestructora)(void *dato);
+
+/** Funcion de hasheo */
+typedef unsigned int (*FuncionHash)(void *dato);
+
+/** Funcion aplicada */  // sacar?
 typedef void (*FuncionVisitante)(void* dato);
 
 typedef struct _TablaHash *TablaHash;
 
 
 // Funciones auxiliares
-unsigned int primo_mas_cercano(int n);
 
+/** 
+ * Verifica si un numero es primo
+*/
 unsigned int es_primo(int n);
 
-
-
+/** Funcion para hallar el numero primo
+ * mas cercano por arriba al argumento dado.
+*/
+unsigned int primo_mas_cercano(int n);
 
 /**
  * Crea una nueva tabla hash vacia, con la capacidad dada.
@@ -30,12 +38,6 @@ unsigned int es_primo(int n);
 TablaHash tablahash_crear(unsigned capacidad, FuncionCopiadora copia,
                           FuncionComparadora comp, FuncionDestructora destr,
                           FuncionHash hash);
-
-/**
- * Retorna el numero de elementos de la tabla.
- */
-int tablahash_nelems(TablaHash tabla);
-
 /**
  * Retorna la capacidad de la tabla.
  */
@@ -47,20 +49,30 @@ int tablahash_capacidad(TablaHash tabla);
 void tablahash_destruir(TablaHash tabla);
 
 /**
+ * Calcula el factor de carga alpha de la tabla
+ */
+float tablahash_factor_carga(TablaHash);
+
+/**
  * Inserta un dato en la tabla, o lo reemplaza si ya se encontraba.
  */
 void tablahash_insertar(TablaHash tabla, void *dato, float umbralMax);
 
 /**
- * Retorna 1 si se encontro, 0 sino.
+ * Retorna el dato de la tabla que coincida con el dato dado, o NULL si el dato
+ * buscado no se encuentra en la tabla.
  */
 int tablahash_buscar(TablaHash tabla, void *dato);
 
 /**
- * Imprime la lista enlazada correspondiente al casillero k
+ * Imprime la lista enlazada correspondiente al casillero k. sacar
  */
 void tablahash_visitar_casillero(TablaHash t, unsigned int k, FuncionVisitante f);
   
+/**
+ * Redimensiona la tabla hash duplicando su capacidad y
+ * reposiciona todos los elementos.
+ */
 void tablahash_redimensionar(TablaHash tabla);
 
 #endif /* __TABLAHASH_H__ */
