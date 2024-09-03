@@ -5,6 +5,36 @@
 #include <assert.h>
 #include "robot_utils.h"
 
+// sacar
+void imprime_nodo(void* refNodo) {
+    EstadoConClave sk = *(EstadoConClave*)refNodo;
+    fprintf(stderr, "(%d, %d); key: (%d, %d)\n", sk.est.coord.x, sk.est.coord.y, sk.key.id_1, sk.key.id_2);
+}
+
+// sacar
+void impr_mapa(InfoRobot* ir) {
+    fprintf(stderr, "(estado, g, rhs)\n");
+    for (int i = 0; i < ir->N; i++) {
+        for (int j = 0; j < ir->M; j++) {
+            fprintf(stderr,"(%d, %d, %d)",
+            ir->mapaInterno[i][j].tipoCelda, 
+            ir->mapaInterno[i][j].g,
+            ir->mapaInterno[i][j].rhs);
+            if (i == ir->x && j == ir->y) 
+                fprintf(stderr, "*\t");
+            if (i == ir->i2 && j == ir->j2)
+                fprintf(stderr, "!\t");
+            else fprintf(stderr, "\t");
+        }
+        fprintf(stderr, "\n");
+    }
+}
+
+// sacar
+void impr_key(Key k) {
+    fprintf(stderr,"(%d,%d)\n", k.id_1, k.id_2);
+}
+
 // retorna 0 o 1 de manera aleatoria
 int aleatorio() {
     srand(time(NULL)) ;
@@ -16,7 +46,6 @@ int infty(InfoRobot* ir) {
     return (ir->N * ir->M * 100);
 }
 
-// suma en base al infinito designado
 int suma_inf (int a, int b, InfoRobot* ir) {
     int inf = infty(ir);
     if (a != inf && b != inf) return a+b;
@@ -47,11 +76,6 @@ Key obt_key(Estado s, InfoRobot* ir) {
 
 int g_val(InfoRobot* ir, Coord n) {
     return dist_manhattan(n, ir->mapaInterno[ir->i2][ir->j2].coord);
-}
-
-void imprime_nodo(void* refNodo) {
-    EstadoConClave sk = *(EstadoConClave*)refNodo;
-    fprintf(stderr, "(%d, %d); key: (%d, %d)\n", sk.est.coord.x, sk.est.coord.y, sk.key.id_1, sk.key.id_2);
 }
 
 int comp_keys(Key kA, Key kB) {
@@ -87,35 +111,11 @@ void destruir_est_con_clave(void* s) {
     free((EstadoConClave*)s);
 }
 
-// El costo entre dos estados es infinito si alguno es un obstaculo 
-// (imposible moverse entre ellos). En otro caso, es 1.
 int costo_movimiento(InfoRobot* ir, Estado s1, Estado s2) {
     return (s1.tipoCelda == OBSTACULO || s2.tipoCelda == OBSTACULO) ? 
     infty(ir) : 1;
 }
 
-// sacar
-void impr_key(Key k) {
-    fprintf(stderr,"(%d,%d)\n", k.id_1, k.id_2);
-}
-// sacar
-void impr_mapa(InfoRobot* ir) {
-    fprintf(stderr, "(estado, g, rhs)\n");
-    for (int i = 0; i < ir->N; i++) {
-        for (int j = 0; j < ir->M; j++) {
-            fprintf(stderr,"(%d, %d, %d)",
-            ir->mapaInterno[i][j].tipoCelda, 
-            ir->mapaInterno[i][j].g,
-            ir->mapaInterno[i][j].rhs);
-            if (i == ir->x && j == ir->y) 
-                fprintf(stderr, "*\t");
-            if (i == ir->i2 && j == ir->j2)
-                fprintf(stderr, "!\t");
-            else fprintf(stderr, "\t");
-        }
-        fprintf(stderr, "\n");
-    }
-}
 
 void InicializaRobot(InfoRobot* ir) {
     ir->km = 0;
@@ -148,7 +148,7 @@ void InicializaRobot(InfoRobot* ir) {
     bheap_insertar(ir->cp, &estadoMeta);
 }
 
-int asigna_adyacencias(Estado* S, Estado curr, InfoRobot* ir, int dx, int dy, int c) {
+int asigna_adyacencia(Estado* S, Estado curr, InfoRobot* ir, int dx, int dy, int c) {
     S[c].coord = (Coord){curr.coord.x + dx, curr.coord.y + dy};
     S[c].g = ir->mapaInterno[curr.coord.x + dx][curr.coord.y + dy].g;
     S[c].rhs = ir->mapaInterno[curr.coord.x + dx][curr.coord.y + dy].rhs;
@@ -160,13 +160,13 @@ Estado* obt_ady(InfoRobot* ir, Estado curr, int* adyCount) {
     Estado* adyacentes = malloc(sizeof(Estado) * 4);
     // malloc en cada vuelta
     if (curr.coord.y < ir-> M - 1)
-        *adyCount = asigna_adyacencias(adyacentes, curr, ir, 0, 1, *adyCount);
+        *adyCount = asigna_adyacencia(adyacentes, curr, ir, 0, 1, *adyCount);
     if (curr.coord.y > 0) 
-        *adyCount = asigna_adyacencias(adyacentes, curr, ir, 0, -1, *adyCount);
+        *adyCount = asigna_adyacencia(adyacentes, curr, ir, 0, -1, *adyCount);
     if (curr.coord.x < ir-> N - 1) 
-        *adyCount = asigna_adyacencias(adyacentes, curr, ir, 1, 0, *adyCount);
+        *adyCount = asigna_adyacencia(adyacentes, curr, ir, 1, 0, *adyCount);
     if (curr.coord.x > 0) 
-        *adyCount = asigna_adyacencias(adyacentes, curr, ir, -1, 0, *adyCount);
+        *adyCount = asigna_adyacencia(adyacentes, curr, ir, -1, 0, *adyCount);
     return adyacentes;
 }
 
@@ -322,7 +322,6 @@ int siguiente_movimiento(InfoRobot* ir, Estado* posibles) {
     return posiblesMov;
 }
 
-// se asume que (ir->x, ir->y) != (sig.x, sig.y)
 int mover_robot(InfoRobot* ir, Coord sig, int pasos) {
     int difX = ir->x - sig.x;
     if (difX > 0) {
