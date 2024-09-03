@@ -60,12 +60,10 @@ int max(int* l, int tam) {
     return maxElem;
 }
 
-// heurística (distancia Manhattan)
 int dist_manhattan(Coord a, Coord b) {
     return abs(a.x - b.x) + abs(a.y - b.y);
 }
 
-// Implementación de la función key
 Key obt_key(Estado s, InfoRobot* ir) {
     int min_g_rhs =  (ir->mapaInterno[s.coord.x][s.coord.y].g < ir->mapaInterno[s.coord.x][s.coord.y].rhs) ? 
     ir->mapaInterno[s.coord.x][s.coord.y].g : ir->mapaInterno[s.coord.x][s.coord.y].rhs;
@@ -91,8 +89,8 @@ int compara_estado_con_clave(void* sk1, void* sk2) {
     ((*(EstadoConClave*)sk1).est.coord.y == (*(EstadoConClave*)sk2).est.coord.y)) {
         return 2;
     }
-    Key kA = (Key){(*(EstadoConClave*)sk1).key.id_1, (*(EstadoConClave*)sk1).key.id_2};
-    Key kB = (Key){(*(EstadoConClave*)sk2).key.id_1, (*(EstadoConClave*)sk2).key.id_2};
+    Key kA = (*(EstadoConClave*)sk1).key;
+    Key kB = (*(EstadoConClave*)sk2).key;
     return comp_keys(kA, kB);
 }
 
@@ -116,7 +114,6 @@ int costo_movimiento(InfoRobot* ir, Estado s1, Estado s2) {
     infty(ir) : 1;
 }
 
-
 void InicializaRobot(InfoRobot* ir) {
     ir->km = 0;
     // es la minima que podria tener, ya que 0 no se admite
@@ -124,7 +121,7 @@ void InicializaRobot(InfoRobot* ir) {
     ir->rastro = malloc(sizeof(char) * ir->N * ir->M);
     ir->cp = bheap_crear(ir->N * ir->M, compara_estado_con_clave, destruir_est_con_clave, copia_est_con_clave);
     ir->mapaInterno = malloc(sizeof(Estado*) * ir->N);
-    // ubicar al robot en la pos inicial dada
+    // ubica al robot en la pos inicial dada
     ir->x = ir->i1; ir->y = ir->j1;
 
     for (int i = 0; i < ir->N; i++) {
@@ -137,35 +134,33 @@ void InicializaRobot(InfoRobot* ir) {
         }
     }
 
-    //printf("jijodebu\n");
     ir->mapaInterno[ir->i1][ir->j1].tipoCelda = VISITADO;
     ir->mapaInterno[ir->i2][ir->j2].rhs = 0;
 
     EstadoConClave estadoMeta = {ir->mapaInterno[ir->i2][ir->j2], 
     obt_key(ir->mapaInterno[ir->i2][ir->j2], ir)};
     
-    // hacer bheap insertar void
     bheap_insertar(ir->cp, &estadoMeta);
 }
 
-int asigna_adyacencia(Estado* S, Estado curr, InfoRobot* ir, int dx, int dy, int c) {
-    S[c].coord = (Coord){curr.coord.x + dx, curr.coord.y + dy};
-    S[c].g = ir->mapaInterno[curr.coord.x + dx][curr.coord.y + dy].g;
-    S[c].rhs = ir->mapaInterno[curr.coord.x + dx][curr.coord.y + dy].rhs;
-    S[c].tipoCelda = ir->mapaInterno[curr.coord.x + dx][curr.coord.y + dy].tipoCelda;
+int asigna_adyacencia(Estado* S, Coord curr, InfoRobot* ir, int dx, int dy, int c) {
+    S[c].coord = (Coord){curr.x + dx, curr.y + dy};
+    S[c].g = ir->mapaInterno[curr.x + dx][curr.y + dy].g;
+    S[c].rhs = ir->mapaInterno[curr.x + dx][curr.y + dy].rhs;
+    S[c].tipoCelda = ir->mapaInterno[curr.x + dx][curr.y + dy].tipoCelda;
     return ++c;
 }
 
-Estado* obt_ady(InfoRobot* ir, Estado curr, int* adyCount) {
-    Estado* adyacentes = malloc(sizeof(Estado) * 4);
+Estado* obt_ady(InfoRobot* ir, Coord curr, int* adyCount) {
     // malloc en cada vuelta
-    if (curr.coord.y < ir-> M - 1)
+    Estado* adyacentes = malloc(sizeof(Estado) * 4);
+    if (curr.y < ir-> M - 1)
         *adyCount = asigna_adyacencia(adyacentes, curr, ir, 0, 1, *adyCount);
-    if (curr.coord.y > 0) 
+    if (curr.y > 0) 
         *adyCount = asigna_adyacencia(adyacentes, curr, ir, 0, -1, *adyCount);
-    if (curr.coord.x < ir-> N - 1) 
+    if (curr.x < ir-> N - 1) 
         *adyCount = asigna_adyacencia(adyacentes, curr, ir, 1, 0, *adyCount);
-    if (curr.coord.x > 0) 
+    if (curr.x > 0) 
         *adyCount = asigna_adyacencia(adyacentes, curr, ir, -1, 0, *adyCount);
     return adyacentes;
 }
@@ -176,20 +171,19 @@ void UpdateVertex(Estado u, InfoRobot* ir) {
     // (u_x,u_y) != (i2,j2)
     if (u.coord.x != ir->i2 || u.coord.y != ir->j2) {
 
-        int sucCount = 0;
-        Estado* sucs = obt_ady(ir, u, &sucCount);
+        int adyCount = 0;
+        Estado* ady = obt_ady(ir, u.coord, &adyCount);
 
         int minVal = infty(ir);
-        for (int h = 0; h < sucCount; h++) {
+        for (int h = 0; h < adyCount; h++) {
 
-            int v = suma_inf(costo_movimiento(ir, sucs[h], 
-            ir->mapaInterno[u.coord.x][u.coord.y]), sucs[h].g, ir);
+            int v = suma_inf(costo_movimiento(ir, ady[h], 
+            ir->mapaInterno[u.coord.x][u.coord.y]), ady[h].g, ir);
 
             if (v < minVal) {
                 minVal = v;
             }
         }
-        free(sucs);
 
         u.rhs = minVal; 
         ir->mapaInterno[u.coord.x][u.coord.y].rhs = minVal;
@@ -214,16 +208,16 @@ void UpdateVertex(Estado u, InfoRobot* ir) {
 
 void CalcularRutaOptima(InfoRobot* ir) {
     //fprintf(stderr, "ComputeShortestPath()\n");
-    int cond1 = 1, cond2 = 1;
     Estado u;
     Key k_old;
 
     // while (U.TopKey() < CalculateKey(s_start) OR rhs(s_start) != g(s_start))
-    while ((cond1 = ((!bheap_es_vacio(ir->cp) && (comp_keys(((EstadoConClave*)bheap_minimo(ir->cp))->key, 
-    obt_key(ir->mapaInterno[ir->x][ir->y], ir))) < 0)))
-    || (cond2 = ((ir->mapaInterno[ir->x][ir->y].rhs) != (ir->mapaInterno[ir->x][ir->y].g))) 
+    while (((!bheap_es_vacio(ir->cp) && 
+    (comp_keys(((EstadoConClave*)bheap_minimo(ir->cp))->key, 
+    obt_key(ir->mapaInterno[ir->x][ir->y], ir))) < 0))
+    || ((ir->mapaInterno[ir->x][ir->y].rhs) != (ir->mapaInterno[ir->x][ir->y].g)) 
   ) {   
-
+        // Extraemos el tope de la cola de prioridad
         u = (*(EstadoConClave*)bheap_minimo(ir->cp)).est;
         k_old = (*(EstadoConClave*)bheap_minimo(ir->cp)).key;
         bheap_eliminar_minimo(ir->cp);
@@ -235,12 +229,11 @@ void CalcularRutaOptima(InfoRobot* ir) {
             bheap_insertar(ir->cp, &tmp);
         } 
 
-        else if (ir->mapaInterno[u.coord.x][u.coord.y].g > ir->mapaInterno[u.coord.x][u.coord.y].rhs) {
-           // fprintf(stderr, "Es sobreconsistente (g > rhs). Poner g = rhs\n");
+        else if (u.g > u.rhs) {
+            // hacer nodo consistente (se actualizan las referencias al nodo en el mapa interno)
             ir->mapaInterno[u.coord.x][u.coord.y].g = ir->mapaInterno[u.coord.x][u.coord.y].rhs;
-            u.g = u.rhs; //
             int adyCount = 0;
-            Estado* ady = obt_ady(ir, u, &adyCount);
+            Estado* ady = obt_ady(ir, u.coord, &adyCount);
             
             for (int h = 0; h < adyCount; h++) {
                 UpdateVertex(ady[h], ir);
@@ -252,7 +245,7 @@ void CalcularRutaOptima(InfoRobot* ir) {
 
             UpdateVertex(ir->mapaInterno[u.coord.x][u.coord.y], ir);
             int adyCount = 0;
-            Estado* ady = obt_ady(ir, u, &adyCount);
+            Estado* ady = obt_ady(ir, u.coord, &adyCount);
             for (int h = 0; h < adyCount; h++) {
                 UpdateVertex(ady[h], ir);
             }
@@ -263,29 +256,31 @@ void CalcularRutaOptima(InfoRobot* ir) {
 
 void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy, Estado last) {
     
-    // actualizar casillas validas descubiertas
+    // Actualizar casillas validas descubiertas
     for (int h = 1; h < dist; h++) {
         if (ir->mapaInterno[ir->x + (h * dx)][ir->y + (h * dy)].tipoCelda == DESCONOCIDO)
             ir->mapaInterno[ir->x + (h * dx)][ir->y + (h * dy)].tipoCelda = VALIDO;
     }
-    // detecto obstaculo, actualizar
+    // Detecto obstaculo, actualizar
     if (dist <= ir->distSensorConocida) {
-        // actualizar solamente si la celda no excede los limites del mapa
+        // Actualizar solamente si la celda no excede los limites del mapa
         if ( (ir->y + (dist * dy)) >= 0 && (ir->y + (dist * dy)) < (ir->M) &&
         (ir->x + (dist * dx)) >= 0 && (ir->x + (dist * dx)) < (ir->N ) ) {
             
-            //fprintf(stderr,"obstaculo detectado\n");
             int indXObstaculo = ir->x + (dist * dx);
             int indYObstaculo = ir->y + (dist * dy);
             ir->mapaInterno[indXObstaculo][indYObstaculo].tipoCelda = OBSTACULO;
 
-            ir->km += dist_manhattan(last.coord, ir->mapaInterno[ir->x][ir->y].coord); ;
-
+            ir->km += dist_manhattan(last.coord, ir->mapaInterno[ir->x][ir->y].coord);
             last.coord.x = ir->x; last.coord.y = ir->y;
 
+            /*
+            Para esta implementacion del algoritmo, basta con actualizar el
+            nodo que posee el obstaculo.
+            */
             UpdateVertex(ir->mapaInterno[indXObstaculo][indYObstaculo], ir);
 
-            // recalcular ruta optima
+            // Recalcular ruta optima
             CalcularRutaOptima(ir);
         }
     }
@@ -300,20 +295,20 @@ void actualizar_mapa_interno(InfoRobot* ir, int* d, Estado last) {
 
 int siguiente_movimiento(InfoRobot* ir, Estado* posibles) {
     int adyCount = 0, posiblesMov = 0;
-    Estado* ady = obt_ady(ir, ir->mapaInterno[ir->x][ir->y], &adyCount);
-
-    int minVal = infty(ir);
+    Estado* ady = obt_ady(ir, ir->mapaInterno[ir->x][ir->y].coord, &adyCount);
+    
+    int min = infty(ir);
 
     for (int h = 0; h < adyCount; h++) {
 
         int v = suma_inf(costo_movimiento(ir, ir->mapaInterno[ir->x][ir->y],
         ady[h]), ady[h].g, ir);
  
-        if (v < minVal) {
-            minVal = v;
+        if (v < min) {
+            min = v;
             posibles[0] = ady[h];
             posiblesMov = 1;
-        } else if (v == minVal) {
+        } else if (v == min) {
             posibles[1] = ady[h];
             posiblesMov = 2;
         }

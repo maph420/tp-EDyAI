@@ -97,13 +97,13 @@ Key obt_key(Estado, InfoRobot*);
  * Funcion auxiliar para retornar un estado adyacente al
  * estado actual, en la direccion dada
  */
-int asigna_adyacencias(Estado*, Estado, InfoRobot*, int, int, int);
+int asigna_adyacencia(Estado*, Coord, InfoRobot*, int, int, int);
 
 /**
  * Retorna un array de (a lo sumo) 4 elementos, que son los
  * estados adyacentes al pasado.
  */
-Estado* obt_ady(InfoRobot*, Estado, int*);
+Estado* obt_ady(InfoRobot*, Coord, int*);
 
 /**
  * Asigna la memoria para las estructuras utilizadas por

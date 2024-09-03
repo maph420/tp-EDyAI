@@ -30,25 +30,22 @@ int main() {
         fprintf(stderr, "Error al leer los argumentos del archivo\n");
         exit(EXIT_FAILURE) ;
     }
-
+    
     InicializaRobot(ir);
     CalcularRutaOptima(ir);
-    
-    int distancias[4], pasos = 0, movMax = ir->N * ir->M;
+
+    int distancias[4], pasos = 0, movMax = ir->N * ir->M, numPosiblesMov = 0;
     Estado sig, posiblesSiguientes[2], last;
     last.coord.x = ir->i1; last.coord.y = ir->i2;
 
-    int cantPosibles = 0;
-
-    // while s_start != s_goal
+    // Mientras el robot no alcance la meta
     while(ir->x != ir->i2 || ir->y != ir->j2) {
-        //fprintf(stderr, "robot: (%d, %d)\n", ir->x, ir->y);
     
         // podrian haber dos nodos con el mismo valor "ideal" para que el robot 
         // se mueva
-        cantPosibles = siguiente_movimiento(ir, posiblesSiguientes);
+        numPosiblesMov = siguiente_movimiento(ir, posiblesSiguientes);
         
-        if (cantPosibles == 2) {
+        if (numPosiblesMov == 2) {
             if (posiblesSiguientes[0].tipoCelda == VALIDO
             && posiblesSiguientes[1].tipoCelda == VALIDO) {
                 sig = posiblesSiguientes[aleatorio()];
@@ -60,12 +57,10 @@ int main() {
             }
         }
         else sig = posiblesSiguientes[0]; 
+        
 
-       // fprintf(stderr, "finalmente se elige %d,%d\n", sig.pos.x, sig.pos.y);
-    
        if (sig.tipoCelda == VALIDO || sig.tipoCelda == VISITADO) {
             
-           // fprintf(stderr,"siguiente es valido\n");
             if (pasos >= movMax) {
                 movMax *= 2;
                 ir->rastro = realloc(ir->rastro, sizeof(char) * movMax);
@@ -75,9 +70,11 @@ int main() {
         } 
         
         else if (sig.tipoCelda == DESCONOCIDO) {
-
-            //fprintf(stderr,"siguiente es de onocido\n");
-            //fprintf(stderr, "*Tirar sensor\n");
+            /**
+             * El siguiente nodo de la ruta optima es desconocido,
+             * tirar escaner para seguir la ruta, o de lo contrario
+             * replanificar
+             */
             printf("%c %d %d\n", '?', ir->x, ir->y);
             fflush(stdout);
 
@@ -93,7 +90,7 @@ int main() {
     fflush(stdout);
     //fprintf(stderr, "Camino: %s\n", ir->rastro);
     
-    // liberar memoria
+    // Liberar memoria de estructuras usadas
     for (int i = 0; i < ir->N; i++) free(ir->mapaInterno[i]);
     free(ir->mapaInterno);
     bheap_destruir(ir->cp);

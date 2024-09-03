@@ -1,10 +1,9 @@
-OBJS	= robot.o robot_utils.o estr/bheap.o
-SOURCE	= robot.c robot_utils.c estr/bheap.c
-HEADER	= robot_utils.h estr/bheap.h
+OBJS = robot.o robot_utils.o estr/bheap.o
+SOURCE = robot.c robot_utils.c estr/bheap.c
+HEADER = robot_utils.h estr/bheap.h
 OUT	= robot
-FLAGS	= -g -c -Wall
-LFLAGS	= 
-CC	= gcc
+FLAGS = -g -c -Wall -Wextra -Werror
+CC = gcc
 
 all:	robot
 
@@ -16,7 +15,7 @@ robot: $(OBJS)
 
 clean:
 	rm -f $(OBJS) $(OUT)
-	
+
 # evita errores de compatibilidad, en caso de tener un
 # archivo llamado clean
 .PHONY = clean
