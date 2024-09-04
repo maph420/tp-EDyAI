@@ -2,7 +2,7 @@ OBJS = robot.o robot_utils.o estr/bheap.o
 SOURCE = robot.c robot_utils.c estr/bheap.c
 HEADER = robot_utils.h estr/bheap.h
 OUT	= robot
-FLAGS = -g -c -Wall -Wextra
+FLAGS = -g -c -Wall -Wextra -Werror
 CC = gcc
 
 all:	robot

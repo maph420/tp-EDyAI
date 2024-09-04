@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
-#define LONGITUD_MAX_LINEA 1600
+#define LONGITUD_MAX_LINEA 100
 
 // leer_archivo()
 // - lee el archivo `data` segun el formato especificado en el trabajo.
@@ -19,9 +19,8 @@ char** leer_archivo(FILE* data, int* nFilas, int* nCols, int* max_d, int* i1, in
 
     if (data == NULL) return 0;
 
-    //printf("Archivo '%s' abierto con exito\n", nomArchivo);
     for (int k = 0; (fgets(linea, LONGITUD_MAX_LINEA, data)) && archivoValido; k++) {
-        //printf("k -> %d\n", k);
+
         switch (k) {
         case 0: {
             check = sscanf(linea, "%d %d %d\n", nFilas, nCols, max_d);
@@ -134,8 +133,6 @@ int main(int argc, char** argv) {
 	fclose(data);
 
 	fprintf(stderr, "Archivo leido\n");
-
-	// todo: manejar para que primero lea esto
 	printf("%d %d %d\n", n, m, max_d);
 	printf("%d %d\n", i1, j1);
 	printf("%d %d\n", i2, j2);

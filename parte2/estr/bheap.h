@@ -4,7 +4,6 @@
 typedef void *(*FuncionCopiadora)(void *dato);
 typedef int (*FuncionComparadora)(void *, void *);
 typedef void (*FuncionDestructora)(void *dato);
-typedef void (*FuncionVisitante)( void* dato); //sacar
 
 typedef struct _BHeap {
 void **arr;
@@ -69,12 +68,5 @@ void bheap_eliminar_minimo(BHeap);
  * retornar 2 para saber que dos nodos son iguales (segun el criterio usado).
  */
 void bheap_buscar_eliminar(BHeap, void*);
-
-// sacar
-void bheap_recorrer(BHeap b, FuncionVisitante f);
-
-int es_bheap_r(BHeap bheap, int pos, int n);
-
-int es_bheap(BHeap bheap);
 
 #endif /* __BHEAP_H__ */

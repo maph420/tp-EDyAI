@@ -91,7 +91,7 @@ int comp_keys(Key, Key);
 
 int compara_estado_con_clave(void*, void*) ;
 
-// todo: cambiar p que no tome estado
+
 /**
  * Calcula la clave de prioridad del estado pasado.
  */

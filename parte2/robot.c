@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <assert.h>
 #include "robot_utils.h"
 
 /**
@@ -43,11 +42,7 @@ int main() {
     // Mientras el robot no alcance la meta
     while(ir->x != ir->i2 || ir->y != ir->j2) {
     
-        //fprintf(stderr, "robot: (%d,%d)\n", ir->x, ir->y);
-        // podrian haber dos nodos con el mismo valor "ideal" para que el robot 
-        // se mueva
         numPosiblesMov = siguiente_movimiento(ir, posiblesSiguientes);
-        
         
         if (numPosiblesMov == 2) {
             if (posiblesSiguientes[0].est.tipoCelda == VALIDO
@@ -92,7 +87,6 @@ int main() {
     // Mandar solucion al sensor para terminar la ejecucion
     printf("%c %s\n", '!', ir->rastro);
     fflush(stdout);
-    //fprintf(stderr, "Camino: %s\n", ir->rastro);
     
     // Liberar memoria de estructuras usadas
     for (int i = 0; i < ir->N; i++) free(ir->mapaInterno[i]);
