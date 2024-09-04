@@ -3,7 +3,6 @@
 
 typedef void (*FuncionDestructora)(void *dato);
 typedef void *(*FuncionCopia)(void *dato);
-typedef void (*FuncionVisitante)(void *dato); //sacar?
 typedef int (*FuncionComparadora)(void* dato1, void* dato2);
 
 typedef struct _GNode {
@@ -32,11 +31,6 @@ void glist_destruir(GList, FuncionDestructora);
  * Agrega un elemento al inicio de la lista.
  */
 GList glist_agregar_inicio(GList, void*, FuncionCopia);
-
-/**
- * Recorrido de la lista, utilizando la funcion pasada.
- */
-void glist_recorrer(GList, FuncionVisitante);
 
 /* Elimina el primer elemento de la lista enlazada.*/
 void glist_elim_primero(GList*, FuncionDestructora);

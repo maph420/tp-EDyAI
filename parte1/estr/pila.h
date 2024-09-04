@@ -5,8 +5,6 @@
 
 typedef void (*FuncionDestructora)(void *dato);
 typedef void *(*FuncionCopia)(void *dato);
-// sacar
-typedef void (*FuncionVisitante)(void *dato);
 
 typedef GNode* Pila;
 /**
@@ -39,12 +37,6 @@ void pila_apilar(Pila*, void*, FuncionCopia);
 * Elimina el elemento que se encuentra en el tope de la pila
 **/
 void pila_desapilar(Pila*, FuncionDestructora);
-
-/**
- * Sacar
-Imprime en orden los elementos de la pila
-**/
-void pila_imprimir(Pila, FuncionVisitante);
 
 #endif /* __PILA_H__ */
 

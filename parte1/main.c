@@ -1,4 +1,5 @@
 #include "robot_utils.h"
+#include <string.h>
 
 /**
  * Valida que el archivo respete el formato pedido, guarda el mapa del laberinto, asi
@@ -61,8 +62,6 @@ int validar_arch_y_guardar_info(char* nomArchivo, char*** mapa, unsigned int* nF
             if (k-3 > *nFilas)
                 archivoValido = 0;
             else {
-
-            
                 if (k-2 > N || strlen(linea)-1 != M) { 
                     archivoValido = 0;
                 }
@@ -110,9 +109,6 @@ int main (int argc, char** argv) {
     for (int i = 0; infoRobot.rastro[i]; i++)
         printf("%c", infoRobot.rastro[i]);
     puts("");
-
-    // sacar
-    printf("%zu\n", strlen(infoRobot.rastro));
 
     // liberar memoria usada por las estructuras
     for (unsigned int i = 0; i < numFilas; i++) free(mapa[i]);

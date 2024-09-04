@@ -3,12 +3,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> // sacar
 #include <math.h>
 #include <time.h>
 #include "estr/pila.h"
 #include "estr/tablahash.h"
-#define LONGITUD_MAX_LINEA 1500
+#define LONGITUD_MAX_LINEA 100
 #define FACTOR_CARGA_UMBRAL 0.75
 
 // izquierda, derecha, arriba, abajo, invalida

@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "pila.h"
 
@@ -27,9 +26,4 @@ void pila_apilar(Pila* pilaRef, void* dato, FuncionCopia copiar) {
 
 void pila_desapilar(Pila* p, FuncionDestructora destroy) {
     glist_elim_primero((GList*)p, destroy);
-}
-
-void pila_imprimir(Pila p, FuncionVisitante visit) {
-    printf("----------\n");
-    glist_recorrer((GList)p, visit);
 }

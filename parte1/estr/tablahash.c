@@ -3,9 +3,6 @@
 #include <assert.h>
 #include <stdlib.h>
 
-// sacar
-#include <stdio.h>
-
 /**
  * Casillas en la que almacenaremos los datos de la tabla hash.
  */
@@ -118,12 +115,6 @@ int tablahash_buscar(TablaHash tabla, void *dato) {
   // Calculamos la posicion del dato dado, de acuerdo a la funcion hash.
   unsigned idx = tabla->hash(dato) % tabla->capacidad;
   return glist_buscar(tabla->elems[idx].datos, dato, tabla->comp) ;
-}
-
-// sacar
-void tablahash_visitar_casillero(TablaHash t, unsigned int k, FuncionVisitante f) {
-  //printf("Recorre casillero %d\n", k);
-  glist_recorrer(t->elems[k].datos, f);
 }
 
 void tablahash_redimensionar(TablaHash tabla) {

@@ -14,9 +14,6 @@ typedef void (*FuncionDestructora)(void *dato);
 /** Funcion de hasheo */
 typedef unsigned int (*FuncionHash)(void *dato);
 
-/** Funcion aplicada */  // sacar?
-typedef void (*FuncionVisitante)(void* dato);
-
 typedef struct _TablaHash *TablaHash;
 
 
@@ -64,11 +61,6 @@ void tablahash_insertar(TablaHash tabla, void *dato, float umbralMax);
  */
 int tablahash_buscar(TablaHash tabla, void *dato);
 
-/**
- * Imprime la lista enlazada correspondiente al casillero k. sacar
- */
-void tablahash_visitar_casillero(TablaHash t, unsigned int k, FuncionVisitante f);
-  
 /**
  * Redimensiona la tabla hash duplicando su capacidad y
  * reposiciona todos los elementos.

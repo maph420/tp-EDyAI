@@ -1,8 +1,6 @@
 #include "glist.h"
 #include <assert.h>
 #include <stdlib.h>
-// sacar
-#include <stdio.h>
 
 GList glist_crear() { return NULL; }
 
@@ -24,15 +22,6 @@ GList glist_agregar_inicio(GList list, void *data, FuncionCopia copy) {
   newNode->next = list;
   newNode->data = copy(data);
   return newNode;
-}
-
-/**
- Sacar
- */
-void glist_recorrer(GList list, FuncionVisitante visit) {
-  printf("LISTA: \n");
-  for (GNode *node = list; node != NULL; node = node->next)
-    visit(node->data);
 }
 
 void glist_elim_primero(GList* refLista, FuncionDestructora destroy) {

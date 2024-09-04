@@ -133,10 +133,10 @@ EstadoConCoord* obt_ady(InfoRobot* ir, Coord curr, int* adyCount) {
     return adyacentes;
 }
 
-void UpdateVertex(Estado u, Coord c, InfoRobot* ir) {
+void ActualizarEstado(Estado u, Coord c, InfoRobot* ir) {
 
     CoordConClave cc = {(Coord){c.x, c.y}, obt_key(c, ir)};
-    // (u_x,u_y) != (i2,j2)
+
     if (c.x != ir->i2 || c.y != ir->j2) {
 
         int adyCount = 0;
@@ -193,13 +193,13 @@ void CalcularRutaOptima(InfoRobot* ir) {
         cambio a los estados adyacentes
         */
         else if (ir->mapaInterno[u.x][u.y].g > ir->mapaInterno[u.x][u.y].rhs) {
-            // Hacer nodo consistente (se actualizan las referencias al nodo en el mapa interno)
+            
             ir->mapaInterno[u.x][u.y].g = ir->mapaInterno[u.x][u.y].rhs;
             int adyCount = 0;
             EstadoConCoord* ady = obt_ady(ir, u, &adyCount);
             
             for (int h = 0; h < adyCount; h++) {
-                UpdateVertex(ady[h].est, ady[h].c, ir);
+                ActualizarEstado(ady[h].est, ady[h].c, ir);
             }
             free(ady);
         } 
@@ -213,16 +213,15 @@ void CalcularRutaOptima(InfoRobot* ir) {
         else {
             ir->mapaInterno[u.x][u.y].g = infty(ir);
 
-            UpdateVertex(ir->mapaInterno[u.x][u.y], u, ir);
+            ActualizarEstado(ir->mapaInterno[u.x][u.y], u, ir);
             int adyCount = 0;
             EstadoConCoord* ady = obt_ady(ir, u, &adyCount);
             for (int h = 0; h < adyCount; h++) {
-                UpdateVertex(ady[h].est, ady[h].c, ir);
+                ActualizarEstado(ady[h].est, ady[h].c, ir);
             }
             free(ady);
     }
 }
-
 }
 
 void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy, Coord ant) {
@@ -250,7 +249,7 @@ void actualizar_segun_direccion(InfoRobot* ir, int dist, int dx, int dy, Coord a
             Para esta implementacion del algoritmo, basta con actualizar el
             nodo que posee el obstaculo.
             */
-            UpdateVertex(ir->mapaInterno[indXObstaculo][indYObstaculo], 
+            ActualizarEstado(ir->mapaInterno[indXObstaculo][indYObstaculo], 
             (Coord){indXObstaculo, indYObstaculo}, ir);
 
             // Recalcular ruta optima
