@@ -34,42 +34,46 @@ int main() {
     InicializaRobot(ir);
     CalcularRutaOptima(ir);
 
-    int distancias[4], pasos = 0, movMax = ir->N * ir->M, numPosiblesMov = 0;
-    Estado sig, posiblesSiguientes[2], last;
-    last.coord.x = ir->i1; last.coord.y = ir->i2;
+    int distancias[4], pasos = 0, movMax = ir->N * ir->M;
+    int numPosiblesMov = 0;
+    EstadoConCoord posiblesSiguientes[2], sig;
+    Coord last;
+    last.x = ir->i1; last.y = ir->i2;
 
     // Mientras el robot no alcance la meta
     while(ir->x != ir->i2 || ir->y != ir->j2) {
     
+        //fprintf(stderr, "robot: (%d,%d)\n", ir->x, ir->y);
         // podrian haber dos nodos con el mismo valor "ideal" para que el robot 
         // se mueva
         numPosiblesMov = siguiente_movimiento(ir, posiblesSiguientes);
         
+        
         if (numPosiblesMov == 2) {
-            if (posiblesSiguientes[0].tipoCelda == VALIDO
-            && posiblesSiguientes[1].tipoCelda == VALIDO) {
+            if (posiblesSiguientes[0].est.tipoCelda == VALIDO
+            && posiblesSiguientes[1].est.tipoCelda == VALIDO) {
                 sig = posiblesSiguientes[aleatorio()];
             }
-            else if (posiblesSiguientes[0].tipoCelda != VALIDO) {
+            else if (posiblesSiguientes[0].est.tipoCelda != VALIDO) {
                 sig = posiblesSiguientes[1];
         } else {
                 sig = posiblesSiguientes[0];
             }
         }
         else sig = posiblesSiguientes[0]; 
-        
 
-       if (sig.tipoCelda == VALIDO || sig.tipoCelda == VISITADO) {
+
+       if (sig.est.tipoCelda == VALIDO || sig.est.tipoCelda == VISITADO) {
             
             if (pasos >= movMax) {
                 movMax *= 2;
                 ir->rastro = realloc(ir->rastro, sizeof(char) * movMax);
             }
-            pasos = mover_robot(ir, sig.coord, pasos);  
-            ir->mapaInterno[sig.coord.x][sig.coord.y].tipoCelda = VISITADO;
+            pasos = mover_robot(ir, sig.c, pasos);  
+            ir->mapaInterno[sig.c.x][sig.c.y].tipoCelda = VISITADO;
         } 
         
-        else if (sig.tipoCelda == DESCONOCIDO) {
+        else if (sig.est.tipoCelda == DESCONOCIDO) {
             /**
              * El siguiente nodo de la ruta optima es desconocido,
              * tirar escaner para seguir la ruta, o de lo contrario

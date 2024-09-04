@@ -54,12 +54,10 @@ char** leer_archivo(FILE* data, int* nFilas, int* nCols, int* max_d, int* i1, in
             // leer laberinto
             char* l; int j; 
             // la cant filas del archivo discrepta con el nro de filas pasado
-            ////printf("k-2: %d, N: %d\n", k-2, N);
             if (k-3 > *nFilas)
                 archivoValido = 0;
             else {
 
-                ////printf("long linea: %ld, M: %d\n", strlen(linea), M);
 				int largoLinea = strlen(linea);
                 if (k-2 > *nFilas || largoLinea-1 != *nCols){ 
                     archivoValido = 0;

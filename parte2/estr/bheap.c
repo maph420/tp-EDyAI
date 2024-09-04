@@ -1,4 +1,5 @@
-#include <stdlib.h> 
+#include <stdlib.h>  
+#include <stdio.h> // sacar
 #include "bheap.h"
 
 BHeap bheap_crear(int capacidad, FuncionComparadora cmp, FuncionDestructora d, FuncionCopiadora c) {
@@ -24,7 +25,7 @@ void bheap_destruir(BHeap bheap) {
 }
 
 unsigned int bheap_es_vacio(BHeap bheap) {
-    return (bheap->ultimo < 0);
+    return (bheap->ultimo == 0);
 }
 
 void* bheap_minimo(BHeap bheap) {
@@ -127,8 +128,25 @@ void bheap_recorrer(BHeap b, FuncionVisitante f) {
     
     //fprintf(stderr, "entra\n");
     if (b->ultimo == 0) {
-        exit(EXIT_FAILURE);
+        fprintf(stderr, "heap vacio\n");
+        return;
     }
     for (int i = 0; i < b->ultimo; i++)
         f(b->arr[i]);
+}
+
+int es_bheap_r(BHeap bheap, int pos, int n) {
+    if (pos >= (n - 1) /2) return 1;
+
+    if ((bheap->comp(bheap->arr[pos], bheap->arr[2*pos +1]) <= 0) &&
+    (bheap->comp(bheap->arr[pos], bheap->arr[2*pos +2]) <= 0) &&
+    es_bheap_r(bheap, 2*pos +1, n) &&
+    es_bheap_r(bheap, 2*pos + 2, n)) {
+        return 1;
+    }
+    return 0;
+}
+
+int es_bheap(BHeap bheap) {
+    return es_bheap_r(bheap, 0, bheap->ultimo);
 }

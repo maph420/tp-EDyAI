@@ -58,6 +58,11 @@ int validar_arch_y_guardar_info(char* nomArchivo, char*** mapa, unsigned int* nF
             char* l;
             unsigned int j; 
             // la cant filas del archivo es distinto a la cant de filas pasada
+            if (k-3 > *nFilas)
+                archivoValido = 0;
+            else {
+
+            
                 if (k-2 > N || strlen(linea)-1 != M) { 
                     archivoValido = 0;
                 }
@@ -70,7 +75,7 @@ int validar_arch_y_guardar_info(char* nomArchivo, char*** mapa, unsigned int* nF
                         (*mapa)[k-3][j] = *l;
                     }
                 }
-            
+            }
             break;
         }
     }

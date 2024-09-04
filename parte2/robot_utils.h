@@ -19,16 +19,21 @@ typedef struct {
 } Coord;
 
 typedef struct {
-    Coord coord;
     int g;
     int rhs; // rhs: estim
     TipoCelda tipoCelda;
 } Estado;
 
 typedef struct {
-    Estado est;
+    Coord coord;
     Key key;
-} EstadoConClave;
+} PosConClave;
+
+
+typedef struct {
+    Estado est;
+    Coord c;
+} EstadoConCoord;
 
 typedef struct {
     int x, y; // Pos actual
@@ -91,7 +96,7 @@ int compara_estado_con_clave(void*, void*) ;
 /**
  * Calcula la clave de prioridad del estado pasado.
  */
-Key obt_key(Estado, InfoRobot*);
+Key obt_key(Coord, InfoRobot*);
 
 /**
  * Funcion auxiliar para retornar un estado adyacente al
@@ -105,6 +110,8 @@ int asigna_adyacencia(Estado*, Coord, InfoRobot*, int, int, int);
  */
 Estado* obt_ady(InfoRobot*, Coord, int*);
 
+EstadoConCoord* obt_ady2(InfoRobot*, Coord, int*);
+
 /**
  * Asigna la memoria para las estructuras utilizadas por
  * el robot.
@@ -115,7 +122,7 @@ void InicializaRobot(InfoRobot*);
  * Actualiza el valor-g estimado del nodo. De ser necesario,
  * actualiza la cola de prioridad con el nuevo valor estimado.
  */
-void UpdateVertex(Estado, InfoRobot*);
+void UpdateVertex(Estado, Coord, InfoRobot*);
 
 /**
  * Se llama la primera vez, o bien cuando algun obstaculo
@@ -140,18 +147,18 @@ int mover_robot(InfoRobot*, Coord, int);
  * Decide buscando el estado adyacente cuyo valor-g sumado
  * al costo de moverse al mismo sea mínimo.
  */
-int siguiente_movimiento(InfoRobot*, Estado*);
+int siguiente_movimiento(InfoRobot*, EstadoConCoord*);
 
 /**
  * Funcion auxiliar para actualizar el mapa interno del robot
  * en una direccion del sensor dada.
  */
-void actualizar_segun_direccion(InfoRobot*, int, int, int, Estado);
+void actualizar_segun_direccion(InfoRobot*, int, int, int, Coord);
 
 /**
  * Actualiza el mapa interno del robot segun la nueva informacion
  * recabada en el arreglo de direcciones devuelto por el sensor.
  */
-void actualizar_mapa_interno(InfoRobot*, int*, Estado);
+void actualizar_mapa_interno(InfoRobot*, int*, Coord);
 
 #endif /* __ROBOT_UTILS_H__ */
