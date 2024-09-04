@@ -37,8 +37,8 @@ int main() {
     int distancias[4], pasos = 0, movMax = ir->N * ir->M;
     int numPosiblesMov = 0;
     EstadoConCoord posiblesSiguientes[2], sig;
-    Coord last;
-    last.x = ir->i1; last.y = ir->i2;
+    Coord ant;
+    ant.x = ir->i1; ant.y = ir->i2;
 
     // Mientras el robot no alcance la meta
     while(ir->x != ir->i2 || ir->y != ir->j2) {
@@ -83,7 +83,7 @@ int main() {
             fflush(stdout);
 
             obtener_distancias(distancias, ir);
-            actualizar_mapa_interno(ir, distancias, last);
+            actualizar_mapa_interno(ir, distancias, ant);
         }
 
     }   

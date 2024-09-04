@@ -19,16 +19,15 @@ typedef struct {
 } Coord;
 
 typedef struct {
+    Coord coord;
+    Key key;
+} CoordConClave;
+
+typedef struct {
     int g;
     int rhs; // rhs: estim
     TipoCelda tipoCelda;
 } Estado;
-
-typedef struct {
-    Coord coord;
-    Key key;
-} PosConClave;
-
 
 typedef struct {
     Estado est;
@@ -102,15 +101,13 @@ Key obt_key(Coord, InfoRobot*);
  * Funcion auxiliar para retornar un estado adyacente al
  * estado actual, en la direccion dada
  */
-int asigna_adyacencia(Estado*, Coord, InfoRobot*, int, int, int);
+int asigna_adyacencia(EstadoConCoord*, Coord, InfoRobot*, int, int, int);
 
 /**
  * Retorna un array de (a lo sumo) 4 elementos, que son los
  * estados adyacentes al pasado.
  */
-Estado* obt_ady(InfoRobot*, Coord, int*);
-
-EstadoConCoord* obt_ady2(InfoRobot*, Coord, int*);
+EstadoConCoord* obt_ady(InfoRobot*, Coord, int*);
 
 /**
  * Asigna la memoria para las estructuras utilizadas por
